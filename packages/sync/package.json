@@ -1,0 +1,48 @@
+{
+  "name": "@vault-keeper/sync",
+  "version": "0.1.0",
+  "description": "CRDT-based vault synchronization engine — Automerge-powered conflict-free merge for VaultKeepR",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VaultKeepR/vaultkeepr.git",
+    "directory": "packages/sync"
+  },
+  "license": "MIT",
+  "keywords": [
+    "crdt",
+    "automerge",
+    "sync",
+    "vault",
+    "conflict-free",
+    "offline",
+    "vaultkeepr"
+  ],
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "require": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "clean": "rm -rf dist",
+    "test": "vitest run",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "@automerge/automerge": "^3.2.6",
+    "@vault-keeper/core": "*"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5"
+  },
+  "files": [
+    "dist"
+  ]
+}

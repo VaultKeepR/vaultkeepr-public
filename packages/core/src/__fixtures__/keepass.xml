@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<KeePassFile>
+  <Root>
+    <Group>
+      <Name>Root</Name>
+      <Entry>
+        <String><Key>Title</Key><Value>GitHub</Value></String>
+        <String><Key>UserName</Key><Value>alice</Value></String>
+        <String><Key>Password</Key><Value>gh-p@ss-123</Value></String>
+        <String><Key>URL</Key><Value>https://github.com</Value></String>
+        <String><Key>Notes</Key><Value>Personal account</Value></String>
+        <String><Key>otp</Key><Value>totp:JBSWY3DPEHPK3PXP</Value></String>
+      </Entry>
+      <Group>
+        <Name>Personal</Name>
+        <Entry>
+          <String><Key>Title</Key><Value>Wifi café</Value></String>
+          <String><Key>Notes</Key><Value>SSID: CafeNet
+PSK: espresso-latte</Value></String>
+        </Entry>
+      </Group>
+    </Group>
+  </Root>
+</KeePassFile>

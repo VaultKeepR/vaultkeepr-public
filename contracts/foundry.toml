@@ -1,0 +1,15 @@
+# src = "src" : ne compile que nos .sol ; évite certora/, test/, harnesses OZ sous lib/.
+[profile.default]
+src = "src"
+script = "script"
+out = "out"
+libs = ["node_modules", "lib"]
+solc = "0.8.20"
+remappings = [
+    "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/"
+]
+
+# API V2 unifiée (août 2025+) : clé depuis https://etherscan.io/apidashboard — plus les URL api.basescan.org/api en V1.
+[etherscan]
+base = { key = "${ETHERSCAN_API_KEY}", url = "https://api.etherscan.io/v2/api?chainid=8453" }
+base-sepolia = { key = "${ETHERSCAN_API_KEY}", url = "https://api.etherscan.io/v2/api?chainid=84532" }

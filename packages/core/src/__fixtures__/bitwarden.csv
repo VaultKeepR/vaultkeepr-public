@@ -1,0 +1,6 @@
+folder,favorite,type,name,notes,fields,reprompt,login_uri,login_username,login_password,login_totp
+identifiants,0,1,GitHub,Personal account,,0,https://github.com,alice,gh-p@ss-123,JBSWY3DPEHPK3PXP
+notes,0,2,Wifi café,SSID: CafeNet
+PSK: espresso-latte,,0,,,,
+cartes,0,3,Alice Visa,,3,0,,,4111111111111111,
+identites,0,4,Alice Doe,,0,0,,,,

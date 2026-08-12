@@ -1,0 +1,25 @@
+{
+  "name": "@vault-keeper/cloud",
+  "version": "1.0.0",
+  "description": "VaultKeepR Decentralized Cloud Storage logic",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "vitest run",
+    "lint": "eslint src/**/*.ts"
+  },
+  "dependencies": {
+    "@vault-keeper/core": "*",
+    "@vault-keeper/ipfs": "*",
+    "@noble/ciphers": "^0.5.3",
+    "@noble/hashes": "^1.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.3",
+    "tsup": "^8.3.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,24 @@
+{
+  "name": "@vault-keeper/ocr-native",
+  "version": "1.0.0",
+  "description": "Native OCR module using VisionKit (iOS) and ML Kit (Android)",
+  "author": "VaultKeepR",
+  "license": "MIT",
+  "homepage": "https://vaultkeepr.xyz",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {},
+  "dependencies": {
+    "@vault-keeper/logger": "0.1.0"
+  },
+  "peerDependencies": {
+    "expo": ">=50.0.0",
+    "react-native": ">=0.73.0"
+  },
+  "devDependencies": {
+    "expo-modules-core": "^1.12.0"
+  },
+  "expo": {
+    "module": "expo-module.config.json"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "VaultKeeperOcrNative",
+  "platforms": ["apple", "android"],
+  "apple": {
+    "podName": "VaultKeeperOcrNative",
+    "modules": ["OcrNativeModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.ocrnative.OcrNativeModule"]
+  }
+}

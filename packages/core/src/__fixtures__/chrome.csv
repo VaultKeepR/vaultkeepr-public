@@ -1,0 +1,4 @@
+name,url,username,password,note
+GitHub,https://github.com,alice,gh-p@ss-123,Personal account
+Wifi café,,,,"SSID: CafeNet
+PSK: espresso-latte"

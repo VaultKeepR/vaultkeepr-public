@@ -1,0 +1,13 @@
+{
+  "name": "@vault-keeper/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "forge build",
+    "deploy:base": "forge script script/Deploy.s.sol:DeployScript --rpc-url https://mainnet.base.org --broadcast --verify --chain base --verifier etherscan",
+    "deploy:base-sepolia": "forge script script/Deploy.s.sol:DeployScript --rpc-url https://sepolia.base.org --broadcast --verify --chain base-sepolia --verifier etherscan"
+  },
+  "devDependencies": {
+    "forge-std": "^1.8.0"
+  }
+}

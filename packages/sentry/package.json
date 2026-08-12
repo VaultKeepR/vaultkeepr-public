@@ -1,0 +1,44 @@
+{
+  "name": "@vault-keeper/sentry",
+  "version": "0.1.0",
+  "private": false,
+  "description": "VaultKeepR Sentry integration with privacy-first beforeSend scrubber",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "import": "./dist/browser.mjs",
+      "require": "./dist/browser.js"
+    },
+    "./react-native": {
+      "types": "./dist/react-native.d.ts",
+      "import": "./dist/react-native.mjs",
+      "require": "./dist/react-native.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/browser.ts src/react-native.ts --format cjs,esm --dts",
+    "clean": "rm -rf dist",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@sentry/browser": "^9.0.0",
+    "@sentry/react-native": "^6.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vitest": "^3.2.4"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT"
+}
