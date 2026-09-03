@@ -11,6 +11,7 @@
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6.svg?logo=typescript&logoColor=white)](./packages)
   [![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636.svg?logo=solidity&logoColor=white)](./contracts)
   [![Base](https://img.shields.io/badge/deployed%20on-Base%20L2-0052FF.svg?logo=ethereum&logoColor=white)](https://basescan.org)
+  [![GitGem](https://gitgem.org/api/badge/github/VaultKeepR/vaultkeepr-public.svg)](https://gitgem.org/VaultKeepR/vaultkeepr-public)
 </div>
 
 ## What this repository is
