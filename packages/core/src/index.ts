@@ -47,4 +47,6 @@ export * from "./passwordStrength";
 export { threeWayMerge, mergeFolders, mergeFolderTrees, deleteFolder, deleteCloudFolder, deleteVaultEntry } from "./merge";
 export * from "./pair";
 export { BIP39_WORDLIST, suggestBip39Words } from "./bip39";
+export { EFF_WORDLIST } from "./wordlist";
+export { estimatePasswordEntropy } from "./passwordEntropy";
 export * from "./slm-engine";

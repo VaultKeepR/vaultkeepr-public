@@ -109,6 +109,7 @@ export interface CrdtSecureDocument {
 
   modifiedAt: number;
 
+  replacedAt?: number;
 
   _deleted: boolean;
   _deletedAt: number;
@@ -139,6 +140,7 @@ export interface CrdtCloudFile {
   addedAt: string;
   modifiedAt: number;
 
+  replacedAt?: number;
 
   _deleted: boolean;
   _deletedAt: number;
