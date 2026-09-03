@@ -16,19 +16,27 @@
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "clean": "rm -rf dist",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "lint": "eslint src/"
   },
   "dependencies": {
-    "@vault-keeper/logger": "0.1.0"
+    "@vault-keeper/core": "workspace:*",
+    "@vault-keeper/logger": "workspace:*"
   },
   "peerDependencies": {
     "permissionless": ">=0.3.0",
+    "react": ">=18",
     "viem": ">=2.0.0"
   },
   "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "ox": "^0.14.34",
+    "permissionless": "^0.3.5",
+    "react": "19.2.0",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
+    "viem": "^2.48.4",
     "vitest": "^2.1.5"
   },
   "files": [

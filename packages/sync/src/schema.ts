@@ -68,7 +68,7 @@ export interface CrdtVaultEntry {
 
   modifiedAt: number;
 
-
+  replacedAt?: number;
 
   _deleted: boolean;
 

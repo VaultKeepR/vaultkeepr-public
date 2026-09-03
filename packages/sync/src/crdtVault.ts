@@ -303,11 +303,11 @@ merged: Record<string, unknown>,
 local: Record<string, unknown>,
 remote: Record<string, unknown>)
 : void {
-  const localTs = local.modifiedAt as number | undefined ?? 0;
-  const remoteTs = remote.modifiedAt as number | undefined ?? 0;
-  if (localTs === remoteTs) return;
+  const localRep = (local.replacedAt as number | undefined) ?? (local.modifiedAt as number | undefined) ?? 0;
+  const remoteRep = (remote.replacedAt as number | undefined) ?? (remote.modifiedAt as number | undefined) ?? 0;
+  if (localRep === remoteRep) return;
 
-  const newerIsLocal = localTs > remoteTs;
+  const newerIsLocal = localRep > remoteRep;
   const allKeys = new Set<string>([...Object.keys(local), ...Object.keys(remote)]);
   for (const key of allKeys) {
     if (key === "id") continue;
@@ -745,6 +745,7 @@ function vaultEntryToCrdt(e: VaultEntry): CrdtVaultEntry {
     useCount: e.useCount || 0,
     lastUsedAt: e.lastUsedAt || 0,
     modifiedAt: e.modifiedAt || Date.now(),
+    replacedAt: e.modifiedAt || Date.now(),
     _deleted: false,
     _deletedAt: 0
   };
@@ -789,6 +790,7 @@ function secureDocToCrdt(d: SecureDocument): CrdtSecureDocument {
     mimeType: d.mimeType,
     addedAt: d.addedAt,
     modifiedAt: d.modifiedAt || 0,
+    replacedAt: d.modifiedAt || 0,
     _deleted: false,
     _deletedAt: 0
   };
@@ -839,6 +841,7 @@ function cloudFileToCrdt(c: CloudFile): CrdtCloudFile {
     favorite: c.favorite || false,
     addedAt: c.addedAt,
     modifiedAt: c.modifiedAt || Date.now(),
+    replacedAt: c.modifiedAt || Date.now(),
     _deleted: false,
     _deletedAt: 0
   };

@@ -35,9 +35,10 @@
   },
   "dependencies": {
     "@automerge/automerge": "^3.2.6",
-    "@vault-keeper/core": "*"
+    "@vault-keeper/core": "workspace:*"
   },
   "devDependencies": {
+    "@types/node": "^20",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
     "vitest": "^2.1.5"

@@ -19,6 +19,7 @@
     "prepare": "npm run build"
   },
   "devDependencies": {
+    "@types/node": "^20",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
     "vitest": "^3.2.4"
