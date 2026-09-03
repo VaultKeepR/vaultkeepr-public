@@ -1,18 +1,23 @@
 export type { Locale, Translations } from "./translations";
-export { en, fr } from "./translations";
+export { en } from "./translations";
+export { fr } from "./fr";
 
 import type { Locale, Translations } from "./translations";
-import { en, fr } from "./translations";
+import { en } from "./translations";
 
-const translations: Record<Locale, Translations> = { en, fr };
+const messages: Partial<Record<Locale, Translations>> = {};
+
+export function registerMessages(locale: Locale, value: Translations): void {
+  messages[locale] = value;
+}
 
 export function getTranslations(locale: Locale): Translations {
-  return translations[locale] ?? en;
+  return messages[locale] ?? en;
 }
 
 export function t(locale: Locale, key: string, params?: Record<string, string | number>): string {
   const keys = key.split(".");
-  let value: unknown = translations[locale] ?? en;
+  let value: unknown = getTranslations(locale);
   for (const k of keys) {
     value = (value as Record<string, unknown>)?.[k];
     if (value === undefined) {

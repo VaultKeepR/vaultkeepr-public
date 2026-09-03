@@ -219,3 +219,22 @@ describe("Passkey crypto (P-256 / ES256)", () => {
     });
   });
 });
+describe("publicKeyToSpki", () => {
+  it("wraps an uncompressed P-256 point into SubjectPublicKeyInfo DER", async () => {
+    const { generatePasskeyKeyPair, publicKeyToSpki, P256_SPKI_HEADER } =
+      await import("./passkey-crypto");
+    const { publicKey } = generatePasskeyKeyPair();
+    const spki = publicKeyToSpki(publicKey);
+
+    expect(spki).toHaveLength(91);
+    expect(Array.from(spki.slice(0, 26))).toEqual(Array.from(P256_SPKI_HEADER));
+    expect(Array.from(spki.slice(26))).toEqual(Array.from(publicKey));
+  });
+
+  it("throws for invalid key length", async () => {
+    const { publicKeyToSpki } = await import("./passkey-crypto");
+    expect(() => publicKeyToSpki(new Uint8Array(64))).toThrow(
+      "Expected 65-byte uncompressed P-256 public key"
+    );
+  });
+});

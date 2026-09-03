@@ -4,8 +4,6 @@
 
 
 
-const GATEWAY_ARIO = "https://gateway.ar.io";
-
 const IPFS_GATEWAYS_DEFAULT = ["https://ipfs.io/ipfs", "https://dweb.link/ipfs"];
 const FETCH_TIMEOUT_MS = 30_000;
 
@@ -31,14 +29,6 @@ export function isIpfsCid(id: string): boolean {
 export function isS3Cid(id: string): boolean {
   return (id || "").trim().startsWith("s3_");
 }
-
-export interface TurboClient {
-  upload(opts: {data: Uint8Array;dataItemOpts?: {tags?: Array<{name: string;value: string;}>;};}): Promise<{id?: string;dataItemId?: string;}>;
-}
-
-
-
-
 
 export function normalizeVaultLocation(input: string): string {
   const s = (input || "").trim();
@@ -83,20 +73,8 @@ async function fetchFromIpfsGateways(cid: string): Promise<string> {
 }
 
 
-let cloudApiBase = "";
-
-
-
-
-export function setCloudApiBase(base: string): void {
-  cloudApiBase = (base || "").replace(/\/$/, "");
-}
-
-
-
-
 async function fetchFromS3(contentId: string, walletAddress?: string): Promise<string> {
-  const base = cloudApiBase ||
+  const base =
   typeof process !== "undefined" && (process as {env?: Record<string, string>;}).env?.NEXT_PUBLIC_APP_URL ||
   typeof process !== "undefined" && (process as {env?: Record<string, string>;}).env?.EXPO_PUBLIC_API_URL ||
   "https://app.vaultkeepr.xyz";
@@ -135,59 +113,13 @@ export async function fetchFromStorage(txId: string, walletAddress?: string): Pr
   if (isIpfsCid(id)) {
     return fetchFromIpfsGateways(id);
   }
-  const url = `${GATEWAY_ARIO}/${id}`;
-  const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
-  const timeoutId = controller ? setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS) : null;
-  try {
-    const res = await fetch(url, { signal: controller?.signal });
-    if (timeoutId) clearTimeout(timeoutId);
-    if (!res.ok) throw new Error(`Arweave fetch: ${res.status}`);
-    return res.text();
-  } catch (e) {
-    if (timeoutId) clearTimeout(timeoutId);
-    const msg = e instanceof Error ? e.message : String(e);
-    if (msg.includes("AbortError") || msg.includes("abort")) {
-      throw new Error("Délai de connexion dépassé (30 s).");
-    }
-    throw e;
-  }
+
+  throw new Error("Identifiant de stockage non reconnu (CID IPFS attendu).");
 }
 
 
 export async function fetchFromIpfs(txId: string): Promise<string> {
   return fetchFromStorage(txId);
-}
-
-export type UploadResult = {
-  cid: string;
-  provider: "turbo";
-};
-
-
-export async function uploadToStorage(
-content: string,
-turbo: TurboClient)
-: Promise<UploadResult> {
-  const data = new TextEncoder().encode(content);
-  if (data.length > 102_400) {
-    throw new Error("Vault > 100 KiB : top-up Turbo requis (turbo.ar.io).");
-  }
-  const result = await turbo.upload({
-    data,
-    dataItemOpts: {
-      tags: [
-      { name: "Content-Type", value: "application/json" },
-      { name: "App-Name", value: "VaultKeeper" }]
-
-    }
-  });
-  const id = result?.id ?? result?.dataItemId;
-  if (!id) throw new Error("Pas de transaction ID retournée par Turbo.");
-  return { cid: id, provider: "turbo" };
-}
-
-export function getGatewayUrl(txId: string): string {
-  return `${GATEWAY_ARIO}/${normalizeVaultLocation(txId)}`;
 }
 
 

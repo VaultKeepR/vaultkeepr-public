@@ -105,6 +105,24 @@ export function publicKeyToCose(publicKey: Uint8Array): Uint8Array {
 }
 
 
+export const P256_SPKI_HEADER = new Uint8Array([
+  0x30, 0x59, 0x30, 0x13, 0x06, 0x07, 0x2a, 0x86, 0x48, 0xce, 0x3d,
+  0x02, 0x01, 0x06, 0x08, 0x2a, 0x86, 0x48, 0xce, 0x3d, 0x03, 0x01,
+  0x07, 0x03, 0x42, 0x00
+]);
+
+
+export function publicKeyToSpki(publicKey: Uint8Array): Uint8Array {
+  if (publicKey.length !== 65 || publicKey[0] !== 0x04) {
+    throw new Error("Expected 65-byte uncompressed P-256 public key");
+  }
+  const spki = new Uint8Array(P256_SPKI_HEADER.length + publicKey.length);
+  spki.set(P256_SPKI_HEADER);
+  spki.set(publicKey, P256_SPKI_HEADER.length);
+  return spki;
+}
+
+
 
 
 

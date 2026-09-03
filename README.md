@@ -44,7 +44,6 @@ security auditing.
 | [`ipfs`](./packages/ipfs) | Decentralized storage gateway for encrypted vaults |
 | [`recovery`](./packages/recovery) | Shamir Secret Sharing (3-of-5) fragmented vault recovery |
 | [`smart-account`](./packages/smart-account) | ERC-4337 Account Abstraction — identity derivation, on-chain sync |
-| [`wallet`](./packages/wallet) | Multi-chain wallet integration (EIP-1193, EIP-6963) and ENS resolution |
 | [`wallet-messages`](./packages/wallet-messages) | Typed signing message schemas for wallet-based authentication |
 | [`cloud`](./packages/cloud) | Zero-knowledge encrypted cloud storage (S3-compatible) |
 | [`alias`](./packages/alias) | Email alias forwarding (Postfix/Dovecot integration) |
@@ -72,7 +71,7 @@ Deployed on **Base L2**. Audited with Foundry (`contracts/test/`).
 - **Encryption**: XChaCha20-Poly1305 AEAD + Argon2id key derivation (t=3, m=64 MiB, p=4).
 - **On-device AI**: the SLM engine (auto-tagging, breach summary) runs entirely locally —
   no vault data is sent to any server.
-- **Libraries**: `@noble/*` (ciphers, curves, hashes), `ethers` v6, `viem` v2.
+- **Libraries**: `@noble/*` (ciphers, curves, hashes), `viem` v2.
 - **No logged keys/secrets** — the logger redacts CIDs and addresses automatically.
 
 See [`SECURITY.md`](./SECURITY.md) for vulnerability reporting.
@@ -128,7 +127,6 @@ transparence et audit de sécurité indépendant.
 | [`ipfs`](./packages/ipfs) | Passerelle de stockage décentralisé pour coffres chiffrés |
 | [`recovery`](./packages/recovery) | Récupération fragmentée par Secret Sharing Shamir (3-sur-5) |
 | [`smart-account`](./packages/smart-account) | Account Abstraction ERC-4337 — dérivation d'identité, synchronisation on-chain |
-| [`wallet`](./packages/wallet) | Intégration multi-chain (EIP-1193, EIP-6963) et résolution ENS |
 | [`wallet-messages`](./packages/wallet-messages) | Schémas de signature typée pour l'authentification par wallet |
 | [`cloud`](./packages/cloud) | Stockage cloud chiffré zero-knowledge (compatible S3) |
 | [`alias`](./packages/alias) | Redirection d'alias email (intégration Postfix/Dovecot) |
@@ -156,7 +154,7 @@ Déployés sur **Base L2**. Audités avec Foundry (`contracts/test/`).
 - **Chiffrement** : XChaCha20-Poly1305 AEAD + dérivation Argon2id (t=3, m=64 MiB, p=4).
 - **IA on-device** : le moteur SLM (auto-tagging, résumé de brèche) s'exécute entièrement en
   local — aucune donnée du coffre n'est envoyée à un serveur.
-- **Bibliothèques** : `@noble/*` (chiffrements, courbes, hachages), `ethers` v6, `viem` v2.
+- **Bibliothèques** : `@noble/*` (chiffrements, courbes, hachages), `viem` v2.
 - **Aucune clé/secret journalisé** — le logger masque automatiquement les CID et adresses.
 
 Voir [`SECURITY.md`](./SECURITY.md) pour le signalement de vulnérabilités.

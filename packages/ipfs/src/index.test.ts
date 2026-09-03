@@ -3,8 +3,7 @@ import {
   isIpfsCid,
   normalizeVaultLocation,
   normalizeCid,
-  setIpfsGateways,
-  getGatewayUrl } from
+  setIpfsGateways } from
 "./index";
 
 describe("IPFS — isIpfsCid", () => {
@@ -20,7 +19,7 @@ describe("IPFS — isIpfsCid", () => {
     expect(isIpfsCid("baexample123")).toBe(true);
   });
 
-  it("returns false for Arweave-style TX IDs", () => {
+  it("returns false for non-CID IDs", () => {
     expect(isIpfsCid("abc123def456")).toBe(false);
   });
 
@@ -50,18 +49,6 @@ describe("IPFS — normalizeVaultLocation", () => {
 describe("IPFS — normalizeCid", () => {
   it("delegates to normalizeVaultLocation", () => {
     expect(normalizeCid("  test  ")).toBe("test");
-  });
-});
-
-describe("IPFS — getGatewayUrl", () => {
-  it("returns correct Arweave gateway URL", () => {
-    const url = getGatewayUrl("txid123");
-    expect(url).toBe("https://gateway.ar.io/txid123");
-  });
-
-  it("trims the input", () => {
-    const url = getGatewayUrl("  txid123  ");
-    expect(url).toBe("https://gateway.ar.io/txid123");
   });
 });
 

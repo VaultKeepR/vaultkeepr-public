@@ -1,5 +1,9 @@
 import { describe, it, expect } from "vitest";
-import { getTranslations, t, en, fr } from "./index";
+import { getTranslations, t, en } from "./index";
+import { fr } from "./fr";
+import { registerMessages } from "./index";
+
+registerMessages("fr", fr);
 
 describe("i18n — getTranslations", () => {
   it("returns English translations for 'en'", () => {
