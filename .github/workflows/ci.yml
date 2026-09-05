@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: "22"
           cache: pnpm
-      - uses: foundry-rs/foundry-action@v1
+      - uses: foundry-rs/foundry-toolchain@v1
         with:
           version: stable
       - run: pnpm install --frozen-lockfile
@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-      - uses: foundry-rs/foundry-action@v1
+      - uses: foundry-rs/foundry-toolchain@v1
         with:
           version: stable
       - run: forge build
