@@ -8,6 +8,7 @@
   [**vaultkeepr.xyz**](https://vaultkeepr.xyz)
 
   [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+  [![CI](https://github.com/VaultKeepR/vaultkeepr-public/actions/workflows/ci.yml/badge.svg)](https://github.com/VaultKeepR/vaultkeepr-public/actions/workflows/ci.yml)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6.svg?logo=typescript&logoColor=white)](./packages)
   [![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636.svg?logo=solidity&logoColor=white)](./contracts)
   [![Base](https://img.shields.io/badge/deployed%20on-Base%20L2-0052FF.svg?logo=ethereum&logoColor=white)](https://basescan.org)
