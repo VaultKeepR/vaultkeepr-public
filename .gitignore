@@ -6,3 +6,5 @@ dist/
 .env.*
 coverage/
 .DS_Store
+cache/
+out/
