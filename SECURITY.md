@@ -17,7 +17,7 @@ Please include:
 
 This policy covers the open-source packages and Solidity contracts in this repository:
 `packages/core`, `packages/sync`, `packages/ipfs`, `packages/recovery`, `packages/premium`,
-`packages/wallet`, `packages/wallet-messages`, `packages/smart-account`, `packages/cloud`,
+`packages/wallet-messages`, `packages/smart-account`, `packages/cloud`,
 `packages/alias`, `packages/logger`, `packages/i18n`, `packages/ui`, `packages/sentry`,
 `packages/legacy`, `packages/ocr-native`, and `contracts/`.
 
