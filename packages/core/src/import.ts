@@ -18,6 +18,9 @@ import { isOnePassword1Pux, import1Pux } from "./import-1pux";
 import { isKeePassXml, importKeePassXml } from "./import-keepass-xml";
 import { isLastPassExport, importLastPass } from "./import-lastpass";
 import { isDashlaneCsv, isDashlaneJson, importDashlaneCsv, importDashlaneJson } from "./import-dashlane";
+/* parseDelimitedLine removed: CSV splitting is delegated to each format-specific
+   importer (importCsv / import-*.ts), which own their dialects. */
+
 import { isRoboFormExport, importRoboForm } from "./import-roboform";
 import { isKeeperCsv, isKeeperJson, importKeeperCsv, importKeeperJson } from "./import-keeper";
 import { isEnpassCsv, isEnpassJson, importEnpassCsv, importEnpassJson } from "./import-enpass";
@@ -164,7 +167,7 @@ export function import1PasswordPif(content: string): Vault {
       let username = "";
       let password = "";
       let totpSecret: string | undefined;
-      let notes =
+      const notes =
       typeof sc?.notesPlain === "string" ? sc.notesPlain.trim() : "";
       const fields = Array.isArray(sc?.fields) ?
       sc.fields as Record<string, unknown>[] :
@@ -550,33 +553,6 @@ function detectCsvDelimiter(headerLine: string): "," | ";" | "\t" {
   if (tabs >= Math.max(commas, semis) && tabs > 0) return "\t";
   if (semis > commas) return ";";
   return ",";
-}
-
-function parseDelimitedLine(
-line: string,
-delimiter: "," | ";" | "\t")
-: string[] {
-  const result: string[] = [];
-  let current = "";
-  let inQuotes = false;
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
-    if (c === '"') {
-      inQuotes = !inQuotes;
-    } else if (!inQuotes && c === "\r") {
-      continue;
-    } else if (
-    !inQuotes && (
-    delimiter === "\t" ? c === "\t" : c === delimiter))
-    {
-      result.push(current.trim());
-      current = "";
-    } else {
-      current += c;
-    }
-  }
-  result.push(current.trim());
-  return result;
 }
 
 function headerMatchesUrl(n: string): boolean {
@@ -1227,7 +1203,7 @@ vaultKeeperPassword?: string)
       const parsed = JSON.parse(trimmed);
       if (Array.isArray(parsed.entries)) {
         const vault = createEmptyVault();
-        vault.entries = parsed.entries.map((e: any) =>
+        vault.entries = parsed.entries.map((e: { url?: string; username?: string; password?: string } & Record<string, unknown>) =>
         createEntry({
           ...e,
           url: e.url ?? "",
@@ -1316,7 +1292,7 @@ content: string | Uint8Array)
       const parsed = JSON.parse(text);
       if (parsed && Array.isArray(parsed.entries)) {
         const vault = createEmptyVault();
-        vault.entries = parsed.entries.map((e: any) =>
+        vault.entries = parsed.entries.map((e: { url?: string; username?: string; password?: string } & Record<string, unknown>) =>
         createEntry({
           ...e,
           url: e.url ?? "",

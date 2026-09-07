@@ -43,7 +43,7 @@ file: File | {fileName: string;fileSize: number;mimeType: string;data?: Uint8Arr
 
   if (!ALLOWED_MIME_TYPES[mimeType]) {
     const ext = "." + fileName.split(".").pop()?.toLowerCase();
-    const foundMime = Object.entries(ALLOWED_MIME_TYPES).find(([_, exts]) => exts.includes(ext));
+    const foundMime = Object.entries(ALLOWED_MIME_TYPES).find(([, exts]) => exts.includes(ext));
     if (!foundMime) {
       return { valid: false, error: "invalid_type" };
     }

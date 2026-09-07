@@ -10,7 +10,7 @@
 
 import type { Vault } from "@vault-keeper/core";
 import type { VaultDoc } from "./schema";
-import { fromLegacyVault, importBinary, isAutomergeBinary } from "./crdtVault";
+import { fromLegacyVault, isAutomergeBinary } from "./crdtVault";
 
 
 

@@ -59,9 +59,14 @@ commands (see `.github/workflows/ci.yml`).
 2. Keep commits focused. Commit messages follow Conventional Commits, as in
    the existing history (`feat:`, `fix:`, `docs:`, `ci:`, with optional scope,
    e.g. `fix(contracts): ...`).
-3. Open a pull request against `main`. Describe what changed and why.
-4. CI must pass: `SDK packages`, `Foundry contracts`, and (for JS/TS changes)
+3. **Sign every commit** (`git commit -s`) to certify that you are legally
+   authorized to contribute it, under the
+   [Developer Certificate of Origin (DCO)](https://developercertificate.org).
+   The `Signed-off-by:` trailer is enforced by a CI check — unsigned commits
+   cannot merge.
+4. Open a pull request against `main`. Describe what changed and why.
+5. CI must pass: `SDK packages`, `Foundry contracts`, and (for JS/TS changes)
    the CodeQL analysis. `main` is protected — no force-pushes, linear history.
-5. Add or update tests for behaviour you change.
+6. Add or update tests for behaviour you change.
 
 All contributions are made under the project's [MIT license](./LICENSE).
