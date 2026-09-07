@@ -31,6 +31,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - run: pnpm test
+      - name: Coverage gate (core, >=80% statements)
+        run: pnpm --filter @vault-keeper/core exec vitest run --coverage
 
   contracts:
     name: Foundry contracts
