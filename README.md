@@ -9,7 +9,7 @@
 
   [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
   [![CI](https://github.com/VaultKeepR/vaultkeepr-public/actions/workflows/ci.yml/badge.svg)](https://github.com/VaultKeepR/vaultkeepr-public/actions/workflows/ci.yml)
-  [![OpenSSF Scorecard](https://api.securityscorecards.dev/badge?org=github.com/VaultKeepR/vaultkeepr-public)](https://securityscorecards.dev/viewer/?uri=github.com/VaultKeepR/vaultkeepr-public)
+  [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/VaultKeepR/vaultkeepr-public/badge)](https://securityscorecards.dev/viewer/?uri=github.com/VaultKeepR/vaultkeepr-public)
   [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/14491/badge)](https://www.bestpractices.dev/projects/14491)
   [![OpenSSF Baseline](https://www.bestpractices.dev/projects/14491/baseline)](https://www.bestpractices.dev/projects/14491)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6.svg?logo=typescript&logoColor=white)](./packages)
