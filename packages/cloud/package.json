@@ -13,7 +13,7 @@
   "dependencies": {
     "@vault-keeper/core": "workspace:*",
     "@vault-keeper/ipfs": "workspace:*",
-    "@noble/ciphers": "^0.5.3",
+    "@noble/ciphers": "^2.4.0",
     "@noble/hashes": "^1.4.0"
   },
   "devDependencies": {

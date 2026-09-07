@@ -37,7 +37,7 @@
     "lint": "eslint src/"
   },
   "dependencies": {
-    "@noble/ciphers": "^2.1.1",
+    "@noble/ciphers": "^2.4.0",
     "@noble/curves": "^2.0.1",
     "@noble/hashes": "^2.0.1",
     "@vault-keeper/logger": "workspace:*",
