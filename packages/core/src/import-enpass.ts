@@ -21,7 +21,6 @@ export function isEnpassCsv(text: string): boolean {
   if (!firstLine) return false;
 
   const rawHeaders = firstLine.split(",");
-  const headers = rawHeaders.map((h) => h.replace(/^["']|["']$/g, "").trim());
 
   return (
     rawHeaders.some((h) => {

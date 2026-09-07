@@ -171,9 +171,9 @@ describe("analyzeVaultHealth", () => {
     makeEntry({
       id: "1",
       password: "OldPass123!",
-      passwordChangedAt: oldDate,
+      passwordChangedAt: new Date(oldDate).getTime(),
       passwordMaxAgeDays: 365
-    } as any)];
+    })];
 
     const report = analyzeVaultHealth(entries);
     expect(report.stats.expired).toBe(1);

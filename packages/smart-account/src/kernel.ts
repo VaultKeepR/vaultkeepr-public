@@ -119,7 +119,7 @@ params: CreateSmartAccountParams)
     address: kernelAccount.address,
     ownerAddress: ownerAccount.address,
     ownerAccount,
-    client: bundlerClient as any,
+    client: bundlerClient as unknown as ReturnType<typeof createBundlerClient>,
     chain: TARGET_CHAIN,
     mode
   };
