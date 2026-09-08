@@ -11,7 +11,7 @@ import {
   importFromPgp,
   importVaultText } from
 "./index";
-import type { Vault, PasskeyEntry, SeedPhraseEntry } from "./types";
+import type { Vault, VaultEntry } from "./types";
 
 
 function sampleVault(): Vault {
@@ -158,7 +158,7 @@ function expectAllPreserved(v: Vault) {
   { name: "Code de récupération", value: "rec-hidden", type: "hidden" }]
   );
 
-  const passkey = v.entries.find((e) => e.folder === "passkeys") as unknown as PasskeyEntry;
+  const passkey = v.entries.find((e) => e.folder === "passkeys") as any;
   expect(passkey.type).toBe("passkey");
   expect(passkey.rpId).toBe("google.com");
   expect(passkey.credentialId).toBe("cred-id-base64url");
@@ -168,7 +168,7 @@ function expectAllPreserved(v: Vault) {
   expect(passkey.counter).toBe(3);
   expect(passkey.transports).toEqual(["internal", "hybrid"]);
 
-  const seed = v.entries.find((e) => e.folder === "seeds") as unknown as SeedPhraseEntry;
+  const seed = v.entries.find((e) => e.folder === "seeds") as any;
   expect(seed.type).toBe("seed");
   expect(seed.walletName).toBe("Ledger Main");
   expect(seed.wordCount).toBe(12);

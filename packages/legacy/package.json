@@ -17,20 +17,19 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@noble/ciphers": "^2.1.1",
-    "@noble/curves": "^2.3.0",
-    "@noble/hashes": "^2.0.1",
+    "@noble/ciphers": "^2.4.0",
+    "@noble/curves": "^2.4.0",
+    "@noble/hashes": "^2.4.0",
     "@vault-keeper/core": "workspace:*",
-    "@vault-keeper/ipfs": "workspace:*",
     "@vault-keeper/logger": "workspace:*",
     "@vault-keeper/premium": "workspace:*",
-    "viem": "^2.21.0"
+    "viem": "^2.21.0",
+    "@vault-keeper/ipfs": "workspace:*"
   },
   "devDependencies": {
-    "@types/node": "^20",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
-    "vitest": "^2.1.5"
+    "vitest": "^3.2.7"
   },
   "files": [
     "dist"

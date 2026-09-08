@@ -179,8 +179,8 @@ async function _executeSync(): Promise<boolean> {
 
     logger.warn("[OnChainSync] Publication échouée (null txHash)");
     return false;
-  } catch (error) {
-    logger.error("[OnChainSync] Erreur publication:", error instanceof Error ? error.message : error);
+  } catch (error: any) {
+    logger.error("[OnChainSync] Erreur publication:", error.message);
     return false;
   } finally {
     _isPublishing = false;

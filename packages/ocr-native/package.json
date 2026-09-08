@@ -16,7 +16,6 @@
     "react-native": ">=0.73.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
     "expo-modules-core": "^1.12.0"
   },
   "expo": {

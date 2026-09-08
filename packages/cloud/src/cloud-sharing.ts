@@ -1,7 +1,8 @@
 import {
   createSecureShare,
   decryptSecureShare,
-  generateSharePin } from
+  generateSharePin,
+  computeApiPinHash } from
 "@vault-keeper/core";
 import type { CloudFile } from "./cloud-types";
 
@@ -84,7 +85,7 @@ ownerWallet?: string)
     createdAt: Date.now()
   };
 
-  const res = createSecureShare(payload as unknown as import("@vault-keeper/core").SharePayload, pin);
+  const res = createSecureShare(payload as any, pin);
 
   return {
     payload: res.encryptedBlob,
@@ -124,7 +125,7 @@ customPin?: string)
 
 
 
-  return createSecureShare(payload as unknown as import("@vault-keeper/core").SharePayload, pin);
+  return createSecureShare(payload as any, pin);
 }
 
 
@@ -138,7 +139,7 @@ pin: string = "")
 : CloudSharePayload {
   const payload = decryptSecureShare(blobHex, keyHex, pin);
 
-  if ((payload as import("@vault-keeper/core").SharePayload).type !== "cloud_file") {
+  if ((payload as any).type !== "cloud_file") {
     throw new Error("INVALID_SHARE_TYPE");
   }
 

@@ -45,7 +45,7 @@ const STRIPPED_KEYS = new Set([
 "mnemonicPhrase",
 "bip39",
 "entropy",
-"salt"]
+"salt"].map((k) => k.toLowerCase())
 );
 
 const STRIPPED_VALUE_PATTERNS = [

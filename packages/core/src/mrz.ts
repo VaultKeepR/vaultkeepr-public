@@ -80,7 +80,7 @@ function parseTD2(l1: string, l2: string): MRZResult {
     givenNames,
     documentNumber: docNum,
     birthDate: parseMrzDate(dob),
-    sex: sex,
+    sex: sex as any,
     issuer,
     nationality: issuer,
     valid: docNumValid && dobValid

@@ -16,7 +16,13 @@
     "eslint": "^10.10.0",
     "turbo": "^2.3.0",
     "typescript": "^5.6.3",
-    "typescript-eslint": "^8.70.0"
+    "typescript-eslint": "^8.70.0",
+    "@types/node": "^20"
   },
-  "packageManager": "pnpm@9.15.9"
+  "packageManager": "pnpm@9.15.9",
+  "pnpm": {
+    "overrides": {
+      "xcode>uuid": "11.1.1"
+    }
+  }
 }
