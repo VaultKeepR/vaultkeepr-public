@@ -31,6 +31,9 @@ command -v gh >/dev/null      || { echo "error: gh CLI required (brew install gh
 command -v minisign >/dev/null || { echo "error: minisign required (brew install minisign)" >&2; exit 1; }
 command -v shasum >/dev/null  || { echo "error: shasum required" >&2; exit 1; }
 
+# Target repo — can be run from anywhere (no git context required).
+GH_REPO_TARGET="${VK_RELEASE_REPO:-VaultKeepR/vaultkeepr-public}"
+
 KEY="${MINISIGN_KEY:-$HOME/.minisign/vaultkeepr-release.key}"
 [ -f "$KEY" ] || { echo "error: signing key not found at $KEY (see header for setup)" >&2; exit 1; }
 
@@ -69,10 +72,10 @@ done
 sign "$STAGE/checksums.txt"
 echo "==> checksums.txt written and signed"
 
-gh release view "$TAG" >/dev/null 2>&1 && \
+gh release view "$TAG" -R "$GH_REPO_TARGET" >/dev/null 2>&1 && \
   { echo "error: release $TAG already exists" >&2; cleanup 1; exit 1; }
 
-if gh release create "$TAG" "$STAGE"/* \
+if gh release create "$TAG" "$STAGE"/* -R "$GH_REPO_TARGET" \
   --title "VaultKeepR ${TAG}" \
   --generate-notes; then
   echo ""
