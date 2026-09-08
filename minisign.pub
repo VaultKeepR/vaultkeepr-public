@@ -1,7 +1,2 @@
-# PLACEHOLDER — replace before publishing the first signed release.
-# Generate the real keypair on the maintainer machine:
-#   brew install minisign
-#   minisign -G -p minisign.pub -s ~/.minisign/vaultkeepr-release.key
-# then overwrite this file with the generated minisign.pub and commit it
-# BEFORE running scripts/release.sh for the first time.
-# (minisign.pub is a single line: base64 Ed25519 public key + comment)
+untrusted comment: VaultKeepR release signing public key
+RWQ9VoztRYBQJo3vmU0m9/try0J6JAxYAVClWyPdVoATFtgR0IZpPKm/
