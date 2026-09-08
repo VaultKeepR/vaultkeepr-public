@@ -2058,8 +2058,8 @@ export const BIP39_WORDLIST: string[] = [
 
 
 export function suggestBip39Words(prefix: string, limit: number = 5): string[] {
-  if (!prefix || prefix.length < 1) return [];
   const p = prefix.toLowerCase().trim();
+  if (!p) return [];
   const results: string[] = [];
   for (const word of BIP39_WORDLIST) {
     if (word.startsWith(p)) {
