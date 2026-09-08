@@ -654,7 +654,7 @@ describe("Performance", () => {
     expect(exportTime).toBeLessThan(5000);
     expect(importTime).toBeLessThan(5000);
     expect(mergeTime).toBeLessThan(5000);
-  });
+  }, 60000); // shared CI runners: the addEntry loop alone can take ~6s
 
   it("merges independent docs via binary roundtrip (cross-device first sync)", () => {
 
