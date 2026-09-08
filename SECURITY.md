@@ -63,6 +63,17 @@ development-only tooling. Violations block the dependency update.
 SCA findings must be fixed, mitigated, or explicitly accepted in the release
 notes.
 
+### Accepted Risk Register
+
+Open SCA findings that cannot be remediated upstream are documented here with
+their exposure assessment. Each entry is re-evaluated monthly and removed as
+soon as a patched version becomes available.
+
+| Advisory | Package | Sev | Status | Rationale |
+|---|---|---|---|---|
+| [GHSA-w3rx-r6r6-pgpr](https://github.com/advisories/GHSA-w3rx-r6r6-pgpr) | image-size (via `metro@0.87.0`) | High | Accepted 2026-09-09 | Infinite-loop DoS in the ICNS parser. `image-size` has **no patched release** (OSV lists `patched: <0.0.0`); the vulnerable version is pulled transitively by the React Native bundler used by `packages/ocr-native`. It only processes local asset files at build time — it is not part of any shipped runtime bundle and never parses attacker-controlled input. Re-evaluate on the next metro / React Native upgrade or when an `image-size` fix ships. |
+| [GHSA-5p2g-fcmc-qvqq](https://github.com/advisories/GHSA-5p2g-fcmc-qvqq) | image-size (via `metro@0.87.0`) | High | Accepted 2026-09-09 | Same root cause and same exposure as above (JXL/HEIF parser infinite loops); remediation is blocked on the same upstream fix. |
+
 **SAST findings** (CodeQL, `security-extended`):
 
 - New High/Critical SAST findings block merge — CodeQL is a required status
