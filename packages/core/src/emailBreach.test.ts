@@ -16,8 +16,27 @@ const HIBP_BREACHES = [
   }
 ];
 
-function leakCheckResponse(email: string, body: object, ok = true) {
+function leakCheckResponse(body: object, ok = true) {
   return { ok, status: ok ? 200 : 500, json: async () => body };
+}
+
+function mockFetch(
+  leakCheckByEmail: (email: string) => object | Promise<object> | { ok: false; status: number },
+  hibp: () => object | Promise<object> = () => leakCheckResponse(HIBP_BREACHES)
+) {
+  return vi.fn(async (input: RequestInfo | URL) => {
+    const u = new URL(String(input));
+    if (u.host === "haveibeenpwned.com") {
+      return hibp();
+    }
+    if (u.host === "leakcheck.io") {
+      const body = await leakCheckByEmail(u.searchParams.get("check") ?? "");
+      return "ok" in body && body.ok === false
+        ? leakCheckResponse({}, false)
+        : leakCheckResponse(body);
+    }
+    return leakCheckResponse({ success: false, error: "Not found" });
+  });
 }
 
 describe("checkEmailBreaches", () => {
@@ -29,16 +48,10 @@ describe("checkEmailBreaches", () => {
   });
 
   it("returns unenriched breaches when breach metadata is unavailable", async () => {
-    globalThis.fetch = vi.fn(async (input: RequestInfo | URL) => {
-      const url = String(input);
-      if (url.includes("haveibeenpwned.com")) {
-        return { ok: false, status: 503, json: async () => [] };
-      }
-      return leakCheckResponse(url, {
-        success: true,
-        sources: [{ name: "exampleleak", date: "2024-01-01" }]
-      });
-    }) as typeof fetch;
+    globalThis.fetch = mockFetch(
+      () => ({ success: true, sources: [{ name: "exampleleak", date: "2024-01-01" }] }),
+      () => ({ ok: false, status: 503, json: async () => [] })
+    ) as typeof fetch;
 
     const report = await checkEmailBreaches(["no-metadata@example.com"]);
     expect(report.results[0]).toMatchObject({ found: true, breachCount: 1, checked: true });
@@ -52,16 +65,12 @@ describe("checkEmailBreaches", () => {
   });
 
   it("returns unenriched breaches when the metadata endpoint fails", async () => {
-    globalThis.fetch = vi.fn(async (input: RequestInfo | URL) => {
-      const url = String(input);
-      if (url.includes("haveibeenpwned.com")) {
+    globalThis.fetch = mockFetch(
+      () => ({ success: true, sources: [{ name: "exampleleak", date: "2024-01-01" }] }),
+      () => {
         throw new Error("metadata offline");
       }
-      return leakCheckResponse(url, {
-        success: true,
-        sources: [{ name: "exampleleak", date: "2024-01-01" }]
-      });
-    }) as typeof fetch;
+    ) as typeof fetch;
 
     const report = await checkEmailBreaches(["metadata-error@example.com"]);
     expect(report.results[0].checked).toBe(true);
@@ -69,19 +78,15 @@ describe("checkEmailBreaches", () => {
   });
 
   it("aggregates found breaches with enriched metadata", async () => {
-    globalThis.fetch = vi.fn(async (input: RequestInfo | URL) => {
-      const url = String(input);
-      if (url.includes("haveibeenpwned.com")) {
-        return leakCheckResponse(url, HIBP_BREACHES);
-      }
-      if (url.includes("leakcheck.io") && url.includes("pwned%40example.com")) {
-        return leakCheckResponse(url, {
+    globalThis.fetch = mockFetch((email) => {
+      if (email === "pwned@example.com") {
+        return {
           success: true,
           found: 1,
           sources: [{ name: "exampleleak", date: "2024-01-01" }]
-        });
+        };
       }
-      return leakCheckResponse(url, { success: false, error: "Not found" });
+      return { success: false, error: "Not found" };
     }) as typeof fetch;
 
     const report = await checkEmailBreaches(["pwned@example.com", "clean@example.com"]);
@@ -106,29 +111,17 @@ describe("checkEmailBreaches", () => {
   });
 
   it("maps leakcheck found count from sources length when found is absent", async () => {
-    globalThis.fetch = vi.fn(async (input: RequestInfo | URL) => {
-      const url = String(input);
-      if (url.includes("haveibeenpwned.com")) {
-        return leakCheckResponse(url, HIBP_BREACHES);
-      }
-      return leakCheckResponse(url, {
-        success: true,
-        sources: [{ name: "A", date: "" }, { name: "B", date: "" }, { name: "C", date: "" }]
-      });
-    }) as typeof fetch;
+    globalThis.fetch = mockFetch(() => ({
+      success: true,
+      sources: [{ name: "A", date: "" }, { name: "B", date: "" }, { name: "C", date: "" }]
+    })) as typeof fetch;
 
     const report = await checkEmailBreaches(["multi@example.com"]);
     expect(report.results[0].breachCount).toBe(3);
   });
 
   it("records an error when leakcheck returns non-ok", async () => {
-    globalThis.fetch = vi.fn(async (input: RequestInfo | URL) => {
-      const url = String(input);
-      if (url.includes("haveibeenpwned.com")) {
-        return leakCheckResponse(url, HIBP_BREACHES);
-      }
-      return leakCheckResponse(url, {}, false);
-    }) as typeof fetch;
+    globalThis.fetch = mockFetch(() => ({ ok: false, status: 500 })) as typeof fetch;
 
     const report = await checkEmailBreaches(["down@example.com"]);
     expect(report.results[0]).toMatchObject({
@@ -140,9 +133,9 @@ describe("checkEmailBreaches", () => {
 
   it("records an error when fetch rejects", async () => {
     globalThis.fetch = vi.fn(async (input: RequestInfo | URL) => {
-      const url = String(input);
-      if (url.includes("haveibeenpwned.com")) {
-        return leakCheckResponse(url, HIBP_BREACHES);
+      const u = new URL(String(input));
+      if (u.host === "haveibeenpwned.com") {
+        return leakCheckResponse(HIBP_BREACHES);
       }
       throw new Error("offline");
     }) as typeof fetch;
@@ -152,13 +145,7 @@ describe("checkEmailBreaches", () => {
   });
 
   it("stops before processing further emails when aborted", async () => {
-    globalThis.fetch = vi.fn(async (input: RequestInfo | URL) => {
-      const url = String(input);
-      if (url.includes("haveibeenpwned.com")) {
-        return leakCheckResponse(url, HIBP_BREACHES);
-      }
-      return leakCheckResponse(url, { success: false, error: "Not found" });
-    }) as typeof fetch;
+    globalThis.fetch = mockFetch(() => ({ success: false, error: "Not found" })) as typeof fetch;
 
     const controller = new AbortController();
     const report = await checkEmailBreaches(["a@example.com", "b@example.com"], {
