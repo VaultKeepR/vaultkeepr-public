@@ -38,6 +38,7 @@
     "@vault-keeper/core": "workspace:*"
   },
   "devDependencies": {
+    "fast-check": "^4.9.0",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
     "vitest": "^4.1.11"
