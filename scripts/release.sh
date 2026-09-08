@@ -34,6 +34,14 @@ command -v shasum >/dev/null  || { echo "error: shasum required" >&2; exit 1; }
 KEY="${MINISIGN_KEY:-$HOME/.minisign/vaultkeepr-release.key}"
 [ -f "$KEY" ] || { echo "error: signing key not found at $KEY (see header for setup)" >&2; exit 1; }
 
+# minisign reads the passphrase from stdin when no TTY is attached; feeding
+# one empty line per invocation keeps automated runs working with an
+# empty-passphrase key (interactive runs keep the normal prompt).
+sign() {
+  if [ -t 0 ]; then minisign -S -s "$KEY" -m "$1"
+  else printf '\n' | minisign -S -s "$KEY" -m "$1"; fi
+}
+
 TAG="v${VERSION#v}"
 STAGE="$(mktemp -d)"
 trap 'rm -rf "$STAGE"' EXIT
@@ -43,7 +51,7 @@ for artifact in "${ARTIFACTS[@]}"; do
   [ -f "$artifact" ] || { echo "error: artifact not found: $artifact" >&2; exit 1; }
   base="$(basename "$artifact")"
   cp "$artifact" "$STAGE/$base"
-  minisign -S -s "$KEY" -m "$STAGE/$base"
+  sign "$STAGE/$base"
   echo "    signed: $base (+ .minisig)"
 done
 
@@ -54,7 +62,7 @@ done
     case "$f" in *.minisig|checksums.txt) continue ;; esac
     shasum -a 256 "$f"
   done > checksums.txt )
-minisign -S -s "$KEY" -m "$STAGE/checksums.txt"
+sign "$STAGE/checksums.txt"
 echo "==> checksums.txt written and signed"
 
 gh release view "$TAG" >/dev/null 2>&1 && \
