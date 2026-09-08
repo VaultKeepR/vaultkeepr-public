@@ -81,3 +81,30 @@ VaultKeepR is zero-knowledge: the master password never leaves the user's device
 encryption (XChaCha20-Poly1305, Argon2id) runs client-side. The on-device SLM engine
 (auto-tagging, breach summary) performs all inference locally — no vault data is sent to
 any server.
+
+## Release Integrity (Signed Releases)
+
+Release artifacts (Android APK, iOS IPA, browser extensions) are built on the
+maintainer's machine and **signed with [minisign](https://github.com/jedisct1/minisign)**
+(Ed25519). The signing public key is committed in this repository
+([`minisign.pub`](minisign.pub)) — its integrity is anchored by the git history.
+
+### Verify a release artifact
+
+```bash
+# 1. Download the artifact and the repository's public key
+gh release download v0.2.0 -R VaultKeepR/vaultkeepr-public
+curl -LO https://raw.githubusercontent.com/VaultKeepR/vaultkeepr-public/main/minisign.pub
+
+# 2. Verify the signature (minisign: brew install minisign / apt install minisign)
+minisign -Vm vaultkeepr-android-v0.2.0.apk -p minisign.pub
+# → "Signature and comment signature verified"
+
+# 3. Cross-check the SHA-256 against the signed checksums.txt
+shasum -a 256 -c checksums.txt
+```
+
+Every release also ships `checksums.txt` (SHA-256 of all artifacts) with its own
+minisign signature, so the checksum list itself is authenticated. If signature
+verification fails, **do not install the artifact** and please
+[open a security advisory](#reporting-vulnerabilities).
