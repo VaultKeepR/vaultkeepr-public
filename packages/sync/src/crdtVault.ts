@@ -453,27 +453,6 @@ function deepEqual(a: unknown, b: unknown): boolean {
 
 
 
-function stableStringify(value: unknown): string {
-  return JSON.stringify(value, (_key, v) => {
-    if (v && typeof v === "object" && !Array.isArray(v)) {
-      const sorted: Record<string, unknown> = {};
-      for (const k of Object.keys(v as object).sort()) {
-        sorted[k] = (v as Record<string, unknown>)[k];
-      }
-      return sorted;
-    }
-    return v;
-  });
-}
-
-
-
-
-
-
-
-
-
 export function exportBinary(doc: VaultDoc): Uint8Array {
   return Automerge.save(doc);
 }
@@ -716,7 +695,7 @@ export function syncLegacyToCrdt(doc: VaultDoc, vault: Vault): VaultDoc {
       d.cloudFolders.pop();
     }
     if (!d.cloudFolders) {
-      (d as any).cloudFolders = [];
+      d.cloudFolders = [];
     }
     for (const f of newCloudFolders) {
       d.cloudFolders.push(f);

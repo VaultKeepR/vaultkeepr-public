@@ -144,7 +144,7 @@ params: CreateSmartAccountParams)
     address: kernelAccount.address,
     ownerAddress: ownerAccount.address,
     ownerAccount,
-    client: bundlerClient as any,
+    client: bundlerClient,
     chain: TARGET_CHAIN,
     mode
   };
