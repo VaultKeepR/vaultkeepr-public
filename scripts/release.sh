@@ -44,7 +44,11 @@ sign() {
 
 TAG="v${VERSION#v}"
 STAGE="$(mktemp -d)"
-trap 'rm -rf "$STAGE"' EXIT
+# staging directory is kept on failure for retry/debug, removed on success
+cleanup() {
+  if [ "$1" = 0 ]; then rm -rf "$STAGE"
+  else echo "==> signing kept at: $STAGE (retry the publish from there)" >&2; fi
+}
 echo "==> staging ${#ARTIFACTS[@]} artifact(s) for ${TAG}"
 
 for artifact in "${ARTIFACTS[@]}"; do
@@ -66,15 +70,19 @@ sign "$STAGE/checksums.txt"
 echo "==> checksums.txt written and signed"
 
 gh release view "$TAG" >/dev/null 2>&1 && \
-  { echo "error: release $TAG already exists" >&2; exit 1; }
+  { echo "error: release $TAG already exists" >&2; cleanup 1; exit 1; }
 
-gh release create "$TAG" "$STAGE"/* \
-  --verify \
+if gh release create "$TAG" "$STAGE"/* \
   --title "VaultKeepR ${TAG}" \
-  --generate-notes
-
-echo ""
-echo "==> ${TAG} published with:"
-ls -1 "$STAGE"
-echo ""
-echo "Users verify with:  minisign -Vm <artifact> -p minisign.pub  (key committed in this repo)"
+  --generate-notes; then
+  echo ""
+  echo "==> ${TAG} published with:"
+  ls -1 "$STAGE"
+  echo ""
+  echo "Users verify with:  minisign -Vm <artifact> -p minisign.pub  (key committed in this repo)"
+  cleanup 0
+else
+  echo "error: gh release create failed — signed artifacts preserved in $STAGE" >&2
+  cleanup 1
+  exit 1
+fi
