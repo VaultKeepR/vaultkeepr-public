@@ -498,7 +498,7 @@ export const fr: Translations = {
     syncSuccess: "Synchronisation réussie !",
     alreadyLatest: "Votre coffre est déjà à jour",
     saveError: "Erreur lors de la sauvegarde",
-    deviceSyncRemovedHint: "Utilisez le QR code VaultKeepR depuis Paramètres > Paire un appareil"
+    deviceSyncRemovedHint: "Utilisez « Restaurer la sauvegarde locale » sur cet écran avec votre mot de passe maître"
   },
   header: {
     searchPlaceholder: "Rechercher…",

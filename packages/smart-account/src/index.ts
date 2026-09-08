@@ -20,6 +20,8 @@ export {
 "./kernel";
 export type { VaultSmartAccount, CreateSmartAccountParams } from "./kernel";
 
+export { computeSmartAccountAddress } from "./kernel";
+
 export { getOwnerFromPassword } from "./owner";
 
 export {

@@ -50,6 +50,31 @@ export interface CreateSmartAccountParams {
 
 
 
+
+
+
+
+export async function computeSmartAccountAddress(
+ownerAccount: LocalAccount): Promise<Address> {
+  const publicClient = createPublicClient({
+    chain: TARGET_CHAIN,
+    transport: http()
+  });
+
+  const kernelAccount = await toKernelSmartAccount({
+    client: publicClient,
+    owners: [ownerAccount],
+    entryPoint: {
+      address: entryPoint07Address,
+      version: "0.7"
+    }
+  });
+
+  return kernelAccount.address;
+}
+
+
+
 let _cached: VaultSmartAccount | null = null;
 let _cachedKey: string | null = null;
 
@@ -119,7 +144,7 @@ params: CreateSmartAccountParams)
     address: kernelAccount.address,
     ownerAddress: ownerAccount.address,
     ownerAccount,
-    client: bundlerClient as unknown as ReturnType<typeof createBundlerClient>,
+    client: bundlerClient as any,
     chain: TARGET_CHAIN,
     mode
   };

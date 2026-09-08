@@ -2978,7 +2978,7 @@ export const en: Translations = {
     syncSuccess: "Sync successful!",
     alreadyLatest: "Vault is already up to date",
     saveError: "Save error",
-    deviceSyncRemovedHint: "Use VaultKeepR QR pairing from Settings > Pair New Device"
+    deviceSyncRemovedHint: "Use \"Restore local backup\" on this screen with your master password"
   },
   header: {
     searchPlaceholder: "Search…",

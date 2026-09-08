@@ -50,9 +50,7 @@
 
 
 
-import { describe, it, expect, vi } from "vitest";
-import { hmac } from "@noble/hashes/hmac.js";
-import { sha256 } from "@noble/hashes/sha2.js";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 
 
 
@@ -69,6 +67,9 @@ vi.mock("@vault-keeper/core", async (importOriginal) => {
   return {
     ...mod,
     deriveKeyFromPasswordArgon2: (password: string, salt: Uint8Array): Uint8Array => {
+
+      const { hmac } = require("@noble/hashes/hmac.js");
+      const { sha256 } = require("@noble/hashes/sha2.js");
       return hmac(sha256, new TextEncoder().encode(password), salt);
     }
   };
@@ -529,7 +530,7 @@ describe("Cross-Device Sync Certification", () => {
         const src = makeDevice("chrome", accountType);
         const dst = makeDevice("ios", accountType);
 
-        src.addLogin({
+        const e = src.addLogin({
           url: "https://login.com",
           username: "loginuser",
           password: "loginpwd",
@@ -554,7 +555,7 @@ describe("Cross-Device Sync Certification", () => {
         const src = makeDevice("chrome", accountType);
         const dst = makeDevice("ios", accountType);
 
-        src.addCard({
+        const e = src.addCard({
           title: "My Visa",
           cardholder: "John Doe",
           expiry: "12/28",
@@ -579,7 +580,7 @@ describe("Cross-Device Sync Certification", () => {
         const src = makeDevice("chrome", accountType);
         const dst = makeDevice("ios", accountType);
 
-        src.addNote({
+        const e = src.addNote({
           title: "My Secret Note",
           notes: "This is a secret note about sync",
           modifiedAt: 1000
@@ -877,7 +878,7 @@ describe("Cross-Device Sync Certification", () => {
           { ...e, password: "recreated", modifiedAt: Date.now() + 10_000 }]
 
         };
-        await bob.push(ipfs);
+        const cidB = await bob.push(ipfs);
 
         bob.lastKnownUpdatedAt = 0;
         await bob.pull(ipfs, cidA);
@@ -1147,7 +1148,7 @@ describe("Cross-Device Sync Certification", () => {
           notes: "note body",
           modifiedAt: 1200
         });
-        chrome.addDocument({
+        const doc = chrome.addDocument({
           type: "rib",
           label: "Bank Statement",
           modifiedAt: 1300

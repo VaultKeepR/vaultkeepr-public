@@ -198,6 +198,7 @@ opts: {variant?: "chrome" | "bitwarden";} = {})
       }
 
       if (e.folder === "cartes") {
+        const m = parseCardMeta(e.notes);
         rows.push(
           [
           csvEscape("cartes"),

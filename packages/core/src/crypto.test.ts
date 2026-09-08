@@ -4,6 +4,7 @@ import {
   decryptVault,
   generateMasterKey } from
 "./crypto";
+import { hexToBytes } from "@noble/hashes/utils.js";
 
 describe("Vault encryption (XChaCha20-Poly1305 + HMAC commitment)", () => {
   describe("encryptVault / decryptVault roundtrip", () => {

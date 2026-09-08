@@ -3,12 +3,14 @@
 
 
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import * as Automerge from "@automerge/automerge";
 import {
   createEmptyDoc,
   addEntry,
   deleteEntry,
   addDocument,
-  deleteDocument } from
+  deleteDocument,
+  toVault } from
 "../crdtVault";
 import {
   purgeTombstones,

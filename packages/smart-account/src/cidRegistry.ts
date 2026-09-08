@@ -154,8 +154,8 @@ cid: string)
       `[CidRegistry] CID publié on-chain — tx: ${receipt.receipt.transactionHash} | CID: ${cid.slice(0, 20)}...`
     );
     return receipt.receipt.transactionHash;
-  } catch (error) {
-    logger.error("[CidRegistry] Erreur:", error instanceof Error ? error.message : error);
+  } catch (error: any) {
+    logger.error("[CidRegistry] Erreur:", error.message);
     return null;
   }
 }
@@ -188,8 +188,8 @@ smartAccountAddress: Address)
     });
 
     return cid && cid.length > 0 ? cid : null;
-  } catch (error) {
-    logger.error("[CidRegistry] Erreur lecture:", error instanceof Error ? error.message : error);
+  } catch (error: any) {
+    logger.error("[CidRegistry] Erreur lecture:", error.message);
     return null;
   }
 }
