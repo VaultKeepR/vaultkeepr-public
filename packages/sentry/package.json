@@ -1,6 +1,6 @@
 {
   "name": "@vaultkeepr/sentry",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "VaultKeepR Sentry integration with privacy-first beforeSend scrubber",
   "main": "./dist/index.js",
