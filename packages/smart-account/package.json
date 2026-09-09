@@ -20,22 +20,31 @@
     "lint": "eslint src/"
   },
   "dependencies": {
-    "@vaultkeepr/logger": "workspace:*",
-    "@vaultkeepr/core": "workspace:*"
+    "@vaultkeepr/core": "workspace:*",
+    "@vaultkeepr/logger": "workspace:*"
   },
   "peerDependencies": {
     "permissionless": ">=0.3.0",
-    "viem": ">=2.0.0",
-    "react": "^18.0.0 || ^19.0.0"
+    "react": "^18.0.0 || ^19.0.0",
+    "viem": ">=2.0.0"
   },
   "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.2.0",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
-    "vitest": "^4.1.11",
-    "react": "^19.2.0",
-    "@types/react": "^19.0.0"
+    "vitest": "^4.1.11"
   },
   "files": [
     "dist"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
+    "directory": "packages/smart-account"
+  },
+  "homepage": "https://github.com/VaultKeepR/vaultkeepr-public/tree/main/packages/smart-account#readme",
+  "bugs": {
+    "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
+  }
 }

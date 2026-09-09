@@ -4,7 +4,7 @@
   "description": "CRDT-based vault synchronization engine — Automerge-powered conflict-free merge for VaultKeepR",
   "repository": {
     "type": "git",
-    "url": "https://github.com/VaultKeepR/vaultkeepr.git",
+    "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
     "directory": "packages/sync"
   },
   "license": "MIT",
@@ -45,5 +45,9 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "homepage": "https://github.com/VaultKeepR/vaultkeepr-public/tree/main/packages/sync#readme",
+  "bugs": {
+    "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
+  }
 }

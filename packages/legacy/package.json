@@ -21,10 +21,10 @@
     "@noble/curves": "^2.4.0",
     "@noble/hashes": "^2.4.0",
     "@vaultkeepr/core": "workspace:*",
+    "@vaultkeepr/ipfs": "workspace:*",
     "@vaultkeepr/logger": "workspace:*",
     "@vaultkeepr/premium": "workspace:*",
-    "viem": "^2.21.0",
-    "@vaultkeepr/ipfs": "workspace:*"
+    "viem": "^2.21.0"
   },
   "devDependencies": {
     "tsup": "^8.3.5",
@@ -33,5 +33,14 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
+    "directory": "packages/legacy"
+  },
+  "homepage": "https://github.com/VaultKeepR/vaultkeepr-public/tree/main/packages/legacy#readme",
+  "bugs": {
+    "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
+  }
 }
