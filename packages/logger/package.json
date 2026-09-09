@@ -1,6 +1,6 @@
 {
   "name": "@vaultkeepr/logger",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "VaultKeepR secure logger with automatic CID/address redaction and dev-only gating",
   "main": "./dist/index.js",
