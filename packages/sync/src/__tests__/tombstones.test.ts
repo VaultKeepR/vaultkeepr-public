@@ -15,7 +15,7 @@ import {
   countTombstones,
   TOMBSTONE_TTL_MS } from
 "../tombstones";
-import type { VaultEntry, SecureDocument } from "@vault-keeper/core";
+import type { VaultEntry, SecureDocument } from "@vaultkeepr/core";
 
 function makeEntry(id: string): VaultEntry {
   return {

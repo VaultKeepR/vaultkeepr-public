@@ -38,7 +38,7 @@ are reported and handled.
 
 | Interface | Type | Description |
 |---|---|---|
-| `@vault-keeper/*` SDK packages | TypeScript API (source-consumed today) | Cryptographic core, sync, IPFS pinning, recovery, premium, wallet-messages, smart-account, cloud, alias, logger, i18n, ui, sentry, legacy, ocr-native |
+| `@vaultkeepr/*` SDK packages | TypeScript API (source-consumed today) | Cryptographic core, sync, IPFS pinning, recovery, premium, wallet-messages, smart-account, cloud, alias, logger, i18n, ui, sentry, legacy, ocr-native |
 | Solidity contracts on Base L2 | On-chain interface | `VaultKeeperCidRegistry` (vault location pointers), `VaultKeeperFragments` (recovery fragments), `VaultKeeperLegacy` (time-locked inheritance) |
 | IPFS | Content-addressed storage | Encrypted blob storage and retrieval |
 | Ethereum wallet provider | JSON-RPC (via `viem`) | Smart-account signatures for on-chain writes |

@@ -186,7 +186,7 @@ masterPassword: string)
     if (!cid) return null;
 
 
-    const { fetchFromStorage } = await import("@vault-keeper/ipfs");
+    const { fetchFromStorage } = await import("@vaultkeepr/ipfs");
     const raw = await fetchFromStorage(cid);
     const encrypted = JSON.parse(raw) as EncryptedBeneMeta;
 

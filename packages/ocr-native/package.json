@@ -1,5 +1,5 @@
 {
-  "name": "@vault-keeper/ocr-native",
+  "name": "@vaultkeepr/ocr-native",
   "version": "1.0.0",
   "description": "Native OCR module using VisionKit (iOS) and ML Kit (Android)",
   "author": "VaultKeepR",
@@ -9,7 +9,7 @@
   "types": "src/index.ts",
   "scripts": {},
   "dependencies": {
-    "@vault-keeper/logger": "workspace:*"
+    "@vaultkeepr/logger": "workspace:*"
   },
   "peerDependencies": {
     "expo": ">=50.0.0",

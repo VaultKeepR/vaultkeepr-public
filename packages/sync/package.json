@@ -1,5 +1,5 @@
 {
-  "name": "@vault-keeper/sync",
+  "name": "@vaultkeepr/sync",
   "version": "0.1.0",
   "description": "CRDT-based vault synchronization engine — Automerge-powered conflict-free merge for VaultKeepR",
   "repository": {
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@automerge/automerge": "^3.2.6",
-    "@vault-keeper/core": "workspace:*"
+    "@vaultkeepr/core": "workspace:*"
   },
   "devDependencies": {
     "fast-check": "^4.9.0",

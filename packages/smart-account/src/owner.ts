@@ -6,7 +6,7 @@
 
 
 import { type LocalAccount } from "viem";
-import { getHiddenWalletFromPassword, getHiddenWalletLegacy } from "@vault-keeper/core";
+import { getHiddenWalletFromPassword, getHiddenWalletLegacy } from "@vaultkeepr/core";
 
 
 

@@ -1,5 +1,5 @@
 {
-  "name": "@vault-keeper/legacy",
+  "name": "@vaultkeepr/legacy",
   "version": "0.1.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -20,11 +20,11 @@
     "@noble/ciphers": "^2.4.0",
     "@noble/curves": "^2.4.0",
     "@noble/hashes": "^2.4.0",
-    "@vault-keeper/core": "workspace:*",
-    "@vault-keeper/logger": "workspace:*",
-    "@vault-keeper/premium": "workspace:*",
+    "@vaultkeepr/core": "workspace:*",
+    "@vaultkeepr/logger": "workspace:*",
+    "@vaultkeepr/premium": "workspace:*",
     "viem": "^2.21.0",
-    "@vault-keeper/ipfs": "workspace:*"
+    "@vaultkeepr/ipfs": "workspace:*"
   },
   "devDependencies": {
     "tsup": "^8.3.5",

@@ -1,5 +1,5 @@
 {
-  "name": "@vault-keeper/core",
+  "name": "@vaultkeepr/core",
   "version": "0.1.0",
   "description": "TypeScript vault crypto: XChaCha20-Poly1305, Argon2id, wallet ECIES envelopes, TOTP, imports — VaultKeepR SDK",
   "repository": {
@@ -40,7 +40,7 @@
     "@noble/ciphers": "^2.4.0",
     "@noble/curves": "^2.4.0",
     "@noble/hashes": "^2.4.0",
-    "@vault-keeper/logger": "workspace:*",
+    "@vaultkeepr/logger": "workspace:*",
     "ethers": "^6.13.0",
     "fflate": "^0.8.3",
     "viem": "^2.21.0"

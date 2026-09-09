@@ -1,5 +1,5 @@
 {
-  "name": "@vault-keeper/cloud",
+  "name": "@vaultkeepr/cloud",
   "version": "1.0.0",
   "description": "VaultKeepR Decentralized Cloud Storage logic",
   "main": "dist/index.js",
@@ -11,8 +11,8 @@
     "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
-    "@vault-keeper/core": "workspace:*",
-    "@vault-keeper/ipfs": "workspace:*",
+    "@vaultkeepr/core": "workspace:*",
+    "@vaultkeepr/ipfs": "workspace:*",
     "@noble/hashes": "^2.4.0",
     "@noble/ciphers": "^2.4.0"
   },

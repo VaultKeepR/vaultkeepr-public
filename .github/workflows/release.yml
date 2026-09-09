@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 env:
-  # Workspace packages published to the npm registry (@vault-keeper scope).
+  # Workspace packages published to the npm registry (@vaultkeepr scope).
   # Excludes alias (private), cloud and ocr-native (app-level, no npm payload).
   PUBLISH_PACKAGES: "core i18n ipfs legacy logger premium recovery sentry smart-account sync ui wallet-messages"
 
@@ -37,7 +37,7 @@ jobs:
         run: |
           set -e
           for pkg in $PUBLISH_PACKAGES; do
-            echo "::group::npm publish --dry-run @vault-keeper/$pkg"
+            echo "::group::npm publish --dry-run @vaultkeepr/$pkg"
             (cd "packages/$pkg" && pnpm publish --dry-run --no-git-checks --access public)
             echo "::endgroup::"
           done

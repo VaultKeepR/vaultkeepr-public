@@ -8,7 +8,7 @@ import {
   getCloudFilesByFolder,
   getCloudFolders } from
 "./cloud-manager";
-import type { Vault } from "@vault-keeper/core";
+import type { Vault } from "@vaultkeepr/core";
 import type { CloudFile } from "./cloud-types";
 
 describe("Cloud Validation", () => {

@@ -74,10 +74,10 @@ importers:
       '@noble/hashes':
         specifier: ^2.4.0
         version: 2.4.0
-      '@vault-keeper/core':
+      '@vaultkeepr/core':
         specifier: workspace:*
         version: link:../core
-      '@vault-keeper/ipfs':
+      '@vaultkeepr/ipfs':
         specifier: workspace:*
         version: link:../ipfs
     devDependencies:
@@ -102,7 +102,7 @@ importers:
       '@noble/hashes':
         specifier: ^2.4.0
         version: 2.4.0
-      '@vault-keeper/logger':
+      '@vaultkeepr/logger':
         specifier: workspace:*
         version: link:../logger
       ethers:
@@ -166,16 +166,16 @@ importers:
       '@noble/hashes':
         specifier: ^2.4.0
         version: 2.4.0
-      '@vault-keeper/core':
+      '@vaultkeepr/core':
         specifier: workspace:*
         version: link:../core
-      '@vault-keeper/ipfs':
+      '@vaultkeepr/ipfs':
         specifier: workspace:*
         version: link:../ipfs
-      '@vault-keeper/logger':
+      '@vaultkeepr/logger':
         specifier: workspace:*
         version: link:../logger
-      '@vault-keeper/premium':
+      '@vaultkeepr/premium':
         specifier: workspace:*
         version: link:../premium
       viem:
@@ -206,7 +206,7 @@ importers:
 
   packages/ocr-native:
     dependencies:
-      '@vault-keeper/logger':
+      '@vaultkeepr/logger':
         specifier: workspace:*
         version: link:../logger
       expo:
@@ -240,7 +240,7 @@ importers:
       '@noble/hashes':
         specifier: ^2.4.0
         version: 2.4.0
-      '@vault-keeper/core':
+      '@vaultkeepr/core':
         specifier: workspace:*
         version: link:../core
       shamir-secret-sharing:
@@ -281,10 +281,10 @@ importers:
 
   packages/smart-account:
     dependencies:
-      '@vault-keeper/core':
+      '@vaultkeepr/core':
         specifier: workspace:*
         version: link:../core
-      '@vault-keeper/logger':
+      '@vaultkeepr/logger':
         specifier: workspace:*
         version: link:../logger
       permissionless:
@@ -315,7 +315,7 @@ importers:
       '@automerge/automerge':
         specifier: ^3.2.6
         version: 3.4.1
-      '@vault-keeper/core':
+      '@vaultkeepr/core':
         specifier: workspace:*
         version: link:../core
     devDependencies:
@@ -5856,7 +5856,7 @@ snapshots:
       obug: 2.1.4
       std-env: 4.2.0
       tinyrainbow: 3.1.1
-      vitest: 4.1.11(@types/node@26.5.0)(@vitest/coverage-v8@4.1.11)(vite@7.3.6(@types/node@26.5.0)(lightningcss@1.33.0)(terser@5.51.2)(yaml@2.9.0))
+      vitest: 4.1.11(@types/node@22.20.1)(@vitest/coverage-v8@4.1.11)(vite@7.3.6(@types/node@22.20.1)(lightningcss@1.33.0)(terser@5.51.2)(yaml@2.9.0))
 
   '@vitest/expect@4.1.11':
     dependencies:

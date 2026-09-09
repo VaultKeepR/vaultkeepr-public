@@ -68,7 +68,7 @@ See [`SECURITY.md`](./SECURITY.md) to report a vulnerability.
 
 Requirements: Node.js 20+, pnpm 9+, Foundry (contracts only).
 
-> **Note:** packages are consumed from source today; npm publishing is planned. `@vault-keeper/*` is not on the npm registry yet.
+> **Note:** packages are consumed from source today; npm publishing is planned. `@vaultkeepr/*` is not on the npm registry yet.
 
 ```bash
 pnpm install
@@ -126,7 +126,7 @@ Voir [`SECURITY.md`](./SECURITY.md) pour signaler une vulnérabilité.
 
 Prérequis : Node.js 20+, pnpm 9+, Foundry (contrats uniquement).
 
-> **Note :** les packages se consomment depuis les sources ; la publication npm est prévue. `@vault-keeper/*` n'est pas encore sur le registre npm.
+> **Note :** les packages se consomment depuis les sources ; la publication npm est prévue. `@vaultkeepr/*` n'est pas encore sur le registre npm.
 
 ```bash
 pnpm install
