@@ -24,5 +24,14 @@
   "files": [
     "dist"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
+    "directory": "packages/ipfs"
+  },
+  "homepage": "https://github.com/VaultKeepR/vaultkeepr-public/tree/main/packages/ipfs#readme",
+  "bugs": {
+    "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
+  }
 }

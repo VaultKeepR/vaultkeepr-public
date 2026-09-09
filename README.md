@@ -26,23 +26,29 @@ The web app, the browser extension, and the iOS/Android apps live in a private r
 
 ## Packages
 
-| Package | Description |
-|---|---|
-| [`core`](./packages/core) | Vault crypto: XChaCha20-Poly1305, Argon2id, ECIES envelopes, TOTP, passkeys, BIP-39, import/export for 10+ manager formats |
-| [`sync`](./packages/sync) | Cross-device synchronization built on Automerge CRDTs |
-| [`ipfs`](./packages/ipfs) | Content-addressed vault storage: CID handling and multi-gateway fetching with failover |
-| [`recovery`](./packages/recovery) | Fragmented recovery with on-chain contract reads (Base) |
-| [`smart-account`](./packages/smart-account) | ERC-4337 account abstraction: identity derivation and on-chain sync |
-| [`wallet-messages`](./packages/wallet-messages) | EIP-4361 and delegation message schemas for signed sessions |
-| [`cloud`](./packages/cloud) | Zero-knowledge encrypted cloud storage (S3-compatible) |
-| [`alias`](./packages/alias) | Email alias forwarding (Postfix/Dovecot integration) |
-| [`premium`](./packages/premium) | License key validation and tier limits |
-| [`logger`](./packages/logger) | Structured logging that redacts keys, CIDs, and addresses |
-| [`i18n`](./packages/i18n) | Internationalization (English, French) |
-| [`ui`](./packages/ui) | Shared React components (Tailwind + shadcn) |
-| [`sentry`](./packages/sentry) | Error tracking adapters (browser, React Native) |
-| [`legacy`](./packages/legacy) | Digital inheritance types and beneficiary management |
-| [`ocr-native`](./packages/ocr-native) | Native OCR module (VisionKit on iOS, ML Kit on Android) |
+All SDK packages are published to npm under the [`@vaultkeepr`](https://www.npmjs.com/org/vaultkeepr) scope.
+
+```bash
+npm install @vaultkeepr/core
+```
+
+| Package | npm | Description |
+|---|---|---|
+| [`core`](./packages/core) | [![npm](https://img.shields.io/npm/v/@vaultkeepr/core)](https://www.npmjs.com/package/@vaultkeepr/core) | Vault crypto: XChaCha20-Poly1305, Argon2id, ECIES envelopes, TOTP, passkeys, BIP-39, import/export for 10+ manager formats |
+| [`sync`](./packages/sync) | [![npm](https://img.shields.io/npm/v/@vaultkeepr/sync)](https://www.npmjs.com/package/@vaultkeepr/sync) | Cross-device synchronization built on Automerge CRDTs |
+| [`ipfs`](./packages/ipfs) | [![npm](https://img.shields.io/npm/v/@vaultkeepr/ipfs)](https://www.npmjs.com/package/@vaultkeepr/ipfs) | Content-addressed vault storage: CID handling and multi-gateway fetching with failover |
+| [`recovery`](./packages/recovery) | [![npm](https://img.shields.io/npm/v/@vaultkeepr/recovery)](https://www.npmjs.com/package/@vaultkeepr/recovery) | Fragmented recovery with on-chain contract reads (Base) |
+| [`smart-account`](./packages/smart-account) | [![npm](https://img.shields.io/npm/v/@vaultkeepr/smart-account)](https://www.npmjs.com/package/@vaultkeepr/smart-account) | ERC-4337 account abstraction: identity derivation and on-chain sync |
+| [`wallet-messages`](./packages/wallet-messages) | [![npm](https://img.shields.io/npm/v/@vaultkeepr/wallet-messages)](https://www.npmjs.com/package/@vaultkeepr/wallet-messages) | EIP-4361 and delegation message schemas for signed sessions |
+| [`cloud`](./packages/cloud) | — | Zero-knowledge encrypted cloud storage (S3-compatible) |
+| [`alias`](./packages/alias) | — | Email alias forwarding (Postfix/Dovecot integration) |
+| [`premium`](./packages/premium) | [![npm](https://img.shields.io/npm/v/@vaultkeepr/premium)](https://www.npmjs.com/package/@vaultkeepr/premium) | License key validation and tier limits |
+| [`logger`](./packages/logger) | [![npm](https://img.shields.io/npm/v/@vaultkeepr/logger)](https://www.npmjs.com/package/@vaultkeepr/logger) | Structured logging that redacts keys, CIDs, and addresses |
+| [`i18n`](./packages/i18n) | [![npm](https://img.shields.io/npm/v/@vaultkeepr/i18n)](https://www.npmjs.com/package/@vaultkeepr/i18n) | Internationalization (English, French) |
+| [`ui`](./packages/ui) | [![npm](https://img.shields.io/npm/v/@vaultkeepr/ui)](https://www.npmjs.com/package/@vaultkeepr/ui) | Shared React components (Tailwind + shadcn) |
+| [`sentry`](./packages/sentry) | [![npm](https://img.shields.io/npm/v/@vaultkeepr/sentry)](https://www.npmjs.com/package/@vaultkeepr/sentry) | Error tracking adapters (browser, React Native) |
+| [`legacy`](./packages/legacy) | [![npm](https://img.shields.io/npm/v/@vaultkeepr/legacy)](https://www.npmjs.com/package/@vaultkeepr/legacy) | Digital inheritance types and beneficiary management |
+| [`ocr-native`](./packages/ocr-native) | — | Native OCR module (VisionKit on iOS, ML Kit on Android) |
 
 ## Smart contracts
 

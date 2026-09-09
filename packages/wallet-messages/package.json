@@ -26,5 +26,14 @@
   "files": [
     "dist"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
+    "directory": "packages/wallet-messages"
+  },
+  "homepage": "https://github.com/VaultKeepR/vaultkeepr-public/tree/main/packages/wallet-messages#readme",
+  "bugs": {
+    "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
+  }
 }

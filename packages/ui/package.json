@@ -23,9 +23,9 @@
   },
   "devDependencies": {
     "@types/react": "~19.2.14",
+    "react": "^19.2.0",
     "tsup": "^8.3.5",
-    "typescript": "^5.6.3",
-    "react": "^19.2.0"
+    "typescript": "^5.6.3"
   },
   "peerDependencies": {
     "react": ">=18"
@@ -34,5 +34,14 @@
     "dist",
     "src/theme.css"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
+    "directory": "packages/ui"
+  },
+  "homepage": "https://github.com/VaultKeepR/vaultkeepr-public/tree/main/packages/ui#readme",
+  "bugs": {
+    "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
+  }
 }
