@@ -1,0 +1,70 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  # Workspace packages published to the npm registry (@vault-keeper scope).
+  # Excludes alias (private), cloud and ocr-native (app-level, no npm payload).
+  PUBLISH_PACKAGES: "core i18n ipfs legacy logger premium recovery sentry smart-account sync ui wallet-messages"
+
+jobs:
+  pack-validate:
+    name: Validate npm packagability
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: pnpm/action-setup@7088e561eb65bb68695d245aa206f005ef30921d # v4.1.0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - name: Dry-run publish every workspace package
+        run: |
+          set -e
+          for pkg in $PUBLISH_PACKAGES; do
+            echo "::group::npm publish --dry-run @vault-keeper/$pkg"
+            (cd "packages/$pkg" && pnpm publish --dry-run --no-git-checks --access public)
+            echo "::endgroup::"
+          done
+
+  publish:
+    name: Publish to npm
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: pack-validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: pnpm/action-setup@7088e561eb65bb68695d245aa206f005ef30921d # v4.1.0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - name: Publish workspace packages
+        run: |
+          set -e
+          for pkg in $PUBLISH_PACKAGES; do
+            (cd "packages/$pkg" && pnpm publish --no-git-checks --access public)
+          done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
