@@ -76,9 +76,13 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Configure GitHub Packages auth
-        run: echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Scoped-package auth: npm/pnpm resolve the registry AND its token
+        # from the @scope:registry mapping, not from the --registry flag.
+        # ${NODE_AUTH_TOKEN} stays literal here and is expanded at runtime
+        # by the publish step's env (same pattern as setup-node's .npmrc).
+        run: |
+          echo '@vaultkeepr:registry=https://npm.pkg.github.com' >> ~/.npmrc
+          echo '//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}' >> ~/.npmrc
       - name: Publish workspace packages to GitHub Packages
         run: |
           set -e
@@ -90,5 +94,7 @@ jobs:
               (cd "packages/$pkg" && pnpm publish --no-git-checks --registry https://npm.pkg.github.com)
             fi
           done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
