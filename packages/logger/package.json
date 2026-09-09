@@ -1,5 +1,5 @@
 {
-  "name": "@vault-keeper/logger",
+  "name": "@vaultkeepr/logger",
   "version": "0.1.0",
   "private": false,
   "description": "VaultKeepR secure logger with automatic CID/address redaction and dev-only gating",

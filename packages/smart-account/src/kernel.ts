@@ -22,7 +22,7 @@ import {
   entryPoint07Address } from
 "viem/account-abstraction";
 import { TARGET_CHAIN, getPimlicoUrl } from "./config";
-import { logger, redactAddress } from "@vault-keeper/logger";
+import { logger, redactAddress } from "@vaultkeepr/logger";
 
 
 

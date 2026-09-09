@@ -14,7 +14,7 @@ import {
 import { TARGET_CHAIN, isSmartAccountConfigured } from "./config";
 import type { VaultSmartAccount } from "./kernel";
 
-import { logger } from "@vault-keeper/logger";
+import { logger } from "@vaultkeepr/logger";
 
 
 

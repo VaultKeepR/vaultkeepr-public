@@ -27,7 +27,7 @@ import type {
   DocumentOcrData,
   CloudFile,
   CloudFileCategory } from
-"@vault-keeper/core";
+"@vaultkeepr/core";
 
 
 

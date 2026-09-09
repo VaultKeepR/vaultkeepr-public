@@ -2,7 +2,7 @@ import {
   createSecureShare,
   decryptSecureShare,
   generateSharePin } from
-"@vault-keeper/core";
+"@vaultkeepr/core";
 import type { CloudFile } from "./cloud-types";
 
 

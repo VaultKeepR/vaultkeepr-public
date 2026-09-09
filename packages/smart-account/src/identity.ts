@@ -14,7 +14,7 @@
 
 
 
-import { logger, redactAddress } from "@vault-keeper/logger";
+import { logger, redactAddress } from "@vaultkeepr/logger";
 
 import type { Address, LocalAccount } from "viem";
 import { getOwnerFromPassword } from "./owner";

@@ -1,5 +1,5 @@
 {
-  "name": "@vault-keeper/sentry",
+  "name": "@vaultkeepr/sentry",
   "version": "0.1.0",
   "private": false,
   "description": "VaultKeepR Sentry integration with privacy-first beforeSend scrubber",

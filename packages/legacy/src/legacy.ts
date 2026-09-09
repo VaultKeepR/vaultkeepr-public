@@ -27,7 +27,7 @@ import {
 import { computeHeartbeatStatus } from "./heartbeat";
 import { validateBeneficiaryList } from "./beneficiary";
 
-import { logger } from "@vault-keeper/logger";
+import { logger } from "@vaultkeepr/logger";
 
 
 

@@ -1,5 +1,5 @@
 {
-  "name": "@vault-keeper/recovery",
+  "name": "@vaultkeepr/recovery",
   "version": "0.1.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -19,7 +19,7 @@
   "dependencies": {
     "@noble/ciphers": "^2.4.0",
     "@noble/hashes": "^2.4.0",
-    "@vault-keeper/core": "workspace:*",
+    "@vaultkeepr/core": "workspace:*",
     "shamir-secret-sharing": "^0.0.4",
     "viem": "^2.21.0"
   },

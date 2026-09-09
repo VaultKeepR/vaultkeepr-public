@@ -1,5 +1,5 @@
 {
-  "name": "@vault-keeper/wallet-messages",
+  "name": "@vaultkeepr/wallet-messages",
   "version": "0.1.0",
   "private": false,
   "main": "./dist/index.js",
