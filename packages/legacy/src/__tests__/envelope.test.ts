@@ -93,7 +93,12 @@ describe("envelope", () => {
       );
 
 
-      const corrupted = { ...envelope, ciphertext: "ff" + envelope.ciphertext.slice(2) };
+      const flipped =
+        envelope.ciphertext.slice(0, 2) === "ff" ? "00" : "ff";
+      const corrupted = {
+        ...envelope,
+        ciphertext: flipped + envelope.ciphertext.slice(2)
+      };
       expect(() => decryptEnvelope(beneficiary1.privateKey, corrupted)).toThrow();
     });
 

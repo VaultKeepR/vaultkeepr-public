@@ -93,6 +93,26 @@ encryption (XChaCha20-Poly1305, Argon2id) runs client-side. The on-device SLM en
 (auto-tagging, breach summary) performs all inference locally — no vault data is sent to
 any server.
 
+## Security Scans & Reports
+
+Automated security scan reports for the shipped clients and web app are
+published in the [`audits/`](./audits) directory for transparency. These are
+tool-generated reports (not manual third-party code audits); findings are
+triaged under the [Vulnerability Remediation Policy](#vulnerability-remediation-policy).
+
+| Report | Scope | Tool | Date |
+|---|---|---|---|
+| [`2026-08-audit-extension-v1.8.5.pdf`](audits/2026-08-audit-extension-v1.8.5.pdf) | Browser extension v1.8.5 | Internal full audit | 2026-08 |
+| [`2026-09-appsec-scorecard-ios.pdf`](audits/2026-09-appsec-scorecard-ios.pdf) | iOS client | AppSec Scorecard | 2026-09 |
+| [`2026-09-appsec-scorecard-android.pdf`](audits/2026-09-appsec-scorecard-android.pdf) | Android client | AppSec Scorecard | 2026-09 |
+| [`2026-09-virustotal-ios-v1.8.5.pdf`](audits/2026-09-virustotal-ios-v1.8.5.pdf) | iOS IPA v1.8.5 | VirusTotal | 2026-09 |
+| [`2026-09-virustotal-android-v1.8.5.pdf`](audits/2026-09-virustotal-android-v1.8.5.pdf) | Android APK v1.8.5 | VirusTotal | 2026-09 |
+| [`2026-09-http-observatory-web.pdf`](audits/2026-09-http-observatory-web.pdf) | vaultkeepr.xyz web app | MDN HTTP Observatory | 2026-09 |
+
+Reports are refreshed with each client release. Manually conducted code
+audits, when they happen, will be published here under the auditor's
+consent.
+
 ## Release Integrity (Signed Releases)
 
 Release artifacts (Android APK, iOS IPA, browser extensions) are built on the
