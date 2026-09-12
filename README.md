@@ -5,7 +5,9 @@
 
   The open-source SDK and smart contracts behind VaultKeepR, a zero-knowledge password manager.
 
-  [**vaultkeepr.xyz**](https://vaultkeepr.xyz)
+  [**vaultkeepr.xyz**](https://vaultkeepr.xyz/)
+
+  [X @Vaultkeepr_xyz](https://x.com/vaultkeepr_xyz) · [LinkedIn](https://www.linkedin.com/company/vaultkeepr/) · [Farcaster](https://farcaster.xyz/vaultkeepr.eth) · [Mastodon](https://infosec.exchange/@vaultkeepr) · [X @0xJust1](https://x.com/0xJust1)
 
   [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
   [![CI](https://github.com/VaultKeepR/vaultkeepr-public/actions/workflows/ci.yml/badge.svg)](https://github.com/VaultKeepR/vaultkeepr-public/actions/workflows/ci.yml)
