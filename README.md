@@ -78,7 +78,7 @@ See [`SECURITY.md`](./SECURITY.md) to report a vulnerability.
 
 Requirements: Node.js 20+, pnpm 9+, Foundry (contracts only).
 
-> **Note:** packages are consumed from source today; npm publishing is planned. `@vaultkeepr/*` is not on the npm registry yet.
+> The SDK packages are published to npm under the [`@vaultkeepr`](https://www.npmjs.com/org/vaultkeepr) scope: `npm install @vaultkeepr/core`.
 
 ```bash
 pnpm install
@@ -106,7 +106,7 @@ vaultkeepr-public/
 
 ## Versioning
 
-All packages are versioned together. This is release `v0.1.0`. Tags follow `vX.Y.Z`.
+All packages are versioned together. The current SDK release is `v0.1.1`. Tags follow `vX.Y.Z`. Client releases (browser extensions, mobile) are tagged separately and minisign-signed — see [Releases](https://github.com/VaultKeepR/vaultkeepr-public/releases).
 
 ## License
 
@@ -138,7 +138,7 @@ Voir [`SECURITY.md`](./SECURITY.md) pour signaler une vulnérabilité.
 
 Prérequis : Node.js 20+, pnpm 9+, Foundry (contrats uniquement).
 
-> **Note :** les packages se consomment depuis les sources ; la publication npm est prévue. `@vaultkeepr/*` n'est pas encore sur le registre npm.
+> Les packages SDK sont publiés sur npm sous le scope [`@vaultkeepr`](https://www.npmjs.com/org/vaultkeepr) : `npm install @vaultkeepr/core`.
 
 ```bash
 pnpm install
