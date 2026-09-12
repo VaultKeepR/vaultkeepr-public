@@ -67,6 +67,8 @@ All three are deployed on Base L2 and covered by Foundry tests (`forge test`).
 - **On-device AI**: the SLM engine (auto-tagging, breach summary) runs locally. No vault data reaches a server.
 - **Dependencies**: `@noble/*` for ciphers, curves, and hashes. `viem` for Ethereum types and clients.
 - **Logging**: keys, CIDs, and addresses are redacted at the logger level.
+- **Threat model**: assets, adversaries, trust boundaries, and accepted
+  limitations are documented in [`docs/THREAT_MODEL.md`](./docs/THREAT_MODEL.md).
 
 See [`SECURITY.md`](./SECURITY.md) to report a vulnerability.
 
@@ -125,6 +127,8 @@ L'application web, l'extension navigateur et les apps iOS/Android restent dans u
 - **IA locale** : le moteur SLM (auto-tagging, résumé de brèche) s'exécute sur l'appareil. Aucune donnée du coffre n'est envoyée à un serveur.
 - **Dépendances** : `@noble/*` pour le chiffrement, les courbes et les hachages. `viem` pour les types et clients Ethereum.
 - **Journalisation** : clés, CID et adresses sont masqués au niveau du logger.
+- **Modèle de menaces** : biens protégés, adversaires, frontières de confiance
+  et limites acceptées sont documentés dans [`docs/THREAT_MODEL.md`](./docs/THREAT_MODEL.md).
 
 Voir [`SECURITY.md`](./SECURITY.md) pour signaler une vulnérabilité.
 

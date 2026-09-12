@@ -93,6 +93,11 @@ encryption (XChaCha20-Poly1305, Argon2id) runs client-side. The on-device SLM en
 (auto-tagging, breach summary) performs all inference locally — no vault data is sent to
 any server.
 
+A full threat model — assets, adversaries, trust boundaries, and accepted
+limitations — is documented in [`docs/THREAT_MODEL.md`](./docs/THREAT_MODEL.md).
+The most impactful risks and their mitigations are tracked in
+[`SECURITY_ASSESSMENT.md`](./SECURITY_ASSESSMENT.md).
+
 ## Security Scans & Reports
 
 Automated security scan reports for the shipped clients and web app are
