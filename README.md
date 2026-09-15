@@ -106,7 +106,7 @@ vaultkeepr-public/
 
 ## Versioning
 
-All packages are versioned together. The current SDK release is `v0.1.1`. Tags follow `vX.Y.Z`. Client releases (browser extensions, mobile) are tagged separately and minisign-signed — see [Releases](https://github.com/VaultKeepR/vaultkeepr-public/releases).
+SDK packages version independently within the workspace (`pnpm publish` per package — check the npm badge above for the live version of each). Repository tags (`vX.Y.Z`) cut the full workspace and client artifacts; client releases (browser extensions, mobile) are minisign-signed — see [Releases](https://github.com/VaultKeepR/vaultkeepr-public/releases).
 
 ## License
 
