@@ -64,9 +64,12 @@ jobs:
       - name: Publish workspace packages to npmjs.org
         run: |
           set -e
-          VERSION=$(node -p "require('./packages/core/package.json').version")
           for pkg in $PUBLISH_PACKAGES; do
             name="@vaultkeepr/$pkg"
+            # Per-package version: reading only core's version made the skip-check
+            # probe <pkg>@<core-version>, so packages still on an older local
+            # version were "not found" on the registry and re-published → E403.
+            VERSION=$(node -p "require('./packages/$pkg/package.json').version")
             if npm view "$name@$VERSION" version >/dev/null 2>&1; then
               echo "$name@$VERSION already on npmjs.org — skipping"
             else
@@ -86,8 +89,8 @@ jobs:
       - name: Publish workspace packages to GitHub Packages
         run: |
           set -e
-          VERSION=$(node -p "require('./packages/core/package.json').version")
           for pkg in $PUBLISH_PACKAGES; do
+            VERSION=$(node -p "require('./packages/$pkg/package.json').version")
             if npm view "@vaultkeepr/$pkg@$VERSION" version --registry https://npm.pkg.github.com >/dev/null 2>&1; then
               echo "@vaultkeepr/$pkg@$VERSION already on GitHub Packages — skipping"
             else
