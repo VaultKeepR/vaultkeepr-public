@@ -1,13 +1,13 @@
 {
   "name": "@vaultkeepr/core",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "TypeScript vault crypto: XChaCha20-Poly1305, Argon2id, wallet ECIES envelopes, TOTP, imports \u2014 VaultKeepR SDK",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
     "directory": "packages/core"
   },
-  "homepage": "https://github.com/VaultKeepR/vaultkeepr-public/tree/main/packages/core#readme",
+  "homepage": "https://vaultkeepr.xyz",
   "bugs": {
     "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
   },

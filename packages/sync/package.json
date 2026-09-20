@@ -1,6 +1,6 @@
 {
   "name": "@vaultkeepr/sync",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "CRDT-based vault synchronization engine \u2014 Automerge-powered conflict-free merge for VaultKeepR",
   "repository": {
     "type": "git",
@@ -47,7 +47,7 @@
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/VaultKeepR/vaultkeepr-public/tree/main/packages/sync#readme",
+  "homepage": "https://vaultkeepr.xyz",
   "bugs": {
     "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
   }

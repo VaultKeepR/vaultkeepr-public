@@ -1,6 +1,6 @@
 {
   "name": "@vaultkeepr/ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -40,7 +40,7 @@
     "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
     "directory": "packages/ui"
   },
-  "homepage": "https://github.com/VaultKeepR/vaultkeepr-public/tree/main/packages/ui#readme",
+  "homepage": "https://vaultkeepr.xyz",
   "bugs": {
     "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
   }
