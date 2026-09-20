@@ -1,6 +1,6 @@
 {
   "name": "@vaultkeepr/sentry",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "VaultKeepR Sentry integration with privacy-first beforeSend scrubber",
   "main": "./dist/index.js",
@@ -46,7 +46,7 @@
     "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
     "directory": "packages/sentry"
   },
-  "homepage": "https://github.com/VaultKeepR/vaultkeepr-public/tree/main/packages/sentry#readme",
+  "homepage": "https://vaultkeepr.xyz",
   "bugs": {
     "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
   }

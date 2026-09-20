@@ -1,6 +1,6 @@
 {
   "name": "@vaultkeepr/smart-account",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "ERC-4337 Smart Account (Kernel) with Pimlico Paymaster — universal module for Web, Extension, iOS, and Android",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -43,7 +43,7 @@
     "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
     "directory": "packages/smart-account"
   },
-  "homepage": "https://github.com/VaultKeepR/vaultkeepr-public/tree/main/packages/smart-account#readme",
+  "homepage": "https://vaultkeepr.xyz",
   "bugs": {
     "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
   }

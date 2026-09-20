@@ -1,6 +1,6 @@
 {
   "name": "@vaultkeepr/logger",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "VaultKeepR secure logger with automatic CID/address redaction and dev-only gating",
   "main": "./dist/index.js",
@@ -33,7 +33,7 @@
     "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
     "directory": "packages/logger"
   },
-  "homepage": "https://github.com/VaultKeepR/vaultkeepr-public/tree/main/packages/logger#readme",
+  "homepage": "https://vaultkeepr.xyz",
   "bugs": {
     "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
   }

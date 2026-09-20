@@ -8,6 +8,12 @@ All packages are versioned together (see the README "Versioning" section).
 
 ## [Unreleased]
 
+### Changed
+
+- npm packaging: every published package (`@vaultkeepr/*`, 12 packages) now
+  ships a README and points `homepage` at `vaultkeepr.xyz`; patch bumps
+  (`core`/`sync` 0.1.3, others 0.1.2) so the metadata lands on npmjs.org.
+
 ### Security
 
 - CI supply-chain hardening: all GitHub Actions pinned to full commit SHAs,
