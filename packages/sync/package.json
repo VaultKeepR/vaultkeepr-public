@@ -35,11 +35,11 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "@automerge/automerge": "^3.2.6",
+    "@automerge/automerge": "^3.5.0",
     "@vaultkeepr/core": "workspace:*"
   },
   "devDependencies": {
-    "fast-check": "^4.9.0",
+    "fast-check": "^4.10.1",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
     "vitest": "^4.1.11"
