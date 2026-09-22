@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: "22"
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm build
       - name: Fuzz ${{ matrix.target }} (2 min)
         run: pnpm exec jazzer fuzz/harness/${{ matrix.target }}.fuzz.js --sync -- -max_time=120
