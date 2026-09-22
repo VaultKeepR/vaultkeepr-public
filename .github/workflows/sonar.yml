@@ -37,4 +37,4 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.javascript.lcov.reportPaths=packages/core/coverage/lcov.info
+            -Dsonar.javascript.lcov.reportPaths=packages/core/coverage/lcov.info,packages/alias/coverage/lcov.info,packages/cloud/coverage/lcov.info,packages/smart-account/coverage/lcov.info

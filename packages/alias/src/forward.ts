@@ -3,58 +3,12 @@
 
 
 
-import {
-  openSync,
-  writeSync,
-  closeSync,
-  constants as fsConstants,
-} from "fs";
 import { simpleParser } from "mailparser";
 import * as openpgp from "openpgp";
 import nodemailer from "nodemailer";
 import { lookupRecipient } from "./db.js";
 import { getDomain } from "./config.js";
-
-const DEBUG = process.env.VAULTKEEPER_FORWARD_DEBUG === "1";
-const LOG = "/tmp/vaultkeeper-forward.log";
-const ERR_LOG = "/tmp/vaultkeeper-forward-err.log";
-
-// These paths sit in the world-writable /tmp, where a symlink planted by
-// another local user must not redirect writes (SonarCloud S5443, CWE-377).
-// String flags ("a") do NOT set O_NOFOLLOW — numeric flags do. On ELOOP
-// (symlink where a regular file is required) the write is dropped.
-function safeAppend(path: string, msg: string): void {
-  let fd: number | null = null;
-  try {
-    fd = openSync(
-      path,
-      fsConstants.O_WRONLY |
-        fsConstants.O_CREAT |
-        fsConstants.O_APPEND |
-        fsConstants.O_NOFOLLOW,
-      0o600
-    );
-    writeSync(fd, msg);
-  } catch {
-    // ELOOP = planted symlink; other errors (EACCES...) mean the log write
-    // must not happen anyway. Never fall back to a symlink-following open.
-  } finally {
-    if (fd !== null) {
-      try {
-        closeSync(fd);
-      } catch {}
-    }
-  }
-}
-
-function errLog(msg: string): void {
-  safeAppend(ERR_LOG, `[${new Date().toISOString()}] ${msg}\n`);
-}
-
-function log(msg: string): void {
-  if (!DEBUG) return;
-  safeAppend(LOG, `[${new Date().toISOString()}] ${msg}\n`);
-}
+import { errLog, log, safeAppend, ERR_LOG } from "./logsafe.js";
 
 async function main(): Promise<void> {
   errLog("main started");
