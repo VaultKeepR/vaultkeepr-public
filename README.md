@@ -14,6 +14,8 @@
   [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/VaultKeepR/vaultkeepr-public/badge)](https://securityscorecards.dev/viewer/?uri=github.com/VaultKeepR/vaultkeepr-public)
   [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/14491/badge)](https://www.bestpractices.dev/projects/14491)
   [![OpenSSF Baseline](https://www.bestpractices.dev/projects/14491/baseline)](https://www.bestpractices.dev/projects/14491)
+  [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=VaultKeepR_vaultkeepr-public&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=VaultKeepR_vaultkeepr-public)
+  [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=VaultKeepR_vaultkeepr-public&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=VaultKeepR_vaultkeepr-public)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6.svg?logo=typescript&logoColor=white)](./packages)
   [![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636.svg?logo=solidity&logoColor=white)](./contracts)
   [![Base](https://img.shields.io/badge/deployed%20on-Base%20L2-0052FF.svg?logo=ethereum&logoColor=white)](https://basescan.org)
