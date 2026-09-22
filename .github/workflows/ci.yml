@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: "22"
           cache: pnpm
-      - uses: foundry-rs/foundry-toolchain@82dee4ba654bd2146511f85f0d013af94670c4de # v1.4.0
+      - uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09 # v1.9.1
         with:
           version: stable
       - run: pnpm install --frozen-lockfile --ignore-scripts
@@ -47,7 +47,7 @@ jobs:
         with:
           submodules: recursive
           persist-credentials: false
-      - uses: foundry-rs/foundry-toolchain@82dee4ba654bd2146511f85f0d013af94670c4de # v1.4.0
+      - uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09 # v1.9.1
         with:
           version: stable
       - run: forge build
