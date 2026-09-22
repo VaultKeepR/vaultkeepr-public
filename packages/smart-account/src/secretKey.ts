@@ -24,14 +24,15 @@ import { bytesToHex } from "viem";
 
 export function generateSecretKey(): string {
   const bytes = new Uint8Array(32);
-  if (typeof globalThis.crypto?.getRandomValues === "function") {
-    globalThis.crypto.getRandomValues(bytes);
-  } else {
-
-    for (let i = 0; i < 32; i++) {
-      bytes[i] = Math.floor(Math.random() * 256);
-    }
+  // Secret material: fail loudly rather than degrade to a predictable
+  // fallback. Math.random() here would silently produce a guessable
+  // 256-bit key on runtimes without WebCrypto (CWE-338).
+  if (typeof globalThis.crypto?.getRandomValues !== "function") {
+    throw new Error(
+      "WebCrypto unavailable: cannot generate a secret key securely"
+    );
   }
+  globalThis.crypto.getRandomValues(bytes);
   return bytesToHex(bytes).slice(2);
 }
 

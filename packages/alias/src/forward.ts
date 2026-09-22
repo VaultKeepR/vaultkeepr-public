@@ -3,30 +3,12 @@
 
 
 
-import { appendFileSync } from "fs";
 import { simpleParser } from "mailparser";
 import * as openpgp from "openpgp";
 import nodemailer from "nodemailer";
 import { lookupRecipient } from "./db.js";
 import { getDomain } from "./config.js";
-
-const DEBUG = process.env.VAULTKEEPER_FORWARD_DEBUG === "1";
-const LOG = "/tmp/vaultkeeper-forward.log";
-const ERR_LOG = "/tmp/vaultkeeper-forward-err.log";
-
-function errLog(msg: string): void {
-  try {
-    appendFileSync(ERR_LOG, `[${new Date().toISOString()}] ${msg}\n`);
-  } catch {}
-}
-
-function log(msg: string): void {
-  if (!DEBUG) return;
-  const line = `[${new Date().toISOString()}] ${msg}\n`;
-  try {
-    appendFileSync(LOG, line);
-  } catch {}
-}
+import { errLog, log, safeAppend, ERR_LOG } from "./logsafe.js";
 
 async function main(): Promise<void> {
   errLog("main started");
@@ -168,7 +150,7 @@ main().catch((err) => {
 
 process.on("uncaughtException", (err) => {
   try {
-    appendFileSync(ERR_LOG, `[${new Date().toISOString()}] uncaughtException: ${err.message}\n${err.stack}\n\n`);
+    safeAppend(ERR_LOG, `[${new Date().toISOString()}] uncaughtException: ${err.message}\n${err.stack}\n\n`);
   } catch {}
   process.exit(1);
 });

@@ -31,10 +31,16 @@ jobs:
       - run: pnpm build
       - name: Coverage (core, lcov for SonarCloud)
         run: pnpm --filter @vaultkeepr/core exec vitest run --coverage
+      - name: Coverage (alias, lcov for SonarCloud)
+        run: pnpm --filter @vaultkeepr/alias exec vitest run --coverage
+      - name: Coverage (cloud, lcov for SonarCloud)
+        run: pnpm --filter @vaultkeepr/cloud exec vitest run --coverage
+      - name: Coverage (smart-account, lcov for SonarCloud)
+        run: pnpm --filter @vaultkeepr/smart-account exec vitest run --coverage
       - name: SonarCloud scan
         uses: SonarSource/sonarqube-scan-action@ba9859eae8dd6bd29e412f25ddbbef3d032000f4 # v8.2.2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.javascript.lcov.reportPaths=packages/core/coverage/lcov.info
+            -Dsonar.javascript.lcov.reportPaths=packages/core/coverage/lcov.info,packages/alias/coverage/lcov.info,packages/cloud/coverage/lcov.info,packages/smart-account/coverage/lcov.info
