@@ -119,7 +119,7 @@ export function getCloudFolders(vault: Vault): string[] {
     });
   }
 
-  return Array.from(folders).sort();
+  return Array.from(folders).sort((a, b) => a.localeCompare(b));
 }
 
 

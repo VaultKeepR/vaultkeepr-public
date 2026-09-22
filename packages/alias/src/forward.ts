@@ -3,7 +3,12 @@
 
 
 
-import { appendFileSync } from "fs";
+import {
+  openSync,
+  writeSync,
+  closeSync,
+  constants as fsConstants,
+} from "fs";
 import { simpleParser } from "mailparser";
 import * as openpgp from "openpgp";
 import nodemailer from "nodemailer";
@@ -14,18 +19,41 @@ const DEBUG = process.env.VAULTKEEPER_FORWARD_DEBUG === "1";
 const LOG = "/tmp/vaultkeeper-forward.log";
 const ERR_LOG = "/tmp/vaultkeeper-forward-err.log";
 
-function errLog(msg: string): void {
+// These paths sit in the world-writable /tmp, where a symlink planted by
+// another local user must not redirect writes (SonarCloud S5443, CWE-377).
+// String flags ("a") do NOT set O_NOFOLLOW — numeric flags do. On ELOOP
+// (symlink where a regular file is required) the write is dropped.
+function safeAppend(path: string, msg: string): void {
+  let fd: number | null = null;
   try {
-    appendFileSync(ERR_LOG, `[${new Date().toISOString()}] ${msg}\n`);
-  } catch {}
+    fd = openSync(
+      path,
+      fsConstants.O_WRONLY |
+        fsConstants.O_CREAT |
+        fsConstants.O_APPEND |
+        fsConstants.O_NOFOLLOW,
+      0o600
+    );
+    writeSync(fd, msg);
+  } catch {
+    // ELOOP = planted symlink; other errors (EACCES...) mean the log write
+    // must not happen anyway. Never fall back to a symlink-following open.
+  } finally {
+    if (fd !== null) {
+      try {
+        closeSync(fd);
+      } catch {}
+    }
+  }
+}
+
+function errLog(msg: string): void {
+  safeAppend(ERR_LOG, `[${new Date().toISOString()}] ${msg}\n`);
 }
 
 function log(msg: string): void {
   if (!DEBUG) return;
-  const line = `[${new Date().toISOString()}] ${msg}\n`;
-  try {
-    appendFileSync(LOG, line);
-  } catch {}
+  safeAppend(LOG, `[${new Date().toISOString()}] ${msg}\n`);
 }
 
 async function main(): Promise<void> {
@@ -168,7 +196,7 @@ main().catch((err) => {
 
 process.on("uncaughtException", (err) => {
   try {
-    appendFileSync(ERR_LOG, `[${new Date().toISOString()}] uncaughtException: ${err.message}\n${err.stack}\n\n`);
+    safeAppend(ERR_LOG, `[${new Date().toISOString()}] uncaughtException: ${err.message}\n${err.stack}\n\n`);
   } catch {}
   process.exit(1);
 });
