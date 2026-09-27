@@ -114,6 +114,7 @@ triaged under the [Vulnerability Remediation Policy](#vulnerability-remediation-
 | [`2026-09-virustotal-android-v1.8.5.pdf`](audits/2026-09-virustotal-android-v1.8.5.pdf) | Android APK v1.8.5 | VirusTotal | 2026-09 |
 | [`2026-09-http-observatory-web.pdf`](audits/2026-09-http-observatory-web.pdf) | vaultkeepr.xyz web app | MDN HTTP Observatory | 2026-09 |
 | [`2026-09-maestro-e2e-ios.pdf`](audits/2026-09-maestro-e2e-ios.pdf) | iOS client — functional E2E | Maestro | 2026-09 |
+| [`2026-09-maestro-e2e-android.pdf`](audits/2026-09-maestro-e2e-android.pdf) | Android client — functional E2E | Maestro | 2026-09 |
 
 Reports are refreshed with each client release. Manually conducted code
 audits, when they happen, will be published here under the auditor's
