@@ -57,7 +57,6 @@ function enabled(target: LogLevel): boolean {
 
 const ETHEREUM_ADDRESS_RE = /0x[0-9a-fA-F]{40}\b/g;
 const CID_V0_RE = /Qm[1-9A-HJ-NP-Za-km-z]{44}\b/g;
-const CID_V1_RE = /b[a-z2-7]{58,}\b/g;
 const TX_HASH_RE = /0x[0-9a-fA-F]{64}\b/g;
 const BASE64_LONG_RE = /[A-Za-z0-9+/=]{200,}/g;
 
@@ -244,12 +243,85 @@ function redactMnemonics(input: string): string {
   return parts.join("");
 }
 
+/*
+ * CIDv1 redaction — linear scan (SonarCloud S8786 fix).
+ *
+ * CID_V1_RE = /b[a-z2-7]{58,}\b/g used to run inside redactString(). The
+ * trailing \b makes every candidate start position consume the whole
+ * [a-z2-7] run before it can fail, so a long run that does not end on a word
+ * boundary is rescanned once per position — quadratic (typescript:S8786).
+ * Atomic groups / possessive quantifiers are not supported by the Hermes
+ * (React Native) RegExp engine, so the match is reproduced in one
+ * left-to-right pass (O(n) total) with the exact regex semantics:
+ *   1. a match starts at any literal 'b' whose following maximal [a-z2-7]
+ *      run is at least 58 characters long;
+ *   2. the greedy {58,} has only ONE viable end — the run's end: every
+ *      shorter end is followed by a run character (a word character), where
+ *      \b fails;
+ *   3. \b then holds at the run's end unless the following character is a
+ *      word character outside the class ([A-Z0-9_] minus [2-7]); when it
+ *      fails, no other end can succeed, so the scan resumes one position
+ *      later;
+ *   4. on success the match [start, run end) is replaced through
+ *      redactCid() and scanning resumes right after it, like the g flag.
+ * The run end is cached across adjacent 'b' starts (a run's end is the same
+ * for every start inside it), so the single left-to-right pass stays O(n)
+ * even on inputs like "b"*100000 + "a"*100000 — the quadratic worst case of
+ * the original regex.
+ * Equivalence with the original regex is proven differentially in
+ * index.test.ts (CIDv1 suite) — keep the oracle regex copy there in sync.
+ */
+function isCidV1Char(cp: number): boolean {
+  return (
+    (cp >= 0x61 && cp <= 0x7a) || // a-z
+    (cp >= 0x32 && cp <= 0x37) // 2-7
+  );
+}
+
+function redactCidV1s(input: string): string {
+  const n = input.length;
+  if (n < 59) return input; // 'b' + 58 run characters fit in 59 minimum
+  const parts: string[] = [];
+  let copied = 0;
+  let i = 0;
+  // End (exclusive) of the last computed [a-z2-7] run. A run's end is the
+  // same for every start inside it and runs are made of contiguous class
+  // characters, so caching it keeps the pass linear even when many 'b's sit
+  // inside one long run: each character is walked exactly once overall.
+  let runEnd = 0;
+  while (i < n) {
+    if (input.codePointAt(i)! !== 0x62 /* 'b' */) {
+      i += 1;
+      continue;
+    }
+    const p = i + 1;
+    if (p >= runEnd) {
+      runEnd = p;
+      while (runEnd < n && isCidV1Char(input.codePointAt(runEnd)!)) runEnd += 1;
+    }
+    if (
+      runEnd - p >= 58 &&
+      (runEnd === n || !isRegexWordChar(input.codePointAt(runEnd)!))
+    ) {
+      parts.push(input.slice(copied, i), redactCid(input.slice(i, runEnd)));
+      copied = runEnd;
+      i = runEnd;
+      continue;
+    }
+    i += 1;
+  }
+  if (copied === 0) return input;
+  parts.push(input.slice(copied));
+  return parts.join("");
+}
+
 export function redactString(s: string): string {
   return redactMnemonics(
-    s.
-    replace(ETHEREUM_ADDRESS_RE, (m) => redactAddress(m)).
-    replace(CID_V0_RE, (m) => redactCid(m)).
-    replace(CID_V1_RE, (m) => redactCid(m)).
+    redactCidV1s(
+      s.
+      replace(ETHEREUM_ADDRESS_RE, (m) => redactAddress(m)).
+      replace(CID_V0_RE, (m) => redactCid(m))
+    ).
     replace(TX_HASH_RE, (m) => `0x…${m.slice(-6)}`).
     replace(BASE64_LONG_RE, "<base64:redacted>")
   );
