@@ -172,6 +172,23 @@ export function createBeforeSend(options: SentryScrubberOptions = {}) {
 
 
 
+// S8786: `/\?.*$/` backtracks super-linearly on inputs like "?a\n?a\n…"
+// (the engine rescans the tail at every '?'). JS `.` never matches a line
+// terminator and `$` (no `m` flag) matches only at end of input, so the
+// regex removes exactly the first '?' located after the LAST line
+// terminator. This single backward-anchored scan is the exact equivalent,
+// in linear time.
+export function stripUrlQuery(url: string): string {
+  const lastTerminator = Math.max(
+    url.lastIndexOf("\n"),
+    url.lastIndexOf("\r"),
+    url.lastIndexOf("\u2028"),
+    url.lastIndexOf("\u2029")
+  );
+  const query = url.indexOf("?", lastTerminator + 1);
+  return query === -1 ? url : url.slice(0, query);
+}
+
 export interface SentryInitOptions {
   dsn: string;
   environment: "development" | "staging" | "production";

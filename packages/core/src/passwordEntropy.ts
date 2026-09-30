@@ -101,9 +101,9 @@ function sequencePenaltyBits(password: string): number {
   }
 
   for (let i = 0; i < lower.length - 2; i++) {
-    const a = lower.charCodeAt(i);
-    const b = lower.charCodeAt(i + 1);
-    const c = lower.charCodeAt(i + 2);
+    const a = lower.codePointAt(i)!;
+    const b = lower.codePointAt(i + 1)!;
+    const c = lower.codePointAt(i + 2)!;
     if ((b === a + 1 && c === a + 2) || (b === a - 1 && c === a - 2)) {
       penalty = Math.max(penalty, (lower.length - i) * 2.5);
     }

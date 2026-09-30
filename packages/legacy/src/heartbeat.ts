@@ -50,7 +50,9 @@ export function scheduleLegacyHeartbeat(smartAccount: any): void {
 
 
   _debounceTimer = setTimeout(() => {
-    _executeHeartbeat();
+    void _executeHeartbeat().catch((err: unknown) => {
+      logger.error("[LegacyHeartbeat] échec heartbeat:", err);
+    });
   }, 5000);
 }
 

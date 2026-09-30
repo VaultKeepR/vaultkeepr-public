@@ -3,7 +3,7 @@
 
 
 import { init, type BrowserOptions } from "@sentry/browser";
-import { createBeforeSend, type SentryInitOptions } from "./index";
+import { createBeforeSend, stripUrlQuery, type SentryInitOptions } from "./index";
 
 export function initBrowserSentry(options: SentryInitOptions): void {
   const config: BrowserOptions = {
@@ -20,10 +20,10 @@ export function initBrowserSentry(options: SentryInitOptions): void {
       if (breadcrumb.category === "console") return null;
 
       if (breadcrumb.category === "navigation" && breadcrumb.data?.from) {
-        breadcrumb.data.from = String(breadcrumb.data.from).replace(/\?.*$/, "");
+        breadcrumb.data.from = stripUrlQuery(String(breadcrumb.data.from));
       }
       if (breadcrumb.category === "navigation" && breadcrumb.data?.to) {
-        breadcrumb.data.to = String(breadcrumb.data.to).replace(/\?.*$/, "");
+        breadcrumb.data.to = stripUrlQuery(String(breadcrumb.data.to));
       }
       return breadcrumb;
     },

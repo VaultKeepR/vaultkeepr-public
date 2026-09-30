@@ -53,7 +53,7 @@ options?: PwnedPasswordFetchOptions)
     const h = trimmed.slice(0, colon).toUpperCase();
     const countStr = trimmed.slice(colon + 1);
     if (h === suffixUpper) {
-      const n = parseInt(countStr, 10);
+      const n = Number.parseInt(countStr, 10);
       return Number.isFinite(n) ? n : 0;
     }
   }

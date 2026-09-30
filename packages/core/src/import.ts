@@ -742,12 +742,12 @@ rawNote: string | undefined)
   const customFields: {name: string;value: string;type: "text";}[] = [];
 
   for (const line of lines) {
-    const to = line.match(/^TOTP:\s+(.+)$/);
+    const to = line.match(/^TOTP:\s+(\S[^\n\r\u2028\u2029]*|[\t\v\f \u00a0\u1680\u2000-\u200a\u202f\u205f\u3000\ufeff])$/);
     if (to) {
       totpSecret = to[1].trim();
       continue;
     }
-    const fieldsMatch = line.match(/^Fields:\s+(.+)$/);
+    const fieldsMatch = line.match(/^Fields:\s+(\S[^\n\r\u2028\u2029]*|[\t\v\f \u00a0\u1680\u2000-\u200a\u202f\u205f\u3000\ufeff])$/);
     if (fieldsMatch) {
       const entries = fieldsMatch[1].split("|");
       for (const entry of entries) {
@@ -919,7 +919,7 @@ export function importProtonPassJson(json: string): Vault {
       const type =
       typeof rawType === "number" ?
       NUMERIC_TYPE_MAP[rawType] ?? String(rawType) :
-      String(rawType).toLowerCase().replace(/_/g, "");
+      String(rawType).toLowerCase().replaceAll(/_/g, "");
 
       if (type === "login" || type === "alias") {
         const dataAsContent = item?.data as ProtonPassItemContent | undefined;
