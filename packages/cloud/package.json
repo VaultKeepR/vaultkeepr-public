@@ -11,8 +11,8 @@
     "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
-    "@vault-keeper/core": "*",
-    "@vault-keeper/ipfs": "*",
+    "@vault-keeper/core": "workspace:*",
+    "@vault-keeper/ipfs": "workspace:*",
     "@noble/hashes": "^2.4.0"
   },
   "devDependencies": {

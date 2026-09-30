@@ -20,7 +20,7 @@
     "lint": "eslint src/"
   },
   "dependencies": {
-    "@vault-keeper/logger": "0.1.0"
+    "@vault-keeper/logger": "workspace:*"
   },
   "peerDependencies": {
     "permissionless": ">=0.3.0",

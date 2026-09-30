@@ -19,7 +19,7 @@
   "dependencies": {
     "@noble/ciphers": "^2.4.0",
     "@noble/hashes": "^2.4.0",
-    "@vault-keeper/core": "*",
+    "@vault-keeper/core": "workspace:*",
     "shamir-secret-sharing": "^0.0.4",
     "viem": "^2.21.0"
   },

@@ -40,7 +40,7 @@
     "@noble/ciphers": "^2.4.0",
     "@noble/curves": "^2.4.0",
     "@noble/hashes": "^2.4.0",
-    "@vault-keeper/logger": "0.1.0",
+    "@vault-keeper/logger": "workspace:*",
     "ethers": "^6.13.0",
     "fflate": "^0.8.3",
     "viem": "^2.21.0"

@@ -20,9 +20,9 @@
     "@noble/ciphers": "^2.4.0",
     "@noble/curves": "^2.4.0",
     "@noble/hashes": "^2.4.0",
-    "@vault-keeper/core": "*",
-    "@vault-keeper/logger": "0.1.0",
-    "@vault-keeper/premium": "*",
+    "@vault-keeper/core": "workspace:*",
+    "@vault-keeper/logger": "workspace:*",
+    "@vault-keeper/premium": "workspace:*",
     "viem": "^2.21.0"
   },
   "devDependencies": {

@@ -9,7 +9,7 @@
   "types": "src/index.ts",
   "scripts": {},
   "dependencies": {
-    "@vault-keeper/logger": "0.1.0"
+    "@vault-keeper/logger": "workspace:*"
   },
   "peerDependencies": {
     "expo": ">=50.0.0",
