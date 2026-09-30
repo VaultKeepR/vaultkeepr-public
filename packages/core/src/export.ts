@@ -126,7 +126,7 @@ customFields: CustomField[] | undefined)
 function csvEscape(v: string): string {
   const s = v ?? "";
   if (/[",\r\n]/.test(s)) {
-    return '"' + s.replace(/"/g, '""') + '"';
+    return '"' + s.replaceAll(/"/g, '""') + '"';
   }
   return s;
 }

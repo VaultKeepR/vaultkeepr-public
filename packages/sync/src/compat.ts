@@ -86,11 +86,11 @@ deviceId: string)
 
 function base64ToUint8Array(base64: string): Uint8Array {
 
-  const normalized = base64.replace(/-/g, "+").replace(/_/g, "/");
+  const normalized = base64.replaceAll(/-/g, "+").replaceAll(/_/g, "/");
   const binary = atob(normalized);
   const bytes = new Uint8Array(binary.length);
   for (let i = 0; i < binary.length; i++) {
-    bytes[i] = binary.charCodeAt(i);
+    bytes[i] = binary.codePointAt(i)!;
   }
   return bytes;
 }

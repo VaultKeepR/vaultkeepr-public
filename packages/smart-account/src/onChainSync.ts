@@ -78,7 +78,9 @@ debounceMs: number = DEFAULT_DEBOUNCE_MS)
 
 
   _debounceTimer = setTimeout(() => {
-    _executeSync();
+    void _executeSync().catch((err: unknown) => {
+      logger.error(`[OnChainSync] sync échoué : ${String(err)}`);
+    });
   }, debounceMs);
 
   logger.debug(

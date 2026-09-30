@@ -74,7 +74,7 @@ async function main(): Promise<void> {
 
   const transporter = nodemailer.createTransport({
     host: smtpHost,
-    port: parseInt(process.env.SMTP_PORT || "25", 10),
+    port: Number.parseInt(process.env.SMTP_PORT || "25", 10),
     secure: false,
     ignoreTLS: isLoopback,
     tls: {

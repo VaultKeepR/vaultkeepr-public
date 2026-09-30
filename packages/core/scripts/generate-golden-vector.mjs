@@ -70,13 +70,13 @@ const vault = {
 };
 
 // Mirror of packages/core/src/encrypted-export.ts exportEncryptedVault
-const salt = new Uint8Array(SALT_HEX.match(/.{2}/g).map((h) => parseInt(h, 16)));
+const salt = new Uint8Array(SALT_HEX.match(/.{2}/g).map((h) => Number.parseInt(h, 16)));
 const key = argon2id(enc.encode(PASSWORD), salt, ARGON2_OPTS);
 
 const plaintext = JSON.stringify({ vault: serializeVault(vault) });
 
 const NONCE_LENGTH = 24;
-const nonce = new Uint8Array(NONCE_HEX.match(/.{2}/g).map((h) => parseInt(h, 16)));
+const nonce = new Uint8Array(NONCE_HEX.match(/.{2}/g).map((h) => Number.parseInt(h, 16)));
 if (nonce.length !== NONCE_LENGTH) throw new Error("bad nonce length");
 
 const chacha = xchacha20poly1305(key, nonce);

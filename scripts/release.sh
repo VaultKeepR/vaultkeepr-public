@@ -25,7 +25,7 @@ set -euo pipefail
 VERSION="${1:?usage: release.sh <version> <artifact>... (version without leading v)}"
 shift
 ARTIFACTS=("$@")
-[ "${#ARTIFACTS[@]}" -gt 0 ] || { echo "error: no artifacts given" >&2; exit 1; }
+[[ ${#ARTIFACTS[@]} -gt 0 ]] || { echo "error: no artifacts given" >&2; exit 1; }
 
 command -v gh >/dev/null      || { echo "error: gh CLI required (brew install gh)" >&2; exit 1; }
 command -v minisign >/dev/null || { echo "error: minisign required (brew install minisign)" >&2; exit 1; }
@@ -35,13 +35,13 @@ command -v shasum >/dev/null  || { echo "error: shasum required" >&2; exit 1; }
 GH_REPO_TARGET="${VK_RELEASE_REPO:-VaultKeepR/vaultkeepr-public}"
 
 KEY="${MINISIGN_KEY:-$HOME/.minisign/vaultkeepr-release.key}"
-[ -f "$KEY" ] || { echo "error: signing key not found at $KEY (see header for setup)" >&2; exit 1; }
+[[ -f "$KEY" ]] || { echo "error: signing key not found at $KEY (see header for setup)" >&2; exit 1; }
 
 # minisign reads the passphrase from stdin when no TTY is attached; feeding
 # one empty line per invocation keeps automated runs working with an
 # empty-passphrase key (interactive runs keep the normal prompt).
 sign() {
-  if [ -t 0 ]; then minisign -S -s "$KEY" -m "$1"
+  if [[ -t 0 ]]; then minisign -S -s "$KEY" -m "$1"
   else printf '\n' | minisign -S -s "$KEY" -m "$1"; fi
 }
 
@@ -49,13 +49,13 @@ TAG="v${VERSION#v}"
 STAGE="$(mktemp -d)"
 # staging directory is kept on failure for retry/debug, removed on success
 cleanup() {
-  if [ "$1" = 0 ]; then rm -rf "$STAGE"
+  if [[ "$1" = 0 ]]; then rm -rf "$STAGE"
   else echo "==> signing kept at: $STAGE (retry the publish from there)" >&2; fi
 }
 echo "==> staging ${#ARTIFACTS[@]} artifact(s) for ${TAG}"
 
 for artifact in "${ARTIFACTS[@]}"; do
-  [ -f "$artifact" ] || { echo "error: artifact not found: $artifact" >&2; exit 1; }
+  [[ -f "$artifact" ]] || { echo "error: artifact not found: $artifact" >&2; exit 1; }
   base="$(basename "$artifact")"
   cp "$artifact" "$STAGE/$base"
   sign "$STAGE/$base"

@@ -3,7 +3,7 @@
 
 
 import { init, type ReactNativeOptions } from "@sentry/react-native";
-import { createBeforeSend, type SentryInitOptions } from "./index";
+import { createBeforeSend, stripUrlQuery, type SentryInitOptions } from "./index";
 
 export function initReactNativeSentry(options: SentryInitOptions): void {
   const config: ReactNativeOptions = {
@@ -17,10 +17,10 @@ export function initReactNativeSentry(options: SentryInitOptions): void {
     beforeBreadcrumb(breadcrumb) {
       if (breadcrumb.category === "console") return null;
       if (breadcrumb.category === "navigation" && breadcrumb.data?.from) {
-        breadcrumb.data.from = String(breadcrumb.data.from).replace(/\?.*$/, "");
+        breadcrumb.data.from = stripUrlQuery(String(breadcrumb.data.from));
       }
       if (breadcrumb.category === "navigation" && breadcrumb.data?.to) {
-        breadcrumb.data.to = String(breadcrumb.data.to).replace(/\?.*$/, "");
+        breadcrumb.data.to = stripUrlQuery(String(breadcrumb.data.to));
       }
       return breadcrumb;
     },
