@@ -232,3 +232,98 @@ describe("redactString mnemonic redaction (S8786 linear scanner)", () => {
     }
   });
 });
+
+describe("redactString CIDv1 redaction (S8786 linear scanner)", () => {
+  // Oracle: verbatim copy of the ORIGINAL regex that used to live in index.ts
+  // as CID_V1_RE (removed by the SonarCloud typescript:S8786 fix, which
+  // replaced it with a linear scanner). Every corpus input must be redacted
+  // byte-identically by redactString() and by this regex — this differential
+  // test is the equivalence proof for the hand-rolled scanner. Corpus inputs
+  // avoid characters that trigger redactString()'s other redaction steps
+  // (0x+40-hex, Qm+44, 0x+64-hex, 200+ base64 runs, 11+ word mnemonics), so
+  // the only difference between the two pipelines is the CIDv1 step.
+  const CID_V1_ORACLE_RE = /b[a-z2-7]{58,}\b/g;
+  const oracleReplace = (s: string): string => {
+    CID_V1_ORACLE_RE.lastIndex = 0;
+    return s.replace(CID_V1_ORACLE_RE, (m) => redactCid(m));
+  };
+
+  const inner = "a2b3c4".repeat(10);
+  const corpus: ReadonlyArray<readonly [string, string]> = [
+    ["empty string", ""],
+    ["lone b", "b"],
+    ["run of exactly 57 before EOS", "b" + "a".repeat(57)],
+    ["run of exactly 58 at EOS", "b" + "a".repeat(58)],
+    ["run of exactly 58 before punctuation", "!b" + "a".repeat(58) + "!"],
+    ["run of exactly 59 before punctuation", "!b" + "a".repeat(59) + "!"],
+    ["run of 100 before punctuation", "!b" + "a".repeat(100) + "!"],
+    ["run blocked by digit 8", "b" + "a".repeat(60) + "8!"],
+    ["run blocked by digit 9", "b" + "a".repeat(60) + "9!"],
+    ["run blocked by digit 0", "b" + "a".repeat(60) + "0!"],
+    ["run blocked by digit 1", "b" + "a".repeat(60) + "1!"],
+    ["run blocked by uppercase A", "b" + "a".repeat(60) + "A!"],
+    ["run blocked by underscore", "b" + "a".repeat(60) + "_!"],
+    ["blocked run then valid run", "b" + "a".repeat(60) + "Z" + "b" + "a".repeat(60) + "!"],
+    ["digits 2-7 are run characters", "b" + inner + "7!"],
+    ["run reaches digit bound 7 then blocker 8", "b" + "a".repeat(57) + "78!"],
+    ["run reaches digit bound 7 then boundary", "b" + "a".repeat(57) + "7!"],
+    ["b inside a longer class run", "a" + "b" + "a".repeat(100) + "!"],
+    ["two matches separated by punctuation", "b" + "a".repeat(60) + "!b" + "a".repeat(58) + "!"],
+    ["two b starts inside one long class run", "b" + "a".repeat(60) + "b" + "a".repeat(60) + "!"],
+    ["short run then long run in one class run", "b" + "a".repeat(57) + "b" + "a".repeat(60) + "!"],
+    ["uppercase before b", "Zb" + "a".repeat(58) + "!"],
+    ["accented char as boundary", "b" + "a".repeat(58) + "é"],
+    ["euro sign as boundary", "b" + "a".repeat(58) + "€"],
+    ["emoji (surrogate pair) as boundary", "b" + "a".repeat(58) + "\u{1F600}"],
+    ["period and comma separators", "x.b" + "a".repeat(59) + ",y"],
+    ["hash and dash separators", "#b" + "a".repeat(60) + "-"],
+    ["no b at all", "qwerty" + "2".repeat(80) + "!"],
+    ["only run characters", "2a7b3c".repeat(30)],
+    ["run of 198 (below base64 threshold)", "b" + "a".repeat(197)],
+    ["V1 hit longer than base64 threshold (order-sensitive)", "b" + "a".repeat(300) + "!"],
+    ["two matches with text between", "pre b" + "a".repeat(60) + " mid b" + "a".repeat(58) + " post"],
+    ["CRLF as boundary", "b" + "a".repeat(58) + "\r\n"],
+    ["b followed by digits only", "b" + "7".repeat(60) + "!"],
+  ];
+  for (const [label, input] of corpus) {
+    it(`matches the oracle: ${label}`, () => {
+      expect(redactString(input)).toBe(oracleReplace(input));
+    });
+  }
+
+  // Deterministic randomized differential pass (seeded PRNG; no extra deps).
+  it("matches the oracle on seeded random strings", () => {
+    let seed = 0x9e3779b9;
+    const rnd = (): number => {
+      seed |= 0;
+      seed = (seed + 0x6d2b79f5) | 0;
+      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const ALPHABET = ["b", "a", "z", "2", "7", "8", "9", "0", "1", "A", "Z", "_", "!", ".", "#", "-", "x", "q"];
+    for (let iter = 0; iter < 1500; iter++) {
+      const len = Math.floor(rnd() * 400);
+      let s = "";
+      for (let k = 0; k < len; k++) s += ALPHABET[Math.floor(rnd() * ALPHABET.length)];
+      // Skip strings that could engage other redaction steps (0x pairs, Qm,
+      // long base64 runs); no whitespace in the alphabet, so the mnemonic
+      // step can never fire.
+      if (s.includes("0x") || s.includes("Qm") || /[A-Za-z0-9]{200,}/.test(s)) continue;
+      expect(redactString(s)).toBe(oracleReplace(s));
+    }
+  });
+
+  // Guard against the quadratic blow-up the fix removed: the old regex
+  // consumed the whole run at EVERY 'b' position before failing the \b check
+  // (n² work), so this input used to take minutes; the scanner is one pass.
+  // The trailing '8' blocks the CIDv1 boundary (its regex can never match),
+  // after which the base64 step masks the long alphanumeric run.
+  it("stays fast on adversarial many-b blocked runs", () => {
+    const adversarial = "b".repeat(100_000) + "a".repeat(100_000) + "8";
+    expect(redactString(adversarial)).toBe("<base64:redacted>");
+    const hit = "b" + "a".repeat(200_000) + "!";
+    // the match ends before the '!' boundary char, so it stays as-is
+    expect(redactString(hit)).toBe(redactCid(hit.slice(0, -1)) + "!");
+  });
+});
