@@ -18,13 +18,13 @@ export type PwnedPasswordFetchOptions = {
 
 
 
-export async function getPwnedPasswordCount(
-password: string,
+export async function getPwnedCountForHash(
+sha1Hex: string,
 options?: PwnedPasswordFetchOptions)
 : Promise<number> {
-  if (!password.length) return 0;
+  const hash = sha1Hex.trim().toUpperCase();
+  if (hash.length !== 40) throw new Error(`Invalid SHA-1 length: ${hash.length}`);
 
-  const hash = bytesToHex(sha1(utf8ToBytes(password))).toUpperCase();
   const prefix = hash.slice(0, 5);
   const suffix = hash.slice(5);
 
@@ -43,7 +43,6 @@ options?: PwnedPasswordFetchOptions)
   }
 
   const text = await res.text();
-  const suffixUpper = suffix.toUpperCase();
 
   for (const line of text.split("\n")) {
     const trimmed = line.trim();
@@ -52,11 +51,20 @@ options?: PwnedPasswordFetchOptions)
     if (colon < 0) continue;
     const h = trimmed.slice(0, colon).toUpperCase();
     const countStr = trimmed.slice(colon + 1);
-    if (h === suffixUpper) {
-      const n = Number.parseInt(countStr, 10);
+    if (h === suffix) {
+      const n = parseInt(countStr, 10);
       return Number.isFinite(n) ? n : 0;
     }
   }
 
   return 0;
+}
+
+export async function getPwnedPasswordCount(
+password: string,
+options?: PwnedPasswordFetchOptions)
+: Promise<number> {
+  if (!password.length) return 0;
+  const hash = bytesToHex(sha1(utf8ToBytes(password))).toUpperCase();
+  return getPwnedCountForHash(hash, options);
 }

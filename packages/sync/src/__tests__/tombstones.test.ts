@@ -3,19 +3,21 @@
 
 
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import * as Automerge from "@automerge/automerge";
 import {
   createEmptyDoc,
   addEntry,
   deleteEntry,
   addDocument,
-  deleteDocument } from
+  deleteDocument,
+  toVault } from
 "../crdtVault";
 import {
   purgeTombstones,
   countTombstones,
   TOMBSTONE_TTL_MS } from
 "../tombstones";
-import type { VaultEntry, SecureDocument } from "@vaultkeepr/core";
+import type { VaultEntry, SecureDocument } from "@vault-keeper/core";
 
 function makeEntry(id: string): VaultEntry {
   return {

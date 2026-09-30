@@ -1,6 +1,6 @@
 {
-  "name": "@vaultkeepr/smart-account",
-  "version": "0.1.2",
+  "name": "@vault-keeper/smart-account",
+  "version": "0.1.0",
   "description": "ERC-4337 Smart Account (Kernel) with Pimlico Paymaster — universal module for Web, Extension, iOS, and Android",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -20,31 +20,18 @@
     "lint": "eslint src/"
   },
   "dependencies": {
-    "@vaultkeepr/core": "workspace:*",
-    "@vaultkeepr/logger": "workspace:*"
+    "@vault-keeper/logger": "0.1.0"
   },
   "peerDependencies": {
     "permissionless": ">=0.3.0",
-    "react": "^18.0.0 || ^19.0.0",
     "viem": ">=2.0.0"
   },
   "devDependencies": {
-    "@types/react": "^19.0.0",
-    "react": "^19.2.0",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
-    "vitest": "^4.1.11"
+    "vitest": "^3.2.7"
   },
   "files": [
     "dist"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
-    "directory": "packages/smart-account"
-  },
-  "homepage": "https://vaultkeepr.xyz",
-  "bugs": {
-    "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
-  }
+  ]
 }

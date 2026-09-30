@@ -27,7 +27,7 @@ import type {
   DocumentOcrData,
   CloudFile,
   CloudFileCategory } from
-"@vaultkeepr/core";
+"@vault-keeper/core";
 
 
 
@@ -222,7 +222,8 @@ export function mergeDocuments(local: VaultDoc, remote: VaultDoc): VaultDoc {
     }
 
   } catch {
-
+    // CRDT merge is best-effort: on failure the field-level LWW path above
+    // has already produced a valid merged vault.
   }
 
 
@@ -447,6 +448,27 @@ function deepEqual(a: unknown, b: unknown): boolean {
   }
   return true;
 }
+
+
+
+
+
+
+function stableStringify(value: unknown): string {
+  return JSON.stringify(value, (_key, v) => {
+    if (v && typeof v === "object" && !Array.isArray(v)) {
+      const sorted: Record<string, unknown> = {};
+      for (const k of Object.keys(v as object).sort()) {
+        sorted[k] = (v as Record<string, unknown>)[k];
+      }
+      return sorted;
+    }
+    return v;
+  });
+}
+
+
+
 
 
 
@@ -695,7 +717,7 @@ export function syncLegacyToCrdt(doc: VaultDoc, vault: Vault): VaultDoc {
       d.cloudFolders.pop();
     }
     if (!d.cloudFolders) {
-      d.cloudFolders = [];
+      (d as any).cloudFolders = [];
     }
     for (const f of newCloudFolders) {
       d.cloudFolders.push(f);
@@ -781,7 +803,7 @@ function crdtToSecureDoc(c: CrdtSecureDocument): SecureDocument {
     try {
       ocr = JSON.parse(c.ocr) as DocumentOcrData;
     } catch {
-
+      // legacy entries may carry malformed OCR JSON; treat as absent
     }
   }
 

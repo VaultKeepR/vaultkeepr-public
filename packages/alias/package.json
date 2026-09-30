@@ -1,5 +1,5 @@
 {
-  "name": "@vaultkeepr/alias",
+  "name": "@vault-keeper/alias",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -30,7 +30,7 @@
     "@types/pg": "^8.11.0",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
-    "vitest": "^4.1.11"
+    "vitest": "^3.2.4"
   },
   "bin": {
     "vaultkeeper-forward": "./dist/forward.js"

@@ -14,7 +14,7 @@ import type { HeartbeatStatus } from "./types";
 import { HEARTBEAT_DEBOUNCE_MS } from "./types";
 import type { Address } from "viem";
 
-import { logger } from "@vaultkeepr/logger";
+import { logger } from "@vault-keeper/logger";
 
 
 let _debounceTimer: ReturnType<typeof setTimeout> | null = null;
@@ -50,9 +50,7 @@ export function scheduleLegacyHeartbeat(smartAccount: any): void {
 
 
   _debounceTimer = setTimeout(() => {
-    void _executeHeartbeat().catch((err: unknown) => {
-      logger.error("[LegacyHeartbeat] échec heartbeat:", err);
-    });
+    _executeHeartbeat();
   }, 5000);
 }
 

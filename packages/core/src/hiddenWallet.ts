@@ -124,6 +124,34 @@ secretKey?: string)
   return account;
 }
 
+export async function getHiddenWalletFromSecretKey(
+secretKey: string)
+: Promise<LocalAccount> {
+  const cacheKey = keccak256(toHex(`${secretKey}:sk-only:v1`));
+  const cached = _hwCache.get(cacheKey);
+  if (cached) return cached;
+
+  const privateKey = await getHiddenWalletPrivateKeyFromSecretKey(secretKey);
+  const account = privateKeyToAccount(privateKey);
+  _hwCache.set(cacheKey, account);
+  return account;
+}
+
+
+export async function getHiddenWalletPrivateKeyFromSecretKey(
+secretKey: string)
+: Promise<`0x${string}`> {
+  const salt = deriveHwSalt(secretKey);
+  const inputBytes = new TextEncoder().encode(secretKey);
+  let derived: Uint8Array;
+  if (_argon2Provider) {
+    derived = await _argon2Provider(inputBytes, salt, HW_ARGON2_OPTS);
+  } else {
+    derived = argon2id(inputBytes, salt, HW_ARGON2_OPTS);
+  }
+  return bytesToHex(derived) as `0x${string}`;
+}
+
 
 
 

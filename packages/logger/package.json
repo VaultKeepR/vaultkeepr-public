@@ -1,6 +1,6 @@
 {
-  "name": "@vaultkeepr/logger",
-  "version": "0.1.2",
+  "name": "@vault-keeper/logger",
+  "version": "0.1.0",
   "private": false,
   "description": "VaultKeepR secure logger with automatic CID/address redaction and dev-only gating",
   "main": "./dist/index.js",
@@ -22,19 +22,10 @@
   "devDependencies": {
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
-    "vitest": "^4.1.11"
+    "vitest": "^3.2.4"
   },
   "files": [
     "dist"
   ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
-    "directory": "packages/logger"
-  },
-  "homepage": "https://vaultkeepr.xyz",
-  "bugs": {
-    "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
-  }
+  "license": "MIT"
 }

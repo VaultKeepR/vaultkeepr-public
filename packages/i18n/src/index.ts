@@ -34,7 +34,10 @@ export function t(locale: Locale, key: string, params?: Record<string, string | 
 
   if (params && typeof result === "string") {
     Object.entries(params).forEach(([k, v]) => {
-      result = (result as string).replace(`{${k}}`, String(v));
+      const substituted = String(v);
+      result = (result as string).
+      replace(`{{${k}}}`, () => substituted).
+      replace(`{${k}}`, () => substituted);
     });
   }
 

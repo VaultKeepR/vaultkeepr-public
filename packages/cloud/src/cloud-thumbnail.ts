@@ -1,4 +1,4 @@
-import { generateBlurredThumbnailCanvas } from "@vaultkeepr/core";
+import { generateBlurredThumbnailCanvas } from "@vault-keeper/core";
 
 
 

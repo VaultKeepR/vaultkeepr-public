@@ -154,10 +154,20 @@ authOptions?: BeneSyncAuthOptions)
     if (!cid) return null;
 
 
+    const storeBody: Record<string, unknown> = { owner: ownerAddress.toLowerCase(), cid };
+    if (authOptions?.delegationSignature && authOptions?.sessionId && authOptions?.expiryTimestamp) {
+      storeBody.delegationSignature = authOptions.delegationSignature;
+      storeBody.sessionId = authOptions.sessionId;
+      storeBody.expiryTimestamp = authOptions.expiryTimestamp;
+    } else if (authOptions?.signature && authOptions?.message) {
+      storeBody.signature = authOptions.signature;
+      storeBody.message = authOptions.message;
+    }
+
     const storeRes = await fetch(`${apiBase()}/api/legacy/beneficiaries-cid`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ owner: ownerAddress.toLowerCase(), cid })
+      body: JSON.stringify(storeBody)
     });
 
     if (!storeRes.ok) return null;
@@ -186,7 +196,7 @@ masterPassword: string)
     if (!cid) return null;
 
 
-    const { fetchFromStorage } = await import("@vaultkeepr/ipfs");
+    const { fetchFromStorage } = await import("@vault-keeper/ipfs");
     const raw = await fetchFromStorage(cid);
     const encrypted = JSON.parse(raw) as EncryptedBeneMeta;
 

@@ -1,14 +1,14 @@
 {
-  "name": "@vaultkeepr/legacy",
-  "version": "0.1.2",
+  "name": "@vault-keeper/legacy",
+  "version": "0.1.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.js"
     }
   },
   "scripts": {
@@ -20,27 +20,17 @@
     "@noble/ciphers": "^2.4.0",
     "@noble/curves": "^2.4.0",
     "@noble/hashes": "^2.4.0",
-    "@vaultkeepr/core": "workspace:*",
-    "@vaultkeepr/ipfs": "workspace:*",
-    "@vaultkeepr/logger": "workspace:*",
-    "@vaultkeepr/premium": "workspace:*",
+    "@vault-keeper/core": "*",
+    "@vault-keeper/logger": "0.1.0",
+    "@vault-keeper/premium": "*",
     "viem": "^2.21.0"
   },
   "devDependencies": {
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
-    "vitest": "^4.1.11"
+    "vitest": "^3.2.7"
   },
   "files": [
     "dist"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
-    "directory": "packages/legacy"
-  },
-  "homepage": "https://vaultkeepr.xyz",
-  "bugs": {
-    "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
-  }
+  ]
 }

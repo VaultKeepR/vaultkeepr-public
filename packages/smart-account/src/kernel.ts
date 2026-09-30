@@ -22,7 +22,7 @@ import {
   entryPoint07Address } from
 "viem/account-abstraction";
 import { TARGET_CHAIN, getPimlicoUrl } from "./config";
-import { logger, redactAddress } from "@vaultkeepr/logger";
+import { logger, redactAddress } from "@vault-keeper/logger";
 
 
 
@@ -144,7 +144,7 @@ params: CreateSmartAccountParams)
     address: kernelAccount.address,
     ownerAddress: ownerAccount.address,
     ownerAccount,
-    client: bundlerClient,
+    client: bundlerClient as any,
     chain: TARGET_CHAIN,
     mode
   };

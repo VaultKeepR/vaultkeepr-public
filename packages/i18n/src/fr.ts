@@ -5,6 +5,8 @@ export const fr: Translations = {
     save: "Enregistrer",
     cancel: "Annuler",
     loading: "Chargement",
+    active: "Actif",
+    inactive: "Inactif",
     sync: "Synchroniser",
     unlock: "Déverrouiller",
     lock: "Verrouiller",
@@ -73,7 +75,8 @@ export const fr: Translations = {
     featurePillMultiDevice: "Sync multi-appareils",
     create: "Cr\u00e9er",
     importTitle: "Importer depuis un autre gestionnaire",
-    importDesc: "Bitwarden, Chrome, 1Password, LastPass, ProtonPass, Dashlane...",
+    importDesc:
+      "Bitwarden, Chrome, 1Password, LastPass, ProtonPass, Dashlane...",
     importBtn: "S\u00e9lectionner un fichier (.csv / .json)",
     importSuccess: "Import r\u00e9ussi",
     importSuccessDesc: "{count} entr\u00e9es import\u00e9es dans votre coffre.",
@@ -84,12 +87,13 @@ export const fr: Translations = {
     importModalBiometric: "Cr\u00e9er avec biom\u00e9trie",
     importModalPassword: "Cr\u00e9er avec un mot de passe",
     importVaultDetected: "Sauvegarde VaultKeepR d\u00e9tect\u00e9e",
-    importEnterOldPassword: "Entrez le mot de passe ma\u00eetre utilis\u00e9 pour cette sauvegarde :",
+    importEnterOldPassword:
+      "Entrez le mot de passe ma\u00eetre utilis\u00e9 pour cette sauvegarde :",
     show: "Afficher",
     filter: "Filtrer",
     retry: "Réessayer",
     hideDetails: "Masquer les détails",
-    showDetails: "Afficher les détails"
+    showDetails: "Afficher les détails",
   },
   settings: {
     title: "Paramètres",
@@ -105,7 +109,8 @@ export const fr: Translations = {
     lockVault: "Verrouiller le Vault",
     sessionDuration: "Durée de session",
     persistSession: "Garder la session après le redémarrage de l'arrière-plan",
-    persistSessionDesc: "Répliquer votre mot de passe maître dans le stockage de session de l'extension afin que l'identité / l'abstraction de compte restent fonctionnelles après un redémarrage de l'arrière-plan. Désactivez pour une sécurité stricte en mémoire uniquement.",
+    persistSessionDesc:
+      "Répliquer votre mot de passe maître dans le stockage de session de l'extension afin que l'identité / l'abstraction de compte restent fonctionnelles après un redémarrage de l'arrière-plan. Désactivez pour une sécurité stricte en mémoire uniquement.",
     premium: "Premium",
     sessionDurationClose: "Jusqu'à fermeture de l'onglet",
     sessionDuration1h: "1 heure",
@@ -113,7 +118,8 @@ export const fr: Translations = {
     sessionDuration7d: "7 jours",
     sessionDuration30d: "30 jours",
     syncFrequency: "Fréquence de synchronisation en arrière-plan",
-    syncFrequencyDesc: "Fréquence de vérification des changements inter-appareils. Désactivé/manuel supprime le contact en arrière-plan.",
+    syncFrequencyDesc:
+      "Fréquence de vérification des changements inter-appareils. Désactivé/manuel supprime le contact en arrière-plan.",
     syncFrequencyOff: "Désactivé",
     syncFrequency1m: "Toutes les 1 minute",
     syncFrequency5m: "Toutes les 5 minutes",
@@ -121,46 +127,57 @@ export const fr: Translations = {
     syncFrequencyManual: "Manuel uniquement",
     appearance: "Apparence",
     privacy: "Confidentialite",
-    privacyDesc: "Controlez l'exposition des donnees et le consentement",
+    privacyDesc: "Contrôlez l'exposition des données et le consentement",
     tosAnalysis: "Analyse des conditions d'utilisation",
-    tosAnalysisDesc: "Analyse les pages CGU / confidentialité des sites visités. S'exécute localement sur votre appareil. Désactivé par défaut.",
+    tosAnalysisDesc:
+      "Analyse les pages CGU / confidentialité des sites visités. S'exécute localement sur votre appareil. Désactivé par défaut.",
     tosModelDownloading: "Téléchargement du modèle d'analyse…",
-    tosModelReady: "Modèle d'analyse prêt — mode neural actif",
-    tosModelError: "Échec du téléchargement du modèle — analyse basique",
-    sessionDescription: "Durée pendant laquelle vous restez déverrouillé après un rechargement de page. La session est toujours supprimée à la fermeture de l'onglet.",
+    tosModelReady: "Modèle d'analyse prêt : mode neural actif",
+    tosModelError: "Échec du téléchargement du modèle : analyse basique",
+    sessionDescription:
+      "Durée pendant laquelle vous restez déverrouillé après un rechargement de page. La session est toujours supprimée à la fermeture de l'onglet.",
     unlockDelegationDuration: "Cache signature wallet",
-    unlockDelegationDescription: "Durée de conservation de la signature de déverrouillage. Pas de re-signature avant expiration.",
+    unlockDelegationDescription:
+      "Durée de conservation de la signature de déverrouillage. Pas de re-signature avant expiration.",
     unlockDelegation24h: "24 heures",
     unlockDelegation7d: "7 jours",
     unlockDelegation14d: "14 jours",
     unlockDelegation30d: "30 jours",
     unlockDelegationStatusNone:
-    "Aucune signature de déverrouillage en cache — le wallet pourra être sollicité à la prochaine action v3 (chiffrement / sync).",
+      "Aucune signature de déverrouillage en cache : le wallet pourra être sollicité à la prochaine action v3 (chiffrement / sync).",
     unlockDelegationStatusExpired:
-    "La signature de déverrouillage en cache a expiré — une nouvelle signature pourra être demandée.",
+      "La signature de déverrouillage en cache a expiré : une nouvelle signature pourra être demandée.",
     unlockDelegationStatusUntil: "Signature de déverrouillage valide jusqu’au",
     unlockDelegationStatusOtherWallet:
-    "Une signature est en cache pour une autre adresse wallet — connectez le bon wallet ou déverrouillez à nouveau depuis IPFS.",
+      "Une signature est en cache pour une autre adresse wallet : connectez le bon wallet ou déverrouillez à nouveau depuis IPFS.",
     clearCache: "Vider le cache CID",
     clearCacheInProgress: "En cours…",
     about: "À propos",
     resetVault: "Réinitialiser le vault",
-    resetVaultDescription: "Supprime toutes les données locales du vault (sauvegarde, session, délégations). Vous devrez déverrouiller à nouveau ou charger depuis IPFS.",
-    resetVaultConfirm: "Toutes les données locales du vault seront définitivement supprimées. Continuer ?",
+    resetVaultDescription:
+      "Supprime toutes les données locales du vault (sauvegarde, session, délégations). Vous devrez déverrouiller à nouveau ou charger depuis IPFS.",
+    resetVaultConfirm:
+      "Toutes les données locales du vault seront définitivement supprimées. Continuer ?",
     resetVaultInProgress: "Réinitialisation…",
     dangerZone: "Zone dangereuse",
     deduplicateVault: "Supprimer les doublons",
-    deduplicateDescription: "Analyse toutes les entrées et supprime les doublons exacts. Les entrées d'origine sont conservées.",
+    deduplicateDescription:
+      "Analyse toutes les entrées et supprime les doublons exacts. Les entrées d'origine sont conservées.",
     deduplicateConfirm: "Supprimer tous les doublons du coffre ?",
     deduplicateResult: "{count} doublon(s) supprimé(s).",
     unpinIpfs: "Détacher d'IPFS",
-    unpinIpfsDescription: "Supprime le CID du coffre du registre IPFS. Votre coffre local n'est pas affecté.",
-    unpinIpfsConfirm: "Détacher le coffre d'IPFS ? Vos données locales resteront intactes.",
+    unpinIpfsDescription:
+      "Supprime le CID du coffre du registre IPFS. Votre coffre local n'est pas affecté.",
+    unpinIpfsConfirm:
+      "Détacher le coffre d'IPFS ? Vos données locales resteront intactes.",
     deleteAllData: "Supprimer toutes les données",
-    deleteAllDataDescription: "Supprime définitivement toutes les données locales ET votre coffre chiffré d'IPFS. Cette action est irréversible.",
+    deleteAllDataDescription:
+      "Supprime définitivement toutes les données locales ET votre coffre chiffré d'IPFS. Cette action est irréversible.",
     deleteAllDataStep1Title: "Tapez la phrase de confirmation",
-    deleteAllDataStep1Hint: "Tapez exactement la phrase suivante pour continuer :",
-    deleteAllDataConfirmPhraseFr: "Je confirme vouloir supprimer toutes mes données",
+    deleteAllDataStep1Hint:
+      "Tapez exactement la phrase suivante pour continuer :",
+    deleteAllDataConfirmPhraseFr:
+      "Je confirme vouloir supprimer toutes mes données",
     deleteAllDataConfirmPhraseEn: "I confirm I want to delete all my data",
     deleteAllDataStep2Title: "Vérification par email",
     deleteAllDataEmailLabel: "Email de vérification",
@@ -170,28 +187,32 @@ export const fr: Translations = {
     deleteAllDataCodePlaceholder: "Code à 6 chiffres",
     deleteAllDataVerify: "Tout supprimer",
     deleteAllDataDeleting: "Suppression…",
-    deleteAllDataSuccess: "Toutes les données ont été définitivement supprimées.",
+    deleteAllDataSuccess:
+      "Toutes les données ont été définitivement supprimées.",
     deleteAllDataError: "Une erreur est survenue. Veuillez réessayer.",
     deleteAllDataNoWallet: "Connectez d'abord votre wallet.",
     importLabel: "Importer",
     importDescription:
-    "Importez votre coffre depuis une autre app. Pris en charge : JSON Bitwarden (non chiffré), JSON Proton Pass, VaultKeepR, 1PIF 1Password, CSV (plusieurs fournisseurs), PGP. Non pris en charge : export Bitwarden chiffré, fichier .1pux 1Password.",
+      "Importez votre coffre depuis une autre app. Pris en charge : JSON Bitwarden (non chiffré), JSON Proton Pass, VaultKeepR, 1PIF 1Password, CSV (plusieurs fournisseurs), PGP. Non pris en charge : export Bitwarden chiffré, fichier .1pux 1Password.",
     importFormats:
-    "JSON Bitwarden, JSON Proton Pass, JSON VaultKeepR, CSV (LastPass, Chrome, 1Password…), 1PIF (1Password), PGP",
+      "JSON Bitwarden, JSON Proton Pass, JSON VaultKeepR, CSV (LastPass, Chrome, 1Password…), 1PIF (1Password), PGP",
     importPgpHint: "Passphrase PGP pour déchiffrer le fichier :",
     importVaultPasswordHint: "Mot de passe maître Vault Keeper :",
     exportLabel: "Exporter",
-    exportDescription: "Exportez votre coffre. Déverrouillez le coffre d'abord, puis revenez ici pour exporter.",
+    exportDescription:
+      "Exportez votre coffre. Déverrouillez le coffre d'abord, puis revenez ici pour exporter.",
     exportPlain: "JSON (clair)",
     exportEncrypted: "JSON (chiffré)",
     exportPgp: "PGP",
-    exportUnlockHint: "Déverrouillez le coffre d'abord, puis revenez dans Paramètres pour exporter.",
+    exportUnlockHint:
+      "Déverrouillez le coffre d'abord, puis revenez dans Paramètres pour exporter.",
     exportEncryptedHint: "Mot de passe maître pour chiffrer l'export :",
     exportPgpHint: "Passphrase PGP pour chiffrer l'export :",
     exportSaved: "Fichier enregistré avec succès.",
     emptyFile: "Fichier vide.",
     pgpSupport: "Support PGP",
-    pgpSupportBody: "L'import PGP est géré via un flux séparé. Utilisez l'application Bureau pour les imports PGP complexes.",
+    pgpSupportBody:
+      "L'import PGP est géré via un flux séparé. Utilisez l'application Bureau pour les imports PGP complexes.",
     tabGeneral: "Général",
     tabAccount: "Compte",
     tabSync: "Sync",
@@ -201,21 +222,33 @@ export const fr: Translations = {
     tabAlias: "Alias",
     tabWallet: "Wallet",
     syncIpfsHint:
-    "Récupère le dernier coffre chiffré sur IPFS (wallet connecté, mot de passe maître en session, signature ou délégation de déverrouillage). Utile après une modification sur un autre appareil. « Enregistrer sur IPFS » envoie depuis cet appareil.",
+      "Récupère le dernier coffre chiffré sur IPFS (wallet connecté, mot de passe maître en session, signature ou délégation de déverrouillage). Utile après une modification sur un autre appareil. « Enregistrer sur IPFS » envoie depuis cet appareil.",
     syncIpfsSuccess: "Coffre mis à jour depuis IPFS.",
-    syncIpfsErrWallet: "Connectez le wallet (Paramètres → Wallet) pour synchroniser depuis IPFS.",
-    syncIpfsErrNoRemote: "Aucun coffre (CID) trouvé pour ce wallet sur le serveur.",
-    syncIpfsErrPassword: "Déverrouillez l’extension d’abord (mot de passe maître en session).",
-    syncIpfsErrSignature: "Signature wallet ou délégation de déverrouillage requise — déverrouillez depuis IPFS ou acceptez la demande de signature.",
-    syncIpfsErrDecrypt: "Impossible de déchiffrer le coffre distant (mot de passe ou données invalides).",
-    syncIpfsErrGeneric: "Échec de la sync IPFS. Réessayez ou consultez la console du service worker.",
+    syncIpfsErrWallet:
+      "Connectez le wallet (Paramètres → Wallet) pour synchroniser depuis IPFS.",
+    syncIpfsErrNoRemote:
+      "Aucun coffre (CID) trouvé pour ce wallet sur le serveur.",
+    syncIpfsErrPassword:
+      "Déverrouillez l’extension d’abord (mot de passe maître en session).",
+    syncIpfsErrSignature:
+      "Signature wallet ou délégation de déverrouillage requise : déverrouillez depuis IPFS ou acceptez la demande de signature.",
+    syncIpfsErrDecrypt:
+      "Impossible de déchiffrer le coffre distant (mot de passe ou données invalides).",
+    syncIpfsErrFetch:
+      "Impossible de télécharger le coffre distant depuis IPFS (passerelle injoignable). Réessayez plus tard.",
+    syncIpfsErrGeneric:
+      "Échec de la sync IPFS. Réessayez ou consultez la console du service worker.",
     syncIpfsBusy: "Synchronisation…",
     ipfsGatewayLabel: "Passerelle IPFS personnalisée",
     ipfsGatewayPlaceholder: "https://ipfs.example.com/ipfs",
-    ipfsGatewayHint: "Optionnel. Utilisez votre propre passerelle IPFS pour lire votre coffre au lieu des passerelles publiques (ipfs.io, dweb.link). Laissez vide pour utiliser les valeurs par défaut.",
-    ipfsGatewaySaved: "Passerelle enregistrée ✓",
+    ipfsGatewayHint:
+      "Optionnel. Utilisez votre propre passerelle IPFS pour lire votre coffre au lieu des passerelles par défaut (ipfs.vaultkeepr.xyz, gateway.pinata.cloud). Laissez vide pour utiliser les valeurs par défaut.",
+    ipfsGatewayDisabledNote:
+      "Désactivée : par sécurité, l'extension ne se connecte qu'aux passerelles IPFS officielles (CSP stricte).",
     clipboardAutoClear: "Auto-clear presse-papiers",
     clipboardAutoClearHint: "Efface le presse-papiers 30s après copie",
+    breachAlerts: "Alertes de compromission",
+    breachAlertsHint: "Vérifie une fois par jour, même app fermée, si vos mots de passe apparaissent dans des fuites connues. Vous êtes notifié si de nouveaux compromis sont détectés.",
     connectedDevices: "Appareils connectés ({count}/5)",
     deviceLastSeen: "Vu le",
     revokeDevice: "Révoquer",
@@ -226,7 +259,8 @@ export const fr: Translations = {
     copyCid: "Copier le CID",
     ipfsSync: "Sync IPFS",
     ipfsGatewayCustom: "Gateway IPFS personnalisé",
-    ipfsGatewayCustomHint: "Laissez vide pour utiliser les passerelles par défaut.",
+    ipfsGatewayCustomHint:
+      "Laissez vide pour utiliser les passerelles par défaut.",
     saveGateway: "Enregistrer",
     revokeDeviceConfirm: "Révoquer cet appareil ?",
     clearPremiumConfirm: "Supprimer le statut Premium de cet appareil ?",
@@ -242,15 +276,18 @@ export const fr: Translations = {
     alreadyLatest: "Votre coffre est déjà à jour",
     saveError: "Erreur lors de la sauvegarde",
     autofillSetup: "Configuration de l'Autofill",
-    autofillSetupDescription: "Activez VaultKeepR comme service de saisie automatique système sur votre appareil Android.",
+    autofillSetupDescription:
+      "Activez VaultKeepR comme service de saisie automatique système sur votre appareil Android.",
     autofillSetupAction: "Ouvrir les Paramètres Autofill",
     requireBiometricAutofill: "Exiger la biométrie pour l'autofill",
-    requireBiometricAutofillDesc: "Demander Face ID / Touch ID avant de remplir les identifiants, au lieu du remplissage silencieux.",
+    requireBiometricAutofillDesc:
+      "Demander Face ID / Touch ID avant de remplir les identifiants, au lieu du remplissage silencieux.",
     lockedTitle: "Coffre verrouillé",
     lockedBody: "Déverrouillez votre coffre pour accéder aux paramètres.",
     goPasswordlessTitle: "Go Passwordless",
-    goPasswordlessDesc: "Sécurisez votre compte avec un Passkey (Account Abstraction) et dites adieu aux mots de passe.",
-    contactSupport: "Contacter le support"
+    goPasswordlessDesc:
+      "Sécurisez votre compte avec un Passkey (Account Abstraction) et dites adieu aux mots de passe.",
+    contactSupport: "Contacter le support",
   },
   sync: {
     synchronize: "Synchroniser",
@@ -282,9 +319,11 @@ export const fr: Translations = {
     syncError: "Erreur",
     syncCrossDevice: "Sync cross-device actif",
     reset: "Réinitialisation",
-    resetDescription: "Vide le cache local (vault, sync, biométrie). Après réinitialisation, récupérez le coffre depuis IPFS si besoin.",
+    resetDescription:
+      "Vide le cache local (vault, sync, biométrie). Après réinitialisation, récupérez le coffre depuis IPFS si besoin.",
     clearCache: "Vider le cache",
-    clearCacheConfirm: "Toutes les données locales seront supprimées. Vous pourrez récupérer le coffre depuis IPFS. Continuer ?",
+    clearCacheConfirm:
+      "Toutes les données locales seront supprimées. Vous pourrez récupérer le coffre depuis IPFS. Continuer ?",
     clearCacheDone: "L'app a été réinitialisée.",
     clearCacheDoneTitle: "Cache vidé",
     loadFromIpfs: "Charger depuis IPFS",
@@ -301,15 +340,10 @@ export const fr: Translations = {
     uploading: "Envoi…",
     publishing: "Publication…",
     inProgress: "En cours…",
-    syncExpired: "Sync expiré — reconnectez votre wallet",
+    syncExpired: "Sync expiré : reconnectez votre wallet",
     saving: "Sauvegarde en cours…",
     savedBanner: "Sauvegardé",
     saveErrorBanner: "Erreur de sauvegarde",
-    delegationNone: "Non configurée",
-    delegationLoading: "Chargement…",
-    delegationActive: "✓ Active",
-    delegationExpiredLabel: "Expirée",
-    delegationExpireIn: "Expire dans {d}j {h}h",
     delegationRenew: "Renouveler",
     delegationSetup: "Configurer l'autosave",
     delegationHint: "L’autosave nécessite une délégation de signature wallet.",
@@ -320,20 +354,24 @@ export const fr: Translations = {
     scannerTitle: "Synchroniser un appareil",
     scannerConnectedDevices: "Synchronisation d'appareils",
     scannerAccessDenied: "Accès à la caméra refusé",
-    scannerFormatError: "QR Code non reconnu (pas de namespace vaultkeepr:sync).",
+    scannerFormatError:
+      "QR Code non reconnu (pas de namespace vaultkeepr:sync).",
     scannerSuccessTitle: "Connexion réussie",
     scannerSuccessDesc: "Approuvez la demande sur l'autre appareil.",
-    scannerBiometricError: "Authentification échouée ou aucun mot de passe maître enregistré.",
+    scannerBiometricError:
+      "Authentification échouée ou aucun mot de passe maître enregistré.",
     scannerPasswordReadError: "Erreur lors de la lecture du mot de passe.",
     scannerTimeout: "Timeout de connexion.",
     scannerExtBtn: "Synchroniser depuis un autre appareil",
     scannerExtOverlayTitle: "Synchronisation",
-    scannerExtOverlayDesc: "Scannez ce QR Code avec l'application mobile VaultKeepR",
+    scannerExtOverlayDesc:
+      "Scannez ce QR Code avec l'application mobile VaultKeepR",
     scannerExtFormatError: "Format de clé invalide reçu.",
-    walletConnectDeprecated: "WalletConnect n'est plus supporté. Veuillez utiliser un QR code VaultKeepR.",
+    walletConnectDeprecated:
+      "WalletConnect n'est plus supporté. Veuillez utiliser un QR code VaultKeepR.",
     vaultUpdatedFromIpfs: "Coffre mis à jour depuis IPFS.",
     transferFailed: "Échec du transfert",
-    receiveFailed: "Échec de la réception"
+    receiveFailed: "Échec de la réception",
   },
   tabs: {
     vault: "Coffre",
@@ -344,7 +382,7 @@ export const fr: Translations = {
     tools: "Outils",
     share: "Partage",
     secureDocs: "Docs Sécurisés",
-    cloud: "Cloud"
+    cloud: "Cloud",
   },
   unlock: {
     title: "Déverrouillez votre coffre",
@@ -364,12 +402,14 @@ export const fr: Translations = {
     biometricPromptTitle: "Déverrouiller VaultKeepR",
     biometricSyncPromptTitle: "Authentification pour la synchronisation",
     biometricHint: "Utiliser la biométrie pour déverrouiller",
-    nfcChipRecognizedNoSecret: "Puce reconnue (UID : {uid}), mais aucun secret VaultKeepR (NDEF) n'est présent.",
+    nfcChipRecognizedNoSecret:
+      "Puce reconnue (UID : {uid}), mais aucun secret VaultKeepR (NDEF) n'est présent.",
     cameraPermissionRequired: "Autorisation caméra requise",
     authRequired: "Authentification requise",
     noVaultStored: "Aucun coffre enregistré.",
     invalidVaultFormat: "Format de coffre invalide.",
-    noCachedKey: "Aucune clé en cache. Déverrouillez d'abord avec le mot de passe.",
+    noCachedKey:
+      "Aucune clé en cache. Déverrouillez d'abord avec le mot de passe.",
     iapSyncFailed: "Échec sync IAP",
     iapNetworkError: "Erreur réseau IAP",
     noLicenseLinked: "Aucune licence associée",
@@ -381,22 +421,30 @@ export const fr: Translations = {
     nfcPromptAuth: "Authentifiez-vous pour utiliser cette puce NFC",
     nfcFallback: "Utiliser le PIN",
     nfcAuthFailedTitle: "Échec",
-    nfcAuthFailedDesc: "L'authentification a échoué. Le Vault reste verrouillé.",
+    nfcAuthFailedDesc:
+      "L'authentification a échoué. Le Vault reste verrouillé.",
     nfcNotConfiguredTitle: "Erreur",
-    nfcNotConfiguredDesc: "La puce scannée n'est pas configurée pour VaultKeepR.",
-    nfcDeviceSecretMissing: "Clé d'appareil introuvable. Reconfigurez la puce NFC dans les Réglages.",
-    nfcPinMissing: "Code PIN introuvable. Reconfigurez la puce NFC dans les Réglages.",
+    nfcNotConfiguredDesc:
+      "La puce scannée n'est pas configurée pour VaultKeepR.",
+    nfcDeviceSecretMissing:
+      "Clé d'appareil introuvable. Reconfigurez la puce NFC dans les Réglages.",
+    nfcPinMissing:
+      "Code PIN introuvable. Reconfigurez la puce NFC dans les Réglages.",
     nfcUpgradeTitle: "Mise à jour de sécurité requise",
-    nfcUpgradeDesc: "Votre puce NFC utilise un format obsolète. Reconfigurez-la depuis Réglages > Puce NFC pour une sécurité renforcée.",
+    nfcUpgradeDesc:
+      "Votre puce NFC utilise un format obsolète. Reconfigurez-la depuis Réglages > Puce NFC pour une sécurité renforcée.",
     nfcReadError: "Erreur de lecture NFC",
     passkeyNotSupported: "Passkeys non supportés par ce navigateur.",
     passkeyError: "Erreur Passkey",
-    noBiometricKey: "Aucune clé biométrique trouvée. Créez d'abord un coffre avec la Biométrie.",
+    noBiometricKey:
+      "Aucune clé biométrique trouvée. Créez d'abord un coffre avec la Biométrie.",
     bioEnrollTitle: "Activer la Biométrie",
-    bioEnrollDesc: "Entrez votre mot de passe maître une fois pour activer le déverrouillage biométrique.",
+    bioEnrollDesc:
+      "Entrez votre mot de passe maître une fois pour activer le déverrouillage biométrique.",
     passkeyUnlock: "Déverrouiller avec Passkey",
     passkeyCreate: "Créer un Passkey (Sans mot de passe)",
-    passkeyPrfNotSupported: "PRF non supporté. Ce navigateur ne permet pas le chiffrement par Passkey.",
+    passkeyPrfNotSupported:
+      "PRF non supporté. Ce navigateur ne permet pas le chiffrement par Passkey.",
     passkeyReady: "Coffre Passkey prêt !",
     passkeyGenerated: "Coffre Passkey généré...",
     biometricChecking: "Vérification biométrique...",
@@ -404,20 +452,24 @@ export const fr: Translations = {
     biometricSuccess: "Biométrie validée !",
     encryptingInProgress: "Chiffrement en cours...",
     passKeyMigrationTitle: "Migrer le coffre vers Passkey",
-    passKeyMigrationDesc: "Votre coffre est chiffré avec votre ancien mot de passe. Saisissez-le pour le re-chiffrer avec votre Passkey (opération unique).",
+    passKeyMigrationDesc:
+      "Votre coffre est chiffré avec votre ancien mot de passe. Saisissez-le pour le re-chiffrer avec votre Passkey (opération unique).",
     passKeyMigrationOldPw: "Mot de passe ma\u00eetre actuel",
     passKeyMigrationConfirm: "Migrer & déverrouiller",
-    passKeyMigrationSuccess: "Coffre migré avec succès vers Passkey !"
+    passKeyMigrationSuccess: "Coffre migré avec succès vers Passkey !",
   },
   postSyncPrf: {
     title: "Activer Face ID / Touch ID",
-    body: "Votre coffre est sans mot de passe. Enregistrez une passkey maintenant pour déverrouiller cet appareil avec votre empreinte ou votre visage — sinon vous aurez besoin de votre mot de passe maître à chaque fois.",
-    unsupported: "Les passkeys ne sont pas prises en charge par ce navigateur. Vous aurez besoin de votre mot de passe maître pour déverrouiller.",
+    body: "Votre coffre est sans mot de passe. Enregistrez une passkey maintenant pour déverrouiller cet appareil avec votre empreinte ou votre visage : sinon vous aurez besoin de votre mot de passe maître à chaque fois.",
+    unsupported:
+      "Les passkeys ne sont pas prises en charge par ce navigateur. Vous aurez besoin de votre mot de passe maître pour déverrouiller.",
     enable: "Activer Face ID / Touch ID",
     skipFirst: "Ignorer pour cette session",
-    skipWarningTitle: "Vous aurez besoin de votre mot de passe maître la prochaine fois",
-    skipWarningBody: "Sans passkey, le seul moyen de déverrouiller cet appareil est votre mot de passe maître. Si vous l'oubliez, votre coffre ne pourra pas être récupéré.",
-    skipConfirm: "Je comprends, ignorer"
+    skipWarningTitle:
+      "Vous aurez besoin de votre mot de passe maître la prochaine fois",
+    skipWarningBody:
+      "Sans passkey, le seul moyen de déverrouiller cet appareil est votre mot de passe maître. Si vous l'oubliez, votre coffre ne pourra pas être récupéré.",
+    skipConfirm: "Je comprends, ignorer",
   },
   locked: {
     title: "Vault verrouillé",
@@ -438,15 +490,19 @@ export const fr: Translations = {
     extensionInactive: "Extension inactif. Réveillez-la.",
     restoring: "Restauration…",
     createVaultTitle: "Nouveau coffre",
-    createVaultHint: "Coffre local sur cet appareil. Connectez le wallet dans Paramètres pour synchroniser sur IPFS plus tard.",
+    createVaultHint:
+      "Coffre local sur cet appareil. Connectez le wallet dans Paramètres pour synchroniser sur IPFS plus tard.",
     createVaultButton: "Créer le coffre",
-    createVaultWarning: "Ce mot de passe cryptera localement votre coffre. Il ne pourra jamais être réinitialisé par VaultKeepR.",
+    createVaultWarning:
+      "Ce mot de passe cryptera localement votre coffre. Il ne pourra jamais être réinitialisé par VaultKeepR.",
     createVaultChoose: "Choisissez comment protéger votre coffre.",
     passkeyCreateSubtitle: "Face ID / Touch ID / PIN de l'appareil",
     passkeyCreateSubtitlePin: "PIN de l'appareil",
     masterPasswordLocal: "Chiffrement par mot de passe",
-    masterPasswordDesc: "Votre coffre est protege par un mot de passe de votre choix. Sync IPFS disponible.",
-    noVaultFound: "Aucun coffre trouvé pour cette adresse. Veuillez en créer un.",
+    masterPasswordDesc:
+      "Votre coffre est protege par un mot de passe de votre choix. Sync IPFS disponible.",
+    noVaultFound:
+      "Aucun coffre trouvé pour cette adresse. Veuillez en créer un.",
     checkingIpfs: "Vérification de la synchronisation cloud (IPFS)…",
     passwordMismatch: "Les mots de passe ne correspondent pas.",
     passwordTooShort: "Au moins 8 caractères.",
@@ -457,7 +513,8 @@ export const fr: Translations = {
     passwordStrengthMedium: "Moyen",
     passwordStrengthStrong: "Fort",
     overwriteWarningTitle: "Attention : Coffre existant",
-    overwriteWarningBody: "Un coffre local existe déjà. En créer un nouveau écrasera définitivement vos données actuelles. Voulez-vous exporter une sauvegarde chiffrée avant de continuer ?",
+    overwriteWarningBody:
+      "Un coffre local existe déjà. En créer un nouveau écrasera définitivement vos données actuelles. Voulez-vous exporter une sauvegarde chiffrée avant de continuer ?",
     exportAndOverwrite: "Exporter Sauvegarde (.json)",
     overwriteOnly: "Écraser quand même",
     cancel: "Annuler",
@@ -494,11 +551,14 @@ export const fr: Translations = {
     syncIpfsBusy: "Sync en cours…",
     ipfsGatewayLabel: "Passerelle IPFS",
     ipfsGatewayPlaceholder: "https://ipfs.io",
+    ipfsGatewayDisabledNote:
+      "Désactivée : par sécurité, l'extension ne se connecte qu'aux passerelles IPFS officielles (CSP stricte).",
     clearCacheConfirm: "Vider le cache de synchronisation pour ce wallet ?",
     syncSuccess: "Synchronisation réussie !",
     alreadyLatest: "Votre coffre est déjà à jour",
     saveError: "Erreur lors de la sauvegarde",
-    deviceSyncRemovedHint: "Utilisez « Restaurer la sauvegarde locale » sur cet écran avec votre mot de passe maître"
+    deviceSyncRemovedHint:
+      "Utilisez « Restaurer la sauvegarde locale » sur cet écran avec votre mot de passe maître",
   },
   header: {
     searchPlaceholder: "Rechercher…",
@@ -527,15 +587,16 @@ export const fr: Translations = {
     subscribeAnnual: "S'abonner (annuel)",
     activeUntil: "Actif jusqu'au",
     saveToIpfsPlaceholder: "Mot de passe du coffre",
-    saveToIpfsPlaceholderConnected: "Vide = mot de passe en cache",
+    saveToIpfsPlaceholderConnected: "Vide = clé de session (sans mot de passe)",
     saving: "Envoi…",
     savedOnIpfs: "Enregistré sur IPFS. ID :",
     uploadFailed: "Échec de l'upload.",
     enterPassword: "Entrez votre mot de passe maître.",
     signInWallet: "Approuvez la demande de signature dans votre wallet.",
     signFailed: "Signature wallet échouée. Ouvrez votre wallet et réessayez.",
-    signOverlayHint: "Ouvrez votre wallet et approuvez la signature pour chiffrer et sauvegarder votre coffre.",
-    openMetaMask: "Ouvrir MetaMask"
+    signOverlayHint:
+      "Ouvrez votre wallet et approuvez la signature pour chiffrer et sauvegarder votre coffre.",
+    openMetaMask: "Ouvrir MetaMask",
   },
   vault: {
     unlockTitle: "Déverrouiller le coffre",
@@ -568,7 +629,8 @@ export const fr: Translations = {
     password: "Mot de passe",
     totp: "2FA",
     notes: "Notes",
-    notesMasked: "Masquer la note par défaut (affichage ••••• jusqu'à « Révéler »)",
+    notesMasked:
+      "Masquer la note par défaut (affichage ••••• jusqu'à « Révéler »)",
     saveEntry: "Enregistrer",
     savedSuccess: "Vault sauvegardé",
     savedLocally: "localement (IPFS non disponible)",
@@ -577,7 +639,8 @@ export const fr: Translations = {
     noResult: "Aucun résultat",
     unnamedEntry: "Compte sans nom",
     noEntries: "Aucun identifiant enregistré",
-    addFirstEntry: "Ajoutez vos premiers sites (ex. github.com, gmail.com) avec leurs identifiants et mots de passe.",
+    addFirstEntry:
+      "Ajoutez vos premiers sites (ex. github.com, gmail.com) avec leurs identifiants et mots de passe.",
     searchPlaceholder: "Rechercher un site ou un identifiant...",
     newVersionAvailable: "Nouvelle version disponible (autre appareil)",
     reload: "Recharger",
@@ -585,7 +648,8 @@ export const fr: Translations = {
     close: "Fermer",
     syncPasswordPrompt: "Synchroniser",
     syncPasswordDescription: "Mot de passe maître",
-    autosaveReunlockHint: "Sauvegarde auto désactivée. Verrouillez puis déverrouillez le coffre pour l'activer.",
+    autosaveReunlockHint:
+      "Sauvegarde auto désactivée. Verrouillez puis déverrouillez le coffre pour l'activer.",
     backToLanding: "Site & présentation",
     tags: "Tags",
     navigation: "Navigation",
@@ -615,7 +679,8 @@ export const fr: Translations = {
     subscribe: "S'abonner",
     reveal: "Révéler",
     totpCode: "Code 2FA (TOTP)",
-    premiumRequiredTotp: "Le plan Premium est requis pour utiliser les codes TOTP.",
+    premiumRequiredTotp:
+      "Le plan Premium est requis pour utiliser les codes TOTP.",
     sort: "Trier",
     sortLastModified: "Récemment modifié",
     sortLastAdded: "Récemment ajouté",
@@ -624,7 +689,7 @@ export const fr: Translations = {
     exportFilename: "sauvegarde-coffre",
     sortAz: "A → Z",
     sortZa: "Z → A",
-    sortDomain: "Domaine"
+    sortDomain: "Domaine",
   },
   entry: {
     username: "Identifiant",
@@ -636,8 +701,8 @@ export const fr: Translations = {
     type: {
       identity: "Identité",
       password: "Mot de passe",
-      unknown: "Inconnu"
-    }
+      unknown: "Inconnu",
+    },
   },
   card: {
     number: "Numéro de carte",
@@ -645,14 +710,14 @@ export const fr: Translations = {
     cvv: "CVV",
     holder: "Titulaire",
     holderPlaceholder: "NOM PRÉNOM",
-    defaultName: "Carte"
+    defaultName: "Carte",
   },
   note: {
     title: "Titre",
     titlePlaceholder: "Ma note secrète",
     content: "Contenu",
     contentPlaceholder: "...",
-    defaultName: "Note sans titre"
+    defaultName: "Note sans titre",
   },
   identity: {
     firstName: "Prénom",
@@ -667,10 +732,10 @@ export const fr: Translations = {
     country: "Pays",
     defaultName: "Nouvelle identité",
     noIdentityFound: "Aucune identité.",
-    createFirstIdentityHint: "Créez une identité via le menu +."
+    createFirstIdentityHint: "Créez une identité via le menu +.",
   },
   favorite: {
-    toggle: "Marquer comme favori"
+    toggle: "Marquer comme favori",
   },
   addForm: {
     title: "Nouvelle entrée",
@@ -726,7 +791,7 @@ export const fr: Translations = {
     matchHostname: "Nom d'hôte",
     matchBaseDomain: "Domaine de base",
     matchNever: "Jamais",
-    removeUri: "Supprimer l'URI"
+    removeUri: "Supprimer l'URI",
   },
   editForm: { title: "Modifier l'entrée" },
   identityForm: {
@@ -746,7 +811,7 @@ export const fr: Translations = {
     saveError: "Impossible d'enregistrer. Ouvrez l'app et réessayez.",
     civilityMr: "M.",
     civilityMrs: "Mme",
-    civilityNone: "—"
+    civilityNone: "—",
   },
   detailPane: {
     selectEntry: "Sélectionnez une entrée dans la liste",
@@ -785,7 +850,7 @@ export const fr: Translations = {
     passwordHistory: "Historique du mot de passe",
     previousPasswords: "Mots de passe precedents",
     changedOn: "Modifie le {date}",
-    noPasswordHistory: "Aucun changement de mot de passe enregistre"
+    noPasswordHistory: "Aucun changement de mot de passe enregistre",
   },
   seed: {
     walletName: "Identité du portefeuille",
@@ -798,7 +863,7 @@ export const fr: Translations = {
     appPasswordPlaceholder: "Mot de passe de l'application...",
     bip39Alert: "V\u00e9rification BIP-39 termin\u00e9e avec succ\u00e8s.",
     deleteConfirm: "Supprimer cette seed phrase ?",
-    cryptoSeedTitle: "Identifiants Crypto"
+    cryptoSeedTitle: "Identifiants Crypto",
   },
   listPane: {
     noCredentialsForSite: "Aucun identifiant pour ce site",
@@ -809,11 +874,12 @@ export const fr: Translations = {
     thisSiteOnly: "Ce site uniquement",
     sortDefault: "Par défaut",
     sortMostUsed: "Plus utilisés",
-    sortRecentlyUsed: "Utilisés récemment",
+    recent: "Récents",
     sortLastSaved: "Derniers enregistrés",
     customGroup: "Groupe personnalisé",
     allGroups: "Tous les groupes",
-    selectEntry: "Sélectionnez une entrée"
+    selectEntry: "Sélectionnez une entrée",
+    totpBadge: "TOTP disponible",
   },
   generator: {
     desc: "Génère des mots de passe forts et personnalisés",
@@ -832,7 +898,8 @@ export const fr: Translations = {
     subtitle: "Créez des mots de passe robustes et sécurisés",
     history: "Historique",
     clearHistory: "Effacer l'historique",
-    clearHistoryConfirm: "Effacer tout l'historique des mots de passe générés ?",
+    clearHistoryConfirm:
+      "Effacer tout l'historique des mots de passe générés ?",
     noHistory: "Aucun historique",
     justNow: "À l'instant",
     minutesAgo: "Il y a {n} min",
@@ -850,16 +917,18 @@ export const fr: Translations = {
     wordCount: "Mots",
     separator: "Separateur",
     capitalize: "Capitaliser",
-    passphrase: "Phrase de passe"
+    passphrase: "Phrase de passe",
   },
   securityHealthDetails: {
     title: "Santé Sécurité",
     subtitle: "Analyse complète de la robustesse de vos identifiants",
     score: "Score",
     vaultStatus: "État du Coffre",
-    statusExcellent: "Félicitations ! Vos mots de passe sont globalement excellents.",
+    statusExcellent:
+      "Félicitations ! Vos mots de passe sont globalement excellents.",
     statusGood: "Bon résultat, mais quelques optimisations sont recommandées.",
-    statusWarning: "Attention : plusieurs mots de passe présentent des risques.",
+    statusWarning:
+      "Attention : plusieurs mots de passe présentent des risques.",
     statusCritical: "Danger critique : votre sécurité globale est compromise !",
     critical: "Critique",
     weak: "Faible",
@@ -869,7 +938,8 @@ export const fr: Translations = {
     all: "Tous",
     noIssues: "Aucun problème détecté dans cette catégorie",
     noData: "Aucune entrée à analyser",
-    noDataHint: "Ajoutez des identifiants avec mots de passe pour voir l'analyse.",
+    noDataHint:
+      "Ajoutez des identifiants avec mots de passe pour voir l'analyse.",
     issueEmpty: "Mot de passe vide",
     issueTooShort: "Trop court (< 8 caractères)",
     issueDiversity: "Pas assez de types de caractères",
@@ -880,17 +950,19 @@ export const fr: Translations = {
     issueReused: "Réutilisé sur {count} autre(s) site(s)",
     issueOld: "Ancien mot de passe ({months} mois)",
     issueExpired: "Mot de passe expire ({months} mois, max {days} jours)",
-    expired: "Expires"
+    expired: "Expires",
   },
   autosave: {
     savedToast: "Identifiants sauvegardes dans VaultKeepR",
-    edit: "Modifier"
+    edit: "Modifier",
   },
   breachScanner: {
     title: "Scanner de Fuites",
-    subtitle: "Vérifiez si vos identifiants apparaissent dans des bases de données piratées",
+    subtitle:
+      "Vérifiez si vos identifiants apparaissent dans des bases de données piratées",
     dataSecurity: "Sécurité des Données",
-    hibpNotice: "Nous utilisons le service Have I Been Pwned via un système de hachage sécurisé (k-anonymity).",
+    hibpNotice:
+      "Nous utilisons le service Have I Been Pwned via un système de hachage sécurisé (k-anonymity).",
     hibpNoticeNoPassword: "Aucun mot de passe ne quitte jamais votre appareil.",
     startScan: "Lancer l'analyse",
     scanning: "Analyse en cours...",
@@ -906,36 +978,40 @@ export const fr: Translations = {
     startHint: "Commencez le scan pour voir les résultats",
     retry: "Relancer l'analyse",
     emailSection: "Surveillance des e-mails",
-    emailSectionDesc: "Vérifiez vos adresses e-mail contre les fuites de données connues.",
+    emailSectionDesc:
+      "Vérifiez vos adresses e-mail contre les fuites de données connues.",
     emailPlaceholder: "Ajouter une adresse e-mail",
     emailAdd: "Ajouter",
     emailNoemails: "Aucun e-mail surveillé pour le moment.",
     emailScan: "Scanner les e-mails",
     emailScanning: "Scan des e-mails en cours...",
     emailConsentTitle: "Avis de confidentialité",
-    emailConsentBody: "Pour vérifier les fuites, vos adresses e-mail complètes sont envoyées à leakcheck.io (un service tiers). Aucune autre donnée n'est transmise.",
+    emailConsentBody:
+      "Pour vérifier les fuites, vos adresses e-mail complètes sont envoyées à leakcheck.io (un service tiers). Aucune autre donnée n'est transmise.",
     emailConsentAgree: "J'accepte",
     emailBreachedCount: "{count} e-mail(s) compromis",
     emailNoBreaches: "Aucun e-mail compromis",
-    emailRemove: "Retirer"
+    emailRemove: "Retirer",
   },
   tools: {
     servicesTitle: "Services",
     servicesSubtitle: "Partage et stockage sécurisé",
     shareHint: "Liens, notes et fichiers chiffrés avec PIN",
-    docsHint: "Stockez vos documents sensibles chiffrés"
+    docsHint: "Stockez vos documents sensibles chiffrés",
   },
   totp: {
     title: "2FA (TOTP)",
-    lockedText: "Passez en Premium pour afficher et utiliser vos codes 2FA ici.",
+    lockedText:
+      "Passez en Premium pour afficher et utiliser vos codes 2FA ici.",
     viewPremium: "Voir Premium",
     noCodes: "Aucun code 2FA.",
-    addHint: "Ajoutez un secret TOTP à une entrée (détail → TOTP) pour le voir ici.",
+    addHint:
+      "Ajoutez un secret TOTP à une entrée (détail → TOTP) pour le voir ici.",
     premiumDesc: "L'authentification TOTP est réservée aux membres Premium.",
     showAll: "Tous",
     showMatching: "Ce site",
     previous: "Compte précédent",
-    next: "Compte suivant"
+    next: "Compte suivant",
   },
   premium: {
     back: "Retour",
@@ -948,13 +1024,14 @@ export const fr: Translations = {
     lastSeen: "Vu le",
     thisDevice: "Cet appareil",
     yourLicenseKey: "Votre clé de licence",
-    licenseCrossPlatformDesc: "Utilisez cette clé pour activer Premium sur la webapp et l'extension.",
+    licenseCrossPlatformDesc:
+      "Utilisez cette clé pour activer Premium sur la webapp et l'extension.",
     revokeDeviceTitle: "Supprimer l'appareil",
     revokeDeviceConfirm: "Cet appareil perdra l'accès au Premium. Continuer ?",
     syncLicense: "Synchroniser la licence IAP",
     subscribe: "S'abonner",
-    subscribePrice: "S'abonner — {price}/an",
-    subscribePriceMonthly: "S'abonner — {price}/mois",
+    subscribePrice: "S'abonner : {price}/an",
+    subscribePriceMonthly: "S'abonner : {price}/mois",
     planYearly: "Annuel",
     planMonthly: "Mensuel",
     bestValue: "Meilleur rapport qualité/prix",
@@ -962,7 +1039,7 @@ export const fr: Translations = {
     restorePurchases: "Restaurer mes achats",
     licenseTitle: "Licence web (e-mail)",
     licenseDesc:
-    "Achat sur le site ? Saisissez votre clé VK-… Utilisez le même wallet que sur le web et dans l’extension.",
+      "Achat sur le site ? Saisissez votre clé VK-… Utilisez le même wallet que sur le web et dans l’extension.",
     licensePlaceholder: "VK-XXXX-XXXX-XXXX-XXXX",
     activateLicense: "Activer la clé",
     planPremiumName: "Premium",
@@ -984,82 +1061,103 @@ export const fr: Translations = {
     unlimitedStorage: "Stockage illimite*",
     termsOfUse: "Conditions d'utilisation",
     privacyPolicy: "Politique de confidentialite",
-    legalFooter: "En vous abonnant, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialite. Les abonnements sont geres par Apple et se renouvellent automatiquement sauf annulation au moins 24h avant la fin de la periode en cours.",
+    legalFooter:
+      "En vous abonnant, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialite. Les abonnements sont geres par Apple et se renouvellent automatiquement sauf annulation au moins 24h avant la fin de la periode en cours.",
 
     successTitle: "Bienvenue en Premium",
-    successDesc: "Toutes les fonctionnalites Premium sont desormais actives. Merci pour votre soutien.",
+    successDesc:
+      "Toutes les fonctionnalites Premium sont desormais actives. Merci pour votre soutien.",
     successContinue: "Continuer",
     googlePlayActive: "Abonnement Google Play",
-    googlePlayActiveDesc: "Votre acces Premium est gere par Google Play. Vous pouvez gerer ou annuler votre abonnement depuis le Play Store.",
+    googlePlayActiveDesc:
+      "Votre acces Premium est gere par Google Play. Vous pouvez gerer ou annuler votre abonnement depuis le Play Store.",
     appStoreActive: "Abonnement App Store",
-    appStoreActiveDesc: "Votre acces Premium est gere par l'App Store. Vous pouvez gerer ou annuler votre abonnement depuis Reglages > Abonnements."
+    appStoreActiveDesc:
+      "Votre acces Premium est gere par l'App Store. Vous pouvez gerer ou annuler votre abonnement depuis Reglages > Abonnements.",
   },
   errorBoundary: { title: "Erreur" },
   mainTabs: {
     newVersionTitle: "Nouvelle version disponible",
     newVersionMessage: "Le coffre a été mis à jour. Synchroniser ?",
-    newVersionMessageAlt: "Le coffre a été mis à jour sur un autre appareil. Synchroniser ?",
+    newVersionMessageAlt:
+      "Le coffre a été mis à jour sur un autre appareil. Synchroniser ?",
     later: "Plus tard",
-    sync: "Synchroniser"
+    sync: "Synchroniser",
   },
   syncBanner: {
-    unlockExpired: "Session expirée. Veuillez redéverrouiller pour synchroniser.",
-    expired: "Synchronisation IPFS expirée. Réactivez-la pour synchroniser vos appareils.",
+    unlockExpired:
+      "Session expirée. Veuillez redéverrouiller pour synchroniser.",
+    expired:
+      "Synchronisation IPFS expirée. Réactivez-la pour synchroniser vos appareils.",
     expiringSoon: "La synchronisation expire dans {time}",
-    renew: "Renouveler"
+    renew: "Renouveler",
   },
   syncAlerts: {
     connectWallet: "Connectez le wallet.",
-    remoteNewer: "Une version plus récente existe sur un autre appareil. Rechargez la page pour synchroniser.",
-    remoteOlder: "La version distante est plus ancienne que vos données locales. Aucune synchronisation nécessaire.",
+    remoteNewer:
+      "Une version plus récente existe sur un autre appareil. Rechargez la page pour synchroniser.",
+    remoteOlder:
+      "La version distante est plus ancienne que vos données locales. Aucune synchronisation nécessaire.",
     enterPassword: "Saisissez votre mot de passe maître.",
     faceIdRequired: "Authentification Face ID requise ou annulée.",
-    noRemoteVault: "Aucun coffre distant pour ce wallet. Sauvegardez depuis un autre appareil d'abord.",
+    noRemoteVault:
+      "Aucun coffre distant pour ce wallet. Sauvegardez depuis un autre appareil d'abord.",
     noRecord: "Aucun enregistrement.",
     timeout: "Timeout. Réessayez.",
     signatureTimeout: "Signature non reçue. Ouvrez le wallet et réessayez.",
-    vaultUnlockedWalletRequired: "Coffre déverrouillé et wallet connecté requis.",
-    faceIdOrPassword: "Authentification Face ID requise ou mot de passe maître.",
+    vaultUnlockedWalletRequired:
+      "Coffre déverrouillé et wallet connecté requis.",
+    faceIdOrPassword:
+      "Authentification Face ID requise ou mot de passe maître.",
     pasteJson: "Collez le JSON d'export.",
     enterMasterPassword: "Saisissez le mot de passe.",
     enterPgpPassphrase: "Passphrase PGP :",
     chooseMasterPassword: "Choisissez un mot de passe maître.",
     formatUnknown: "Format non reconnu.",
     encryptedExportDetected: "Export chiffré détecté.",
-    entriesCountChoosePassword: "{count} entrée(s). Choisissez un mot de passe.",
+    entriesCountChoosePassword:
+      "{count} entrée(s). Choisissez un mot de passe.",
     faceIdOrPasswordBelow: "Face ID ou mot de passe ci-dessous.",
     uriCopied: "URI copié. Collez dans votre wallet.",
     syncSuccess: "Synchronisé. Coffre mis à jour.",
 
     syncConflictTitle: "Conflit de synchronisation",
-    syncConflictBody: "Une version plus récente de votre coffre existe sur un autre appareil. Vos modifications locales n'ont PAS été écrasées. Cliquez ci-dessous pour tirer la version distante et la fusionner en 3-way avec vos modifications locales.",
+    syncConflictBody:
+      "Une version plus récente de votre coffre existe sur un autre appareil. Vos modifications locales n'ont PAS été écrasées. Cliquez ci-dessous pour tirer la version distante et la fusionner en 3-way avec vos modifications locales.",
     syncConflictPullRemote: "Tirer la distante (fusion 3-way)",
     syncConflictDismiss: "Garder le local pour l'instant",
     vaultLoaded: "Coffre chargé depuis IPFS.",
     saveSuccess: "Succès. Sauvegardé sur IPFS.",
-    saveSuccessWebapp: "Sauvegardé sur IPFS. La webapp et l'extension pourront récupérer cette version.",
+    saveSuccessWebapp:
+      "Sauvegardé sur IPFS. La webapp et l'extension pourront récupérer cette version.",
     sessionExpired: "Session wallet expirée",
     reconnectWallet: "Reconnectez le wallet puis réessayez.",
-    sessionExpiredInvalid: "Session wallet expirée ou invalide. Reconnectez le wallet (bouton Connecter), puis réessayez Sauvegarder.",
+    sessionExpiredInvalid:
+      "Session wallet expirée ou invalide. Reconnectez le wallet (bouton Connecter), puis réessayez Sauvegarder.",
     openWalletRetry: "Ouvrez le wallet et réessayez.",
     biometricEnabledTitle: "Face ID activé",
     biometricDisabledTitle: "Face ID désactivé",
-    biometricEnabled: "Face ID activé. Vous pourrez déverrouiller le coffre avec Face ID.",
+    biometricEnabled:
+      "Face ID activé. Vous pourrez déverrouiller le coffre avec Face ID.",
     biometricDisabled: "Le mot de passe maître sera requis à chaque ouverture.",
-    autosaveActivated: "Vault Sync activé. Les modifications seront sauvegardées automatiquement sur IPFS."
+    autosaveActivated:
+      "Vault Sync activé. Les modifications seront sauvegardées automatiquement sur IPFS.",
   },
   fragmented: {
     title: "Vault fragmenté",
     setupTitle: "Vault fragmenté",
-    setupDesc: "Divisez votre vault en 5 parts (3 requises). Recovery ID indépendante du wallet.",
+    setupDesc:
+      "Divisez votre vault en 5 parts (3 requises). Recovery ID indépendante du wallet.",
     recoveryTitle: "Récupérer le vault fragmenté",
-    recoveryDesc: "Récupérez votre coffre avec la Recovery ID et au moins 3 parts (device, contact ou IPFS).",
+    recoveryDesc:
+      "Récupérez votre coffre avec la Recovery ID et au moins 3 parts (device, contact ou IPFS).",
     recoveryIdLabel: "Recovery ID (32 hex)",
     generateRecoveryId: "Générer",
     saveRecoveryId: "Enregistrer la Recovery ID",
     devicePartSaved: "Part device enregistrée",
     partsUploaded: "Parts uploadées sur IPFS",
-    contactPartExport: "Donnez cette part à un contact de confiance pour la récupération",
+    contactPartExport:
+      "Donnez cette part à un contact de confiance pour la récupération",
     scanContactPart: "Scannez avec le contact pour transmettre la part",
     pasteContactPart: "Copier la part contact",
     recoverVault: "Récupérer le coffre",
@@ -1073,76 +1171,89 @@ export const fr: Translations = {
     contactPartPlaceholder: "Collez la part reçue du contact",
     errorRecoveryIdRequired: "Entrez la Recovery ID (32 hex).",
     recoveryIdCopiedAlert: "Recovery ID copiée. Conservez-la en lieu sûr.",
-    contactPartCopiedAlert: "Part contact copiée. Envoyez-la à un proche de confiance.",
+    contactPartCopiedAlert:
+      "Part contact copiée. Envoyez-la à un proche de confiance.",
     errorPasswordRequired: "Entrez le mot de passe maître.",
-    errorRecoveryIdInvalid: "Recovery ID invalide (32 caractères hexadécimaux).",
+    errorRecoveryIdInvalid:
+      "Recovery ID invalide (32 caractères hexadécimaux).",
     errorContactPartInvalid: "Part contact invalide (base64).",
-    errorPartsInsufficient: "Parts insuffisantes : {have}/{need}. Fournissez la part contact.",
+    errorPartsInsufficient:
+      "Parts insuffisantes : {have}/{need}. Fournissez la part contact.",
     errorPersistence: "Erreur de persistance",
     recoverLink: "Récupérer vault fragmenté",
     storeOnChain: "Stocker la part on-chain (Base)",
     storeOnChainDone: "Part stockée on-chain",
-    storeOnChainConfigHint: "Pour activer le stockage on-chain, déployez le contrat et ajoutez fragmentContractAddress dans config.json.",
+    storeOnChainConfigHint:
+      "Pour activer le stockage on-chain, déployez le contrat et ajoutez fragmentContractAddress dans config.json.",
     viewTransaction: "Voir la transaction",
     connectWalletToStore: "Connectez le wallet pour stocker on-chain",
     storeOnChainQrHint:
-    "Scannez ce QR avec votre wallet pour cette transaction uniquement. Approuvez Ethereum et Base, puis validez la transaction sur l’appareil.",
+      "Scannez ce QR avec votre wallet pour cette transaction uniquement. Approuvez Ethereum et Base, puis validez la transaction sur l’appareil.",
     storeOnChainSecondPrompt:
-    "Après la connexion : gardez l’app wallet ouverte — une deuxième demande doit apparaître pour signer la transaction sur Base (ce n’est pas seulement la connexion).",
+      "Après la connexion : gardez l’app wallet ouverte : une deuxième demande doit apparaître pour signer la transaction sur Base (ce n’est pas seulement la connexion).",
     tooltipRecoveryIdSetup:
-    "Gardez cette Recovery ID secrète et sauvegardée (papier ou gestionnaire de mots de passe de confiance). Elle sert à récupérer le coffre sur un autre appareil. Ce n’est ni l’adresse wallet ni le mot de passe maître. Elle dérive les clés qui déchiffrent les parts stockées : la perdre peut rendre la récupération impossible même s’il reste des parts.",
+      "Gardez cette Recovery ID secrète et sauvegardée (papier ou gestionnaire de mots de passe de confiance). Elle sert à récupérer le coffre sur un autre appareil. Ce n’est ni l’adresse wallet ni le mot de passe maître. Elle dérive les clés qui déchiffrent les parts stockées : la perdre peut rendre la récupération impossible même s’il reste des parts.",
     tooltipRecoveryIdAfterSetup:
-    "Copiez ou notez exactement cette Recovery ID et conservez-la hors ligne en lieu sûr. Sans elle, vous ne pourrez pas récupérer ce vault fragmenté, même avec la part contact ou on-chain. Le mot de passe maître seul ne suffit pas.",
+      "Copiez ou notez exactement cette Recovery ID et conservez-la hors ligne en lieu sûr. Sans elle, vous ne pourrez pas récupérer ce vault fragmenté, même avec la part contact ou on-chain. Le mot de passe maître seul ne suffit pas.",
     tooltipContactPart:
-    "Ce QR est une part Shamir (3 sur 5). Ne la donnez qu’à un contact de confiance pour la récupération. Elle ne révèle ni le mot de passe maître ni le coffre complet sans les autres parts et votre Recovery ID.",
+      "Ce QR est une part Shamir (3 sur 5). Ne la donnez qu’à un contact de confiance pour la récupération. Elle ne révèle ni le mot de passe maître ni le coffre complet sans les autres parts et votre Recovery ID.",
     tooltipStoreOnChain:
-    "Enregistre une part chiffrée sur Base via votre wallet. Vous aurez toujours besoin de cette Recovery ID et du mot de passe maître pour ouvrir le coffre ; cela ajoute seulement un emplacement de plus pour une part.",
+      "Enregistre une part chiffrée sur Base via votre wallet. Vous aurez toujours besoin de cette Recovery ID et du mot de passe maître pour ouvrir le coffre ; cela ajoute seulement un emplacement de plus pour une part.",
     tooltipActivate3of5:
-    "Crée 5 parts chiffrées ; 3 suffisent pour reconstituer la clé. Les parts partent vers IPFS, cet appareil, le contact, optionnellement Base, et le canal API. Lancez l’activation seulement si la Recovery ID est sauvegardée : la changer impose de refaire le setup.",
+      "Crée 5 parts chiffrées ; 3 suffisent pour reconstituer la clé. Les parts partent vers IPFS, cet appareil, le contact, optionnellement Base, et le canal API. Lancez l’activation seulement si la Recovery ID est sauvegardée : la changer impose de refaire le setup.",
     tooltipRecoveryIdRecover:
-    "Doit être exactement la Recovery ID 32 caractères du setup fragmenté (même orthographe et casse). Elle dérive la clé de recherche du manifeste et déchiffre les parts stockées. Une seule erreur et la récupération échoue.",
+      "Doit être exactement la Recovery ID 32 caractères du setup fragmenté (même orthographe et casse). Elle dérive la clé de recherche du manifeste et déchiffre les parts stockées. Une seule erreur et la récupération échoue.",
     tooltipMasterPasswordRecover:
-    "Le mot de passe maître du coffre que vous récupérez — pas la Recovery ID. Une fois assez de parts combinées, il déchiffre le contenu du coffre.",
+      "Le mot de passe maître du coffre que vous récupérez : pas la Recovery ID. Une fois assez de parts combinées, il déchiffre le contenu du coffre.",
     tooltipContactPartRecover:
-    "Optionnel si vous avez déjà assez de parts (appareil, IPFS, chaîne). Collez la part base64 reçue du contact quand il vous faut une part de plus pour atteindre le seuil (ex. 3 sur 5).",
+      "Optionnel si vous avez déjà assez de parts (appareil, IPFS, chaîne). Collez la part base64 reçue du contact quand il vous faut une part de plus pour atteindre le seuil (ex. 3 sur 5).",
     recoverySuccessBody: "Votre coffre fragmenté a été restauré.",
-    onChainDeprecated: "Le stockage on-chain via WalletConnect est obsolète. Les fragments sont stockés sur le relais API."
+    onChainDeprecated:
+      "Le stockage on-chain via WalletConnect est obsolète. Les fragments sont stockés sur le relais API.",
   },
   nfcSetup: {
     title: "Configurer une Puce NFC",
     notSupportedTitle: "NFC Non Supporté",
-    notSupportedDesc: "Votre appareil ne possède pas le matériel nécessaire pour NFC.",
-    pinDesc: "Choisissez un code PIN de sécurité (4-6 chiffres). Il sera demandé en plus de la puce si la biométrie (FaceID) échoue.",
+    notSupportedDesc:
+      "Votre appareil ne possède pas le matériel nécessaire pour NFC.",
+    pinDesc:
+      "Choisissez un code PIN de sécurité (4-6 chiffres). Il sera demandé en plus de la puce si la biométrie (FaceID) échoue.",
     pinPlaceholder: "Code PIN",
     btnContinue: "Continuer",
-    writeDesc: "Le code PIN est sécurisé. Générons maintenant la cryptographie et écrivons-la sur votre puce physique.",
+    writeDesc:
+      "Le code PIN est sécurisé. Générons maintenant la cryptographie et écrivons-la sur votre puce physique.",
     btnWrite: "Écrire sur la puce NFC",
     errorTitle: "Erreur",
     errorPinShort: "Le code PIN doit faire au moins 4 chiffres.",
     errorNoPassword: "Impossible de récupérer la clé locale pour l'encodage.",
     errorWriteFailed: "Impossible d'écrire sur la puce.",
     successTitle: "Succès",
-    successDesc: "Puce NFC configurée avec succès ! Vous pouvez maintenant l'utiliser pour vous connecter.",
+    successDesc:
+      "Puce NFC configurée avec succès ! Vous pouvez maintenant l'utiliser pour vous connecter.",
     promptFaceId: "Autoriser l'utilisation de FaceID pour cette puce NFC",
     promptFallback: "Utiliser le PIN",
     promptNfcScan: "Approchez votre puce NTAG213 pour la lier",
-    errorAnonymousSignature: "Vault password introuvable pour la signature anonyme."
+    errorAnonymousSignature:
+      "Vault password introuvable pour la signature anonyme.",
   },
   vaultAlerts: {
     authCancelled: "Authentification annulée ou indisponible.",
     saveError: "Erreur de sauvegarde",
-    autoSaveError: "Erreur de sauvegarde automatique"
+    autoSaveError: "Erreur de sauvegarde automatique",
   },
   premiumAlerts: {
-    iapOnlyNative: "Achats in-app disponibles uniquement sur l'app native (pas dans Expo Go).",
+    iapOnlyNative:
+      "Achats in-app disponibles uniquement sur l'app native (pas dans Expo Go).",
     noRestore: "Aucun achat à restaurer.",
     purchaseError: "Erreur d'achat",
-    needWalletForLicense: "Connectez d’abord le wallet (même adresse que sur le web / l’extension).",
-    licenseApiUnavailable: "URL du serveur premium non configurée dans le build de l’app.",
+    needWalletForLicense:
+      "Connectez d’abord le wallet (même adresse que sur le web / l’extension).",
+    licenseApiUnavailable:
+      "URL du serveur premium non configurée dans le build de l’app.",
     licenseEmpty: "Saisissez la clé de licence.",
     licenseInvalid: "Clé invalide ou déjà utilisée.",
     licenseActivated: "Licence activée. Premium synchronisé sur vos appareils.",
-    keyCopied: "Clé de licence copiée."
+    keyCopied: "Clé de licence copiée.",
   },
   listScreen: {
     all: "Tous",
@@ -1156,12 +1267,34 @@ export const fr: Translations = {
     sortAz: "Tri : A→Z",
     sortZa: "Tri : Z→A",
     sortDomain: "Tri : Domaine",
+    sortLastUsed: "Tri : Dernier usage",
     noResult: "Aucun résultat",
     emptyHint: "Aucune entrée.\nAppuyez sur + pour ajouter.",
     quickSearchTitle: "⌘ Recherche rapide",
     noResults: "Aucun résultat",
     noRecentEntries: "Aucune entrée récente",
-    recent: "Récents"
+    recent: "Récents",
+    totpBadge: "TOTP disponible",
+  },
+  backupPrompt: {
+    title: "Sauvegardez votre coffre",
+    body: "Ce fichier chiffré est le seul moyen de récupérer votre coffre sur un nouvel appareil. Sans lui, la perte de votre appareil signifie la perte de toutes vos données.",
+    export: "Exporter le fichier de sauvegarde",
+    exportDone: "Fichier exporté",
+    confirm: "J'ai enregistré ce fichier en lieu sûr",
+    continue: "Continuer",
+  },
+  toolsPanel: {
+    shareDesc: "Partagez des secrets éphémères via lien chiffré",
+    cloudDesc: "Fichiers chiffrés via votre stockage cloud",
+    docsDesc: "Stockez documents sensibles et identités",
+  },
+  breachAlert: {
+    titleOne: "Mot de passe compromis",
+    titleMany: "{n} mots de passe compromis",
+    bodyOne: "Un de vos mots de passe est apparu dans une fuite connue. Ouvrez VaultKeepr pour le changer.",
+    bodyMany: "{n} de vos mots de passe sont apparus dans des fuites connues. Ouvrez VaultKeepr pour les changer.",
+    channelName: "Alertes de compromission",
   },
   detailScreen: {
     back: "Retour",
@@ -1191,7 +1324,7 @@ export const fr: Translations = {
     premiumRequired: "Premium requis",
     subscribe: "S'abonner",
     noName: "Sans nom",
-    card: "Carte"
+    card: "Carte",
   },
   addEntryScreen: {
     cancel: "Annuler",
@@ -1206,7 +1339,7 @@ export const fr: Translations = {
     passwordPlaceholder: "Saisir ou générer",
     totp: "2FA",
     totpPlaceholder: "Secret",
-    totpPremiumRequired: "Premium requis pour ajouter un code 2FA — S'abonner",
+    totpPremiumRequired: "Premium requis pour ajouter un code 2FA : S'abonner",
     notes: "Notes",
     notesPlaceholder: "Notes",
     tags: "Tags",
@@ -1249,50 +1382,59 @@ export const fr: Translations = {
     identity: "Identité",
     favorite: "Favori",
     favoriteYes: "Oui",
-    favoriteNo: "☆ Non",
+    favoriteNo: "Non",
     newGroup: "Nouveau groupe",
-    groupNamePlaceholder: "Nom du groupe"
+    groupNamePlaceholder: "Nom du groupe",
   },
   settingsPage: {
     back: "Retour",
     loading: "Chargement",
-    premiumDescription: "Un abonnement Premium actif sur iOS, l'extension ou la webapp est valable sur tous les appareils (même compte wallet ou email).",
+    premiumDescription:
+      "Un abonnement Premium actif sur iOS, l'extension ou la webapp est valable sur tous les appareils (même compte wallet ou email).",
     premiumFeaturesTitle: "Inclus avec Premium :",
     activateKeyHint: "Activer une clé reçue par email ou après achat.",
     buyLicense: "Acheter une licence",
     keyActivated: "Clé activée. Rechargez la page coffre pour voir le Premium.",
-    connectWalletPremium: "Connectez votre wallet pour voir le statut Premium ou activer une clé.",
-    syncCidDescription: "Vider le cache du CID pour forcer une récupération fraîche depuis l'API.",
+    connectWalletPremium:
+      "Connectez votre wallet pour voir le statut Premium ou activer une clé.",
+    syncCidDescription:
+      "Vider le cache du CID pour forcer une récupération fraîche depuis l'API.",
     connectWallet: "Connectez votre wallet.",
-    aboutDescription: "Vault Keeper stocke vos mots de passe de manière décentralisée. Aucune donnée n'est envoyée à nos serveurs. Votre vault chiffré est stocké sur IPFS.",
+    aboutDescription:
+      "Vault Keeper stocke vos mots de passe de manière décentralisée. Aucune donnée n'est envoyée à nos serveurs. Votre vault chiffré est stocké sur IPFS.",
     langEn: "English",
     langFr: "Français",
     import: "Importer",
     importDescription:
-    "Importez votre coffre depuis une autre app. Pris en charge : JSON Bitwarden (non chiffré), JSON Proton Pass, VaultKeepR, 1PIF 1Password, CSV (plusieurs fournisseurs), PGP. Non pris en charge : export Bitwarden chiffré, fichier .1pux 1Password.",
+      "Importez votre coffre depuis une autre app. Pris en charge : JSON Bitwarden (non chiffré), JSON Proton Pass, VaultKeepR, 1PIF 1Password, CSV (plusieurs fournisseurs), PGP. Non pris en charge : export Bitwarden chiffré, fichier .1pux 1Password.",
     importFormats:
-    "JSON Bitwarden, JSON Proton Pass, JSON VaultKeepR, CSV (LastPass, Chrome, 1Password…), 1PIF (1Password), PGP",
-    importSuccess: "{count} entrée(s) importée(s). Retournez au coffre pour les voir.",
+      "JSON Bitwarden, JSON Proton Pass, JSON VaultKeepR, CSV (LastPass, Chrome, 1Password…), 1PIF (1Password), PGP",
+    importSuccess:
+      "{count} entrée(s) importée(s). Retournez au coffre pour les voir.",
     importPgpHint: "Passphrase PGP pour déchiffrer le fichier :",
     importVaultPasswordHint: "Mot de passe maître Vault Keeper :",
     export: "Exporter",
-    exportDescription: "Exportez votre coffre. Déverrouillez le coffre d'abord, puis revenez ici pour exporter.",
+    exportDescription:
+      "Exportez votre coffre. Déverrouillez le coffre d'abord, puis revenez ici pour exporter.",
     exportPlain: "JSON (clair)",
     exportEncrypted: "JSON (chiffré)",
     exportPgp: "PGP",
-    exportUnlockHint: "Déverrouillez le coffre d'abord, puis revenez dans Paramètres pour exporter.",
+    exportUnlockHint:
+      "Déverrouillez le coffre d'abord, puis revenez dans Paramètres pour exporter.",
     exportEncryptedHint: "Mot de passe maître pour chiffrer l'export :",
     exportPgpHint: "Passphrase PGP pour chiffrer l'export :",
     exportSaved: "Fichier enregistré avec succès.",
-    premiumLegacyHint: "Vous utilisez le Premium via votre Wallet. Pour utiliser le Premium sur d'autres appareils (iOS, Firefox), générez une clé de licence sur la Web App.",
+    premiumLegacyHint:
+      "Vous utilisez le Premium via votre Wallet. Pour utiliser le Premium sur d'autres appareils (iOS, Firefox), générez une clé de licence sur la Web App.",
     manageOnWeb: "Gérer sur le Web",
     migrateHint: "Migrez votre abonnement mobile existant vers VaultKeepR.",
-    migrateButton: "Migrer VaultKeepR Go"
+    migrateButton: "Migrer VaultKeepR Go",
   },
   walletConnect: {
     lastVaultCid: "Dernier CID du coffre",
     viewOnIpfs: "Ouvrir sur ipfs.io",
-    noVaultCid: "Aucun CID pour l'instant. Enregistrez sur IPFS depuis l'en-tête ou activez le Vault Sync."
+    noVaultCid:
+      "Aucun CID pour l'instant. Enregistrez sur IPFS depuis l'en-tête ou activez le Vault Sync.",
   },
   autosaveDelegation: {
     autosaveIpfs: "Vault Sync",
@@ -1301,7 +1443,7 @@ export const fr: Translations = {
     renew: "Renouveler",
     activate: "Activer",
     connectAndActivate: "Connecter et activer",
-    orViaApp: "Ou via l'app"
+    orViaApp: "Ou via l'app",
   },
   autosaveQr: {
     title: "Vault Sync",
@@ -1311,15 +1453,17 @@ export const fr: Translations = {
     activated: "Activé",
     close: "Fermer",
     cancel: "Annuler",
-    openWalletRetry: "Ouvrez le wallet sur votre téléphone, acceptez la demande de signature, puis réessayez.",
+    openWalletRetry:
+      "Ouvrez le wallet sur votre téléphone, acceptez la demande de signature, puis réessayez.",
     signatureRejected: "Signature refusée dans le wallet.",
     unknownError: "Erreur inconnue",
     walletSign: "Ouvrez votre wallet et approuvez la signature",
-    walletSignHint: "Une notification a été envoyée à votre wallet connecté"
+    walletSignHint: "Une notification a été envoyée à votre wallet connecté",
   },
   alias: {
     title: "Alias email",
-    description: "Créez des alias xxx@vaultkeepr.xyz qui redirigent vers votre email. Désactivez à tout moment.",
+    description:
+      "Créez des alias xxx@vaultkeepr.xyz qui redirigent vers votre email. Désactivez à tout moment.",
     destinationEmail: "Rediriger vers",
     destinationPlaceholder: "vous@example.com",
     create: "Créer un alias",
@@ -1330,27 +1474,30 @@ export const fr: Translations = {
     inactive: "Désactivé",
     premiumRequired: "L'alias email nécessite Premium.",
     walletRequired: "Déverrouillez votre coffre pour gérer les alias.",
-    deleteConfirm: "Supprimer cet alias ? Les mails ne seront plus redirigés."
+    deleteConfirm: "Supprimer cet alias ? Les mails ne seront plus redirigés.",
   },
   vaultContext: {
     saveToIpfsConfirm: "Enregistrer sur IPFS maintenant ?",
     masterPasswordPrompt: "Mot de passe maître :",
     vaultSavedIpfs: "Vault enregistré sur IPFS.",
     saveFailed: "Échec.",
-    openAppUnlock: "Ouvrez l'application, déverrouillez le coffre, puis réessayez.",
+    openAppUnlock:
+      "Ouvrez l'application, déverrouillez le coffre, puis réessayez.",
     deleteError: "Erreur : impossible de supprimer",
     saveError: "Erreur : impossible d'enregistrer",
     noLoginForm: "Aucun formulaire de connexion détecté sur cette page.",
     fillErrorPrefix: "Impossible de remplir : ",
     reloadRetry: "Rechargez la page puis réessayez.",
-    exportEncryptedPrompt: "Mot de passe maître pour chiffrer l'export (à retenir pour importer ailleurs) :",
+    exportEncryptedPrompt:
+      "Mot de passe maître pour chiffrer l'export (à retenir pour importer ailleurs) :",
     exportDownloaded: "Export chiffré téléchargé.",
     importEncryptedPrompt: "Mot de passe maître de l'export chiffré :",
     importPgpPrompt: "Passphrase PGP pour déchiffrer le fichier :",
     entriesImported: "{count} entrée(s) importée(s).",
     unknownFormat: "Format JSON non reconnu.",
     noEntriesFound: "Aucune entrée trouvée.",
-    entriesImportedOpenApp: "{count} entrée(s) importée(s). Ouvrez l'app et enregistrez pour les ajouter au coffre.",
+    entriesImportedOpenApp:
+      "{count} entrée(s) importée(s). Ouvrez l'app et enregistrez pour les ajouter au coffre.",
     importAdded: "ajoutée(s)",
     importSkipped: "doublon(s) ignoré(s)",
     importEnriched: "enrichie(s) (2FA ajouté)",
@@ -1362,7 +1509,7 @@ export const fr: Translations = {
     zeroDuplicates: "0 doublon",
     licenseKeyCopied: "Clé de licence copiée",
     deviceRevoked: "Appareil révoqué",
-    cidUnpinned: "CID IPFS détaché"
+    cidUnpinned: "CID IPFS détaché",
   },
   passwordGenerator: {
     placeholder: "Saisir ou générer",
@@ -1373,73 +1520,87 @@ export const fr: Translations = {
     numbers: "Chiffres",
     symbols: "Car. spéciaux",
     char: "caractère",
-    chars: "caractères"
+    chars: "caractères",
   },
   pwnedPassword: {
-    found: "Ce mot de passe apparaît {{count}} fois dans des fuites de données connues (Have I Been Pwned).",
+    found:
+      "Ce mot de passe apparaît {{count}} fois dans des fuites de données connues (Have I Been Pwned).",
     checkFailed: "Impossible de vérifier la base des fuites (réseau).",
-    attribution: "Vérification : Have I Been Pwned (k-anonymité)"
+    attribution: "Vérification : Have I Been Pwned (k-anonymité)",
   },
   productGuide: {
     webWalletCalloutTitle: "Clé matérielle NFC ou Wallet (sync)",
     webWalletCalloutBody:
-    "Votre coffre est chiffré sur l'appareil avec votre mot de passe maître. L'utilisation d'une puce NFC ou d'un portefeuille Web3 permet d'associer une adresse à vos sauvegardes chiffrées sur IPFS. Vous pouvez vous connecter quand vous le souhaitez.",
+      "Votre coffre est chiffré sur l'appareil avec votre mot de passe maître. L'utilisation d'une puce NFC ou d'un portefeuille Web3 permet d'associer une adresse à vos sauvegardes chiffrées sur IPFS. Vous pouvez vous connecter quand vous le souhaitez.",
     tooltipWhyWallet:
-    "Votre portefeuille Web3 ou votre puce NFC crée une signature cryptographique pour lier vos données à votre adresse. Vos clés et mots de passe ne quittent jamais votre appareil.",
+      "Votre portefeuille Web3 ou votre puce NFC crée une signature cryptographique pour lier vos données à votre adresse. Vos clés et mots de passe ne quittent jamais votre appareil.",
     tooltipLocalFirst:
-    "Vous pouvez créer un coffre 100% local. Plus tard, utilisez votre clé NFC ou connectez un wallet via les Paramètres pour chiffrer et envoyer une copie sur IPFS.",
+      "Vous pouvez créer un coffre 100% local. Plus tard, utilisez votre clé NFC ou connectez un wallet via les Paramètres pour chiffrer et envoyer une copie sur IPFS.",
     tooltipIpfsEncrypted:
-    "Seul le contenu chiffré est archivé sur IPFS. Le déchiffrement nécessite votre mot de passe maître ET la signature (NFC/Wallet) générée sur votre appareil.",
+      "Seul le contenu chiffré est archivé sur IPFS. Le déchiffrement nécessite votre mot de passe maître ET la signature (NFC/Wallet) générée sur votre appareil.",
     hintLinkWallet: "NFC & Wallet",
     hintLinkLocal: "Mode Local",
     hintLinkIpfs: "Sauvegarde IPFS",
     importBlockTitle: "Importer depuis un autre gestionnaire",
     importBlockBody:
-    "Importez JSON Bitwarden, JSON Proton Pass, JSON VaultKeepR, export 1Password au format 1PIF (une ligne JSON par enregistrement), CSV type LastPass / Chrome / 1Password / Dashlane, ou fichier enveloppé PGP. Tout est analysé localement. Le format .1pux (ZIP chiffré 1Password) n’est pas pris en charge — exportez en CSV ou 1PIF depuis 1Password.",
+      "Importez JSON Bitwarden, JSON Proton Pass, JSON VaultKeepR, export 1Password au format 1PIF (une ligne JSON par enregistrement), CSV type LastPass / Chrome / 1Password / Dashlane, ou fichier enveloppé PGP. Tout est analysé localement. Le format .1pux (ZIP chiffré 1Password) n’est pas pris en charge : exportez en CSV ou 1PIF depuis 1Password.",
     tooltipImportFormats:
-    "Bitwarden JSON non chiffré, Proton Pass JSON, VaultKeepR JSON/chiffré, 1Password 1PIF, CSV avec colonnes URL / identifiant / mot de passe, fichiers OpenPGP. Export Bitwarden chiffré non supporté. .1pux non supporté.",
-    importStep1: "Exportez depuis votre ancienne appli (JSON, 1PIF, CSV ou fichier PGP).",
-    importStep2: "Choisissez le fichier ci-dessous. Le déchiffrement est local dans le navigateur.",
-    importStep3: "Déverrouillez avec le mot de passe maître VaultKeepR si l’import est chiffré.",
-    importStep4: "Enregistrez le coffre — les entrées sont fusionnées avec le coffre ouvert.",
-    importPrivacyTip: "Après un import réussi, supprimez le fichier d’export de votre appareil.",
-    tooltipImportFileButton: "Sélectionnez un export Bitwarden, Proton Pass, VaultKeepR, CSV, .1pif ou PGP sur votre ordinateur.",
+      "Bitwarden JSON non chiffré, Proton Pass JSON, VaultKeepR JSON/chiffré, 1Password 1PIF, CSV avec colonnes URL / identifiant / mot de passe, fichiers OpenPGP. Export Bitwarden chiffré non supporté. .1pux non supporté.",
+    importStep1:
+      "Exportez depuis votre ancienne appli (JSON, 1PIF, CSV ou fichier PGP).",
+    importStep2:
+      "Choisissez le fichier ci-dessous. Le déchiffrement est local dans le navigateur.",
+    importStep3:
+      "Déverrouillez avec le mot de passe maître VaultKeepR si l’import est chiffré.",
+    importStep4:
+      "Enregistrez le coffre : les entrées sont fusionnées avec le coffre ouvert.",
+    importPrivacyTip:
+      "Après un import réussi, supprimez le fichier d’export de votre appareil.",
+    tooltipImportFileButton:
+      "Sélectionnez un export Bitwarden, Proton Pass, VaultKeepR, CSV, .1pif ou PGP sur votre ordinateur.",
     autofillTitle: "Remplissage automatique dans le navigateur",
     autofillBody:
-    "Sur les sites, ouvrez cette extension pour remplir identifiant et mot de passe. Avec Premium, les codes TOTP sont générés localement à partir du secret enregistré sur l’entrée.",
+      "Sur les sites, ouvrez cette extension pour remplir identifiant et mot de passe. Avec Premium, les codes TOTP sont générés localement à partir du secret enregistré sur l’entrée.",
     tooltipAutofillFields:
-    "La détection dépend du HTML de chaque site. Si aucune suggestion n’apparaît, copiez le mot de passe depuis le coffre.",
+      "La détection dépend du HTML de chaque site. Si aucune suggestion n’apparaît, copiez le mot de passe depuis le coffre.",
     tooltipAutofillTotp:
-    "Les mots de passe à usage unique sont calculés sur votre appareil à partir du secret TOTP ; rien ne nous est envoyé.",
-    autofillQualityNote: "Les formulaires de connexion atypiques peuvent nécessiter un copier-coller — c’est normal.",
+      "Les mots de passe à usage unique sont calculés sur votre appareil à partir du secret TOTP ; rien ne nous est envoyé.",
+    autofillQualityNote:
+      "Les formulaires de connexion atypiques peuvent nécessiter un copier-coller : c’est normal.",
     hintAutofillFields: "Détection des champs",
     hintAutofillTotp: "2FA / TOTP",
     tooltipExtTabIpfs:
-    "Chargez un coffre déjà sauvegardé sur IPFS : connectez le même wallet, saisissez le mot de passe maître, puis déverrouillez.",
+      "Chargez un coffre déjà sauvegardé sur IPFS : connectez le même wallet, saisissez le mot de passe maître, puis déverrouillez.",
     tooltipExtTabLocalVault:
-    "Créez d’abord un coffre stocké uniquement dans ce navigateur. Connectez un wallet dans Paramètres plus tard pour synchroniser des sauvegardes chiffrées sur IPFS.",
+      "Créez d’abord un coffre stocké uniquement dans ce navigateur. Connectez un wallet dans Paramètres plus tard pour synchroniser des sauvegardes chiffrées sur IPFS.",
     extLockedAutofillHint:
-    "Astuce : après déverrouillage, utilisez l’extension sur les pages de connexion pour l’autofill — ou copiez depuis une entrée si le site est particulier."
+      "Astuce : après déverrouillage, utilisez l’extension sur les pages de connexion pour l’autofill : ou copiez depuis une entrée si le site est particulier.",
   },
   downloadPage: {
     title: "Obtenir VaultKeepR",
-    subtitle: "Disponible sur Chrome et iOS. Même coffre, même chiffrement, partout.",
+    subtitle:
+      "Disponible sur Chrome et iOS. Même coffre, même chiffrement, partout.",
     extensionTitle: "Extension Chrome",
-    extensionDesc: "Remplissage auto, codes TOTP, synchronisation du coffre — directement dans votre navigateur.",
+    extensionDesc:
+      "Remplissage auto, codes TOTP, synchronisation du coffre : directement dans votre navigateur.",
     extensionCta: "Ajouter à Chrome",
     iosTitle: "Application iOS",
-    iosDesc: "Face ID, AutoFill, Account Abstraction — votre coffre toujours dans votre poche.",
+    iosDesc:
+      "Face ID, AutoFill, Account Abstraction : votre coffre toujours dans votre poche.",
     iosCta: "App Store",
     webTitle: "Application Web",
-    webDesc: "Coffre complet dans votre navigateur. Aucune installation — connectez votre wallet et c'est parti.",
+    webDesc:
+      "Coffre complet dans votre navigateur. Aucune installation : connectez votre wallet et c'est parti.",
     webCta: "Ouvrir l'app web",
     privacyTitle: "Aucun tracking. Aucun log.",
-    privacyDesc: "VaultKeepR ne collecte aucune donnée analytique, aucune télémétrie, aucune donnée utilisateur. Votre coffre est chiffré de bout en bout et vous seul détenez les clés.",
+    privacyDesc:
+      "VaultKeepR ne collecte aucune donnée analytique, aucune télémétrie, aucune donnée utilisateur. Votre coffre est chiffré de bout en bout et vous seul détenez les clés.",
     recommended: "Recommandé",
-    backHome: "Retour à l'accueil"
+    backHome: "Retour à l'accueil",
   },
   landing: {
-    shopBanner: "Nouveauté : Sécurisez votre coffre avec notre <a href='/shop/fr' class='underline underline-offset-2 font-bold hover:text-white/80 transition-colors'>Porte-clés NFC VaultKeepR</a> exclusif !",
+    shopBanner:
+      "Nouveauté : Sécurisez votre coffre avec notre <a href='/shop/fr' class='underline underline-offset-2 font-bold hover:text-white/80 transition-colors'>Porte-clés NFC VaultKeepR</a> exclusif !",
     navHow: "Comment ça marche",
     navFeatures: "Fonctionnalités",
     navTerms: "CGU",
@@ -1449,99 +1610,130 @@ export const fr: Translations = {
     appStore: "App Store",
     navPremium: "Premium",
     navDownload: "Télécharger",
+    navMenuOpen: "Ouvrir le menu",
+    navMenuClose: "Fermer le menu",
     navTurboTest: "Test Turbo",
     navOpenApp: "Ouvrir l'app",
-    heroSubtitle: "Protégez vos mots de passe, identités et documents sans jamais nous les confier. Connectez-vous avec votre empreinte, votre visage, ou un appareil sécurisé que vous possédez déjà. Extension, iOS, Android.",
+    navShop: "Boutique",
+    navBlog: "Blog",
+    bannerNew:
+      "Nouveau : Cloud chiffré, 3 plans Premium et paiement crypto anonyme.",
+    bannerSeePlans: "Découvrir les offres",
+    heroSubtitle:
+      "Protégez vos mots de passe, identités et documents sans jamais nous les confier.",
     heroCta: "Essayer gratuitement",
     trustBadge: "Vie privée par conception",
     trustTitle: "Personne ne voit vos mots de passe. Même pas nous.",
-    trustSubtitle: "Vos mots de passe sont verrouillés sur votre appareil avant même d'en sortir. Votre coffre chiffré est stocké sur le réseau décentralisé IPFS, illisible sans votre clé.",
+    trustSubtitle:
+      "Vos mots de passe sont verrouillés sur votre appareil avant même d'en sortir. Votre coffre chiffré est stocké sur le réseau décentralisé IPFS, illisible sans votre clé.",
     pillar1Title: "Vos données restent chez vous",
-    pillar1Desc: "Vos mots de passe sont verrouillés sur votre appareil avant d'être stockés. Même en cas de panne, le stockage décentralisé P2P préserve votre coffre.",
+    pillar1Desc:
+      "Vos mots de passe sont verrouillés sur votre appareil avant d'être stockés. Même en cas de panne, le stockage décentralisé P2P préserve votre coffre.",
     pillar2Title: "Pas de compte, pas d'email",
-    pillar2Desc: "Connectez-vous avec votre empreinte ou votre visage. Nous ne demandons ni nom, ni email, ni mot de passe. Personne ne peut pirater un compte qui n'existe pas.",
+    pillar2Desc:
+      "Connectez-vous avec votre empreinte ou votre visage. Nous ne demandons ni nom, ni email, ni mot de passe. Personne ne peut pirater un compte qui n'existe pas.",
     pillar3Title: "Vous n'êtes jamais prisonnier",
-    pillar3Desc: "Vos données ne sont pas enfermées chez nous. Si notre service disparaît demain, vos mots de passe restent accessibles. Vous pouvez partir quand vous voulez.",
+    pillar3Desc:
+      "Vos données ne sont pas enfermées chez nous. Si notre service disparaît demain, vos mots de passe restent accessibles. Vous pouvez partir quand vous voulez.",
     howTitle: "Comment ça marche",
-    howSubtitle: "De l'installation à la sauvegarde chiffrée, en quelques étapes simples.",
-    step1Title: "Créez votre coffre",
-    step1Desc: "Une identité sécurisée est créée automatiquement via votre Smart Account intégré. Pas d'inscription, pas d'app externe, pas de portefeuille requis.",
-    step2Title: "Choisissez votre verrou",
-    step2Desc: "Choisissez un mot de passe maître, utilisez votre empreinte, ou un Passkey. Votre clé de coffre en est dérivée et n'est jamais stockée nulle part.",
-    step3Title: "Sauvegarde automatique",
-    step3Desc: "Votre coffre chiffré est sauvegardé sur IPFS automatiquement. Aucun point de défaillance unique, aucune base de données centrale.",
-    step4Title: "Utilisez partout",
-    step4Desc: "Application mobile, extension navigateur avec auto-remplissage, Face ID, biométrie. Même coffre, tous vos appareils.",
+    howSubtitle:
+      "De l'installation à la sauvegarde chiffrée, en quelques étapes simples.",
+    step1Title: "Zéro connaissance",
+    step2Title: "Connexion par wallet",
+    step3Title: "Ajoutez vos identifiants",
+    step4Title: "Sync IPFS",
+    step1Desc:
+      "Une identité sécurisée est créée automatiquement via votre Smart Account intégré. Pas d'inscription, pas d'app externe, pas de portefeuille requis.",
+    step2Desc:
+      "Choisissez un mot de passe maître, utilisez votre empreinte, ou un Passkey. Votre clé de coffre en est dérivée et n'est jamais stockée nulle part.",
+    step3Desc:
+      "Votre coffre chiffré est sauvegardé sur IPFS automatiquement. Aucun point de défaillance unique, aucune base de données centrale.",
+    step4Desc:
+      "Application mobile, extension navigateur avec auto-remplissage, Face ID, biométrie. Même coffre, tous vos appareils.",
     featuresTitle: "Pensé pour l'usage réel",
-    featuresSubtitle: "Synchronisez, récupérez et protégez vos identifiants—sans nous confier vos mots de passe.",
+    featuresSubtitle:
+      "Synchronisez, récupérez et protégez vos identifiants sans nous confier vos mots de passe.",
+    featuresCluster1: "Sécurité et confidentialité",
+    featuresCluster2: "Synchronisation et accès",
+    featuresCluster3: "Outils Premium",
     feat1Title: "Invisible pour nous",
-    feat1Desc: "Vos mots de passe ne sont déchiffrés que sur votre appareil. Nous ne voyons jamais vos mots de passe, cartes ou notes — par conception.",
+    feat1Desc:
+      "Vos mots de passe ne sont déchiffrés que sur votre appareil. Nous ne voyons jamais vos mots de passe, cartes ou notes. C'est par conception.",
     feat2Title: "Aucun compte requis",
-    feat2Desc: "Pas d'email, pas de formulaire d'inscription. Votre Smart Account est votre identité. Un vecteur d'attaque en moins.",
+    feat2Desc:
+      "Pas d'email, pas de formulaire d'inscription. Votre Smart Account est votre identité. Un vecteur d'attaque en moins.",
     feat3Title: "Identité souveraine",
-    feat3Desc: "Votre identité est un Smart Account sur la blockchain. Aucun serveur centralisé ne conserve d'historique de qui vous êtes.",
+    feat3Desc:
+      "Votre identité est un Smart Account sur la blockchain. Aucun serveur centralisé ne conserve d'historique de qui vous êtes.",
     feat4Title: "Sauvegarde IPFS",
-    feat4Desc: "Coffre chiffré stocké sur IPFS. Jamais rien en clair de notre côté. Vous contrôlez votre CID.",
+    feat4Desc:
+      "Coffre chiffré stocké sur IPFS. Jamais rien en clair de notre côté. Vous contrôlez votre CID.",
     feat5Title: "Biométrie + PRF",
-    feat5Desc: "WebAuthn PRF dérive la clé de votre empreinte ou de votre visage. Un véritable chiffrement sans mot de passe ni portefeuille externe.",
+    feat5Desc:
+      "WebAuthn PRF dérive la clé de votre empreinte ou de votre visage. Un véritable chiffrement sans mot de passe ni portefeuille externe.",
     feat6Title: "Chiffrement moderne",
-    feat6Desc: "Dérivation Argon2id et chiffrement XChaCha20-Poly1305. Les meilleurs standards de l'industrie pour votre coffre.",
+    feat6Desc:
+      "Dérivation Argon2id et chiffrement XChaCha20-Poly1305. Des primitives éprouvées, pas de crypto maison.",
     feat7Title: "Extension, iOS, Android",
-    feat7Desc: "Autofill navigateur, AutoFill iOS et Android, interface coffre complète : groupes, identités, TOTP.",
+    feat7Desc:
+      "Autofill navigateur, AutoFill iOS et Android, interface coffre complète : groupes, identités, TOTP.",
     feat8Title: "Import & export",
-    feat8Desc: "Bitwarden, CSV, JSON, PGP. Export clair, chiffré ou enveloppe PGP pour vos propres sauvegardes.",
+    feat8Desc:
+      "Bitwarden, CSV, JSON, PGP. Export clair, chiffré ou enveloppe PGP pour vos propres sauvegardes.",
     feat9Title: "Pas de pub, pas de tracking",
-    feat9Desc: "Aucune publicité, aucun profilage comportemental. Premium et alias : flux standards uniquement si vous y consentez.",
+    feat9Desc:
+      "Aucune publicité, aucun profilage comportemental. Premium et alias : flux standards uniquement si vous y consentez.",
     feat10Title: "Vault Sync",
-    feat10Desc: "Après déverrouillage, vos modifications sont synchronisées de manière transparente sur IPFS et mettent à jour le registre on-chain.",
+    feat10Desc:
+      "Après déverrouillage, vos modifications sont synchronisées de manière transparente sur IPFS et mettent à jour le registre on-chain.",
     feat11Title: "Récupération fragmentée (Premium)",
-    feat11Desc: "Divisez votre coffre en 5 fragments (Shamir 3-of-5). La récupération est autonome et indépendante de votre appareil.",
+    feat11Desc:
+      "Divisez votre coffre en 5 fragments (Shamir 3-of-5). La récupération est autonome et indépendante de votre appareil.",
     feat12Title: "Alias email (Premium)",
-    feat12Desc: "Adresses de relais pour masquer votre vraie boîte aux inscriptions et fuites.",
+    feat12Desc:
+      "Adresses de relais pour masquer votre vraie boîte aux inscriptions et fuites.",
     feat13Title: "Auth multimodale",
-    feat13Desc: "Déverrouillez avec des passkeys biométriques, un mot de passe maître ou des clés de sauvegarde NFC physiques.",
+    feat13Desc:
+      "Déverrouillez avec des passkeys biométriques, un mot de passe maître ou des clés de sauvegarde NFC physiques.",
     feat14Title: "Documents sécurisés",
-    feat14Desc: "Stockez vos pièces d'identité, fragmentées et chiffrées avant la synchronisation IPFS.",
+    feat14Desc:
+      "Stockez vos pièces d'identité, fragmentées et chiffrées avant la synchronisation IPFS.",
     feat15Title: "Surveillance de sécurité",
-    feat15Desc: "Suivez vos approbations DApps, scannez les brèches et recevez des alertes quand quelque chose mérite votre attention.",
+    feat15Desc:
+      "Suivez vos approbations DApps, scannez les brèches et recevez des alertes quand quelque chose mérite votre attention.",
     feat16Title: "Cloud chiffré",
-    feat16Desc: "Stockez vos fichiers dans un cloud chiffré (S3). De 10 Mo (gratuit) à Illimité selon votre plan.",
+    feat16Desc:
+      "Stockez vos fichiers dans un cloud chiffré (S3). De 10 Mo (gratuit) à Illimité selon votre plan.",
     feat17Title: "Quick Share",
-    feat17Desc: "Partagez vos identifiants via des liens éphémères zero-knowledge. Le destinataire n'a pas besoin de compte.",
+    feat17Desc:
+      "Partagez vos identifiants via des liens éphémères zero-knowledge. Le destinataire n'a pas besoin de compte.",
     feat18Title: "Analyse TOS IA",
-    feat18Desc: "L'IA analyse les CGU pour identifier le partage de donnees et les droits de suppression, et detecte le phishing.",
+    feat18Desc:
+      "L'IA analyse les CGU pour identifier le partage de données et les droits de suppression, et détecte le phishing.",
     feat19Title: "Santé des mots de passe",
-    feat19Desc: "Scanner de brèches, audit de robustesse et détection de réutilisation. Identifiez vos mots de passe faibles.",
-    ctaTitle: "Prêt à protéger ce qui compte ?",
-    ctaSubtitle: "Démarrez en quelques secondes. Aucun compte requis, aucune donnée collectée.",
+    feat19Desc:
+      "Scanner de brèches, audit de robustesse et détection de réutilisation. Identifiez vos mots de passe faibles.",
+    ctaTitle: "Votre premier coffre prend environ 30 secondes.",
+    ctaSubtitle: "Pas d'e-mail, pas de compte, rien à résilier.",
     ctaButton: "Essayer gratuitement",
-    techTitle: "Sous le capot",
-    techSubtitle: "Pour les développeurs et auditeurs de sécurité : les technologies derrière VaultKeepR.",
-    tech1Name: "IPFS",
-    tech1Desc: "Stockage adressé par contenu pour les blobs de coffre chiffrés",
-    tech2Name: "Open source",
-    tech2Desc: "Cœur et clients vérifiables par la communauté",
-    tech3Name: "Smart Wallet",
-    tech3Desc: "Signature wallet standard (EIP-191), sans custodian",
-    tech4Name: "Argon2id",
-    tech4Desc: "Dérivation de clé coûteuse en mémoire",
-    tech5Name: "S3 Cloud",
-    tech5Desc: "Stockage de fichiers chiffré zero-knowledge",
     techPillarLink: "Le chiffrement zero-knowledge expliqué : lire le guide",
     privacyBadgeLabel: "Zéro données collectées",
-    privacyBadgeTitle: "Votre vie privée n'est pas un réglage. C'est notre fondation.",
-    privacyBadgeSubtitle: "VaultKeepR ne collecte aucune donnée analytique, aucune télémétrie, aucune donnée utilisateur. Nous sommes dans l'incapacité de voir ce que vous stockez.",
+    privacyBadgeTitle:
+      "Votre vie privée n'est pas un réglage. C'est notre fondation.",
+    privacyBadgeSubtitle:
+      "VaultKeepR ne collecte aucune donnée analytique, aucune télémétrie, aucune donnée utilisateur. Nous sommes dans l'incapacité de voir ce que vous stockez.",
     privacyBadge1Title: "Zéro tracking",
-    privacyBadge1Desc: "Aucune analyse, aucun cookie, aucun traceur. Nous ne savons pas qui vous êtes et ne le saurons jamais.",
+    privacyBadge1Desc:
+      "Aucune analyse, aucun cookie, aucun traceur. Nous ne savons pas qui vous êtes et ne le saurons jamais.",
     privacyBadge2Title: "Rien à voler",
-    privacyBadge2Desc: "Vos mots de passe sont chiffrés sur votre appareil avant stockage. Nous ne détenons que des coffres scellés — il n'y a rien à pirater.",
+    privacyBadge2Desc:
+      "Vos mots de passe sont chiffrés sur votre appareil avant stockage. Nous ne détenons que des coffres scellés, il n'y a rien à pirater.",
     privacyBadge3Title: "Verrouillé avant de partir",
-    privacyBadge3Desc: "Chiffré de bout en bout avec des algorithmes de grade militaire. Votre mot de passe maître ne quitte jamais votre appareil.",
+    privacyBadge3Desc:
+      "Chiffré de bout en bout avec des algorithmes de grade militaire. Votre mot de passe maître ne quitte jamais votre appareil.",
     heroH1Prefix: "Le",
     heroH1Main: "Gestionnaire Zero-Knowledge",
-    heroH1Suffix: "qui n'a pas besoin de votre email.",
-    heroCtaDetailed: "Essayer VaultKeepR gratuit — Aucun email requis",
-    heroReassurance: "Gratuit pour toujours  •  Open source  •  2 minutes d'installation",
+    heroCtaDetailed: "Essayer gratuitement",
     heroSecondaryCta: "ou voir comment ça marche",
     heroGitHubStars: "étoiles sur GitHub",
     trustSignalNoEmail: "Aucun email requis",
@@ -1549,11 +1741,12 @@ export const fr: Translations = {
     trustSignalAuditable: "100% auditable",
     trustSignalFreeForever: "Gratuit pour toujours",
     miniPricingTitle: "Gratuit pour tous. Premium pour la commodité.",
-    miniPricingSubtitle: "Toutes les fonctionnalités de sécurité sont gratuites, pour toujours. Premium ajoute la sauvegarde cloud chiffrée, l'authentificateur TOTP et la récupération Shamir.",
+    miniPricingSubtitle:
+      "Toutes les fonctionnalités de sécurité sont gratuites, pour toujours. Premium ajoute la sauvegarde cloud chiffrée, l'authentificateur TOTP et la récupération Shamir.",
     miniPricingFreeTitle: "Gratuit",
     miniPricingFreePrice: "0 €",
     miniPricingFreePeriod: "pour toujours",
-    miniPricingFreeCta: "Commencer",
+    miniPricingFreeCta: "Essayer gratuitement",
     miniPricingFreeFeat1: "Mots de passe & cartes illimités",
     miniPricingFreeFeat2: "Chiffrement XChaCha20 + Argon2id",
     miniPricingFreeFeat3: "Chrome, Firefox, iOS, Android",
@@ -1577,23 +1770,99 @@ export const fr: Translations = {
     stickyNavPricing: "Tarifs",
     stickyNavFaq: "FAQ",
     comparePreviewTitle: "Comment VaultKeepR se compare-t-il ?",
-    comparePreviewSubtitle: "En face à face avec les gestionnaires les plus populaires. Mêmes fonctionnalités, philosophie différente.",
+    comparePreviewSubtitle:
+      "En face à face avec les gestionnaires les plus populaires. Mêmes fonctionnalités, philosophie différente.",
+    compareSeeAll: "Voir les {{count}} comparatifs",
+    faqTitle: "Questions Fréquentes",
+    faqSubtitle:
+      "Tout ce que vous devez savoir sur le fonctionnement technique et la sécurité de VaultKeepR.",
+    faqQ1: "Qu'est-ce que VaultKeepR et comment fonctionne-t-il ?",
+    faqA1:
+      "VaultKeepR est un gestionnaire de mots de passe décentralisé et zero-knowledge. Il chiffre toutes vos données directement sur votre appareil à l'aide de XChaCha20-Poly1305, puis sauvegarde le coffre chiffré sur le réseau décentralisé IPFS. Personne d'autre que vous ne peut y accéder.",
+    faqQ2:
+      "Ai-je besoin d'une adresse e-mail ou d'un portefeuille crypto pour m'inscrire ?",
+    faqA2:
+      "Non. Grâce à l'Account Abstraction (ERC-4337), l'application crée automatiquement un compte intelligent en arrière-plan lorsque vous configurez votre passkey biométrique. Vous n'avez pas besoin de saisir d'adresse e-mail ni de connecter un portefeuille externe comme MetaMask.",
+    faqQ3:
+      "Comment sont payés les frais de transaction de la blockchain (gas) ?",
+    faqA3:
+      "Tous les frais de réseau liés à l'enregistrement ou à la réclamation de votre coffre-fort sont entièrement pris en charge par notre service de Paymaster (Pimlico). L'utilisation de la blockchain Base L2 est transparente et totalement gratuite pour vous.",
+    faqQ4: "Que se passe-t-il si je perds mon appareil ?",
+    faqA4:
+      "VaultKeepR propose une option de récupération Shamir Secret Sharing. Votre clé de récupération est divisée en 5 fragments chiffrés distribués (sur vos appareils, chez des contacts de confiance, sur smart contract). La réunion de 3 fragments sur 5 permet de reconstituer votre clé.",
+    faqQ5: "VaultKeepR est-il open source ?",
+    faqA5:
+      "Oui. Notre cœur cryptographique et nos bibliothèques de synchronisation sont entièrement publiés sous licence MIT. Le code est auditable publiquement pour garantir une transparence absolue.",
+    featuresAlso:
+      "Aussi inclus : alias e-mail, cloud chiffré, documents sécurisés, analyse TOS.",
+    featuresCompareLink: "Comparatifs des gestionnaires",
+    featuresPremiumLink: "Outils Premium",
+    heroPill1: "Open source",
+    heroPill2: "Sans e-mail",
+    heroPill3: "Chaque affirmation vérifiable plus bas",
+    appshotCaption: "Vraie application, pas une maquette",
+    appshotVersion: "v1.6",
+    receiptsKicker: "Des preuves, pas des promesses",
+    receiptsTitle: "Tout ce qui est ici, vous pouvez le vérifier vous-même.",
+    receiptsIntro:
+      "Pas de « sécurité de niveau banque », pas de badges auto-attribués. Chaque affirmation renvoie vers la chose elle-même.",
+    receipt1Num: "813 tests",
+    receipt1Text:
+      "Verts en CI à chaque pull request. Couverture minimale : 80 %.",
+    receipt1Check: "vérifier : CI",
+    receipt2Num: "A / A / A",
+    receipt2Text:
+      "Sécurité, fiabilité, maintenabilité : trois fois A. SonarCloud scanne chaque push, tableau de bord public.",
+    receipt2Check: "vérifier : dashboard",
+    receipt3Num: "8/10",
+    receipt3Text:
+      "OpenSSF Scorecard : workflows épinglés, permissions minimales, releases signées.",
+    receipt3Check: "vérifier : scorecard",
+    receipt4Num: "minisign",
+    receipt4Text:
+      "Chaque release est signée. Clé 26508045ED8C563D. Politique de sécurité et divulgation dans le repo public.",
+    receipt4Check: "vérifier : releases",
+    founderKicker: "Pourquoi local-first",
+    founderQuote:
+      "L'IA de VaultKeepR appelait des API externes. J'ai poussé le local-first jusqu'au bout : une dizaine de jours de migration, dix autres de tests, et des modèles locaux soit trop lourds (plusieurs centaines de Mo), soit trop faibles. J'ai failli revenir en arrière. Je ne l'ai pas fait. Les tags, l'analyse des CGU, le score de fiabilité des sites tournent désormais sur votre appareil. Un point de faiblesse en moins. Trust the math, not a company.",
+    founderAttrib: "le développeur derrière VaultKeepR",
     bannerCloseAria: "Fermer l'annonce",
     footerTerms: "CGU",
     footerPrivacy: "Politique de confidentialité",
     footerDocs: "Documentation",
     footerSecurity: "Sécurité",
     footerChangelog: "Changelog",
+    footerColProduct: "Produit",
+    footerColResources: "Ressources & Sécurité",
+    footerColSupport: "Assistance",
+    footerColLegal: "Légal",
+    footerDownload: "Télécharger",
+    footerPricing: "Tarifs",
+    footerNfcShop: "Boutique NFC",
+    footerAbout: "À propos",
+    footerPasswordGuide: "Guide gestionnaire de mots de passe",
+    footerZeroKnowledge: "Chiffrement zero-knowledge",
+    footerComparisons: "Comparatifs",
+    footerMigrations: "Migrations",
+    footerHelpCenter: "Centre d'Aide",
+    footerRecovery: "Récupération",
+    footerDeleteAccount: "Suppr. de compte",
+    footerSecurityLabel: "Sécurité",
+    footerAlternatives: "Alternatives & Comparatifs",
+    footerMigrationGuides: "Guides de Migration",
+    footerAlternative: "Alternative {{name}}",
+    footerMigrateFrom: "Migrer depuis {{name}}",
     footerGithub: "GitHub",
     footerSocialGithubAria: "Dépôt vaultkeepr-public sur GitHub",
     footerSocialXAria: "VaultKeepR sur X (@vaultkeepr_xyz)",
     footerSocialLinkedinAria: "VaultKeepR sur LinkedIn",
-    footerSocialMastodonAria: "VaultKeepR sur Mastodon (@vaultkeepr@infosec.exchange)",
+    footerSocialMastodonAria:
+      "VaultKeepR sur Mastodon (@vaultkeepr@infosec.exchange)",
     footerSocialFarcasterAria: "VaultKeepR sur Farcaster (@vaultkeepr.eth)",
     footerContact: "Contact",
     contactTitle: "Nous contacter",
     contactIntro:
-    "Nous lisons chaque message. N’envoyez jamais votre mot de passe maître ni le contenu de votre coffre ici.",
+      "Nous lisons chaque message. N’envoyez jamais votre mot de passe maître ni le contenu de votre coffre ici.",
     contactName: "Nom",
     contactEmail: "E-mail",
     contactMessage: "Message",
@@ -1604,48 +1873,58 @@ export const fr: Translations = {
     contactClose: "Fermer",
     contactRequired: "Veuillez remplir tous les champs.",
     contactInvalidEmail: "Adresse e-mail invalide.",
-    contactResendError: "L’envoi depuis ce formulaire est indisponible pour le moment. Réessayez plus tard ou utilisez un autre canal indiqué dans la politique de confidentialité.",
+    contactResendError:
+      "L’envoi depuis ce formulaire est indisponible pour le moment. Réessayez plus tard ou utilisez un autre canal indiqué dans la politique de confidentialité.",
     contactInboxError:
-    "Nous ne pouvons pas encore recevoir de messages via ce formulaire. Essayez la page Sécurité ou les contacts indiqués dans la politique de confidentialité.",
-    contactConfigError: "Le formulaire de contact n’est pas disponible sur cette instance.",
+      "Nous ne pouvons pas encore recevoir de messages via ce formulaire. Essayez la page Sécurité ou les contacts indiqués dans la politique de confidentialité.",
+    contactConfigError:
+      "Le formulaire de contact n’est pas disponible sur cette instance.",
     footerCopyright: "Tous droits réservés.",
     loading: "Chargement…",
     comingSoonTitle: "Bientôt disponible",
     comingSoonSubtitle:
-    "Nous préparons le lancement public de VaultKeepR. Merci de votre patience — à très bientôt.",
+      "Nous préparons le lancement public de VaultKeepR. Merci de votre patience, à très bientôt.",
     comingSoonCountdownTitle: "Compte à rebours",
     comingSoonUnitDays: "Jours",
     comingSoonUnitHours: "Heures",
     comingSoonUnitMinutes: "Minutes",
     comingSoonUnitSeconds: "Secondes",
-    comingSoonLive: "Le compteur est terminé — l’ouverture publique arrive très bientôt.",
+    comingSoonLive:
+      "Le compteur est terminé. L’ouverture publique arrive très bientôt.",
     comingSoonEmailPlaceholder: "Votre email pour un accès anticipé",
     comingSoonEmailCta: "Rejoindre la waitlist",
-    comingSoonEmailSuccess: "Vous êtes sur la liste ! On vous préviendra au lancement.",
+    comingSoonEmailSuccess:
+      "Vous êtes sur la liste ! On vous préviendra au lancement.",
     comingSoonFeat1Title: "Zéro-connaissance",
-    comingSoonFeat1Desc: "Chiffré sur votre appareil avec Argon2id + XChaCha20. Impossible de lire vos données — par design.",
+    comingSoonFeat1Desc:
+      "Chiffré sur votre appareil avec Argon2id + XChaCha20. Impossible de lire vos données, par design.",
     comingSoonFeat2Title: "Connexion Wallet",
-    comingSoonFeat2Desc: "Connectez-vous via un Smart Wallet intégré avec Account Abstraction. Pas d'email, pas de mot de passe.",
+    comingSoonFeat2Desc:
+      "Connectez-vous via un Smart Wallet intégré avec Account Abstraction. Pas d'email, pas de mot de passe.",
     comingSoonFeat3Title: "Sauvegarde IPFS",
-    comingSoonFeat3Desc: "Votre coffre chiffré est synchronisé entre vos appareils via IPFS. Décentralisé et résilient.",
+    comingSoonFeat3Desc:
+      "Votre coffre chiffré est synchronisé entre vos appareils via IPFS. Décentralisé et résilient.",
     comingSoonFeat4Title: "Multi-plateforme",
-    comingSoonFeat4Desc: "App web, extension Chrome et iOS. Un seul coffre, partout.",
+    comingSoonFeat4Desc:
+      "App web, extension Chrome et iOS. Un seul coffre, partout.",
     heroTagIpfs: "Sauvegarde IPFS",
     heroTagWallet: "Aucun compte requis",
     heroTagE2e: "Chiffré de bout en bout",
     heroTagCloud: "Cloud chiffré",
     heroTagAndroid: "Android & iOS",
+    platformTitle: "Disponible partout",
     playStore: "Play Store",
     langSwitchToEn: "Switch to English",
-    langSwitchToFr: "Passer en français"
+    langSwitchToFr: "Passer en français",
   },
   vaultAppEntry: {
     subtitle: "Connectez votre wallet pour ouvrir votre coffre sur ce domaine.",
-    backToMarketing: "Site & présentation"
+    backToMarketing: "Site & présentation",
   },
   premiumPage: {
-    title: "Choisissez votre offre",
-    subtitle: "De l'essentiel gratuit au cloud illimité — trouvez l'offre qui vous correspond.",
+    title: "Quatre offres. Toutes les fonctions de sécurité restent gratuites.",
+    subtitle:
+      "Les offres payantes ajoutent stockage, récupération et confort. Gratuit le reste, pour toujours.",
     featureCol: "Fonctionnalité",
     freeCol: "Gratuit",
     premiumCol: "Premium",
@@ -1657,8 +1936,22 @@ export const fr: Translations = {
     priceUltimate: "69,99 € / an · 6,99 € / mois",
     pricePro: "39,99 € / an · 3,99 € / mois",
     billingLabel: "Formule",
-    billingYearly: "Annuel — jusqu'à 40 % d'économie",
-    billingMonthly: "Mensuel — résiliable à tout moment",
+    billingYearly: "Annuel (jusqu'à 40 % d'économie)",
+    billingMonthly: "Mensuel (résiliable à tout moment)",
+    cardPremB1:
+      "Authentificateur TOTP, alias e-mail, récupération Shamir 3-sur-5",
+    cardPremB2: "Cloud chiffré 1 Go, 5 Mo par fichier",
+    cardProB1: "Cloud chiffré 50 Go, 25 Mo par fichier",
+    cardProB2: "Tout Premium inclus",
+    cardUltB1: "Cloud chiffré illimité*, 50 Mo par fichier",
+    cardUltB2: "Tout Premium + Cloud illimité",
+    cardLifeB1: "Le pack Ultimate à vie",
+    cardLifeB2: "Paiement crypto uniquement",
+    cardLifeB3: "Sans e-mail",
+    cardAnonymous: "Anonyme",
+    cardOneTime: "Paiement unique",
+    fairUse: "* Politique d'usage raisonnable en cas d'usage excessif.",
+    comparePlans: "Comparer tous les plans et fonctionnalités",
     featLogins: "Identifiants & mots de passe (illimités)",
     featCards: "Cartes bancaires & notes",
     featIdentities: "Identités & auto-remplissage",
@@ -1693,20 +1986,22 @@ export const fr: Translations = {
     featSupport: "Support prioritaire",
     featStorage: "Stockage chiffré illimité",
     successTitle: "Paiement réussi",
-    successMessage: "Votre clé de licence a été envoyée à l'adresse email indiquée.",
+    successMessage:
+      "Votre clé de licence a été envoyée à l'adresse email indiquée.",
     successSpam: "Vérifiez vos spams si vous ne la trouvez pas.",
     activateKey: "Activer la clé dans Paramètres",
     canceled: "Paiement annulé.",
     retry: "Réessayer",
     licenceTitle: "S'abonner maintenant",
     licenceDesc:
-    "Facturation annuelle ou mensuelle. Paiement par carte via Stripe. La clé est envoyée par email après validation ; les renouvellements prolongent la même clé.",
+      "Facturation annuelle ou mensuelle. Paiement par carte via Stripe. La clé est envoyée par email après validation ; les renouvellements prolongent la même clé.",
     emailLabel: "Email pour recevoir la clé",
     emailPlaceholder: "vous@exemple.com",
-    buyBtn: "S'abonner — Paiement sécurisé",
+    buyBtn: "S'abonner : Paiement sécurisé",
     getStarted: "Commencer",
     redirecting: "Redirection vers le paiement…",
-    paymentNote: "Abonnement Stripe. Clé envoyée après paiement ; les renouvellements mettent à jour la date de fin de licence.",
+    paymentNote:
+      "Abonnement Stripe. Clé envoyée après paiement ; les renouvellements mettent à jour la date de fin de licence.",
     backHome: "Retour à l'accueil",
     emailRequired: "Email requis",
     paymentError: "Erreur lors du paiement",
@@ -1715,7 +2010,8 @@ export const fr: Translations = {
     proAddon: "VaultKeepR Pro",
     proAddonDesc: "Passez à 50 Go de stockage cloud chiffré IPFS.",
     ultimateBundle: "VaultKeepR Ultimate",
-    ultimateBundleDesc: "Premium + Cloud Illimité en un seul forfait. Économisez 0,49 €/mois vs achat séparé.",
+    ultimateBundleDesc:
+      "Premium + Cloud Illimité en un seul forfait. Économisez 0,49 €/mois vs achat séparé.",
     ultimateSaving: "Économisez 17 %",
     planPremium: "Premium",
     planPremiumPrice: "2,49 €/mois",
@@ -1734,52 +2030,9 @@ export const fr: Translations = {
     cryptoAnnual: "Annuel",
     cryptoMonthly: "Mensuel",
     cryptoDiscount: "−10 %",
-    cryptoLifetimeExclusive: "Exclusivité crypto"
+    cryptoLifetimeExclusive: "Exclusivité crypto",
   },
   onboarding: {
-    welcomeTitle: "Bienvenue sur VaultKeepR",
-    welcomeBody: "Votre coffre-fort zero-knowledge. Tout est chiffré localement — aucun serveur n'a accès à vos données.",
-    vaultTitle: "Créez votre coffre-fort",
-    vaultBody: "Choisissez comment stocker vos mots de passe :",
-    vaultLocal: "Vault local — chiffré sur cet appareil uniquement",
-    vaultLocalDesc: "Accès rapide, stockage local",
-    vaultIpfs: "Sync IPFS — chiffré et synchronisé entre appareils via votre wallet",
-    vaultIpfsDesc: "Décentralisé, accès partout",
-    saveTitle: "Enregistrez votre premier mot de passe",
-    saveBody: "Connectez-vous à n'importe quel site — VaultKeepR proposera de sauvegarder vos identifiants automatiquement.",
-    skip: "Passer",
-    next: "Suivant",
-    done: "C'est parti !",
-    replaySettings: "Revoir l'introduction",
-    step1Title: "Zéro connaissance",
-    step1Desc: "Vos mots de passe sont chiffrés sur votre appareil avant toute synchronisation. Aucun serveur ne voit vos données en clair.",
-    step2Title: "Connexion par wallet",
-    step2Desc: "Accédez via un Smart Wallet intégré sécurisé. Pas d'email ni de mot de passe de compte nécessaire.",
-    step3Title: "Ajoutez vos identifiants",
-    step3Desc: "Cliquez sur le bouton + pour enregistrer un identifiant, une identité ou générer un mot de passe fort. VaultKeepR détecte aussi les formulaires et propose de les sauvegarder automatiquement.",
-    step4Title: "Sync IPFS",
-    step4Desc: "Votre coffre est sauvegardé automatiquement après chaque modification. Ce bouton permet de forcer une synchronisation manuelle vers IPFS — votre backup chiffré, décentralisé et toujours accessible.",
-    step5Title: "Votre coffre est prêt",
-    step5Desc: "Explorez le générateur de mots de passe, le scanner de fuites et le partage sécurisé. Tout est à portée de main.",
-    tabBarTitle: "Votre centre de commande",
-    tabBarDesc: "Naviguez entre votre coffre, les codes TOTP, les outils, le partage sécurisé et le cloud.",
-    searchTitle: "Recherche rapide",
-    searchDesc: "Trouvez n'importe quel identifiant en un instant. Recherchez par nom, URL, pseudo ou tag.",
-    start: "Commencer",
-    connectCta: "Connecter mon wallet",
-    doNotShowAgain: "Ne plus afficher",
-    lockTabsTitle: "Deux modes de stockage",
-    lockTabsDesc: "IPFS synchronise votre coffre chiffré sur tous vos appareils via votre wallet. Local le conserve uniquement sur cet appareil.",
-    lockPasskeyTitle: "D\u00e9verrouillage en 1 touche",
-    lockPasskeyDesc: "Créez votre coffre en quelques secondes avec Face ID, Touch ID ou le code PIN de votre appareil. Aucun mot de passe à retenir.",
-    lockPasswordTitle: "Mot de passe maître",
-    lockPasswordDesc: "Vous préférez le contrôle total ? Définissez un mot de passe maître — la seule clé de votre coffre. Choisissez-le soigneusement : il ne peut pas être récupéré.",
-    lockOption1Title: "Option 1 — Passkey (recommandée)",
-    lockOption1Desc: "1 touche avec Face ID, Touch ID ou le code PIN de votre appareil. Aucun mot de passe à retenir. Appuyez sur le bouton ci-dessus pour continuer.",
-    lockOption2Title: "Option 2 — Mot de passe maître",
-    lockOption2Desc: "Vous gardez le contrôle total. Choisissez un mot de passe robuste — c'est l'unique clé de votre coffre, non récupérable. Remplissez les champs ci-dessus.",
-    lockNewVaultTitle: "Créez votre coffre chiffré",
-    lockNewVaultDesc: "Vos mots de passe sont chiffrés localement et ne quittent jamais votre appareil sans protection. Appuyez sur le bouton pour commencer.",
     landingCreateBtn: "Créer mon coffre",
     landingUnlockBtn: "J'ai déjà un coffre",
     landingSubtitle: "Votre gestionnaire de mots de passe zero-knowledge.",
@@ -1788,49 +2041,17 @@ export const fr: Translations = {
     loadingVaultDesc: "Vérification du stockage chiffré",
     welcomeBack: "Bon retour",
     welcomeBackDesc: "Déverrouillez votre coffre pour continuer.",
-    firstTime: "Première fois ici ?",
-    advancedOptions: "Options avancées",
-    hideAdvanced: "Masquer les options avancées",
-    methodsDivider: "Ou utilisez votre mot de passe maître",
-    noVaultYet: "Aucun coffre sur cet appareil",
-    noVaultYetDesc: "Créez-en un en 30 secondes, ou restaurez un coffre existant.",
     landingDemoBtn: "Essayer le coffre démo",
-    landingDemoDesc: "Données fictives, premium inclus. Idéal pour vidéos et captures.",
-    createVaultIntro: "Choisissez une méthode — vous pourrez toujours changer plus tard.",
-    primerTitle: "Avant de commencer",
-    primerSubtitle: "VaultKeepR fonctionne differemment des autres gestionnaires de mots de passe. 3 choses a savoir.",
-    primerSlide1Title: "Personne ne peut recuperer vos donnees",
-    primerSlide1Desc: "Pas de serveur, pas de bouton 'mot de passe oublie'. Votre passkey ou mot de passe maitre est la seule cle qui existe. Si vous la perdez, vos donnees sont perdues -- sauf si vous configurez une methode de recuperation (backup NFC ou Shamir Secret) au prealable.",
-    primerSlide2Title: "Vos donnees restent sur votre appareil",
-    primerSlide2Desc: "Tout est chiffre ici meme, sur cet appareil. Meme le backup IPFS optionnel est chiffre avant de quitter l'appareil — personne ne peut le lire, pas meme nous.",
-    primerSlide3Title: "Pas de compte. Juste vous.",
-    primerSlide3Desc: "Pas d'email, pas d'inscription. Votre identite est votre passkey (biometrique) ou votre wallet Ethereum. C'est la seule chose necessaire pour acceder a votre coffre.",
-    primerQuizTitle: "Verifions que vous avez compris",
-    primerQ1: "Si vous perdez votre mot de passe maitre, que se passe-t-il ?",
-    primerQ1a1: "VaultKeepR peut le reinitialiser par email",
-    primerQ1a2: "Mes donnees sont perdues definitivement",
-    primerQ1Wrong: "Incorrect. Il n'y a ni serveur ni email sur VaultKeepR. Votre mot de passe maitre ou passkey est le SEUL moyen de dechiffrer votre coffre. Personne ne peut le recuperer a votre place.",
-    primerQ2: "Ou sont stockes vos mots de passe ?",
-    primerQ2a1: "Sur les serveurs de VaultKeepR",
-    primerQ2a2: "Chiffres sur mon appareil uniquement",
-    primerQ2Wrong: "Incorrect. VaultKeepR n'a aucun serveur. Vos mots de passe sont chiffres et stockes localement sur votre appareil. Le backup IPFS est aussi chiffre avant de quitter l'appareil.",
-    primerQ3: "Le backup IPFS est-il lisible par d'autres ?",
-    primerQ3a1: "Oui, n'importe qui avec le lien peut le lire",
-    primerQ3a2: "Non, il est chiffre avant de quitter mon appareil",
-    primerQ3Wrong: "Incorrect. Votre backup IPFS est entierement chiffre sur votre appareil avant d'etre envoye. Meme si quelqu'un le trouve, il ne peut pas le lire sans votre cle.",
-    primerQ4: "Comment cree-t-on un compte sur VaultKeepR ?",
-    primerQ4a1: "Avec un email et un mot de passe comme toute autre app",
-    primerQ4a2: "Il n'y a pas de compte -- juste une passkey ou un wallet",
-    primerQ4Wrong: "Incorrect. VaultKeepR n'a pas de comptes, pas d'emails, pas d'inscription. Votre identite est votre passkey (biometrique) ou votre wallet Ethereum.",
-    primerAllCorrect: "Vous avez tout compris.",
-    primerContinue: "Creer mon coffre",
-    primerIUnderstand: "Je comprends les risques, continuer"
+    landingDemoDesc:
+      "Données fictives, premium inclus. Idéal pour vidéos et captures.",
+    createVaultIntro:
+      "Choisissez une méthode : vous pourrez toujours changer plus tard.",
   },
   saveBanner: {
     loginFormDetected: "Formulaire de connexion détecté",
     saveCredentials: "Sauvegarder ces identifiants",
     fillFormFirst: "Remplissez d'abord le formulaire de connexion.",
-    cannotCollect: "Impossible de collecter les identifiants"
+    cannotCollect: "Impossible de collecter les identifiants",
   },
   passwordFeedback: {
     tooShort: "Le mot de passe est trop court",
@@ -1840,16 +2061,21 @@ export const fr: Translations = {
     addSpecialChars: "Ajoutez des caractères spéciaux",
     avoidRepeated: "Évitez les caractères répétés",
     useMultipleTypes: "Utilisez plusieurs types de caractères",
-    veryWeak: "Mot de passe très faible"
+    veryWeak: "Mot de passe très faible",
   },
   passwordHealth: {
     noEntries: "Aucun identifiant à analyser.",
-    noEntriesHint: "Ajoutez des entrées au coffre pour voir le rapport de santé.",
+    noEntriesHint:
+      "Ajoutez des entrées au coffre pour voir le rapport de santé.",
     vaultHealth: "Santé du coffre",
-    scoreGood: "Bon niveau de sécurité ! Quelques améliorations restent possibles.",
-    scoreFair: "Niveau de sécurité correct. Renforcez les mots de passe faibles.",
-    scoreWeak: "Sécurité insuffisante. Plusieurs mots de passe doivent être changés.",
-    scoreCritical: "Sécurité critique. Changez immédiatement vos mots de passe les plus faibles.",
+    scoreGood:
+      "Bon niveau de sécurité ! Quelques améliorations restent possibles.",
+    scoreFair:
+      "Niveau de sécurité correct. Renforcez les mots de passe faibles.",
+    scoreWeak:
+      "Sécurité insuffisante. Plusieurs mots de passe doivent être changés.",
+    scoreCritical:
+      "Sécurité critique. Changez immédiatement vos mots de passe les plus faibles.",
     statCritical: "Critiques",
     statWeak: "Faibles",
     statFair: "Corrects",
@@ -1875,7 +2101,7 @@ export const fr: Translations = {
     statUnsecureWebsites: "Non sécurisé",
     filterUnsecureWebsites: "Non sécurisé",
     issueTwoFactorMissing: "Double authentification non configurée",
-    issueUnsecureUrl: "Le site n'utilise pas HTTPS"
+    issueUnsecureUrl: "Le site n'utilise pas HTTPS",
   },
   commandPalette: {
     searchPlaceholder: "Rechercher un site, identifiant, note... (Ctrl+K)",
@@ -1896,12 +2122,13 @@ export const fr: Translations = {
     openUrl: "Ouvrir l'URL",
     shortcutNavigate: "naviguer",
     shortcutOpen: "ouvrir",
-    shortcutClose: "fermer"
+    shortcutClose: "fermer",
   },
   socialProof: {
     sectionBadge: "Sécurité prouvée",
     sectionTitle: "Conçu pour ceux qui prennent la sécurité au sérieux",
-    sectionSubtitle: "Chiffrement de niveau entreprise, zéro complexité. Vos identifiants, vos clés, vos règles.",
+    sectionSubtitle:
+      "Chiffrement de niveau entreprise, zéro complexité. Vos identifiants, vos clés, vos règles.",
     stat1Value: "496",
     stat1Label: "Tests cryptographiques validés (0 échec)",
     stat2Value: "0 Octet",
@@ -1911,21 +2138,12 @@ export const fr: Translations = {
     stat4Value: "ERC-4337",
     stat4Label: "Smart accounts provisionnés sans portefeuille externe",
     techTitle: "Construit avec des technologies éprouvées et auditées",
-    testimonialTitle: "Open source, conçu pour être vérifié",
-    testimonial1Text: "Le code source est entièrement ouvert et auditable sur GitHub — aucun de nos engagements ne se cache derrière une build propriétaire.",
-    testimonial1Author: "Équipe VaultKeepR",
-    testimonial1Role: "Dépôt source public",
-    testimonial2Text: "La cryptographie s'exécute entièrement sur votre appareil avec la dérivation Argon2id et le chiffrement XChaCha20-Poly1305 — aucun serveur ne voit jamais votre secret maître.",
-    testimonial2Author: "Équipe VaultKeepR",
-    testimonial2Role: "Cryptographie côté client",
-    testimonial3Text: "Pas d'e-mail, pas de compte, pas de base de données centrale. Votre coffre est chiffré localement et synchronisé pair-à-pair, donc il n'y a aucun pot de miel à pirater.",
-    testimonial3Author: "Équipe VaultKeepR",
-    testimonial3Role: "Architecture zéro-connaissance"
   },
   passkey: {
     folder: "Passkeys",
     savePromptTitle: "Enregistrer ce passkey ?",
-    savePromptBody: "Stocker ce passkey pour {{rpName}} ({{userName}}) dans VaultKeepR",
+    savePromptBody:
+      "Stocker ce passkey pour {{rpName}} ({{userName}}) dans VaultKeepR",
     saveButton: "Enregistrer le Passkey",
     useNative: "Utiliser le navigateur",
     authPromptTitle: "Se connecter avec un passkey",
@@ -1936,10 +2154,12 @@ export const fr: Translations = {
     rpId: "Site",
     created: "Créé le",
     lastUsed: "Dernière utilisation",
-    deleteConfirm: "Supprimer ce passkey ? Vous ne pourrez plus l'utiliser pour vous connecter.",
+    deleteConfirm:
+      "Supprimer ce passkey ? Vous ne pourrez plus l'utiliser pour vous connecter.",
     vaultLocked: "Déverrouillez VaultKeepR pour utiliser les passkeys",
     providerActive: "Fournisseur de passkeys actif",
-    providerDescription: "VaultKeepR peut stocker et utiliser les passkeys pour les sites compatibles.",
+    providerDescription:
+      "VaultKeepR peut stocker et utiliser les passkeys pour les sites compatibles.",
     noEnrollment: "Aucune clé biométrique enregistrée",
     unlockFailed: "Échec du déverrouillage biométrique",
     biometricFailed: "Échec de la vérification biométrique",
@@ -1953,20 +2173,25 @@ export const fr: Translations = {
     cancelledByUser: "Annulé par l'utilisateur",
     enrollmentFailed: "Échec de l'enregistrement",
     label: "Passkey",
-    syncPrompt: "Avez-vous déjà un compte Passkey (ex: synchronisé via iCloud/Google) ?\n\n- OK : Se connecter à mon compte existant\n- Annuler : Créer un nouveau compte Passkey",
+    syncPrompt:
+      "Avez-vous déjà un compte Passkey (ex: synchronisé via iCloud/Google) ?\n\n- OK : Se connecter à mon compte existant\n- Annuler : Créer un nouveau compte Passkey",
     notFoundOrCancelled: "Aucun Passkey trouvé ou annulé.",
     creating: "Création du Passkey...",
     createdToast: "Passkey créé !",
-    passkeyCreateSuccess: "Passkey configuré avec succès ! Migration du vault en cours...",
-    passkeyPrfError: "Votre appareil ne supporte pas l'extension PRF nécessaire pour sécuriser le vault.",
+    passkeyCreateSuccess:
+      "Passkey configuré avec succès ! Migration du vault en cours...",
+    passkeyPrfError:
+      "Votre appareil ne supporte pas l'extension PRF nécessaire pour sécuriser le vault.",
     goPasswordlessTitle: "Go Passwordless (Account Abstraction)",
-    goPasswordlessDesc: "Sécurisez votre compte avec un Passkey (FaceID / TouchID). Vous n'aurez plus jamais besoin de taper votre mot de passe, et votre identité Web3 sera gérée par un Smart Contract."
+    goPasswordlessDesc:
+      "Sécurisez votre compte avec un Passkey (FaceID / TouchID). Vous n'aurez plus jamais besoin de taper votre mot de passe, et votre identité Web3 sera gérée par un Smart Contract.",
   },
   backupPassword: {
     title: "Mot de passe de secours",
     description: "Récupérez votre vault si Touch ID / Face ID est perdu",
     recommended: "Recommandé",
-    warning: "Sans mot de passe de secours, la perte de votre authenticateur (Touch ID / Face ID) rendra votre vault irrécupérable.",
+    warning:
+      "Sans mot de passe de secours, la perte de votre authenticateur (Touch ID / Face ID) rendra votre vault irrécupérable.",
     set: "Définir un mot de passe de secours",
     change: "Changer le mot de passe de secours",
     remove: "Supprimer le mot de passe de secours",
@@ -1975,7 +2200,10 @@ export const fr: Translations = {
     recover: "Mot de passe de secours",
     incorrect: "Mot de passe de secours incorrect.",
     notConfigured: "Aucun mot de passe de secours configuré.",
-    unlockHint: "Saisissez votre mot de passe de secours pour récupérer le coffre"
+    unlockHint:
+      "Saisissez votre mot de passe de secours pour récupérer le coffre",
+    shamirRequired:
+      "Un mot de passe de secours est requis avant de configurer la récupération Shamir. Créez-en un dans la section mot de passe de secours.",
   },
   reUnlock: {
     title: "Ré-authentification",
@@ -1984,10 +2212,10 @@ export const fr: Translations = {
     usePassword: "Utiliser le mot de passe",
     later: "Plus tard",
     unlock: "Déverrouiller",
-    passwordPlaceholder: "Mot de passe maître"
+    passwordPlaceholder: "Mot de passe maître",
   },
   securityBadge: {
-    title: "Badge de Sécurité"
+    title: "Badge de Sécurité",
   },
   dapps: {
     title: "dApps & Approbations",
@@ -1995,25 +2223,28 @@ export const fr: Translations = {
     dappsTracked: "dApps suivies",
     totalVisits: "visites totales",
     noVisits: "Aucune visite dApp enregistrée",
-    noVisitsHint: "Parcourez des dApps crypto et elles apparaîtront ici automatiquement",
+    noVisitsHint:
+      "Parcourez des dApps crypto et elles apparaîtront ici automatiquement",
     visits: "visites",
     refresh: "Actualiser",
     revokeApprovals: "Révoquer sur revoke.cash",
     clearHistory: "Effacer l'historique",
     confirmClear: "Confirmer",
     connectWallet: "Connectez un wallet d'abord",
-    connectWalletHint: "Liez votre wallet dans les Param\u00e8tres pour scanner les approbations on-chain",
+    connectWalletHint:
+      "Liez votre wallet dans les Param\u00e8tres pour scanner les approbations on-chain",
     scanning: "Scan des approbations on-chain…",
     scanningHint: "V\u00e9rification sur Ethereum mainnet via Etherscan",
     retry: "R\u00e9essayer",
     noApprovals: "Aucune approbation active",
-    noApprovalsHint: "Votre wallet n'a aucune approbation de token sur Ethereum mainnet",
+    noApprovalsHint:
+      "Votre wallet n'a aucune approbation de token sur Ethereum mainnet",
     rescan: "Scanner \u00e0 nouveau",
     unlimitedApprovals: "approbation(s) illimit\u00e9e(s)",
     allSafe: "Toutes les approbations sont limit\u00e9es",
     totalApprovals: "approbation(s) active(s)",
     revokeAdvice: "Envisagez de r\u00e9voquer celles inutilis\u00e9es",
-    revoke: "R\u00e9voquer"
+    revoke: "R\u00e9voquer",
   },
   secureDocuments: {
     title: "Documents S\u00e9curis\u00e9s",
@@ -2046,9 +2277,11 @@ export const fr: Translations = {
     captureImport: "Importer depuis la galerie",
     captureFiles: "Fichiers",
     chooseType: "Choisir le type de document",
-    chooseTypeDesc: "S\u00e9lectionnez le type de document que vous souhaitez scanner et s\u00e9curiser.",
+    chooseTypeDesc:
+      "S\u00e9lectionnez le type de document que vous souhaitez scanner et s\u00e9curiser.",
     emptyState: "Aucun document s\u00e9curis\u00e9 pour le moment",
-    emptyStateHint: "Ajoutez votre carte d'identit\u00e9, passeport ou permis de conduire dans un coffre local ultra-s\u00e9curis\u00e9.",
+    emptyStateHint:
+      "Ajoutez votre carte d'identit\u00e9, passeport ou permis de conduire dans un coffre local ultra-s\u00e9curis\u00e9.",
     fileTooLarge: "Le fichier doit faire moins de 5 Mo",
     saveError: "Erreur lors de la sauvegarde du document",
     revealImage: "R\u00e9v\u00e9ler l'image",
@@ -2063,7 +2296,8 @@ export const fr: Translations = {
     manualInfo: "Infos manuelles (OCR web limit\u00e9)",
     saveSecure: "Sauvegarder le document s\u00e9curis\u00e9",
     premiumFeature: "Fonctionnalit\u00e9 Premium",
-    premiumDesc: "Les documents s\u00e9curis\u00e9s sont chiffr\u00e9s et fragment\u00e9s via XChaCha20-Poly1305. Passez au premium pour stocker jusqu'\u00e0 {MAX_SECURE_DOCUMENTS} documents.",
+    premiumDesc:
+      "Les documents s\u00e9curis\u00e9s sont chiffr\u00e9s et fragment\u00e9s via XChaCha20-Poly1305. Passez au premium pour stocker jusqu'\u00e0 {MAX_SECURE_DOCUMENTS} documents.",
     maxSizeHint: "Taille max du fichier : 5 Mo",
     documentCount: "{count}/10 documents",
     downloading: "T\u00e9l\u00e9chargement des fragments\u2026",
@@ -2075,25 +2309,30 @@ export const fr: Translations = {
     formatOldSub: "Ancien format papier ou plastifi\u00e9",
     captureVersoHint: "Prenez le verso du document en photo.",
     mrzTargetHint: "Visez la bande MRZ ici",
-    nfcScanFirst: "Veuillez d'abord scanner le document (MRZ) pour obtenir le num\u00e9ro.",
+    nfcScanFirst:
+      "Veuillez d'abord scanner le document (MRZ) pour obtenir le num\u00e9ro.",
     nfcScanLoading: "Lecture NFC en cours...",
     nfcScanVerify: "V\u00e9rifier l'identit\u00e9 via NFC",
     ocrBirthDateReq: "Date de Naissance (Requis pour NFC)",
-    ocrPhotoExtracted: "\u2713 Photo S\u00e9curis\u00e9e Extraite",
+    ocrPhotoExtracted: "Photo S\u00e9curis\u00e9e Extraite",
     encryptingNfcPhoto: "Chiffrement de la photo NFC...",
     uploadNfcPhoto: "Upload photo NFC ({current}/{total})...",
     nfcSuccessTitle: "Identit\u00e9 L\u00e9gale (NFC)",
-    nfcSuccessMsg: "La puce a \u00e9t\u00e9 authentifi\u00e9e. Donn\u00e9es enregistr\u00e9es.",
+    nfcSuccessMsg:
+      "La puce a \u00e9t\u00e9 authentifi\u00e9e. Donn\u00e9es enregistr\u00e9es.",
     nfcErrorTitle: "Erreur NFC",
-    nfcErrorMsgNoChip: "La lecture n'a pas pu \u00eatre effectu\u00e9e. Assurez-vous que votre document poss\u00e8de bien une puce NFC.",
-    nfcErrorMsgKeep: "La lecture n'a pas pu \u00eatre effectu\u00e9e. Assurez-vous que de maintenir le document.",
-    decrypting: "Déchiffrement..."
+    nfcErrorMsgNoChip:
+      "La lecture n'a pas pu \u00eatre effectu\u00e9e. Assurez-vous que votre document poss\u00e8de bien une puce NFC.",
+    nfcErrorMsgKeep:
+      "La lecture n'a pas pu \u00eatre effectu\u00e9e. Assurez-vous que de maintenir le document.",
+    decrypting: "Déchiffrement...",
   },
   cloud: {
     title: "Cloud",
     emptyTitle: "Votre Cloud est vide",
     emptySub: "Envoyez des fichiers chiffrés de bout en bout.",
-    unlockRequired: "Veuillez déverrouiller le coffre pour chiffrer ce fichier.",
+    unlockRequired:
+      "Veuillez déverrouiller le coffre pour chiffrer ce fichier.",
     errorTooLarge: "Le fichier est trop volumineux (25 Mo max).",
     sending: "Envoi au Cloud...",
     uploadingProgress: "Upload {current}/{total}",
@@ -2141,7 +2380,7 @@ export const fr: Translations = {
     public: "Public",
     fileName: "Nom",
     fileSize: "Taille",
-    premiumRequired: "Premium requis"
+    premiumRequired: "Premium requis",
   },
   share: {
     title: "Partage S\u00e9curis\u00e9",
@@ -2177,14 +2416,15 @@ export const fr: Translations = {
     typeFile: "Fichier",
     generate: "Générer le lien sécurisé",
     premiumOnly: "Fonctionnalité Premium",
-    premiumOnlyDesc: "Le partage standalone (lien, note, fichier) est réservé aux membres Premium.",
+    premiumOnlyDesc:
+      "Le partage standalone (lien, note, fichier) est réservé aux membres Premium.",
     linkRequired: "URL requise.",
     noteRequired: "La note est vide.",
     fileRequired: "Sélectionnez un fichier.",
     linkTitlePlaceholder: "Titre (optionnel)",
     noteTitlePlaceholder: "Titre (optionnel)",
     noteContentPlaceholder: "Contenu de la note…",
-    fileDropHint: "Glisser ou cliquer pour sélectionner — 50 Mo max",
+    fileDropHint: "Glisser ou cliquer pour sélectionner : 50 Mo max",
     createAnother: "Nouveau partage",
     messageSender: "Message de l’expéditeur",
     openLink: "Ouvrir le lien",
@@ -2201,8 +2441,10 @@ export const fr: Translations = {
     noteLabel: "Note S\u00e9curis\u00e9e",
     credentialsLabel: "Identifiants",
     zkBadge: "Chiffr\u00e9 localement \u00b7 PIN requis \u00b7 Zero-Knowledge",
-    zkHint: "Le serveur ne voit qu\u2019un blob chiffr\u00e9. Le d\u00e9chiffrement se fait uniquement dans le navigateur du destinataire.",
-    pinChannelHint: "Ne transmettez jamais le lien et le PIN via le m\u00eame canal",
+    zkHint:
+      "Le serveur ne voit qu\u2019un blob chiffr\u00e9. Le d\u00e9chiffrement se fait uniquement dans le navigateur du destinataire.",
+    pinChannelHint:
+      "Ne transmettez jamais le lien et le PIN via le m\u00eame canal",
     successTitle: "Partage cr\u00e9\u00e9 avec succ\u00e8s",
     successSub: "Chiffr\u00e9 localement \u00b7 Zero-Knowledge",
     expiration: "Expiration",
@@ -2212,39 +2454,50 @@ export const fr: Translations = {
     paramError: "Erreur de param\u00e8tre",
     decryptContent: "D\u00e9chiffrer le contenu",
     hasPinQuestion: "Avez-vous le PIN\u00a0?",
-    hasPinBody: "Pour d\u00e9chiffrer ce partage sans que le serveur n\u2019y ait acc\u00e8s, le code PIN re\u00e7u est requis.",
+    hasPinBody:
+      "Pour d\u00e9chiffrer ce partage sans que le serveur n\u2019y ait acc\u00e8s, le code PIN re\u00e7u est requis.",
     decryptedSuccess: "D\u00e9chiffr\u00e9 avec succ\u00e8s",
     decryptedZkSub: "C\u00f4t\u00e9 client \u00b7 Zero-Knowledge",
-    decryptedZkHint: "Ces donn\u00e9es ont \u00e9t\u00e9 d\u00e9chiffr\u00e9es uniquement dans votre appareil. Elles ne transitent jamais en clair.",
+    decryptedZkHint:
+      "Ces donn\u00e9es ont \u00e9t\u00e9 d\u00e9chiffr\u00e9es uniquement dans votre appareil. Elles ne transitent jamais en clair.",
     autoDestructed: "Le partage s\u2019est auto-d\u00e9truit.",
-    unsupportedType: "Ce type n\u2019est pas encore support\u00e9 pour le partage.",
+    unsupportedType:
+      "Ce type n\u2019est pas encore support\u00e9 pour le partage.",
     viewCountLabel: "Vue {current} sur {max}",
     messageLabel: "Message personnel (optionnel)",
-    messagePlaceholder: "Ajoutez un message visible apr\u00e8s d\u00e9chiffrement\u2026",
+    messagePlaceholder:
+      "Ajoutez un message visible apr\u00e8s d\u00e9chiffrement\u2026",
     receiveInvalidLink: "Lien invalide ou expiré (clé manquante).",
     receiveFileNotFound: "Fichier introuvable.",
     receiveUnsupportedType: "Type de fichier non supporté par ce lien.",
     receiveLoadError: "Erreur de chargement.",
-    receiveDownloadError: "Erreur lors du téléchargement. Le fichier est peut-être indisponible sur le réseau IPFS.",
+    receiveDownloadError:
+      "Erreur lors du téléchargement. Le fichier est peut-être indisponible sur le réseau IPFS.",
     receiveLoadingPublic: "Chargement du partage public...",
     receiveDownloadingIpfs: "Téléchargement en cours (IPFS)...",
-    receiveZkFooter: "Fichier chiffré de bout en bout \u00b7 Décryptage local uniquement",
-    fileTooLarge: "Fichier trop volumineux"
+    receiveZkFooter:
+      "Fichier chiffré de bout en bout \u00b7 Décryptage local uniquement",
+    fileTooLarge: "Fichier trop volumineux",
   },
   pair: {
     title: "Sync inter-appareils",
     receive: "Recevoir",
     send: "Envoyer",
     sendTitle: "Envoyer vers mobile",
-    sendScanInstructions: "Scannez ce QR depuis VaultKeepR sur votre téléphone pour recevoir le vault",
+    sendScanInstructions:
+      "Scannez ce QR depuis VaultKeepR sur votre téléphone pour recevoir le vault",
     sendSuccess: "Vault envoyé avec succès !",
+    copyCode: "Copier le code",
+    codeCopied: "Copié",
     receiveFromPhone: "Recevoir depuis le téléphone",
     sendToDevice: "Envoyer vers un appareil",
-    scanInstructions: "Scannez ce QR depuis VaultKeepR sur votre téléphone (Paramètres > Device Sync)",
+    scanInstructions:
+      "Scannez ce QR depuis VaultKeepR sur votre téléphone (Paramètres > Device Sync)",
     waitingForDevice: "En attente de connexion...",
     expiresIn: "Expire dans {{time}}",
     confirmSend: "Envoyer le vault ?",
-    confirmSendDesc: "Votre vault chiffré sera envoyé de façon sécurisée à l'autre appareil.",
+    confirmSendDesc:
+      "Votre vault chiffré sera envoyé de façon sécurisée à l'autre appareil.",
     sendVault: "Envoyer le vault",
     transferring: "Transfert en cours...",
     success: "Vault synchronisé avec succès !",
@@ -2254,24 +2507,39 @@ export const fr: Translations = {
     openQr: "QR Code",
     scanHint: "Scannez un QR VaultKeepR",
     receiveTitle: "Recevoir depuis le Web",
-    receiveScanInstructions: "Scannez ce QR depuis VaultKeepR sur votre ordinateur ou extension",
+    receiveScanInstructions:
+      "Scannez ce QR depuis VaultKeepR sur votre ordinateur ou extension",
     sendInstructions: "Collez l'URI de pairing affiché sur l'autre appareil.",
     accepting: "Connexion...",
     waitingForVault: "En attente du vault...",
     importing: "Import du vault...",
-    encrypting: "Chiffrement et envoi..."
+    encrypting: "Chiffrement et envoi...",
+    biometricEnabledNotice:
+      "Déverrouillage biométrique ({method}) activé pour ce coffre.",
+    biometricSetupNotice:
+      "Activez {method} dans les réglages de l'appareil pour déverrouiller ce coffre.",
+    biometricSettingsAction: "Ouvrir les réglages",
+    biometricFaceId: "Face ID",
+    biometricTouchId: "Touch ID",
+    biometricFingerprint: "Empreinte digitale",
+    biometricFaceUnlock: "Reconnaissance faciale",
+    biometricIris: "Iris",
+    biometricGeneric: "Déverrouillage biométrique",
   },
   security: {
     passwordHealth: "Santé des mots de passe",
     passwordHealthDesc: "Audit de la robustesse de vos mots de passe",
     breachScanner: "Breach Scanner",
-    breachScannerDesc: "Vérifie si vos identifiants ont été compromis"
+    breachScannerDesc: "Vérifie si vos identifiants ont été compromis",
+    deviceCompromised: "Appareil compromis détecté (jailbreak/root)",
   },
   legacy: {
     title: "Héritage Numérique",
-    description: "Désignez des bénéficiaires qui pourront accéder à votre coffre après une période d'inactivité.",
+    description:
+      "Désignez des bénéficiaires qui pourront accéder à votre coffre après une période d'inactivité.",
     setup: "Configurer l'héritage",
-    setupDescription: "Configurez votre héritage numérique avec des bénéficiaires et un délai d'inactivité.",
+    setupDescription:
+      "Configurez votre héritage numérique avec des bénéficiaires et un délai d'inactivité.",
     status: "Statut de l'héritage",
     beneficiaries: "Bénéficiaires",
     addBeneficiary: "Ajouter un bénéficiaire",
@@ -2279,9 +2547,11 @@ export const fr: Translations = {
     beneficiaryAddress: "Adresse Smart Account",
     beneficiaryLabel: "Libellé (optionnel)",
     delay: "Délai d'inactivité",
-    delayDescription: "Durée sans heartbeat avant déclenchement de l'héritage (30 jours à 2 ans).",
+    delayDescription:
+      "Durée sans heartbeat avant déclenchement de l'héritage (30 jours à 2 ans).",
     gracePeriod: "Période de grâce",
-    gracePeriodDescription: "Délai supplémentaire après expiration avant que les bénéficiaires puissent réclamer (3 à 30 jours).",
+    gracePeriodDescription:
+      "Délai supplémentaire après expiration avant que les bénéficiaires puissent réclamer (3 à 30 jours).",
     heartbeat: "Heartbeat",
     lastHeartbeat: "Dernier heartbeat",
     sendHeartbeat: "Envoyer un heartbeat",
@@ -2292,30 +2562,36 @@ export const fr: Translations = {
     active: "Actif",
     inactive: "Inactif",
     revoke: "Révoquer l'héritage",
-    revokeConfirm: "Voulez-vous vraiment révoquer votre héritage numérique ? Les bénéficiaires ne pourront plus réclamer votre coffre.",
-    revokeDescription: "Désactive définitivement votre héritage numérique. Aucune notification ne sera envoyée aux bénéficiaires.",
+    revokeConfirm:
+      "Voulez-vous vraiment révoquer votre héritage numérique ? Les bénéficiaires ne pourront plus réclamer votre coffre.",
+    revokeDescription:
+      "Désactive définitivement votre héritage numérique. Aucune notification ne sera envoyée aux bénéficiaires.",
     qrScan: "Scanner un QR Code",
     pasteAddress: "Coller l'adresse",
     inviteLink: "Générer un lien d'invitation",
     inviteLinkCopied: "Lien d'invitation copié dans le presse-papiers",
     incomingTitle: "Héritages reçus",
-    incomingDescription: "Coffres pour lesquels vous êtes désigné comme bénéficiaire.",
+    incomingDescription:
+      "Coffres pour lesquels vous êtes désigné comme bénéficiaire.",
     claimButton: "Réclamer l'héritage",
-    claimSuccess: "Héritage réclamé avec succès. Vous avez maintenant accès au coffre.",
+    claimSuccess:
+      "Héritage réclamé avec succès. Vous avez maintenant accès au coffre.",
     premiumRequired: "Premium requis",
-    premiumRequiredDescription: "L'héritage numérique est disponible sur les plans Premium, Pro et Ultimate.",
+    premiumRequiredDescription:
+      "L'héritage numérique est disponible sur les plans Premium, Pro et Ultimate.",
     days: "jours",
     activate: "Activer l'héritage",
-    activateConfirm: "Activer votre héritage numérique ? Votre coffre sera accessible aux bénéficiaires après la période d'inactivité configurée.",
+    activateConfirm:
+      "Activer votre héritage numérique ? Votre coffre sera accessible aux bénéficiaires après la période d'inactivité configurée.",
     errorTooManyBeneficiaries: "Maximum 5 bénéficiaires autorisés.",
     errorInvalidDelay: "Le délai doit être entre 30 jours et 2 ans.",
     errorAlreadyActive: "Un héritage est déjà actif. Révoquez-le d'abord.",
     errorNotClaimable: "Cet héritage n'est pas encore réclamable.",
     errorNotBeneficiary: "Vous n'êtes pas bénéficiaire de cet héritage.",
     errorAlreadyClaimed: "Cet héritage a déjà été réclamé.",
-    statusGreen: "Tout va bien — le heartbeat est récent.",
-    statusYellow: "Attention — le heartbeat vieillit.",
-    statusRed: "Critique — l'héritage se déclenchera bientôt.",
+    statusGreen: "Tout va bien : le heartbeat est récent.",
+    statusYellow: "Attention : le heartbeat vieillit.",
+    statusRed: "Critique : l'héritage se déclenchera bientôt.",
     contactEmail: "Email",
     contactTelegram: "Pseudo Telegram",
     contactAddress: "Adresse Smart Account",
@@ -2324,27 +2600,29 @@ export const fr: Translations = {
     statusConfirmed: "Confirmé",
     inviteSent: "Invitation envoyée",
     inviteEmailSubject: "Vous êtes bénéficiaire d'un héritage numérique",
-    telegramBotRequired: "Le bénéficiaire doit d'abord envoyer /start à @VaultKeepRBot sur Telegram",
+    telegramBotRequired:
+      "Le bénéficiaire doit d'abord envoyer /start à @VaultKeepRBot sur Telegram",
     errorSmartAccountNotReady: "Votre Smart Account n'est pas encore prêt.",
     errorActivation: "Une erreur est survenue lors de l'activation.",
     errorRevocation: "Une erreur est survenue lors de la révocation.",
-    heartbeatCooldown: "Un heartbeat a été envoyé récemment. Le cooldown est actif."
+    heartbeatCooldown:
+      "Un heartbeat a été envoyé récemment. Le cooldown est actif.",
   },
   contentScript: {
     card: {
       title: "Paiement",
-      empty: "Aucune carte enregistrée pour ce site"
+      empty: "Aucune carte enregistrée pour ce site",
     },
     passkey: {
       title: "Choisir une clé d'accès",
       subtitle: "Se connecter avec une clé d'accès pour {0}",
       empty: "Aucune clé d'accès disponible pour ce site",
-      use: "Utiliser"
+      use: "Utiliser",
     },
     changePassword: {
       title: "Changer le mot de passe",
       current: "Actuel",
-      generate: "Générer"
+      generate: "Générer",
     },
     generator: {
       title: "Générateur de mot de passe",
@@ -2363,18 +2641,18 @@ export const fr: Translations = {
       strength: {
         weak: "Faible",
         medium: "Moyen",
-        strong: "Fort"
+        strong: "Fort",
       },
-      noFocusedField: "Cliquez sur un champ pour y coller le mot de passe"
+      noFocusedField: "Cliquez sur un champ pour y coller le mot de passe",
     },
     identity: {
       title: "Identité",
       analyzing: "Analyse en cours…",
-      empty: "Aucune identité enregistrée pour ce site"
+      empty: "Aucune identité enregistrée pour ce site",
     },
     locked: {
       title: "Coffre verrouillé",
-      body: "Déverrouillez l'extension pour utiliser vos identifiants enregistrés."
+      body: "Déverrouillez l'extension pour utiliser vos identifiants enregistrés.",
     },
     login: {
       title: "Connexion",
@@ -2387,11 +2665,11 @@ export const fr: Translations = {
       aliasLocked: "Déverrouillez l'extension pour créer un alias",
       aliasError: "Impossible de créer l'alias",
       aliasAddLicenseKey: "Ajouter une clé de licence",
-      search: "Rechercher…"
+      search: "Rechercher…",
     },
     phishing: {
       title: "Site suspect",
-      understood: "Compris"
+      understood: "Compris",
     },
     savePrompt: {
       newTitle: "Enregistrer le mot de passe ?",
@@ -2402,7 +2680,7 @@ export const fr: Translations = {
       username: "Identifiant",
       password: "Mot de passe",
       chooseEntry: "Mettre à jour quelle entrée ?",
-      neverForSite: "Ne jamais enregistrer pour ce site"
+      neverForSite: "Ne jamais enregistrer pour ce site",
     },
     signup: {
       title: "Inscription",
@@ -2411,14 +2689,14 @@ export const fr: Translations = {
       aliasPremium: "L'alias email nécessite Premium",
       aliasLocked: "Déverrouillez l'extension pour créer un alias",
       aliasError: "Impossible de créer l'alias",
-      aliasAddLicenseKey: "Ajouter une clé de licence"
+      aliasAddLicenseKey: "Ajouter une clé de licence",
     },
     toast: {
       generated: "Généré",
       saved: "Identifiants enregistrés",
       updated: "Identifiants mis à jour",
       filled: "Rempli",
-      saveError: "Échec de l'enregistrement — réessayez"
+      saveError: "Échec de l'enregistrement : réessayez",
     },
     tos: {
       title: "Analyse des CGU",
@@ -2439,24 +2717,27 @@ export const fr: Translations = {
       unilateralSafe: "Conditions apparemment stables",
       unilateralDanger: "Modification unilatérale des conditions autorisée",
       liabilitySafe: "Absence de limitation de responsabilité excessive",
-      liabilityDanger: "Clause de responsabilité limitée / sans garantie présente"
+      liabilityDanger:
+        "Clause de responsabilité limitée / sans garantie présente",
     },
     totp: {
       title: "Code de double authentification",
       fill: "Remplir",
       copy: "Copier",
       noCode: "Aucun code 2FA enregistré pour ce site",
-      hintBody: "Ouvrez une page de configuration 2FA pour ajouter un code"
-    }
+      hintBody: "Ouvrez une page de configuration 2FA pour ajouter un code",
+    },
   },
 
   enterprise: {
     espacePersonal: "Personnel",
     espaceOrg: "Organisation",
     leaveOrgMode: "Quitter",
-    leaveOrgModeTitle: "Quitter le mode Organisation (les clés Organisation sont évincées de la mémoire, le vault perso reste déverrouillé)",
+    leaveOrgModeTitle:
+      "Quitter le mode Organisation (les clés Organisation sont évincées de la mémoire, le vault perso reste déverrouillé)",
     autoSaveOrg: "Autosave vers l'org",
-    autoSaveOrgTitle: "Sur les domaines whitelistés, les mots de passe capturés par l'autosave vont dans l'espace Organisation (exécuté au prochain déverrouillage si besoin)",
+    autoSaveOrgTitle:
+      "Sur les domaines whitelistés, les mots de passe capturés par l'autosave vont dans l'espace Organisation (exécuté au prochain déverrouillage si besoin)",
     sharedVaults: "Shared vaults",
     noVaults: "Aucun vault organisation.",
     entries: "entrées",
@@ -2465,27 +2746,32 @@ export const fr: Translations = {
     loading: "Chargement…",
     joinOrg: {
       title: "Rejoindre mon organisation",
-      subtitle: "Saisissez votre email professionnel. Si votre domaine est enregistré, l'admin IT recevra votre demande d'accès.",
+      subtitle:
+        "Saisissez votre email professionnel. Si votre domaine est enregistré, l'admin IT recevra votre demande d'accès.",
       emailLabel: "Email professionnel",
       submit: "Demander à rejoindre",
       submitting: "Envoi…",
       successTitle: "Demande envoyée.",
       successBody: "Votre demande pour rejoindre",
-      successBody2: "est en attente d'approbation. L'admin IT doit valider votre accès dans la console, puis vous recevrez une invitation.",
+      successBody2:
+        "est en attente d'approbation. L'admin IT doit valider votre accès dans la console, puis vous recevrez une invitation.",
       errorEmail: "Email invalide",
       errorSign: "Signature échouée",
-      noIdentity: "Vous devez d'abord créer votre vault pour dériver votre identité (AA). Votre signature prouvera qui vous êtes.",
+      noIdentity:
+        "Vous devez d'abord créer votre vault pour dériver votre identité (AA). Votre signature prouvera qui vous êtes.",
       createVaultBtn: "Créer mon vault",
-      zkNote: "Votre signature prouve votre identité sans révéler votre clé privée. L'email n'est stocké que par domaine.",
+      zkNote:
+        "Votre signature prouve votre identité sans révéler votre clé privée. L'email n'est stocké que par domaine.",
       ssoDivider: "ou vérifiez instantanément via",
       ssoGoogle: "Continuer avec Google",
       ssoMicrosoft: "Continuer avec Microsoft",
       ssoSaml: "Continuer avec SAML (IdP entreprise)",
-      ssoVerified: "Email vérifié via le fournisseur SSO de votre entreprise"
+      ssoVerified: "Email vérifié via le fournisseur SSO de votre entreprise",
     },
     team: {
-      title: "Team — Crypto tasks",
-      noTasks: "Aucune task en attente. L'admin IT peut gérer les membres depuis le dashboard.",
+      title: "Team : Crypto tasks",
+      noTasks:
+        "Aucune task en attente. L'admin IT peut gérer les membres depuis le dashboard.",
       execute: "Exécuter",
       executing: "Exécution…",
       done: "Exécuté avec succès",
@@ -2493,7 +2779,8 @@ export const fr: Translations = {
       rekey: "Rotation de clé (révocation)",
       resign: "Re-signer le manifest",
       consoleLink: "dashboard",
-      zkNote: "Ces tasks durcissent cryptographiquement les actions admin (rotation de clé, création d'envelope). L'accès est déjà coupé côté serveur immédiatement après révocation."
-    }
-  }
+      zkNote:
+        "Ces tasks durcissent cryptographiquement les actions admin (rotation de clé, création d'envelope). L'accès est déjà coupé côté serveur immédiatement après révocation.",
+    },
+  },
 };

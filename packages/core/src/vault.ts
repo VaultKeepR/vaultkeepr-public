@@ -419,33 +419,9 @@ export function normalizeUrl(raw: string): string {
 
   u = u.replace(/^www\./, "");
 
-  // S8786: `/#.*$/` rescans the tail for every candidate '#' that is
-  // followed by a line terminator (quadratic on inputs like "#a\n#a\n…").
-  // JS `.` never matches \n, \r, \u2028 or \u2029 and `$` (no `m` flag)
-  // matches only at end of input, so that regex strips nothing but the
-  // first "#…end" suffix containing no line terminator: the leftmost '#'
-  // located after the LAST line terminator, if any.
-  const lastTerminator = Math.max(
-    u.lastIndexOf("\n"),
-    u.lastIndexOf("\r"),
-    u.lastIndexOf("\u2028"),
-    u.lastIndexOf("\u2029")
-  );
-  const hash = u.indexOf("#", lastTerminator + 1);
-  if (hash !== -1) {
-    u = u.slice(0, hash);
-  }
+  u = u.replace(/#.*$/, "");
 
-  // S8786: `/\/+$/` restarts an O(run-length) attempt at every position
-  // inside a slash run that does not end the string (quadratic on inputs
-  // like "///…///x"). A greedy `\/+$` match always spans the maximal
-  // trailing run of U+002F, so the linear equivalent is one backwards
-  // scan dropping every trailing '/'.
-  let end = u.length;
-  while (end > 0 && u.codePointAt(end - 1)! === 47) {
-    end--;
-  }
-  u = u.slice(0, end);
+  u = u.replace(/\/+$/, "");
   return u;
 }
 

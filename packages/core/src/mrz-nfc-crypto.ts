@@ -1,6 +1,6 @@
 import { sha1 } from "@noble/hashes/legacy.js";
 import { utf8ToBytes } from "@noble/hashes/utils.js";
-import { logger } from "@vaultkeepr/logger";
+import { logger } from "@vault-keeper/logger";
 
 
 
@@ -16,8 +16,8 @@ function calculateCheckDigit(str: string): string {
   for (let i = 0; i < str.length; i++) {
     const char = str[i].toUpperCase();
     let val = 0;
-    if (char >= "0" && char <= "9") val = Number.parseInt(char, 10);else
-    if (char >= "A" && char <= "Z") val = char.codePointAt(0)! - 55;else
+    if (char >= "0" && char <= "9") val = parseInt(char, 10);else
+    if (char >= "A" && char <= "Z") val = char.charCodeAt(0) - 55;else
     if (char === "<") val = 0;
     sum += val * weights[i % 3];
   }

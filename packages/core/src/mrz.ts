@@ -61,12 +61,12 @@ function parseTD2(l1: string, l2: string): MRZResult {
 
 
   const docNum = l2.substring(0, 12);
-  const docNumCheck = Number.parseInt(l2[12], 10);
+  const docNumCheck = parseInt(l2[12], 10);
   const docNumValid = calculateMrzChecksum(docNum) === docNumCheck;
 
   const givenNames = cleanMrzField(l2.substring(13, 27));
   const dob = l2.substring(27, 33);
-  const dobCheck = Number.parseInt(l2[33], 10);
+  const dobCheck = parseInt(l2[33], 10);
   const dobValid = calculateMrzChecksum(dob) === dobCheck;
 
   const sexChar = l2[34];
@@ -80,7 +80,7 @@ function parseTD2(l1: string, l2: string): MRZResult {
     givenNames,
     documentNumber: docNum,
     birthDate: parseMrzDate(dob),
-    sex: sex as "M" | "F" | "X",
+    sex: sex as any,
     issuer,
     nationality: issuer,
     valid: docNumValid && dobValid
@@ -99,13 +99,13 @@ function parseTD3(l1: string, l2: string): MRZResult {
   const givenNames = cleanMrzField(namePart.substring(firstSep + 2));
 
   const docNum = l2.substring(0, 9);
-  const docNumCheck = Number.parseInt(l2[9], 10);
+  const docNumCheck = parseInt(l2[9], 10);
   const nationality = l2.substring(10, 13);
   const dob = l2.substring(13, 19);
-  const dobCheck = Number.parseInt(l2[19], 10);
+  const dobCheck = parseInt(l2[19], 10);
   const sexChar = l2[20];
   const expiry = l2.substring(21, 27);
-  void Number.parseInt(l2[27], 10);
+  void parseInt(l2[27], 10);
 
   return {
     type: "TD3",

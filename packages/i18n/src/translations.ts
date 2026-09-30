@@ -5,6 +5,8 @@ export interface Translations {
     save: string;
     cancel: string;
     loading: string;
+    active: string;
+    inactive: string;
     sync: string;
     unlock: string;
     lock: string;
@@ -202,14 +204,17 @@ export interface Translations {
     syncIpfsErrPassword: string;
     syncIpfsErrSignature: string;
     syncIpfsErrDecrypt: string;
+    syncIpfsErrFetch: string;
     syncIpfsErrGeneric: string;
     syncIpfsBusy: string;
     ipfsGatewayLabel: string;
     ipfsGatewayPlaceholder: string;
     ipfsGatewayHint: string;
-    ipfsGatewaySaved: string;
+    ipfsGatewayDisabledNote: string;
     clipboardAutoClear: string;
     clipboardAutoClearHint: string;
+    breachAlerts: string;
+    breachAlertsHint: string;
     connectedDevices: string;
     deviceLastSeen: string;
     revokeDevice: string;
@@ -299,11 +304,6 @@ export interface Translations {
     saving: string;
     savedBanner: string;
     saveErrorBanner: string;
-    delegationNone: string;
-    delegationLoading: string;
-    delegationActive: string;
-    delegationExpiredLabel: string;
-    delegationExpireIn: string;
     delegationRenew: string;
     delegationSetup: string;
     delegationHint: string;
@@ -490,6 +490,7 @@ export interface Translations {
     syncIpfsBusy: string;
     ipfsGatewayLabel: string;
     ipfsGatewayPlaceholder: string;
+    ipfsGatewayDisabledNote: string;
     alreadyLatest: string;
     saveError: string;
     deviceSyncRemovedHint: string;
@@ -805,11 +806,12 @@ export interface Translations {
     thisSiteOnly: string;
     sortDefault: string;
     sortMostUsed: string;
-    sortRecentlyUsed: string;
+    recent: string;
     sortLastSaved: string;
     customGroup: string;
     allGroups: string;
     selectEntry: string;
+    totpBadge: string;
   };
   generator: {
     desc: string;
@@ -1022,12 +1024,8 @@ export interface Translations {
     uriCopied: string;
     syncSuccess: string;
 
-
-
     syncConflictTitle: string;
     syncConflictBody: string;
-
-
 
     syncConflictPullRemote: string;
     syncConflictDismiss: string;
@@ -1142,12 +1140,34 @@ export interface Translations {
     sortAz: string;
     sortZa: string;
     sortDomain: string;
+    sortLastUsed: string;
     noResult: string;
     emptyHint: string;
     quickSearchTitle: string;
     noResults: string;
     noRecentEntries: string;
     recent: string;
+    totpBadge: string;
+  };
+  backupPrompt: {
+    title: string;
+    body: string;
+    export: string;
+    exportDone: string;
+    confirm: string;
+    continue: string;
+  };
+  toolsPanel: {
+    shareDesc: string;
+    cloudDesc: string;
+    docsDesc: string;
+  };
+  breachAlert: {
+    titleOne: string;
+    titleMany: string;
+    bodyOne: string;
+    bodyMany: string;
+    channelName: string;
   };
   detailScreen: {
     back: string;
@@ -1424,8 +1444,14 @@ export interface Translations {
     appStore: string;
     navPremium: string;
     navDownload: string;
+    navMenuOpen: string;
+    navMenuClose: string;
     navTurboTest: string;
     navOpenApp: string;
+    navShop: string;
+    navBlog: string;
+    bannerNew: string;
+    bannerSeePlans: string;
     heroSubtitle: string;
     heroCta: string;
     trustBadge: string;
@@ -1449,6 +1475,9 @@ export interface Translations {
     step4Desc: string;
     featuresTitle: string;
     featuresSubtitle: string;
+    featuresCluster1: string;
+    featuresCluster2: string;
+    featuresCluster3: string;
     feat1Title: string;
     feat1Desc: string;
     feat2Title: string;
@@ -1470,16 +1499,6 @@ export interface Translations {
     ctaTitle: string;
     ctaSubtitle: string;
     ctaButton: string;
-    techTitle: string;
-    techSubtitle: string;
-    tech1Name: string;
-    tech1Desc: string;
-    tech2Name: string;
-    tech2Desc: string;
-    tech3Name: string;
-    tech3Desc: string;
-    tech4Name: string;
-    tech4Desc: string;
     techPillarLink: string;
     privacyBadgeLabel: string;
     privacyBadgeTitle: string;
@@ -1495,6 +1514,26 @@ export interface Translations {
     footerDocs: string;
     footerSecurity: string;
     footerChangelog: string;
+    footerColProduct: string;
+    footerColResources: string;
+    footerColSupport: string;
+    footerColLegal: string;
+    footerDownload: string;
+    footerPricing: string;
+    footerNfcShop: string;
+    footerAbout: string;
+    footerPasswordGuide: string;
+    footerZeroKnowledge: string;
+    footerComparisons: string;
+    footerMigrations: string;
+    footerHelpCenter: string;
+    footerRecovery: string;
+    footerDeleteAccount: string;
+    footerSecurityLabel: string;
+    footerAlternatives: string;
+    footerMigrationGuides: string;
+    footerAlternative: string;
+    footerMigrateFrom: string;
     footerGithub: string;
     footerSocialGithubAria: string;
     footerSocialXAria: string;
@@ -1566,13 +1605,10 @@ export interface Translations {
     playStore: string;
     heroTagCloud: string;
     heroTagAndroid: string;
-    tech5Name: string;
-    tech5Desc: string;
+    platformTitle: string;
     heroH1Prefix: string;
     heroH1Main: string;
-    heroH1Suffix: string;
     heroCtaDetailed: string;
-    heroReassurance: string;
     heroSecondaryCta: string;
     heroGitHubStars: string;
     trustSignalNoEmail: string;
@@ -1609,6 +1645,45 @@ export interface Translations {
     stickyNavFaq: string;
     comparePreviewTitle: string;
     comparePreviewSubtitle: string;
+    compareSeeAll: string;
+    faqTitle: string;
+    faqSubtitle: string;
+    faqQ1: string;
+    faqA1: string;
+    faqQ2: string;
+    faqA2: string;
+    faqQ3: string;
+    faqA3: string;
+    faqQ4: string;
+    faqA4: string;
+    faqQ5: string;
+    faqA5: string;
+    featuresAlso: string;
+    featuresCompareLink: string;
+    featuresPremiumLink: string;
+    heroPill1: string;
+    heroPill2: string;
+    heroPill3: string;
+    appshotCaption: string;
+    appshotVersion: string;
+    receiptsKicker: string;
+    receiptsTitle: string;
+    receiptsIntro: string;
+    receipt1Num: string;
+    receipt1Text: string;
+    receipt1Check: string;
+    receipt2Num: string;
+    receipt2Text: string;
+    receipt2Check: string;
+    receipt3Num: string;
+    receipt3Text: string;
+    receipt3Check: string;
+    receipt4Num: string;
+    receipt4Text: string;
+    receipt4Check: string;
+    founderKicker: string;
+    founderQuote: string;
+    founderAttrib: string;
     bannerCloseAria: string;
   };
   vaultAppEntry: {
@@ -1631,6 +1706,19 @@ export interface Translations {
     billingLabel: string;
     billingYearly: string;
     billingMonthly: string;
+    cardPremB1: string;
+    cardPremB2: string;
+    cardProB1: string;
+    cardProB2: string;
+    cardUltB1: string;
+    cardUltB2: string;
+    cardLifeB1: string;
+    cardLifeB2: string;
+    cardLifeB3: string;
+    cardAnonymous: string;
+    cardOneTime: string;
+    fairUse: string;
+    comparePlans: string;
     featLogins: string;
     featCards: string;
     featIdentities: string;
@@ -1708,94 +1796,17 @@ export interface Translations {
     cryptoLifetimeExclusive: string;
   };
   onboarding: {
-    welcomeTitle: string;
-    welcomeBody: string;
-    vaultTitle: string;
-    vaultBody: string;
-    vaultLocal: string;
-    vaultLocalDesc: string;
-    vaultIpfs: string;
-    vaultIpfsDesc: string;
-    saveTitle: string;
-    saveBody: string;
-    skip: string;
-    next: string;
-    done: string;
-    replaySettings: string;
-    step1Title: string;
-    step1Desc: string;
-    step2Title: string;
-    step2Desc: string;
-    step3Title: string;
-    step3Desc: string;
-    step4Title: string;
-    step4Desc: string;
-    step5Title: string;
-    step5Desc: string;
-    start: string;
-    connectCta: string;
-    doNotShowAgain: string;
-    lockTabsTitle: string;
-    lockTabsDesc: string;
-    lockPasskeyTitle: string;
-    lockPasskeyDesc: string;
-    lockPasswordTitle: string;
-    lockPasswordDesc: string;
-    lockOption1Title: string;
-    lockOption1Desc: string;
-    lockOption2Title: string;
-    lockOption2Desc: string;
-    lockNewVaultTitle: string;
-    lockNewVaultDesc: string;
     landingCreateBtn: string;
     landingUnlockBtn: string;
     landingSubtitle: string;
-    landingDemoBtn: string;
-    landingDemoDesc: string;
     landingDeviceSync: string;
     loadingVault: string;
     loadingVaultDesc: string;
     welcomeBack: string;
     welcomeBackDesc: string;
-    firstTime: string;
-    advancedOptions: string;
-    hideAdvanced: string;
-    methodsDivider: string;
-    noVaultYet: string;
-    noVaultYetDesc: string;
+    landingDemoBtn: string;
+    landingDemoDesc: string;
     createVaultIntro: string;
-    tabBarTitle: string;
-    tabBarDesc: string;
-    searchTitle: string;
-    searchDesc: string;
-    primerTitle: string;
-    primerSubtitle: string;
-    primerSlide1Title: string;
-    primerSlide1Desc: string;
-    primerSlide2Title: string;
-    primerSlide2Desc: string;
-    primerSlide3Title: string;
-    primerSlide3Desc: string;
-    primerQuizTitle: string;
-    primerQ1: string;
-    primerQ1a1: string;
-    primerQ1a2: string;
-    primerQ1Wrong: string;
-    primerQ2: string;
-    primerQ2a1: string;
-    primerQ2a2: string;
-    primerQ2Wrong: string;
-    primerQ3: string;
-    primerQ3a1: string;
-    primerQ3a2: string;
-    primerQ3Wrong: string;
-    primerQ4: string;
-    primerQ4a1: string;
-    primerQ4a2: string;
-    primerQ4Wrong: string;
-    primerAllCorrect: string;
-    primerContinue: string;
-    primerIUnderstand: string;
   };
   saveBanner: {
     loginFormDetected: string;
@@ -1888,16 +1899,6 @@ export interface Translations {
     stat4Value: string;
     stat4Label: string;
     techTitle: string;
-    testimonialTitle: string;
-    testimonial1Text: string;
-    testimonial1Author: string;
-    testimonial1Role: string;
-    testimonial2Text: string;
-    testimonial2Author: string;
-    testimonial2Role: string;
-    testimonial3Text: string;
-    testimonial3Author: string;
-    testimonial3Role: string;
   };
   passkey: {
     folder: string;
@@ -1953,6 +1954,7 @@ export interface Translations {
     incorrect: string;
     notConfigured: string;
     unlockHint: string;
+    shamirRequired: string;
   };
   reUnlock: {
     title: string;
@@ -2214,6 +2216,8 @@ export interface Translations {
     sendTitle: string;
     sendScanInstructions: string;
     sendSuccess: string;
+    copyCode: string;
+    codeCopied: string;
     receiveFromPhone: string;
     sendToDevice: string;
     scanInstructions: string;
@@ -2236,12 +2240,22 @@ export interface Translations {
     waitingForVault: string;
     importing: string;
     encrypting: string;
+    biometricEnabledNotice: string;
+    biometricSetupNotice: string;
+    biometricSettingsAction: string;
+    biometricFaceId: string;
+    biometricTouchId: string;
+    biometricFingerprint: string;
+    biometricFaceUnlock: string;
+    biometricIris: string;
+    biometricGeneric: string;
   };
   security: {
     passwordHealth: string;
     passwordHealthDesc: string;
     breachScanner: string;
     breachScannerDesc: string;
+    deviceCompromised: string;
   };
   legacy: {
     title: string;
@@ -2306,12 +2320,6 @@ export interface Translations {
     errorRevocation: string;
     heartbeatCooldown: string;
   };
-
-
-
-
-
-
 
   contentScript: {
     card: {
@@ -2486,6 +2494,8 @@ export const en: Translations = {
     save: "Save",
     cancel: "Cancel",
     loading: "Loading",
+    active: "Active",
+    inactive: "Inactive",
     sync: "Sync",
     unlock: "Unlock",
     lock: "Lock",
@@ -2554,7 +2564,8 @@ export const en: Translations = {
     featurePillMultiDevice: "Multi-device sync",
     create: "Create",
     importTitle: "Import from another manager",
-    importDesc: "Bitwarden, Chrome, 1Password, LastPass, ProtonPass, Dashlane...",
+    importDesc:
+      "Bitwarden, Chrome, 1Password, LastPass, ProtonPass, Dashlane...",
     importBtn: "Select file (.csv / .json)",
     importSuccess: "Import successful",
     importSuccessDesc: "{count} entries imported into your vault.",
@@ -2570,7 +2581,7 @@ export const en: Translations = {
     filter: "Filter",
     retry: "Retry",
     hideDetails: "Hide details",
-    showDetails: "Show details"
+    showDetails: "Show details",
   },
   settings: {
     title: "Settings",
@@ -2586,7 +2597,8 @@ export const en: Translations = {
     lockVault: "Lock the Vault",
     sessionDuration: "Session duration",
     persistSession: "Keep session across background restarts",
-    persistSessionDesc: "Mirror your master password to Extension session storage so identity / account abstraction keep working when the background restarts. Disable for stricter in-memory-only security.",
+    persistSessionDesc:
+      "Mirror your master password to Extension session storage so identity / account abstraction keep working when the background restarts. Disable for stricter in-memory-only security.",
     premium: "Premium",
     sessionDurationClose: "Until tab close",
     sessionDuration1h: "1 hour",
@@ -2594,7 +2606,8 @@ export const en: Translations = {
     sessionDuration7d: "7 days",
     sessionDuration30d: "30 days",
     syncFrequency: "Background sync frequency",
-    syncFrequencyDesc: "How often the extension checks for cross-device changes. Off/manual disables background contact.",
+    syncFrequencyDesc:
+      "How often the extension checks for cross-device changes. Off/manual disables background contact.",
     syncFrequencyOff: "Off",
     syncFrequency1m: "Every 1 minute",
     syncFrequency5m: "Every 5 minutes",
@@ -2604,43 +2617,54 @@ export const en: Translations = {
     privacy: "Privacy",
     privacyDesc: "Control data exposure and consent",
     tosAnalysis: "Terms of Service analysis",
-    tosAnalysisDesc: "Analyze Terms of Service / privacy pages on sites you visit. Runs locally on your device. Off by default.",
+    tosAnalysisDesc:
+      "Analyze Terms of Service / privacy pages on sites you visit. Runs locally on your device. Off by default.",
     tosModelDownloading: "Downloading analysis model…",
-    tosModelReady: "Analysis model ready — neural mode active",
-    tosModelError: "Model download failed — basic analysis",
-    sessionDescription: "How long you stay unlocked after page reload. Session is always cleared when tab closes.",
+    tosModelReady: "Analysis model ready : neural mode active",
+    tosModelError: "Model download failed : basic analysis",
+    sessionDescription:
+      "How long you stay unlocked after page reload. Session is always cleared when tab closes.",
     unlockDelegationDuration: "Wallet signature cache",
-    unlockDelegationDescription: "How long the unlock signature is kept. No re-signing needed until expiry.",
+    unlockDelegationDescription:
+      "How long the unlock signature is kept. No re-signing needed until expiry.",
     unlockDelegation24h: "24 hours",
     unlockDelegation7d: "7 days",
     unlockDelegation14d: "14 days",
     unlockDelegation30d: "30 days",
     unlockDelegationStatusNone:
-    "No unlock signature cached yet — your wallet may be prompted for the next v3 encrypt/sync action.",
-    unlockDelegationStatusExpired: "Unlock signature cache has expired — the wallet may ask you to sign again.",
+      "No unlock signature cached yet : your wallet may be prompted for the next v3 encrypt/sync action.",
+    unlockDelegationStatusExpired:
+      "Unlock signature cache has expired : the wallet may ask you to sign again.",
     unlockDelegationStatusUntil: "Unlock signature valid until",
     unlockDelegationStatusOtherWallet:
-    "A signature is cached for a different wallet address — connect the matching wallet or unlock again from IPFS.",
+      "A signature is cached for a different wallet address : connect the matching wallet or unlock again from IPFS.",
     clearCache: "Clear CID cache",
     clearCacheInProgress: "In progress…",
     about: "About",
     resetVault: "Reset vault",
-    resetVaultDescription: "Deletes all local vault data (backup, session, delegations). You will need to unlock again or load from IPFS.",
-    resetVaultConfirm: "All local vault data will be permanently deleted. Continue?",
+    resetVaultDescription:
+      "Deletes all local vault data (backup, session, delegations). You will need to unlock again or load from IPFS.",
+    resetVaultConfirm:
+      "All local vault data will be permanently deleted. Continue?",
     resetVaultInProgress: "Resetting…",
     dangerZone: "Danger Zone",
     deduplicateVault: "Remove duplicates",
-    deduplicateDescription: "Scans all entries and removes exact duplicates. Original entries are preserved.",
+    deduplicateDescription:
+      "Scans all entries and removes exact duplicates. Original entries are preserved.",
     deduplicateConfirm: "Remove all duplicate entries from the vault?",
     deduplicateResult: "{count} duplicate(s) removed.",
     unpinIpfs: "Unpin from IPFS",
-    unpinIpfsDescription: "Removes the vault CID from the IPFS registry. Your local vault is not affected.",
-    unpinIpfsConfirm: "Unpin the vault from IPFS? Your local data will remain intact.",
+    unpinIpfsDescription:
+      "Removes the vault CID from the IPFS registry. Your local vault is not affected.",
+    unpinIpfsConfirm:
+      "Unpin the vault from IPFS? Your local data will remain intact.",
     deleteAllData: "Delete all data",
-    deleteAllDataDescription: "Permanently deletes all local data AND your encrypted vault from IPFS. This action is irreversible.",
+    deleteAllDataDescription:
+      "Permanently deletes all local data AND your encrypted vault from IPFS. This action is irreversible.",
     deleteAllDataStep1Title: "Type the confirmation phrase",
     deleteAllDataStep1Hint: "Type the following phrase exactly to continue:",
-    deleteAllDataConfirmPhraseFr: "Je confirme vouloir supprimer toutes mes données",
+    deleteAllDataConfirmPhraseFr:
+      "Je confirme vouloir supprimer toutes mes données",
     deleteAllDataConfirmPhraseEn: "I confirm I want to delete all my data",
     deleteAllDataStep2Title: "Email verification",
     deleteAllDataEmailLabel: "Verification email",
@@ -2655,23 +2679,26 @@ export const en: Translations = {
     deleteAllDataNoWallet: "Connect your wallet first.",
     importLabel: "Import",
     importDescription:
-    "Import your vault from another app. Supported: Bitwarden JSON, Proton Pass JSON, VaultKeepR, 1Password 1PIF, CSV (many vendors), or PGP. Not supported: encrypted Bitwarden export, 1Password .1pux.",
+      "Import your vault from another app. Supported: Bitwarden JSON, Proton Pass JSON, VaultKeepR, 1Password 1PIF, CSV (many vendors), or PGP. Not supported: encrypted Bitwarden export, 1Password .1pux.",
     importFormats:
-    "Bitwarden JSON, Proton Pass JSON, VaultKeepR JSON, CSV (LastPass, Chrome, 1Password, …), 1PIF (1Password), PGP",
+      "Bitwarden JSON, Proton Pass JSON, VaultKeepR JSON, CSV (LastPass, Chrome, 1Password, …), 1PIF (1Password), PGP",
     importPgpHint: "PGP passphrase to decrypt the file:",
     importVaultPasswordHint: "Vault Keeper master password:",
     exportLabel: "Export",
-    exportDescription: "Export your vault. Unlock the vault first, then return here to export.",
+    exportDescription:
+      "Export your vault. Unlock the vault first, then return here to export.",
     exportPlain: "JSON (plain)",
     exportEncrypted: "JSON (encrypted)",
     exportPgp: "PGP",
-    exportUnlockHint: "Unlock the vault first, then return to Settings to export.",
+    exportUnlockHint:
+      "Unlock the vault first, then return to Settings to export.",
     exportEncryptedHint: "Master password to encrypt the export:",
     exportPgpHint: "PGP passphrase to encrypt the export:",
     exportSaved: "File saved successfully.",
     emptyFile: "Empty file.",
     pgpSupport: "PGP Support",
-    pgpSupportBody: "PGP import is handled via separate flow. Please use the Desktop app for complex PGP imports.",
+    pgpSupportBody:
+      "PGP import is handled via separate flow. Please use the Desktop app for complex PGP imports.",
     tabGeneral: "General",
     tabAccount: "Account",
     tabSync: "Sync",
@@ -2681,21 +2708,32 @@ export const en: Translations = {
     tabAlias: "Alias",
     tabWallet: "Wallet",
     syncIpfsHint:
-    "Pull the latest encrypted vault from IPFS (wallet connected, master password in session, unlock signature or delegation). Use after changes on another device. « Save to IPFS » uploads from this device.",
+      "Pull the latest encrypted vault from IPFS (wallet connected, master password in session, unlock signature or delegation). Use after changes on another device. « Save to IPFS » uploads from this device.",
     syncIpfsSuccess: "Vault updated from IPFS.",
-    syncIpfsErrWallet: "Connect your wallet (Settings → Wallet) to sync from IPFS.",
+    syncIpfsErrWallet:
+      "Connect your wallet (Settings → Wallet) to sync from IPFS.",
     syncIpfsErrNoRemote: "No vault CID found for this wallet on the server.",
-    syncIpfsErrPassword: "Unlock the extension first (master password in session).",
-    syncIpfsErrSignature: "Wallet signature or unlock delegation required — unlock from IPFS once or accept the sign request.",
-    syncIpfsErrDecrypt: "Could not decrypt the remote vault (wrong password or corrupted data).",
-    syncIpfsErrGeneric: "Sync from IPFS failed. Try again or check the service worker console.",
+    syncIpfsErrPassword:
+      "Unlock the extension first (master password in session).",
+    syncIpfsErrSignature:
+      "Wallet signature or unlock delegation required : unlock from IPFS once or accept the sign request.",
+    syncIpfsErrDecrypt:
+      "Could not decrypt the remote vault (wrong password or corrupted data).",
+    syncIpfsErrFetch:
+      "Could not download the remote vault from IPFS (gateway unreachable). Try again later.",
+    syncIpfsErrGeneric:
+      "Sync from IPFS failed. Try again or check the service worker console.",
     syncIpfsBusy: "Syncing…",
     ipfsGatewayLabel: "Custom IPFS gateway",
     ipfsGatewayPlaceholder: "https://ipfs.example.com/ipfs",
-    ipfsGatewayHint: "Optional. Use your own IPFS gateway to read your vault instead of public gateways (ipfs.io, dweb.link). Leave empty to use the defaults.",
-    ipfsGatewaySaved: "Gateway saved ✓",
+    ipfsGatewayHint:
+      "Optional. Use your own IPFS gateway to read your vault instead of the default gateways (ipfs.vaultkeepr.xyz, gateway.pinata.cloud). Leave empty to use the defaults.",
+    ipfsGatewayDisabledNote:
+      "Disabled: for security, the extension only connects to official IPFS gateways (strict CSP).",
     clipboardAutoClear: "Auto-clear clipboard",
     clipboardAutoClearHint: "Clears clipboard 30s after copy",
+    breachAlerts: "Breach alerts",
+    breachAlertsHint: "Checks once a day, even when the app is closed, whether your passwords appear in known breaches. You get notified when new compromises are detected.",
     connectedDevices: "Connected devices ({count}/5)",
     deviceLastSeen: "Last seen on",
     revokeDevice: "Revoke",
@@ -2722,15 +2760,18 @@ export const en: Translations = {
     alreadyLatest: "Vault is already up to date",
     saveError: "Save error",
     autofillSetup: "Autofill Setup",
-    autofillSetupDescription: "Enable VaultKeepR as the system-wide autofill service on your Android device.",
+    autofillSetupDescription:
+      "Enable VaultKeepR as the system-wide autofill service on your Android device.",
     autofillSetupAction: "Open Autofill Settings",
     requireBiometricAutofill: "Require biometric for autofill",
-    requireBiometricAutofillDesc: "Ask for Face ID / Touch ID before filling credentials, instead of silent autofill.",
+    requireBiometricAutofillDesc:
+      "Ask for Face ID / Touch ID before filling credentials, instead of silent autofill.",
     lockedTitle: "Vault locked",
     lockedBody: "Unlock your vault to access settings.",
     goPasswordlessTitle: "Go Passwordless",
-    goPasswordlessDesc: "Secure your account with a Passkey (Account Abstraction) and say goodbye to passwords.",
-    contactSupport: "Contact Support"
+    goPasswordlessDesc:
+      "Secure your account with a Passkey (Account Abstraction) and say goodbye to passwords.",
+    contactSupport: "Contact Support",
   },
   sync: {
     synchronize: "Synchronize",
@@ -2762,9 +2803,11 @@ export const en: Translations = {
     syncError: "Error",
     syncCrossDevice: "Cross-device sync active",
     reset: "Reset",
-    resetDescription: "Clears local cache (vault, sync, biometrics). After reset, you can recover vault from IPFS if needed.",
+    resetDescription:
+      "Clears local cache (vault, sync, biometrics). After reset, you can recover vault from IPFS if needed.",
     clearCache: "Clear cache",
-    clearCacheConfirm: "All local data will be deleted. You can recover vault from IPFS. Continue?",
+    clearCacheConfirm:
+      "All local data will be deleted. You can recover vault from IPFS. Continue?",
     clearCacheDone: "App has been reset.",
     clearCacheDoneTitle: "Cache cleared",
     loadFromIpfs: "Load from IPFS",
@@ -2781,15 +2824,10 @@ export const en: Translations = {
     uploading: "Uploading…",
     publishing: "Publishing…",
     inProgress: "In progress…",
-    syncExpired: "Sync expired — reconnect your wallet",
+    syncExpired: "Sync expired : reconnect your wallet",
     saving: "Saving…",
-    savedBanner: "✓ Saved",
+    savedBanner: "Saved",
     saveErrorBanner: "Save error",
-    delegationNone: "Not configured",
-    delegationLoading: "Loading…",
-    delegationActive: "✓ Active",
-    delegationExpiredLabel: "Expired",
-    delegationExpireIn: "Expires in {d}d {h}h",
     delegationRenew: "Renew",
     delegationSetup: "Set up autosave",
     delegationHint: "Autosave requires a wallet signature delegation.",
@@ -2800,7 +2838,8 @@ export const en: Translations = {
     scannerTitle: "Sync a device",
     scannerConnectedDevices: "Device Sync",
     scannerAccessDenied: "Camera access denied",
-    scannerFormatError: "Unrecognized QR Code (not a vaultkeepr:sync namespace).",
+    scannerFormatError:
+      "Unrecognized QR Code (not a vaultkeepr:sync namespace).",
     scannerSuccessTitle: "Connection successful",
     scannerSuccessDesc: "Approve the request on the other device.",
     scannerBiometricError: "Authentication failed or no master password saved.",
@@ -2810,10 +2849,11 @@ export const en: Translations = {
     scannerExtOverlayTitle: "Synchronization",
     scannerExtOverlayDesc: "Scan this QR Code with the VaultKeepR mobile app",
     scannerExtFormatError: "Invalid key format received.",
-    walletConnectDeprecated: "WalletConnect is no longer supported. Please use a VaultKeepR QR code.",
+    walletConnectDeprecated:
+      "WalletConnect is no longer supported. Please use a VaultKeepR QR code.",
     vaultUpdatedFromIpfs: "Vault updated from IPFS.",
     transferFailed: "Transfer failed",
-    receiveFailed: "Receive failed"
+    receiveFailed: "Receive failed",
   },
   tabs: {
     vault: "Vault",
@@ -2824,7 +2864,7 @@ export const en: Translations = {
     tools: "Tools",
     share: "Share",
     secureDocs: "Secure Docs",
-    cloud: "Cloud"
+    cloud: "Cloud",
   },
   unlock: {
     title: "Unlock your vault",
@@ -2844,7 +2884,8 @@ export const en: Translations = {
     biometricPromptTitle: "Unlock VaultKeepR",
     biometricSyncPromptTitle: "Authentication for sync",
     biometricHint: "Use biometrics to unlock",
-    nfcChipRecognizedNoSecret: "Chip recognized (UID: {uid}), but no VaultKeepR secret (NDEF) is present.",
+    nfcChipRecognizedNoSecret:
+      "Chip recognized (UID: {uid}), but no VaultKeepR secret (NDEF) is present.",
     cameraPermissionRequired: "Camera permission required",
     authRequired: "Authentication required",
     noVaultStored: "No vault stored.",
@@ -2864,19 +2905,25 @@ export const en: Translations = {
     nfcAuthFailedDesc: "Authentication failed. The vault remains locked.",
     nfcNotConfiguredTitle: "Error",
     nfcNotConfiguredDesc: "The scanned chip is not configured for VaultKeepR.",
-    nfcDeviceSecretMissing: "No device key found. Please reconfigure the NFC chip from Settings.",
-    nfcPinMissing: "No PIN found. Please reconfigure the NFC chip from Settings.",
+    nfcDeviceSecretMissing:
+      "No device key found. Please reconfigure the NFC chip from Settings.",
+    nfcPinMissing:
+      "No PIN found. Please reconfigure the NFC chip from Settings.",
     nfcUpgradeTitle: "Security Upgrade Required",
-    nfcUpgradeDesc: "Your NFC chip uses an outdated format. Please reconfigure it from Settings > NFC Chip for improved security.",
+    nfcUpgradeDesc:
+      "Your NFC chip uses an outdated format. Please reconfigure it from Settings > NFC Chip for improved security.",
     nfcReadError: "NFC read error",
     passkeyNotSupported: "Passkeys not supported by this browser.",
     passkeyError: "Passkey Error",
-    noBiometricKey: "No biometric key found. Create a vault with Biometrics first.",
+    noBiometricKey:
+      "No biometric key found. Create a vault with Biometrics first.",
     bioEnrollTitle: "Enable Biometrics",
-    bioEnrollDesc: "Enter your master password once to enable biometric unlock for future sessions.",
+    bioEnrollDesc:
+      "Enter your master password once to enable biometric unlock for future sessions.",
     passkeyUnlock: "Unlock with Passkey",
     passkeyCreate: "Create a Passkey (Passwordless)",
-    passkeyPrfNotSupported: "PRF not supported. This browser doesn't support Passkey encryption.",
+    passkeyPrfNotSupported:
+      "PRF not supported. This browser doesn't support Passkey encryption.",
     passkeyReady: "Passkey vault ready!",
     passkeyGenerated: "Passkey created",
     biometricChecking: "Biometric verification...",
@@ -2884,20 +2931,23 @@ export const en: Translations = {
     biometricSuccess: "Biometrics validated!",
     encryptingInProgress: "Encrypting...",
     passKeyMigrationTitle: "Migrate vault to Passkey",
-    passKeyMigrationDesc: "Your vault is encrypted with your old password. Enter it to re-encrypt with your Passkey (one-time operation).",
+    passKeyMigrationDesc:
+      "Your vault is encrypted with your old password. Enter it to re-encrypt with your Passkey (one-time operation).",
     passKeyMigrationOldPw: "Current master password",
     passKeyMigrationConfirm: "Migrate & unlock",
-    passKeyMigrationSuccess: "Vault successfully migrated to Passkey!"
+    passKeyMigrationSuccess: "Vault successfully migrated to Passkey!",
   },
   postSyncPrf: {
     title: "Enable Face ID / Touch ID",
-    body: "Your vault is passwordless. Enroll a passkey now so you can unlock this device with your fingerprint or face — otherwise you will need your master password every time.",
-    unsupported: "Passkeys are not supported in this browser. You will need your master password to unlock.",
+    body: "Your vault is passwordless. Enroll a passkey now so you can unlock this device with your fingerprint or face : otherwise you will need your master password every time.",
+    unsupported:
+      "Passkeys are not supported in this browser. You will need your master password to unlock.",
     enable: "Enable Face ID / Touch ID",
     skipFirst: "Skip for this session",
     skipWarningTitle: "You will need your master password next time",
-    skipWarningBody: "Without a passkey, the only way to unlock this device is your master password. If you forget it, your vault cannot be recovered.",
-    skipConfirm: "I understand, skip"
+    skipWarningBody:
+      "Without a passkey, the only way to unlock this device is your master password. If you forget it, your vault cannot be recovered.",
+    skipConfirm: "I understand, skip",
   },
   locked: {
     title: "Vault locked",
@@ -2918,14 +2968,17 @@ export const en: Translations = {
     extensionInactive: "Extension inactive. Wake it up.",
     restoring: "Restoring…",
     createVaultTitle: "New vault",
-    createVaultHint: "Local vault on this device. Connect your wallet in Settings to sync to IPFS later.",
+    createVaultHint:
+      "Local vault on this device. Connect your wallet in Settings to sync to IPFS later.",
     createVaultButton: "Create vault",
-    createVaultWarning: "This password will encrypt your vault locally. It can never be reset by VaultKeepR.",
+    createVaultWarning:
+      "This password will encrypt your vault locally. It can never be reset by VaultKeepR.",
     createVaultChoose: "Choose how to protect your vault.",
     passkeyCreateSubtitle: "Face ID / Touch ID / Device PIN",
     passkeyCreateSubtitlePin: "Device PIN",
     masterPasswordLocal: "Encrypted with your password",
-    masterPasswordDesc: "Your vault is protected by a password you choose. IPFS sync available.",
+    masterPasswordDesc:
+      "Your vault is protected by a password you choose. IPFS sync available.",
     noVaultFound: "No vault found for this address. Please create one.",
     checkingIpfs: "Checking cloud sync (IPFS)…",
     passwordMismatch: "Passwords do not match.",
@@ -2937,7 +2990,8 @@ export const en: Translations = {
     passwordStrengthMedium: "Medium",
     passwordStrengthStrong: "Strong",
     overwriteWarningTitle: "Warning: Existing Vault",
-    overwriteWarningBody: "A local vault already exists. Creating a new one will permanently overwrite your current data. Do you want to export an encrypted backup before proceeding?",
+    overwriteWarningBody:
+      "A local vault already exists. Creating a new one will permanently overwrite your current data. Do you want to export an encrypted backup before proceeding?",
     exportAndOverwrite: "Export Backup (.json)",
     overwriteOnly: "Overwrite Anyway",
     cancel: "Cancel",
@@ -2974,11 +3028,14 @@ export const en: Translations = {
     syncIpfsBusy: "Syncing…",
     ipfsGatewayLabel: "IPFS Gateway",
     ipfsGatewayPlaceholder: "https://ipfs.io",
+    ipfsGatewayDisabledNote:
+      "Disabled: for security, the extension only connects to official IPFS gateways (strict CSP).",
     clearCacheConfirm: "Clear sync cache for this wallet?",
     syncSuccess: "Sync successful!",
     alreadyLatest: "Vault is already up to date",
     saveError: "Save error",
-    deviceSyncRemovedHint: "Use \"Restore local backup\" on this screen with your master password"
+    deviceSyncRemovedHint:
+      'Use "Restore local backup" on this screen with your master password',
   },
   header: {
     searchPlaceholder: "Search…",
@@ -3007,15 +3064,17 @@ export const en: Translations = {
     subscribeAnnual: "Subscribe (annual)",
     activeUntil: "Active until",
     saveToIpfsPlaceholder: "Vault password",
-    saveToIpfsPlaceholderConnected: "Empty = cached password",
+    saveToIpfsPlaceholderConnected: "Empty = session key (no password needed)",
     saving: "Saving…",
     savedOnIpfs: "Saved on IPFS. ID:",
     uploadFailed: "Upload failed.",
     enterPassword: "Enter your master password.",
     signInWallet: "Approve the signature request in your wallet app.",
-    signFailed: "Wallet signature failed or timed out. Open your wallet and try again.",
-    signOverlayHint: "Open your wallet app and approve the signature request to encrypt and save your vault.",
-    openMetaMask: "Open MetaMask"
+    signFailed:
+      "Wallet signature failed or timed out. Open your wallet and try again.",
+    signOverlayHint:
+      "Open your wallet app and approve the signature request to encrypt and save your vault.",
+    openMetaMask: "Open MetaMask",
   },
   vault: {
     unlockTitle: "Unlock vault",
@@ -3057,7 +3116,8 @@ export const en: Translations = {
     noResult: "No results",
     unnamedEntry: "Unnamed account",
     noEntries: "No entries",
-    addFirstEntry: "Add your first entries (e.g. github.com, gmail.com) with credentials.",
+    addFirstEntry:
+      "Add your first entries (e.g. github.com, gmail.com) with credentials.",
     searchPlaceholder: "Search site or username…",
     newVersionAvailable: "New version available (other device)",
     reload: "Reload",
@@ -3065,7 +3125,8 @@ export const en: Translations = {
     close: "Close",
     syncPasswordPrompt: "Sync",
     syncPasswordDescription: "Master password",
-    autosaveReunlockHint: "Vault Sync disabled. Lock then unlock the vault to enable automatic sync.",
+    autosaveReunlockHint:
+      "Vault Sync disabled. Lock then unlock the vault to enable automatic sync.",
     backToLanding: "Website & presentation",
     tags: "Tags",
     navigation: "Navigation",
@@ -3104,7 +3165,7 @@ export const en: Translations = {
     exportFilename: "vault-backup",
     sortAz: "A → Z",
     sortZa: "Z → A",
-    sortDomain: "Domain"
+    sortDomain: "Domain",
   },
   entry: {
     username: "Username",
@@ -3116,8 +3177,8 @@ export const en: Translations = {
     type: {
       identity: "Identity",
       password: "Password",
-      unknown: "Unknown"
-    }
+      unknown: "Unknown",
+    },
   },
   card: {
     number: "Card Number",
@@ -3125,14 +3186,14 @@ export const en: Translations = {
     cvv: "CVV",
     holder: "Cardholder",
     holderPlaceholder: "FULL NAME",
-    defaultName: "Card"
+    defaultName: "Card",
   },
   note: {
     title: "Title",
     titlePlaceholder: "My secret note",
     content: "Content",
     contentPlaceholder: "...",
-    defaultName: "Note"
+    defaultName: "Note",
   },
   identity: {
     firstName: "First Name",
@@ -3147,10 +3208,10 @@ export const en: Translations = {
     country: "Country",
     defaultName: "New identity",
     noIdentityFound: "No identities yet.",
-    createFirstIdentityHint: "Create an identity via the + menu."
+    createFirstIdentityHint: "Create an identity via the + menu.",
   },
   favorite: {
-    toggle: "Toggle favorite"
+    toggle: "Toggle favorite",
   },
   addForm: {
     title: "New entry",
@@ -3206,7 +3267,7 @@ export const en: Translations = {
     matchHostname: "Hostname",
     matchBaseDomain: "Base domain",
     matchNever: "Never",
-    removeUri: "Remove URI"
+    removeUri: "Remove URI",
   },
   editForm: { title: "Edit entry" },
   identityForm: {
@@ -3226,7 +3287,7 @@ export const en: Translations = {
     saveError: "Unable to save. Open the app and try again.",
     civilityMr: "Mr.",
     civilityMrs: "Mrs.",
-    civilityNone: "—"
+    civilityNone: "—",
   },
   detailPane: {
     selectEntry: "Select an entry from the list",
@@ -3265,7 +3326,7 @@ export const en: Translations = {
     passwordHistory: "Password History",
     previousPasswords: "Previous passwords",
     changedOn: "Changed on {date}",
-    noPasswordHistory: "No password changes recorded"
+    noPasswordHistory: "No password changes recorded",
   },
   seed: {
     walletName: "Wallet Identity",
@@ -3278,7 +3339,7 @@ export const en: Translations = {
     appPasswordPlaceholder: "App password...",
     bip39Alert: "BIP-39 verification complete.",
     deleteConfirm: "Delete this seed phrase?",
-    cryptoSeedTitle: "Crypto Seed Phrase"
+    cryptoSeedTitle: "Crypto Seed Phrase",
   },
   listPane: {
     noCredentialsForSite: "No credentials for this site",
@@ -3289,11 +3350,12 @@ export const en: Translations = {
     thisSiteOnly: "This site only",
     sortDefault: "Default",
     sortMostUsed: "Most used",
-    sortRecentlyUsed: "Recently used",
+    recent: "Recent",
     sortLastSaved: "Last saved",
     customGroup: "Custom group",
     allGroups: "All groups",
-    selectEntry: "Select an entry"
+    selectEntry: "Select an entry",
+    totpBadge: "TOTP available",
   },
   generator: {
     desc: "Generate strong and personalized passwords",
@@ -3330,7 +3392,7 @@ export const en: Translations = {
     wordCount: "Words",
     separator: "Separator",
     capitalize: "Capitalize",
-    passphrase: "Passphrase"
+    passphrase: "Passphrase",
   },
   securityHealthDetails: {
     title: "Security Health",
@@ -3360,17 +3422,18 @@ export const en: Translations = {
     issueReused: "Reused on {count} other site(s)",
     issueOld: "Old password ({months} months)",
     issueExpired: "Password expired ({months} months old, max {days} days)",
-    expired: "Expired"
+    expired: "Expired",
   },
   autosave: {
     savedToast: "Credentials saved to VaultKeepR",
-    edit: "Edit"
+    edit: "Edit",
   },
   breachScanner: {
     title: "Breach Scanner",
     subtitle: "Check if your credentials appear in leaked databases",
     dataSecurity: "Data Security",
-    hibpNotice: "We use the Have I Been Pwned service via a secure hashing system (k-anonymity).",
+    hibpNotice:
+      "We use the Have I Been Pwned service via a secure hashing system (k-anonymity).",
     hibpNoticeNoPassword: "No password ever leaves your device.",
     startScan: "Start Analysis",
     scanning: "Scan in progress...",
@@ -3393,17 +3456,18 @@ export const en: Translations = {
     emailScan: "Scan Emails",
     emailScanning: "Scanning emails...",
     emailConsentTitle: "Privacy notice",
-    emailConsentBody: "To check for breaches, your full email addresses are sent to leakcheck.io (a third-party service). No other data is transmitted.",
+    emailConsentBody:
+      "To check for breaches, your full email addresses are sent to leakcheck.io (a third-party service). No other data is transmitted.",
     emailConsentAgree: "I agree",
     emailBreachedCount: "{count} email(s) breached",
     emailNoBreaches: "No emails breached",
-    emailRemove: "Remove"
+    emailRemove: "Remove",
   },
   tools: {
     servicesTitle: "Services",
     servicesSubtitle: "Secure sharing and storage",
     shareHint: "Share links, notes and files encrypted with PIN",
-    docsHint: "Store your sensitive documents encrypted"
+    docsHint: "Store your sensitive documents encrypted",
   },
   totp: {
     title: "2FA (TOTP)",
@@ -3415,7 +3479,7 @@ export const en: Translations = {
     showAll: "All",
     showMatching: "This site",
     previous: "Previous account",
-    next: "Next account"
+    next: "Next account",
   },
   premium: {
     back: "Back",
@@ -3428,13 +3492,14 @@ export const en: Translations = {
     lastSeen: "Last seen",
     thisDevice: "This device",
     yourLicenseKey: "Your license key",
-    licenseCrossPlatformDesc: "Use this key to activate Premium on the web app and extension.",
+    licenseCrossPlatformDesc:
+      "Use this key to activate Premium on the web app and extension.",
     revokeDeviceTitle: "Remove device",
     revokeDeviceConfirm: "This device will lose access to Premium. Continue?",
     syncLicense: "Sync license from IAP",
     subscribe: "Subscribe",
-    subscribePrice: "Subscribe — {price}/yr",
-    subscribePriceMonthly: "Subscribe — {price}/mo",
+    subscribePrice: "Subscribe : {price}/yr",
+    subscribePriceMonthly: "Subscribe : {price}/mo",
     planYearly: "Yearly",
     planMonthly: "Monthly",
     bestValue: "Best value",
@@ -3442,7 +3507,7 @@ export const en: Translations = {
     restorePurchases: "Restore purchases",
     licenseTitle: "Web license (email)",
     licenseDesc:
-    "Purchased on the site? Enter your VK-… key here. Use the same wallet as on web and in the extension.",
+      "Purchased on the site? Enter your VK-… key here. Use the same wallet as on web and in the extension.",
     licensePlaceholder: "VK-XXXX-XXXX-XXXX-XXXX",
     activateLicense: "Activate license",
     planPremiumName: "Premium",
@@ -3464,15 +3529,19 @@ export const en: Translations = {
     unlimitedStorage: "Unlimited* storage",
     termsOfUse: "Terms of Use",
     privacyPolicy: "Privacy Policy",
-    legalFooter: "By subscribing, you agree to our Terms of Use and Privacy Policy. Subscriptions are managed by Apple and auto-renew unless cancelled at least 24h before the end of the current period.",
+    legalFooter:
+      "By subscribing, you agree to our Terms of Use and Privacy Policy. Subscriptions are managed by Apple and auto-renew unless cancelled at least 24h before the end of the current period.",
 
     successTitle: "Welcome to Premium",
-    successDesc: "All premium features are now unlocked. Thank you for your support.",
+    successDesc:
+      "All premium features are now unlocked. Thank you for your support.",
     successContinue: "Continue",
     googlePlayActive: "Google Play Subscription",
-    googlePlayActiveDesc: "Your Premium access is managed by Google Play. You can manage or cancel your subscription from the Play Store.",
+    googlePlayActiveDesc:
+      "Your Premium access is managed by Google Play. You can manage or cancel your subscription from the Play Store.",
     appStoreActive: "App Store Subscription",
-    appStoreActiveDesc: "Your Premium access is managed by the App Store. You can manage or cancel your subscription from Settings > Subscriptions."
+    appStoreActiveDesc:
+      "Your Premium access is managed by the App Store. You can manage or cancel your subscription from Settings > Subscriptions.",
   },
   errorBoundary: { title: "Error" },
   mainTabs: {
@@ -3480,19 +3549,23 @@ export const en: Translations = {
     newVersionMessage: "Vault has been updated. Sync?",
     newVersionMessageAlt: "Vault has been updated on another device. Sync?",
     later: "Later",
-    sync: "Sync"
+    sync: "Sync",
   },
   syncAlerts: {
     connectWallet: "Connect wallet.",
-    remoteNewer: "A newer version exists on another device. Reload the page to sync.",
-    remoteOlder: "Remote version is older than your local data. No sync needed.",
+    remoteNewer:
+      "A newer version exists on another device. Reload the page to sync.",
+    remoteOlder:
+      "Remote version is older than your local data. No sync needed.",
     enterPassword: "Enter your master password.",
     faceIdRequired: "Face ID authentication required or cancelled.",
-    noRemoteVault: "No remote vault for this wallet. Save from another device first.",
+    noRemoteVault:
+      "No remote vault for this wallet. Save from another device first.",
     noRecord: "No record.",
     timeout: "Timeout. Try again.",
     signatureTimeout: "Signature not received. Open wallet and try again.",
-    vaultUnlockedWalletRequired: "Unlocked vault and connected wallet required.",
+    vaultUnlockedWalletRequired:
+      "Unlocked vault and connected wallet required.",
     faceIdOrPassword: "Face ID or master password required.",
     pasteJson: "Paste export JSON.",
     enterMasterPassword: "Enter password.",
@@ -3506,28 +3579,34 @@ export const en: Translations = {
     syncSuccess: "Synced. Vault updated.",
 
     syncConflictTitle: "Sync conflict",
-    syncConflictBody: "A newer version of your vault exists on another device. Your local changes have NOT been overwritten. Click below to pull the remote and 3-way-merge with your local changes.",
+    syncConflictBody:
+      "A newer version of your vault exists on another device. Your local changes have NOT been overwritten. Click below to pull the remote and 3-way-merge with your local changes.",
     syncConflictPullRemote: "Pull remote (3-way merge)",
     syncConflictDismiss: "Keep local for now",
     vaultLoaded: "Vault loaded from IPFS.",
     saveSuccess: "Success. Saved on IPFS.",
-    saveSuccessWebapp: "Saved on IPFS. Web app and extension can retrieve this version.",
+    saveSuccessWebapp:
+      "Saved on IPFS. Web app and extension can retrieve this version.",
     sessionExpired: "Wallet session expired",
     reconnectWallet: "Reconnect wallet then try again.",
-    sessionExpiredInvalid: "Wallet session expired or invalid. Reconnect wallet (Connect button), then try Save again.",
+    sessionExpiredInvalid:
+      "Wallet session expired or invalid. Reconnect wallet (Connect button), then try Save again.",
     openWalletRetry: "Open wallet and try again.",
     biometricEnabledTitle: "Face ID enabled",
     biometricDisabledTitle: "Face ID disabled",
     biometricEnabled: "Face ID enabled. You can unlock the vault with Face ID.",
     biometricDisabled: "Master password will be required each time.",
-    autosaveActivated: "Vault Sync enabled. Changes will be saved automatically to IPFS."
+    autosaveActivated:
+      "Vault Sync enabled. Changes will be saved automatically to IPFS.",
   },
   fragmented: {
     title: "Fragmented vault",
     setupTitle: "Fragmented vault",
-    setupDesc: "Split your vault into 5 parts (3 required). Recovery ID independent of wallet.",
+    setupDesc:
+      "Split your vault into 5 parts (3 required). Recovery ID independent of wallet.",
     recoveryTitle: "Recover fragmented vault",
-    recoveryDesc: "Recover your vault with Recovery ID and at least 3 parts (device, contact or IPFS).",
+    recoveryDesc:
+      "Recover your vault with Recovery ID and at least 3 parts (device, contact or IPFS).",
     recoveryIdLabel: "Recovery ID (32 hex)",
     generateRecoveryId: "Generate",
     saveRecoveryId: "Save Recovery ID",
@@ -3551,72 +3630,82 @@ export const en: Translations = {
     errorPasswordRequired: "Enter the master password.",
     errorRecoveryIdInvalid: "Invalid Recovery ID (32 hex characters).",
     errorContactPartInvalid: "Invalid contact part (base64).",
-    errorPartsInsufficient: "Not enough parts: {have}/{need}. Provide the contact part.",
+    errorPartsInsufficient:
+      "Not enough parts: {have}/{need}. Provide the contact part.",
     errorPersistence: "Save error",
     recoverLink: "Recover fragmented vault",
     storeOnChain: "Store part on-chain (Base)",
     storeOnChainDone: "Part stored on-chain",
-    storeOnChainConfigHint: "To enable on-chain storage, deploy the contract and add fragmentContractAddress to config.json.",
+    storeOnChainConfigHint:
+      "To enable on-chain storage, deploy the contract and add fragmentContractAddress to config.json.",
     viewTransaction: "View transaction",
     connectWalletToStore: "Connect wallet to store on-chain",
     storeOnChainQrHint:
-    "Scan with your wallet to pair for this transaction only. Approve Ethereum and Base, then confirm the transaction on your device.",
+      "Scan with your wallet to pair for this transaction only. Approve Ethereum and Base, then confirm the transaction on your device.",
     storeOnChainSecondPrompt:
-    "After connecting: keep the wallet app open — a second prompt should appear to sign the transaction on Base (not only the connection).",
+      "After connecting: keep the wallet app open : a second prompt should appear to sign the transaction on Base (not only the connection).",
     tooltipRecoveryIdSetup:
-    "Keep this Recovery ID secret and backed up (paper or trusted password manager). You need it to recover on another device. It is not your wallet address or master password. It derives keys that decrypt stored shares—losing it can make recovery impossible even if some shares still exist.",
+      "Keep this Recovery ID secret and backed up (paper or trusted password manager). You need it to recover on another device. It is not your wallet address or master password. It derives keys that decrypt stored shares: losing it can make recovery impossible even if some shares still exist.",
     tooltipRecoveryIdAfterSetup:
-    "Copy or write down this exact Recovery ID and store it safely offline. Without it, you cannot recover this fragmented vault, even with contact or on-chain shares. The master password alone is not enough.",
+      "Copy or write down this exact Recovery ID and store it safely offline. Without it, you cannot recover this fragmented vault, even with contact or on-chain shares. The master password alone is not enough.",
     tooltipContactPart:
-    "This QR is one Shamir share (3-of-5). Only give it to someone you trust for recovery. It does not reveal your master password or full vault without other shares and your Recovery ID.",
+      "This QR is one Shamir share (3-of-5). Only give it to someone you trust for recovery. It does not reveal your master password or full vault without other shares and your Recovery ID.",
     tooltipStoreOnChain:
-    "Stores one encrypted share on Base via your wallet. You still need this Recovery ID and your master password to open the vault later; this only adds another place where one share can be fetched.",
+      "Stores one encrypted share on Base via your wallet. You still need this Recovery ID and your master password to open the vault later; this only adds another place where one share can be fetched.",
     tooltipActivate3of5:
-    "Creates 5 encrypted shares; any 3 rebuild the vault key. Shares go to IPFS, this device, your contact, optionally Base, and the API channel. Start only when your Recovery ID is saved—you cannot change it without redoing setup.",
+      "Creates 5 encrypted shares; any 3 rebuild the vault key. Shares go to IPFS, this device, your contact, optionally Base, and the API channel. Start only when your Recovery ID is saved: you cannot change it without redoing setup.",
     tooltipRecoveryIdRecover:
-    "Must match exactly the 32-character Recovery ID from fragmented setup (same spelling and case). It derives the lookup key for your manifest and decrypts stored shares. One wrong character and recovery will fail.",
+      "Must match exactly the 32-character Recovery ID from fragmented setup (same spelling and case). It derives the lookup key for your manifest and decrypts stored shares. One wrong character and recovery will fail.",
     tooltipMasterPasswordRecover:
-    "The master password of the vault you are recovering—not the Recovery ID. After enough shares are combined, it decrypts the vault contents.",
+      "The master password of the vault you are recovering, not the Recovery ID. After enough shares are combined, it decrypts the vault contents.",
     tooltipContactPartRecover:
-    "Optional if you already have enough shares from this device, IPFS, or on-chain. Paste the base64 share from your trusted contact when you need one more share to reach the threshold (e.g. 3-of-5).",
+      "Optional if you already have enough shares from this device, IPFS, or on-chain. Paste the base64 share from your trusted contact when you need one more share to reach the threshold (e.g. 3-of-5).",
     recoverySuccessBody: "Your fragmented vault has been restored.",
-    onChainDeprecated: "On-chain fragment storage via WalletConnect is deprecated. Fragments are stored on the API relay."
+    onChainDeprecated:
+      "On-chain fragment storage via WalletConnect is deprecated. Fragments are stored on the API relay.",
   },
   nfcSetup: {
     title: "Configure NFC Chip",
     notSupportedTitle: "NFC Not Supported",
     notSupportedDesc: "Your device does not support NFC hardware.",
-    pinDesc: "Choose a security PIN (4-6 digits). It will be required if biometrics (FaceID) fails.",
+    pinDesc:
+      "Choose a security PIN (4-6 digits). It will be required if biometrics (FaceID) fails.",
     pinPlaceholder: "PIN Code",
     btnContinue: "Continue",
-    writeDesc: "PIN is secured. Let's generate cryptography and write it to your physical chip.",
+    writeDesc:
+      "PIN is secured. Let's generate cryptography and write it to your physical chip.",
     btnWrite: "Write to NFC Chip",
     errorTitle: "Error",
     errorPinShort: "The PIN code must be at least 4 digits.",
     errorNoPassword: "Unable to retrieve local key for encoding.",
     errorWriteFailed: "Unable to write to the chip.",
     successTitle: "Success",
-    successDesc: "NFC chip successfully configured! You can now use it to log in.",
+    successDesc:
+      "NFC chip successfully configured! You can now use it to log in.",
     promptFaceId: "Authorize FaceID for this NFC chip",
     promptFallback: "Use PIN",
     promptNfcScan: "Hold your NTAG213 chip near to link it",
-    errorAnonymousSignature: "Vault password not found for anonymous signature."
+    errorAnonymousSignature:
+      "Vault password not found for anonymous signature.",
   },
   vaultAlerts: {
     authCancelled: "Authentication cancelled or unavailable.",
     saveError: "Save error",
-    autoSaveError: "Automatic save error"
+    autoSaveError: "Automatic save error",
   },
   premiumAlerts: {
-    iapOnlyNative: "In-app purchases available only in the native app (not in Expo Go).",
+    iapOnlyNative:
+      "In-app purchases available only in the native app (not in Expo Go).",
     noRestore: "No purchases to restore.",
     purchaseError: "Purchase error",
-    needWalletForLicense: "Connect your wallet first (same address as on web / extension).",
-    licenseApiUnavailable: "Premium server URL is not configured in the app build.",
+    needWalletForLicense:
+      "Connect your wallet first (same address as on web / extension).",
+    licenseApiUnavailable:
+      "Premium server URL is not configured in the app build.",
     licenseEmpty: "Enter your license key.",
     licenseInvalid: "Invalid or already used key.",
     licenseActivated: "License activated. Premium synced across your devices.",
-    keyCopied: "License key copied to clipboard."
+    keyCopied: "License key copied to clipboard.",
   },
   listScreen: {
     all: "All",
@@ -3630,12 +3719,34 @@ export const en: Translations = {
     sortAz: "Sort: A→Z",
     sortZa: "Sort: Z→A",
     sortDomain: "Sort: Domain",
+    sortLastUsed: "Sort: Last used",
     noResult: "No results",
     emptyHint: "No entries.\nPress + to add.",
     quickSearchTitle: "⌘ Quick search",
     noResults: "No results",
     noRecentEntries: "No recent entries",
-    recent: "Recent"
+    recent: "Recent",
+    totpBadge: "TOTP available",
+  },
+  backupPrompt: {
+    title: "Back up your vault",
+    body: "This encrypted file is the only way to recover your vault on a new device. Without it, losing your device means losing everything.",
+    export: "Export backup file",
+    exportDone: "File exported",
+    confirm: "I saved this file somewhere safe",
+    continue: "Continue",
+  },
+  toolsPanel: {
+    shareDesc: "Share ephemeral secrets via encrypted link",
+    cloudDesc: "Encrypted files via your cloud storage",
+    docsDesc: "Store sensitive documents and identities",
+  },
+  breachAlert: {
+    titleOne: "Compromised password",
+    titleMany: "{n} compromised passwords",
+    bodyOne: "One of your passwords appeared in a known breach. Open VaultKeepr to change it.",
+    bodyMany: "{n} of your passwords appeared in known breaches. Open VaultKeepr to change them.",
+    channelName: "Breach alerts",
   },
   detailScreen: {
     back: "Back",
@@ -3665,7 +3776,7 @@ export const en: Translations = {
     premiumRequired: "Premium required",
     subscribe: "Subscribe",
     noName: "No name",
-    card: "Card"
+    card: "Card",
   },
   addEntryScreen: {
     cancel: "Cancel",
@@ -3680,7 +3791,7 @@ export const en: Translations = {
     passwordPlaceholder: "Enter or generate",
     totp: "2FA",
     totpPlaceholder: "Secret",
-    totpPremiumRequired: "Premium required to add 2FA — Subscribe",
+    totpPremiumRequired: "Premium required to add 2FA : Subscribe",
     notes: "Notes",
     notesPlaceholder: "Notes",
     tags: "Tags",
@@ -3723,50 +3834,58 @@ export const en: Translations = {
     identity: "Identity",
     favorite: "Favorite",
     favoriteYes: "Yes",
-    favoriteNo: "☆ No",
+    favoriteNo: "No",
     newGroup: "New Group",
-    groupNamePlaceholder: "Group name"
+    groupNamePlaceholder: "Group name",
   },
   settingsPage: {
     back: "Back",
     loading: "Loading",
-    premiumDescription: "An active Premium subscription on iOS, extension or web app is valid on all devices (same wallet or email account).",
+    premiumDescription:
+      "An active Premium subscription on iOS, extension or web app is valid on all devices (same wallet or email account).",
     premiumFeaturesTitle: "Included with Premium:",
     activateKeyHint: "Activate a key received by email or after purchase.",
     buyLicense: "Buy license",
     keyActivated: "Key activated. Reload the vault page to see Premium.",
-    connectWalletPremium: "Connect your wallet to see Premium status or activate a key.",
-    syncCidDescription: "Clear the CID cache to force a fresh fetch from the API.",
+    connectWalletPremium:
+      "Connect your wallet to see Premium status or activate a key.",
+    syncCidDescription:
+      "Clear the CID cache to force a fresh fetch from the API.",
     connectWallet: "Connect your wallet.",
-    aboutDescription: "Vault Keeper stores your passwords in a decentralized way. No data is sent to our servers. Your encrypted vault is stored on IPFS.",
+    aboutDescription:
+      "Vault Keeper stores your passwords in a decentralized way. No data is sent to our servers. Your encrypted vault is stored on IPFS.",
     langEn: "English",
     langFr: "French",
     import: "Import",
     importDescription:
-    "Import your vault from another app. Supported: Bitwarden JSON, Proton Pass JSON, VaultKeepR, 1Password 1PIF, CSV (many vendors), or PGP. Not supported: encrypted Bitwarden export, 1Password .1pux.",
+      "Import your vault from another app. Supported: Bitwarden JSON, Proton Pass JSON, VaultKeepR, 1Password 1PIF, CSV (many vendors), or PGP. Not supported: encrypted Bitwarden export, 1Password .1pux.",
     importFormats:
-    "Bitwarden JSON, Proton Pass JSON, VaultKeepR JSON, CSV (LastPass, Chrome, 1Password, …), 1PIF (1Password), PGP",
+      "Bitwarden JSON, Proton Pass JSON, VaultKeepR JSON, CSV (LastPass, Chrome, 1Password, …), 1PIF (1Password), PGP",
     importSuccess: "{count} entries imported. Return to the vault to see them.",
     importPgpHint: "PGP passphrase to decrypt the file:",
     importVaultPasswordHint: "Vault Keeper master password:",
     export: "Export",
-    exportDescription: "Export your vault. Unlock the vault first, then return here to export.",
+    exportDescription:
+      "Export your vault. Unlock the vault first, then return here to export.",
     exportPlain: "JSON (plain)",
     exportEncrypted: "JSON (encrypted)",
     exportPgp: "PGP",
-    exportUnlockHint: "Unlock the vault first, then return to Settings to export.",
+    exportUnlockHint:
+      "Unlock the vault first, then return to Settings to export.",
     exportEncryptedHint: "Master password to encrypt the export:",
     exportPgpHint: "PGP passphrase to encrypt the export:",
     exportSaved: "File saved successfully.",
-    premiumLegacyHint: "You are using Premium via your Wallet. To use Premium on other devices (iOS, Firefox), generate a license key on the Web App.",
+    premiumLegacyHint:
+      "You are using Premium via your Wallet. To use Premium on other devices (iOS, Firefox), generate a license key on the Web App.",
     manageOnWeb: "Manage on Web",
     migrateHint: "Migrate your existing mobile subscription to VaultKeepR.",
-    migrateButton: "Migrate VaultKeepR Go"
+    migrateButton: "Migrate VaultKeepR Go",
   },
   walletConnect: {
     lastVaultCid: "Last vault CID",
     viewOnIpfs: "Open on ipfs.io",
-    noVaultCid: "No CID yet. Save to IPFS from the header or enable Vault Sync."
+    noVaultCid:
+      "No CID yet. Save to IPFS from the header or enable Vault Sync.",
   },
   autosaveDelegation: {
     autosaveIpfs: "Vault Sync",
@@ -3775,7 +3894,7 @@ export const en: Translations = {
     renew: "Renew",
     activate: "Activate",
     connectAndActivate: "Connect & activate",
-    orViaApp: "Or via app"
+    orViaApp: "Or via app",
   },
   autosaveQr: {
     title: "Vault Sync",
@@ -3785,15 +3904,17 @@ export const en: Translations = {
     activated: "Activated",
     close: "Close",
     cancel: "Cancel",
-    openWalletRetry: "Open wallet on your phone, accept the signature request, then try again.",
+    openWalletRetry:
+      "Open wallet on your phone, accept the signature request, then try again.",
     signatureRejected: "Signature rejected in wallet.",
     unknownError: "Unknown error",
     walletSign: "Open your wallet and approve the signature",
-    walletSignHint: "A notification has been sent to your connected wallet"
+    walletSignHint: "A notification has been sent to your connected wallet",
   },
   alias: {
     title: "Email alias",
-    description: "Create xxx@vaultkeepr.xyz aliases that forward to your email. Disable anytime.",
+    description:
+      "Create xxx@vaultkeepr.xyz aliases that forward to your email. Disable anytime.",
     destinationEmail: "Forward to",
     destinationPlaceholder: "you@example.com",
     create: "Create alias",
@@ -3804,7 +3925,8 @@ export const en: Translations = {
     inactive: "Disabled",
     premiumRequired: "Email alias requires Premium.",
     walletRequired: "Unlock your vault to manage aliases.",
-    deleteConfirm: "Delete this alias? Mail to this address will stop forwarding."
+    deleteConfirm:
+      "Delete this alias? Mail to this address will stop forwarding.",
   },
   vaultContext: {
     saveToIpfsConfirm: "Save to IPFS now?",
@@ -3817,14 +3939,16 @@ export const en: Translations = {
     noLoginForm: "No login form detected on this page.",
     fillErrorPrefix: "Unable to fill: ",
     reloadRetry: "Reload the page then try again.",
-    exportEncryptedPrompt: "Master password to encrypt export (remember for import elsewhere):",
+    exportEncryptedPrompt:
+      "Master password to encrypt export (remember for import elsewhere):",
     exportDownloaded: "Encrypted export downloaded.",
     importEncryptedPrompt: "Master password of encrypted export:",
     importPgpPrompt: "PGP passphrase to decrypt file:",
     entriesImported: "{count} entry(ies) imported.",
     unknownFormat: "Unknown JSON format.",
     noEntriesFound: "No entries found.",
-    entriesImportedOpenApp: "{count} entry(ies) imported. Open the app and save to add them to the vault.",
+    entriesImportedOpenApp:
+      "{count} entry(ies) imported. Open the app and save to add them to the vault.",
     importAdded: "added",
     importSkipped: "duplicates skipped",
     importEnriched: "enriched (2FA added)",
@@ -3836,7 +3960,7 @@ export const en: Translations = {
     zeroDuplicates: "0 duplicates",
     licenseKeyCopied: "License key copied",
     deviceRevoked: "Device revoked",
-    cidUnpinned: "IPFS CID unpinned"
+    cidUnpinned: "IPFS CID unpinned",
   },
   passwordGenerator: {
     placeholder: "Enter or generate",
@@ -3847,75 +3971,88 @@ export const en: Translations = {
     numbers: "Numbers",
     symbols: "Special chars",
     char: "character",
-    chars: "characters"
+    chars: "characters",
   },
 
   pwnedPassword: {
-    found: "This password appeared {{count}} times in known data breaches (Have I Been Pwned).",
+    found:
+      "This password appeared {{count}} times in known data breaches (Have I Been Pwned).",
     checkFailed: "Could not check the breach database (network).",
-    attribution: "Breach check: Have I Been Pwned (k-anonymity)"
+    attribution: "Breach check: Have I Been Pwned (k-anonymity)",
   },
 
   productGuide: {
     webWalletCalloutTitle: "NFC Hardware Key or Wallet for Sync",
     webWalletCalloutBody:
-    "Your vault is encrypted on this device with your master password. Scanning an NFC tag or connecting a wallet links an encrypted backup to your address and enables IPFS sync. You can connect whenever you’re ready.",
+      "Your vault is encrypted on this device with your master password. Scanning an NFC tag or connecting a wallet links an encrypted backup to your address and enables IPFS sync. You can connect whenever you’re ready.",
     tooltipWhyWallet:
-    "Your NFC tag or Web3 wallet securely signs messages to tie backups to your address. We never receive your master password, NFC seed, or decrypted vault.",
+      "Your NFC tag or Web3 wallet securely signs messages to tie backups to your address. We never receive your master password, NFC seed, or decrypted vault.",
     tooltipLocalFirst:
-    "You can create a new vault and use it entirely locally. Later, use NFC or connect a wallet to save an encrypted copy to IPFS.",
+      "You can create a new vault and use it entirely locally. Later, use NFC or connect a wallet to save an encrypted copy to IPFS.",
     tooltipIpfsEncrypted:
-    "Only ciphertext is stored on IPFS. Decryption requires your master password and your NFC/Wallet signature as part of key derivation.",
+      "Only ciphertext is stored on IPFS. Decryption requires your master password and your NFC/Wallet signature as part of key derivation.",
     hintLinkWallet: "NFC & Wallet",
     hintLinkLocal: "Local first",
     hintLinkIpfs: "IPFS & encryption",
     importBlockTitle: "Migrate from another password manager",
     importBlockBody:
-    "Import Bitwarden JSON, Proton Pass JSON, VaultKeepR JSON, 1Password 1PIF (one JSON object per line), CSV from LastPass, Chrome, 1Password, Dashlane-style columns, or PGP-wrapped exports. Parsing runs locally; nothing is sent to our servers as plaintext. 1Password .1pux (encrypted ZIP) is not supported — export as CSV or 1PIF from 1Password instead.",
+      "Import Bitwarden JSON, Proton Pass JSON, VaultKeepR JSON, 1Password 1PIF (one JSON object per line), CSV from LastPass, Chrome, 1Password, Dashlane-style columns, or PGP-wrapped exports. Parsing runs locally; nothing is sent to our servers as plaintext. 1Password .1pux (encrypted ZIP) is not supported : export as CSV or 1PIF from 1Password instead.",
     tooltipImportFormats:
-    "Bitwarden (unencrypted JSON), Proton Pass JSON, VaultKeepR JSON/encrypted JSON, 1Password 1PIF, CSV with url/username/password-style headers, OpenPGP files. Encrypted Bitwarden exports are not supported. .1pux is not supported.",
-    importStep1: "Export from your old app (JSON, 1PIF, CSV, or PGP-wrapped file).",
-    importStep2: "Choose the file below. Decryption happens locally in the browser.",
-    importStep3: "Unlock with your VaultKeepR master password if the import is encrypted.",
-    importStep4: "Save the vault — your entries merge into the open vault.",
-    importPrivacyTip: "After a successful import, delete the export file from your device.",
-    tooltipImportFileButton: "Select Bitwarden, Proton Pass, VaultKeepR, CSV, .1pif, or PGP export from your computer.",
+      "Bitwarden (unencrypted JSON), Proton Pass JSON, VaultKeepR JSON/encrypted JSON, 1Password 1PIF, CSV with url/username/password-style headers, OpenPGP files. Encrypted Bitwarden exports are not supported. .1pux is not supported.",
+    importStep1:
+      "Export from your old app (JSON, 1PIF, CSV, or PGP-wrapped file).",
+    importStep2:
+      "Choose the file below. Decryption happens locally in the browser.",
+    importStep3:
+      "Unlock with your VaultKeepR master password if the import is encrypted.",
+    importStep4: "Save the vault : your entries merge into the open vault.",
+    importPrivacyTip:
+      "After a successful import, delete the export file from your device.",
+    tooltipImportFileButton:
+      "Select Bitwarden, Proton Pass, VaultKeepR, CSV, .1pif, or PGP export from your computer.",
     autofillTitle: "Autofill in the browser",
     autofillBody:
-    "On websites, open this extension to fill username and password fields. With Premium, TOTP codes are generated locally from the secret stored on the entry.",
+      "On websites, open this extension to fill username and password fields. With Premium, TOTP codes are generated locally from the secret stored on the entry.",
     tooltipAutofillFields:
-    "Detection depends on each site’s HTML. If no suggestion appears, copy the password from the vault.",
+      "Detection depends on each site’s HTML. If no suggestion appears, copy the password from the vault.",
     tooltipAutofillTotp:
-    "Time-based one-time passwords are computed on your device from the TOTP secret; nothing is sent to us.",
-    autofillQualityNote: "Non-standard login forms may need copy-paste — that’s normal.",
+      "Time-based one-time passwords are computed on your device from the TOTP secret; nothing is sent to us.",
+    autofillQualityNote:
+      "Non-standard login forms may need copy-paste : that’s normal.",
     hintAutofillFields: "Field detection",
     hintAutofillTotp: "2FA / TOTP",
     tooltipExtTabIpfs:
-    "Load a vault already backed up to IPFS: connect the same wallet, enter your master password, then unlock.",
+      "Load a vault already backed up to IPFS: connect the same wallet, enter your master password, then unlock.",
     tooltipExtTabLocalVault:
-    "Create a vault stored only on this browser first. Connect a wallet in Settings later to sync encrypted backups to IPFS.",
+      "Create a vault stored only on this browser first. Connect a wallet in Settings later to sync encrypted backups to IPFS.",
     extLockedAutofillHint:
-    "Tip: after unlock, use the extension on login pages to autofill — or copy from an entry if the site is unusual."
+      "Tip: after unlock, use the extension on login pages to autofill : or copy from an entry if the site is unusual.",
   },
   downloadPage: {
     title: "Get VaultKeepR",
-    subtitle: "Available on Chrome and iOS. Same vault, same encryption, everywhere.",
+    subtitle:
+      "Available on Chrome and iOS. Same vault, same encryption, everywhere.",
     extensionTitle: "Chrome Extension",
-    extensionDesc: "Autofill passwords, generate TOTP codes, and sync your vault—directly in your browser.",
+    extensionDesc:
+      "Autofill passwords, generate TOTP codes, and sync your vault, directly in your browser.",
     extensionCta: "Add to Chrome",
     iosTitle: "iOS App",
-    iosDesc: "Face ID, AutoFill, Account Abstraction—your vault always in your pocket.",
+    iosDesc:
+      "Face ID, AutoFill, Account Abstraction. Your vault always in your pocket.",
     iosCta: "App Store",
     webTitle: "Web App",
-    webDesc: "Full-featured vault in your browser. No install required—connect your wallet and go.",
+    webDesc:
+      "Full-featured vault in your browser. No install required: connect your wallet and go.",
     webCta: "Open Web App",
     privacyTitle: "Zero tracking. Zero logs.",
-    privacyDesc: "VaultKeepR collects no analytics, no telemetry, no user data. Your vault is encrypted end-to-end and only you hold the keys.",
+    privacyDesc:
+      "VaultKeepR collects no analytics, no telemetry, no user data. Your vault is encrypted end-to-end and only you hold the keys.",
     recommended: "Recommended",
-    backHome: "Back to home"
+    backHome: "Back to home",
   },
   landing: {
-    shopBanner: "New: Secure your vault with our exclusive <a href='/shop' class='underline underline-offset-2 font-bold hover:text-white/80 transition-colors'>VaultKeepR NFC Keychain</a>!",
+    shopBanner:
+      "New: Secure your vault with our exclusive <a href='/shop' class='underline underline-offset-2 font-bold hover:text-white/80 transition-colors'>VaultKeepR NFC Keychain</a>!",
     navHow: "How it works",
     navFeatures: "Features",
     navTerms: "Terms",
@@ -3925,99 +4062,128 @@ export const en: Translations = {
     appStore: "App Store",
     navPremium: "Premium",
     navDownload: "Download",
+    navMenuOpen: "Open menu",
+    navMenuClose: "Close menu",
     navTurboTest: "Turbo Test",
     navOpenApp: "Open app",
-    heroSubtitle: "Protect your passwords, identities and documents without ever sharing them with us. Log in with your fingerprint, your face, or a secure method you already own. Extension, iOS, Android.",
+    navShop: "Shop",
+    navBlog: "Blog",
+    bannerNew:
+      "New: Encrypted cloud, 3 Premium plans, and anonymous crypto payment.",
+    bannerSeePlans: "See plans",
+    heroSubtitle:
+      "Protect your passwords, identities and documents without ever sharing them with us.",
     heroCta: "Try free",
     trustBadge: "Privacy by design",
     trustTitle: "Nobody sees your passwords. Not even us.",
-    trustSubtitle: "Your passwords are locked on your device before they ever leave it. The encrypted vault is stored on decentralized IPFS, unreadable without your key.",
+    trustSubtitle:
+      "Your passwords are locked on your device before they ever leave it. The encrypted vault is stored on decentralized IPFS, unreadable without your key.",
     pillar1Title: "Your data stays with you",
-    pillar1Desc: "Your passwords are locked on your device before being stored. Even if gateways are down, decentralized P2P storage keeps your vault safe.",
+    pillar1Desc:
+      "Your passwords are locked on your device before being stored. Even if gateways are down, decentralized P2P storage keeps your vault safe.",
     pillar2Title: "No account, no email",
-    pillar2Desc: "Log in with your fingerprint or face. We don't ask for a name, email, or password. Nobody can hack an account that doesn't exist.",
+    pillar2Desc:
+      "Log in with your fingerprint or face. We don't ask for a name, email, or password. Nobody can hack an account that doesn't exist.",
     pillar3Title: "You are never locked in",
-    pillar3Desc: "Your data is not locked inside our servers. If our service disappears tomorrow, your passwords remain accessible. You can leave whenever you want.",
+    pillar3Desc:
+      "Your data is not locked inside our servers. If our service disappears tomorrow, your passwords remain accessible. You can leave whenever you want.",
     howTitle: "How it works",
     howSubtitle: "From setup to encrypted backup, in a few simple steps.",
     step1Title: "Create your vault",
-    step1Desc: "A secure on-chain identity is created automatically via your Smart Account. No signup, no external app, no wallet required.",
+    step1Desc:
+      "A secure on-chain identity is created automatically via your Smart Account. No signup, no external app, no wallet required.",
     step2Title: "Choose your lock",
-    step2Desc: "Pick a master password, use your fingerprint, or a Passkey. Your vault key is derived from it and never stored anywhere.",
+    step2Desc:
+      "Pick a master password, use your fingerprint, or a Passkey. Your vault key is derived from it and never stored anywhere.",
     step3Title: "Automatic backup",
-    step3Desc: "Your encrypted vault is backed up to IPFS automatically. No single point of failure, no central database.",
+    step3Desc:
+      "Your encrypted vault is backed up to IPFS automatically. No single point of failure, no central database.",
     step4Title: "Use everywhere",
-    step4Desc: "Mobile app, browser extension with autofill, Face ID, biometrics. Same vault, all your devices.",
+    step4Desc:
+      "Mobile app, browser extension with autofill, Face ID, biometrics. Same vault, all your devices.",
     featuresTitle: "Built for real use",
-    featuresSubtitle: "Sync, recover, and protect credentials across devices—without trusting us with your passwords.",
+    featuresSubtitle:
+      "Sync, recover, and protect credentials across devices without trusting us with your passwords.",
+    featuresCluster1: "Security & privacy",
+    featuresCluster2: "Sync & access",
+    featuresCluster3: "Premium tools",
     feat1Title: "Invisible to us",
-    feat1Desc: "Your passwords are decrypted only on your device. We never see your passwords, cards, or notes — by design.",
+    feat1Desc:
+      "Your passwords are decrypted only on your device. We never see your passwords, cards, or notes. That is by design.",
     feat2Title: "No account needed",
-    feat2Desc: "No email, no registration form. Your Smart Account is your identity. One fewer thing that can be hacked.",
+    feat2Desc:
+      "No email, no registration form. Your Smart Account is your identity. One fewer thing that can be hacked.",
     feat3Title: "Sovereign identity",
-    feat3Desc: "Your identity is a Smart Account on-chain. No centralized server keeps a database of who you are.",
+    feat3Desc:
+      "Your identity is a Smart Account on-chain. No centralized server keeps a database of who you are.",
     feat4Title: "IPFS backup",
-    feat4Desc: "Encrypted vault stored on IPFS. Nothing in clear text on our side, ever. You control your CID.",
+    feat4Desc:
+      "Encrypted vault stored on IPFS. Nothing in clear text on our side, ever. You control your CID.",
     feat5Title: "Biometrics + PRF",
-    feat5Desc: "WebAuthn PRF derives the key from your fingerprint or face. True passwordless encryption without external wallets.",
+    feat5Desc:
+      "WebAuthn PRF derives the key from your fingerprint or face. True passwordless encryption without external wallets.",
     feat6Title: "Modern encryption",
-    feat6Desc: "Argon2id key derivation and XChaCha20-Poly1305 encryption. Industry-leading defaults for your vault.",
+    feat6Desc:
+      "Argon2id key derivation and XChaCha20-Poly1305 encryption. Proven primitives, no custom crypto.",
     feat7Title: "Extension, iOS, Android",
-    feat7Desc: "Autofill in the browser, AutoFill on iOS and Android, full vault UI — including groups, identities, and TOTP.",
+    feat7Desc:
+      "Autofill in the browser, AutoFill on iOS and Android, and a full vault UI with groups, identities, and TOTP.",
     feat8Title: "Import & export",
-    feat8Desc: "Bitwarden, CSV, JSON, PGP. Export plain, encrypted, or PGP-wrapped for your own backups.",
+    feat8Desc:
+      "Bitwarden, CSV, JSON, PGP. Export plain, encrypted, or PGP-wrapped for your own backups.",
     feat9Title: "No ads, no tracking",
-    feat9Desc: "No advertising, no behavioral profiling. Premium and aliases use standard payment and email flows only where you opt in.",
+    feat9Desc:
+      "No advertising, no behavioral profiling. Premium and aliases use standard payment and email flows only where you opt in.",
     feat10Title: "Vault Sync",
-    feat10Desc: "After unlocking, changes sync to IPFS automatically and update the smart contract registry in the background.",
+    feat10Desc:
+      "After unlocking, changes sync to IPFS automatically and update the smart contract registry in the background.",
     feat11Title: "Fragmented recovery (Premium)",
-    feat11Desc: "Split your vault into 5 shares (Shamir 3-of-5). Recovery is independent of your device for disaster recovery.",
+    feat11Desc:
+      "Split your vault into 5 shares (Shamir 3-of-5). Recovery is independent of your device for disaster recovery.",
     feat12Title: "Email aliases (Premium)",
-    feat12Desc: "Create forwarding addresses on your domain to hide your real inbox from signups and leaks.",
+    feat12Desc:
+      "Create forwarding addresses on your domain to hide your real inbox from signups and leaks.",
     feat13Title: "Multi-modal auth",
-    feat13Desc: "Unlock with biometric passkeys, master password, or physical NFC backup keys.",
+    feat13Desc:
+      "Unlock with biometric passkeys, master password, or physical NFC backup keys.",
     feat14Title: "Secure Documents",
-    feat14Desc: "Store sensitive documents like ID cards, fragmented and encrypted before IPFS sync.",
+    feat14Desc:
+      "Store sensitive documents like ID cards, fragmented and encrypted before IPFS sync.",
     feat15Title: "Security monitoring",
-    feat15Desc: "Track DApps approvals, scan for breaches, and get alerts when something needs attention.",
+    feat15Desc:
+      "Track DApps approvals, scan for breaches, and get alerts when something needs attention.",
     feat16Title: "Encrypted Cloud",
-    feat16Desc: "Store files in encrypted cloud storage (S3). From 10 MB (free) to Unlimited depending on your plan.",
+    feat16Desc:
+      "Store files in encrypted cloud storage (S3). From 10 MB free up to Unlimited depending on your plan.",
     feat17Title: "Quick Share",
-    feat17Desc: "Share credentials securely with zero-knowledge ephemeral links. The recipient needs no account.",
+    feat17Desc:
+      "Share credentials securely with zero-knowledge ephemeral links. The recipient needs no account.",
     feat18Title: "TOS AI Analysis",
-    feat18Desc: "AI scans Terms of Service for data sharing and deletion rights, and detects phishing pages.",
+    feat18Desc:
+      "AI scans Terms of Service for data sharing and deletion rights, and detects phishing pages.",
     feat19Title: "Password Health",
-    feat19Desc: "Breach scanner, strength audit, and reuse detection. Identify weak passwords before attackers do.",
-    ctaTitle: "Ready to protect what matters?",
-    ctaSubtitle: "Start in seconds. No account needed, no data collected.",
+    feat19Desc:
+      "Breach scanner, strength audit, and reuse detection. Identify weak passwords before attackers do.",
+    ctaTitle: "Your first vault takes about 30 seconds.",
+    ctaSubtitle: "No email, no account, nothing to cancel.",
     ctaButton: "Try free",
-    techTitle: "Under the hood",
-    techSubtitle: "For developers and security auditors: the technologies behind VaultKeepR.",
-    tech1Name: "IPFS",
-    tech1Desc: "Content-addressed, distributed storage for encrypted vault blobs",
-    tech2Name: "Open source",
-    tech2Desc: "Core and clients auditable by the community",
-    tech3Name: "Smart Wallet",
-    tech3Desc: "Standard wallet signing (EIP-191), no custodian",
-    tech4Name: "Argon2id",
-    tech4Desc: "Memory-hard key derivation",
-    tech5Name: "S3 Cloud",
-    tech5Desc: "Zero-knowledge encrypted file storage",
     techPillarLink: "Zero-knowledge encryption explained: read the guide",
     privacyBadgeLabel: "Zero data collected",
     privacyBadgeTitle: "Your privacy is not a setting. It's our foundation.",
-    privacyBadgeSubtitle: "VaultKeepR does not collect analytics, telemetry, or user data. We literally cannot see what you store.",
+    privacyBadgeSubtitle:
+      "VaultKeepR does not collect analytics, telemetry, or user data. We literally cannot see what you store.",
     privacyBadge1Title: "Zero tracking",
-    privacyBadge1Desc: "No analytics, no cookies, no fingerprinting. We don't know who you are and we never will.",
+    privacyBadge1Desc:
+      "No analytics, no cookies, no fingerprinting. We don't know who you are and we never will.",
     privacyBadge2Title: "Nothing to steal",
-    privacyBadge2Desc: "Your passwords are encrypted on your device before storage. We only hold sealed vaults — there is nothing to breach.",
+    privacyBadge2Desc:
+      "Your passwords are encrypted on your device before storage. We only hold sealed vaults, so there is nothing to breach.",
     privacyBadge3Title: "Locked before it leaves",
-    privacyBadge3Desc: "End-to-end encrypted with military-grade algorithms. Your master password never leaves your device.",
+    privacyBadge3Desc:
+      "End-to-end encrypted with military-grade algorithms. Your master password never leaves your device.",
     heroH1Prefix: "The",
     heroH1Main: "Zero-Knowledge Password Manager",
-    heroH1Suffix: "that doesn't need your email.",
-    heroCtaDetailed: "Try VaultKeepR Free — No Email Required",
-    heroReassurance: "Free forever  •  Open source  •  2-minute setup",
+    heroCtaDetailed: "Try free",
     heroSecondaryCta: "or see how it works",
     heroGitHubStars: "stars on GitHub",
     trustSignalNoEmail: "No email required",
@@ -4025,11 +4191,12 @@ export const en: Translations = {
     trustSignalAuditable: "100% auditable",
     trustSignalFreeForever: "Free forever",
     miniPricingTitle: "Free for everyone. Premium for convenience.",
-    miniPricingSubtitle: "Every security feature is free, forever. Premium adds encrypted cloud backup, TOTP authenticator, and Shamir recovery.",
+    miniPricingSubtitle:
+      "Every security feature is free, forever. Premium adds encrypted cloud backup, TOTP authenticator, and Shamir recovery.",
     miniPricingFreeTitle: "Free",
     miniPricingFreePrice: "$0",
     miniPricingFreePeriod: "forever",
-    miniPricingFreeCta: "Get Started",
+    miniPricingFreeCta: "Try free",
     miniPricingFreeFeat1: "Unlimited passwords & cards",
     miniPricingFreeFeat2: "XChaCha20 + Argon2id encryption",
     miniPricingFreeFeat3: "Chrome, Firefox, iOS, Android",
@@ -4053,23 +4220,96 @@ export const en: Translations = {
     stickyNavPricing: "Pricing",
     stickyNavFaq: "FAQ",
     comparePreviewTitle: "How does VaultKeepR compare?",
-    comparePreviewSubtitle: "Side-by-side with the most popular password managers. Same features, different philosophy.",
+    comparePreviewSubtitle:
+      "Side-by-side with the most popular password managers. Same features, different philosophy.",
+    compareSeeAll: "See all {{count}} comparisons",
+    faqTitle: "Frequently Asked Questions",
+    faqSubtitle:
+      "Everything you need to know about VaultKeepR's architecture and security.",
+    faqQ1: "What is VaultKeepR and how does it work?",
+    faqA1:
+      "VaultKeepR is a decentralized, zero-knowledge password manager. It encrypts all your credentials directly on your device using XChaCha20-Poly1305, then stores the encrypted vault on the IPFS peer-to-peer network. Nobody else can read your data.",
+    faqQ2: "Do I need an email address or a crypto wallet to sign up?",
+    faqA2:
+      "No. Powered by Account Abstraction (ERC-4337), the app automatically provisions a Smart Account in the background when you register your biometric passkey. You do not need to provide an email or connect any external web3 wallet like MetaMask.",
+    faqQ3: "How are blockchain transaction fees (gas) paid?",
+    faqA3:
+      "All blockchain network fees required to record or claim your vault are sponsored by our Paymaster service (Pimlico). The use of the Base L2 blockchain is transparent and completely free of charge for users.",
+    faqQ4: "What happens if I lose my device?",
+    faqA4:
+      "VaultKeepR features Shamir Secret Sharing recovery. Your recovery key is split into 5 encrypted fragments distributed across devices, trusted contacts, and on-chain smart contracts. Reconstructing any 3-of-5 fragments restores full access.",
+    faqQ5: "Is VaultKeepR open source?",
+    faqA5:
+      "Yes. Our cryptographic core and sync libraries are published in full under the MIT license. The code is publicly auditable for absolute transparency.",
+    featuresAlso:
+      "Also included: email aliases, encrypted cloud storage, secure documents, TOS analysis.",
+    featuresCompareLink: "Password manager comparisons",
+    featuresPremiumLink: "Premium tools",
+    heroPill1: "Open source",
+    heroPill2: "No email required",
+    heroPill3: "Every claim verifiable below",
+    appshotCaption: "Actual app, not a mockup",
+    appshotVersion: "v1.6",
+    receiptsKicker: "Receipts, not promises",
+    receiptsTitle: "Everything here, you can verify yourself.",
+    receiptsIntro:
+      'No "bank-grade security" and no badges we designed ourselves. Each claim links to the thing itself.',
+    receipt1Num: "813 tests",
+    receipt1Text: "Green in CI on every pull request. Coverage gate at 80%.",
+    receipt1Check: "verify: CI runs",
+    receipt2Num: "A / A / A",
+    receipt2Text:
+      "Security, reliability, maintainability: all three A. SonarCloud scans every push, dashboard is public.",
+    receipt2Check: "verify: dashboard",
+    receipt3Num: "8/10",
+    receipt3Text:
+      "OpenSSF Scorecard: pinned workflows, least-privilege tokens, signed releases.",
+    receipt3Check: "verify: scorecard",
+    receipt4Num: "minisign",
+    receipt4Text:
+      "Every release is signed. Key 26508045ED8C563D. Security policy and disclosure in the open repo.",
+    receipt4Check: "verify: releases",
+    founderKicker: "Why local-first",
+    founderQuote:
+      "VaultKeepR's AI used to call external APIs. I pushed local-first all the way: about ten days of migration, ten more of testing, and local models that were either several hundred megabytes too heavy or too weak to ship. I nearly went back. I didn't. The tags, the terms-of-service analysis, the site trust score now all run on your device. One less point of failure. Trust the math, not a company.",
+    founderAttrib: "the one dev behind VaultKeepR",
     bannerCloseAria: "Close announcement",
     footerTerms: "Terms",
     footerPrivacy: "Privacy policy",
     footerDocs: "Documentation",
     footerSecurity: "Security",
     footerChangelog: "Changelog",
+    footerColProduct: "Product",
+    footerColResources: "Resources & Security",
+    footerColSupport: "Support",
+    footerColLegal: "Legal",
+    footerDownload: "Download",
+    footerPricing: "Pricing",
+    footerNfcShop: "NFC Shop",
+    footerAbout: "About Us",
+    footerPasswordGuide: "Password Manager Guide",
+    footerZeroKnowledge: "What is Zero-Knowledge Encryption?",
+    footerComparisons: "Comparisons",
+    footerMigrations: "Migrations",
+    footerHelpCenter: "Help Center",
+    footerRecovery: "Recovery",
+    footerDeleteAccount: "Delete Account",
+    footerSecurityLabel: "Security",
+    footerAlternatives: "Alternatives & Comparisons",
+    footerMigrationGuides: "Migration Guides",
+    footerAlternative: "{{name}} Alternative",
+    footerMigrateFrom: "Migrate from {{name}}",
     footerGithub: "GitHub",
     footerSocialGithubAria: "vaultkeepr-public repository on GitHub",
     footerSocialXAria: "VaultKeepR on X (@vaultkeepr_xyz)",
-    footerSocialMastodonAria: "VaultKeepR on Mastodon (@vaultkeepr@infosec.exchange)",
+    footerSocialMastodonAria:
+      "VaultKeepR on Mastodon (@vaultkeepr@infosec.exchange)",
     footerSocialFarcasterAria: "VaultKeepR on Farcaster (@vaultkeepr.eth)",
     footerSocialLinkedinAria: "VaultKeepR on LinkedIn",
     footerContact: "Contact",
     contactTitle: "Contact us",
     contactIntro:
-    "We read every message. Never send your master password or vault contents here.",
+      "We read every message. Never send your master password or vault contents here.",
     contactName: "Name",
     contactEmail: "Email",
     contactMessage: "Message",
@@ -4080,48 +4320,56 @@ export const en: Translations = {
     contactClose: "Close",
     contactRequired: "Please fill in all fields.",
     contactInvalidEmail: "Please enter a valid email address.",
-    contactResendError: "We can’t send mail from this form right now. Please try again later or use another channel from our Privacy Policy.",
+    contactResendError:
+      "We can’t send mail from this form right now. Please try again later or use another channel from our Privacy Policy.",
     contactInboxError:
-    "We can’t receive messages through this form yet. Try the Security page, or the contact options in our Privacy Policy.",
+      "We can’t receive messages through this form yet. Try the Security page, or the contact options in our Privacy Policy.",
     contactConfigError: "The contact form is not available on this deployment.",
     footerCopyright: "All rights reserved.",
     loading: "Loading…",
     comingSoonTitle: "Your passwords deserve better",
     comingSoonSubtitle:
-    "VaultKeepR is the first zero-knowledge, decentralized password manager powered by your Ethereum wallet. No email. No servers. No compromise.",
+      "VaultKeepR is the first zero-knowledge, decentralized password manager powered by your Ethereum wallet. No email. No servers. No compromise.",
     comingSoonCountdownTitle: "Launch countdown",
     comingSoonUnitDays: "Days",
     comingSoonUnitHours: "Hours",
     comingSoonUnitMinutes: "Minutes",
     comingSoonUnitSeconds: "Seconds",
-    comingSoonLive: "The countdown has ended — public access is opening very soon.",
+    comingSoonLive:
+      "The countdown has ended. Public access is opening very soon.",
     comingSoonEmailPlaceholder: "Enter your email for early access",
     comingSoonEmailCta: "Join the waitlist",
     comingSoonEmailSuccess: "You're on the list! We'll notify you at launch.",
     comingSoonFeat1Title: "Zero-Knowledge",
-    comingSoonFeat1Desc: "Encrypted on your device with Argon2id + XChaCha20. We can't read your data — by design.",
+    comingSoonFeat1Desc:
+      "Encrypted on your device with Argon2id + XChaCha20. We cannot read your data, by design.",
     comingSoonFeat2Title: "Wallet Login",
-    comingSoonFeat2Desc: "Connect securely with an embedded Smart Wallet via Account Abstraction. No email, no account password.",
+    comingSoonFeat2Desc:
+      "Connect securely with an embedded Smart Wallet via Account Abstraction. No email, no account password.",
     comingSoonFeat3Title: "IPFS Backup",
-    comingSoonFeat3Desc: "Your encrypted vault is synced across devices via IPFS. Decentralized and resilient.",
+    comingSoonFeat3Desc:
+      "Your encrypted vault is synced across devices via IPFS. Decentralized and resilient.",
     comingSoonFeat4Title: "Cross-Platform",
-    comingSoonFeat4Desc: "Web app, Chrome extension, and iOS. One vault, everywhere.",
+    comingSoonFeat4Desc:
+      "Web app, Chrome extension, and iOS. One vault, everywhere.",
     heroTagIpfs: "IPFS backup",
     heroTagWallet: "No account needed",
     heroTagE2e: "End-to-end encrypted",
     heroTagCloud: "Encrypted cloud",
     heroTagAndroid: "Android & iOS",
+    platformTitle: "Available everywhere",
     playStore: "Play Store",
     langSwitchToEn: "Switch to English",
-    langSwitchToFr: "Passer en français"
+    langSwitchToFr: "Passer en français",
   },
   vaultAppEntry: {
     subtitle: "Connect your wallet to unlock your vault on this domain.",
-    backToMarketing: "Website & presentation"
+    backToMarketing: "Website & presentation",
   },
   premiumPage: {
-    title: "Choose Your Plan",
-    subtitle: "From free essentials to unlimited cloud — pick the plan that fits your needs.",
+    title: "Four plans. Every security feature stays free.",
+    subtitle:
+      "Paid tiers add storage, recovery and convenience. Free stays free, forever.",
     featureCol: "Feature",
     freeCol: "Free",
     premiumCol: "Premium",
@@ -4133,8 +4381,21 @@ export const en: Translations = {
     priceUltimate: "€69.99 / yr · €6.99 / mo",
     pricePro: "€39.99 / yr · €3.99 / mo",
     billingLabel: "Plan",
-    billingYearly: "Yearly — save up to 40%",
-    billingMonthly: "Monthly — cancel anytime",
+    billingYearly: "Yearly (save up to 40%)",
+    billingMonthly: "Monthly (cancel anytime)",
+    cardPremB1: "TOTP authenticator, email aliases, Shamir 3-of-5 recovery",
+    cardPremB2: "1 GB encrypted cloud, 5 MB per file",
+    cardProB1: "50 GB encrypted cloud, 25 MB per file",
+    cardProB2: "Everything in Premium",
+    cardUltB1: "Unlimited* encrypted cloud, 50 MB per file",
+    cardUltB2: "Everything in Premium + Cloud Unlimited",
+    cardLifeB1: "The Ultimate pack for life",
+    cardLifeB2: "Crypto payment only",
+    cardLifeB3: "No email required",
+    cardAnonymous: "Anonymous",
+    cardOneTime: "One-time payment",
+    fairUse: "* Fair use policy applies in case of excessive usage.",
+    comparePlans: "Compare all plans and features",
     featLogins: "Logins & passwords (unlimited)",
     featCards: "Cards & notes",
     featIdentities: "Identities & autofill",
@@ -4169,20 +4430,22 @@ export const en: Translations = {
     featSupport: "Priority support",
     featStorage: "Unlimited encrypted storage",
     successTitle: "Payment successful",
-    successMessage: "Your license key has been sent to the email address provided.",
+    successMessage:
+      "Your license key has been sent to the email address provided.",
     successSpam: "Check your spam folder if you don't see it.",
     activateKey: "Activate key in Settings",
     canceled: "Payment canceled.",
     retry: "Retry",
     licenceTitle: "Subscribe now",
     licenceDesc:
-    "Yearly or monthly billing. Encrypted card payment via Stripe. Your license key is emailed after checkout; renewals extend the same key.",
+      "Yearly or monthly billing. Encrypted card payment via Stripe. Your license key is emailed after checkout; renewals extend the same key.",
     emailLabel: "Email to receive the key",
     emailPlaceholder: "you@example.com",
-    buyBtn: "Subscribe — Secure payment",
+    buyBtn: "Subscribe : Secure payment",
     getStarted: "Get started",
     redirecting: "Redirecting to payment…",
-    paymentNote: "Stripe subscription. Key sent after payment; renewals update your license end date.",
+    paymentNote:
+      "Stripe subscription. Key sent after payment; renewals update your license end date.",
     backHome: "Back to home",
     emailRequired: "Email required",
     paymentError: "Payment error",
@@ -4191,7 +4454,8 @@ export const en: Translations = {
     proAddon: "VaultKeepR Pro",
     proAddonDesc: "Upgrade to 50 GB of encrypted IPFS cloud storage.",
     ultimateBundle: "VaultKeepR Ultimate",
-    ultimateBundleDesc: "Premium + Cloud Unlimited in one bundle. Save €0.49/mo vs buying separately.",
+    ultimateBundleDesc:
+      "Premium + Cloud Unlimited in one bundle. Save €0.49/mo vs buying separately.",
     ultimateSaving: "Save 17%",
     planPremium: "Premium",
     planPremiumPrice: "€2.49/mo",
@@ -4210,103 +4474,27 @@ export const en: Translations = {
     cryptoAnnual: "Annual",
     cryptoMonthly: "Monthly",
     cryptoDiscount: "−10%",
-    cryptoLifetimeExclusive: "Crypto exclusive"
+    cryptoLifetimeExclusive: "Crypto exclusive",
   },
   onboarding: {
-    welcomeTitle: "Welcome to VaultKeepR",
-    welcomeBody: "Your zero-knowledge password vault. Everything is encrypted locally — no server ever sees your data.",
-    vaultTitle: "Create your vault",
-    vaultBody: "Choose how you want to store your passwords:",
-    vaultLocal: "Local vault — encrypted on this device only",
-    vaultLocalDesc: "Quick access, local storage",
-    vaultIpfs: "IPFS sync — encrypted & synced across devices via your wallet",
-    vaultIpfsDesc: "Decentralized, access everywhere",
-    saveTitle: "Save your first password",
-    saveBody: "Log in to any website — VaultKeepR will offer to save your credentials automatically.",
-    skip: "Skip",
-    next: "Next",
-    done: "Let's go!",
-    replaySettings: "Replay onboarding",
-    step1Title: "Zero Knowledge",
-    step1Desc: "Your passwords are encrypted on your device before any sync. No server ever sees your data in plain text.",
-    step2Title: "Wallet Login",
-    step2Desc: "Access your vault via an embedded Smart Wallet. No email or account password needed.",
-    step3Title: "Add your credentials",
-    step3Desc: "Click the + button to save a login, identity, or generate a strong password. VaultKeepR also detects forms and offers to save them automatically.",
-    step4Title: "IPFS Sync",
-    step4Desc: "Your vault is auto-saved after every change. Use this button anytime to force a manual sync to IPFS — your encrypted backup, decentralized and always accessible.",
-    step5Title: "Your Vault is Ready",
-    step5Desc: "Explore the password generator, breach scanner, and secure sharing. Everything is at your fingertips.",
-    start: "Get Started",
-    connectCta: "Connect my wallet",
-    doNotShowAgain: "Don't show again",
-    lockTabsTitle: "Two storage modes",
-    lockTabsDesc: "IPFS syncs your encrypted vault across all devices via your wallet. Local keeps it on this device only.",
-    lockPasskeyTitle: "One-tap unlock",
-    lockPasskeyDesc: "Create your vault in seconds with Face ID, Touch ID, or your device PIN. No password to remember.",
-    lockPasswordTitle: "Master password",
-    lockPasswordDesc: "Prefer full control? Set a master password — the only key to your vault. Choose it carefully: it cannot be recovered.",
-    lockOption1Title: "Option 1 — Passkey (recommended)",
-    lockOption1Desc: "One tap with Face ID, Touch ID or your device PIN. No password to remember. Tap the button above to continue.",
-    lockOption2Title: "Option 2 — Master password",
-    lockOption2Desc: "You keep full control. Set a strong password — it\'s the only key to your vault and cannot be recovered. Fill in the fields above.",
-    lockNewVaultTitle: "Create your encrypted vault",
-    lockNewVaultDesc: "Your passwords are encrypted locally and never sent anywhere unprotected. Tap the button to get started.",
     landingCreateBtn: "Create my vault",
     landingUnlockBtn: "I already have a vault",
-    landingSubtitle: "Your zero-knowledge password vault.",
-    landingDemoBtn: "Try the demo vault",
-    landingDemoDesc: "Fake data, premium included. Perfect for videos and screenshots.",
+    landingSubtitle: "Your zero-knowledge password manager.",
     landingDeviceSync: "Sync from another device",
     loadingVault: "Loading your vault…",
-    loadingVaultDesc: "Checking your encrypted storage",
+    loadingVaultDesc: "Verifying encrypted storage",
     welcomeBack: "Welcome back",
     welcomeBackDesc: "Unlock your vault to continue.",
-    firstTime: "First time here?",
-    advancedOptions: "Advanced options",
-    hideAdvanced: "Hide advanced options",
-    methodsDivider: "Or use your master password",
-    noVaultYet: "No vault on this device yet",
-    noVaultYetDesc: "Create one in 30 seconds, or restore an existing one.",
-    createVaultIntro: "Pick a method — you can always change later.",
-    tabBarTitle: "Your command center",
-    tabBarDesc: "Switch between your vault, TOTP codes, tools, secure share, cloud storage, and documents.",
-    searchTitle: "Quick Search",
-    searchDesc: "Find any credential instantly. Search by name, URL, username, or tag — your vault at your fingertips.",
-    primerTitle: "Before you begin",
-    primerSubtitle: "VaultKeepR works differently from other password managers. Here are 3 things to know.",
-    primerSlide1Title: "No one can recover your data",
-    primerSlide1Desc: "There is no server, no 'forgot my password' button. Your passkey or master password is the only key that exists. If you lose it, your data is gone -- unless you set up a recovery method (NFC backup or Shamir Secret Sharing) beforehand.",
-    primerSlide2Title: "Your data never leaves your device",
-    primerSlide2Desc: "Everything is encrypted right here, on this device. Even the optional IPFS backup is encrypted before it leaves — no one can read it, not even us.",
-    primerSlide3Title: "No account. Just you.",
-    primerSlide3Desc: "No email, no sign-up. Your identity is your passkey (biometric) or your Ethereum wallet. That's the only thing needed to access your vault.",
-    primerQuizTitle: "Let's make sure you got it",
-    primerQ1: "If you lose your master password, what happens?",
-    primerQ1a1: "VaultKeepR can reset it by email",
-    primerQ1a2: "My data is lost permanently",
-    primerQ1Wrong: "Incorrect. There is no server or email on VaultKeepR. Your master password or passkey is the ONLY way to decrypt your vault. No one can recover it for you.",
-    primerQ2: "Where are your passwords stored?",
-    primerQ2a1: "On VaultKeepR's servers",
-    primerQ2a2: "Encrypted on my device only",
-    primerQ2Wrong: "Incorrect. VaultKeepR has no servers. Your passwords are encrypted and stored locally on your device. The IPFS backup is also encrypted before leaving.",
-    primerQ3: "Is the IPFS backup readable by others?",
-    primerQ3a1: "Yes, anyone with the link can read it",
-    primerQ3a2: "No, it is encrypted before leaving my device",
-    primerQ3Wrong: "Incorrect. Your IPFS backup is fully encrypted on your device before it is uploaded. Even if someone finds it, they cannot read it without your key.",
-    primerQ4: "How do you create an account on VaultKeepR?",
-    primerQ4a1: "With an email and password like any other app",
-    primerQ4a2: "There is no account -- just a passkey or wallet",
-    primerQ4Wrong: "Incorrect. VaultKeepR has no accounts, no emails, no sign-up. Your identity is your passkey (biometric) or your Ethereum wallet.",
-    primerAllCorrect: "You're all set.",
-    primerContinue: "Create my vault",
-    primerIUnderstand: "I understand the risks, continue"
+    landingDemoBtn: "Try the demo vault",
+    landingDemoDesc:
+      "Fake data, premium included. Great for videos and screenshots.",
+    createVaultIntro: "Pick a method, you can always change later.",
   },
   saveBanner: {
     loginFormDetected: "Login form detected",
     saveCredentials: "Save these credentials",
     fillFormFirst: "Fill the login form first.",
-    cannotCollect: "Unable to collect credentials"
+    cannotCollect: "Unable to collect credentials",
   },
   passwordFeedback: {
     tooShort: "Password is too short",
@@ -4316,7 +4504,7 @@ export const en: Translations = {
     addSpecialChars: "Add special characters",
     avoidRepeated: "Avoid repeated characters",
     useMultipleTypes: "Use multiple character types",
-    veryWeak: "Very weak password"
+    veryWeak: "Very weak password",
   },
   passwordHealth: {
     noEntries: "No credentials to analyze.",
@@ -4325,7 +4513,8 @@ export const en: Translations = {
     scoreGood: "Good security level! A few improvements are still possible.",
     scoreFair: "Fair security level. Strengthen your weak passwords.",
     scoreWeak: "Insufficient security. Several passwords need to be changed.",
-    scoreCritical: "Critical security. Change your weakest passwords immediately.",
+    scoreCritical:
+      "Critical security. Change your weakest passwords immediately.",
     statCritical: "Critical",
     statWeak: "Weak",
     statFair: "Fair",
@@ -4351,7 +4540,7 @@ export const en: Translations = {
     statUnsecureWebsites: "Unsecure",
     filterUnsecureWebsites: "Unsecure",
     issueTwoFactorMissing: "Two-factor authentication not set up",
-    issueUnsecureUrl: "Site does not use HTTPS"
+    issueUnsecureUrl: "Site does not use HTTPS",
   },
   commandPalette: {
     searchPlaceholder: "Search a site, login, note... (Ctrl+K)",
@@ -4363,7 +4552,7 @@ export const en: Translations = {
     bankCard: "Credit Card",
     noteLabel: "Note",
     untitled: "Untitled",
-    noResultsFound: "No results for \"{query}\"",
+    noResultsFound: 'No results for "{query}"',
     typeToSearch: "Type to search…",
     resultsCount: "{count} result",
     resultsCountPlural: "{count} results",
@@ -4372,12 +4561,13 @@ export const en: Translations = {
     openUrl: "Open URL",
     shortcutNavigate: "navigate",
     shortcutOpen: "open",
-    shortcutClose: "close"
+    shortcutClose: "close",
   },
   socialProof: {
     sectionBadge: "Proven Security",
     sectionTitle: "Built for people who take security seriously",
-    sectionSubtitle: "Enterprise-grade encryption with zero complexity. Your credentials, your keys, your rules.",
+    sectionSubtitle:
+      "Enterprise-grade encryption with zero complexity. Your credentials, your keys, your rules.",
     stat1Value: "496",
     stat1Label: "Cryptographic tests passed (0 failures)",
     stat2Value: "0 B",
@@ -4387,21 +4577,12 @@ export const en: Translations = {
     stat4Value: "ERC-4337",
     stat4Label: "Smart accounts with no external wallet needed",
     techTitle: "Built with proven, audited technologies",
-    testimonialTitle: "Open source, built to be verified",
-    testimonial1Text: "The source code is fully open and auditable on GitHub — no claim we make is hidden behind a proprietary build.",
-    testimonial1Author: "VaultKeepR Team",
-    testimonial1Role: "Public source repository",
-    testimonial2Text: "Cryptography runs entirely on your device with Argon2id key derivation and XChaCha20-Poly1305 — no server ever sees your master secret.",
-    testimonial2Author: "VaultKeepR Team",
-    testimonial2Role: "Client-side cryptography",
-    testimonial3Text: "No email, no account, no central database. Your vault is encrypted locally and synchronized peer-to-peer, so there is no honeypot to breach.",
-    testimonial3Author: "VaultKeepR Team",
-    testimonial3Role: "Zero-knowledge architecture"
   },
   passkey: {
     folder: "Passkeys",
     savePromptTitle: "Save this passkey?",
-    savePromptBody: "Store this passkey for {{rpName}} ({{userName}}) in VaultKeepR",
+    savePromptBody:
+      "Store this passkey for {{rpName}} ({{userName}}) in VaultKeepR",
     saveButton: "Save Passkey",
     useNative: "Use browser instead",
     authPromptTitle: "Sign in with passkey",
@@ -4412,10 +4593,12 @@ export const en: Translations = {
     rpId: "Site",
     created: "Created",
     lastUsed: "Last used",
-    deleteConfirm: "Delete this passkey? You won't be able to sign in with it anymore.",
+    deleteConfirm:
+      "Delete this passkey? You won't be able to sign in with it anymore.",
     vaultLocked: "Unlock VaultKeepR to use passkeys",
     providerActive: "Passkey Provider Active",
-    providerDescription: "VaultKeepR can store and use passkeys for compatible websites.",
+    providerDescription:
+      "VaultKeepR can store and use passkeys for compatible websites.",
     noEnrollment: "No passkey enrolled",
     unlockFailed: "Passkey unlock failed",
     biometricFailed: "Biometric verification failed",
@@ -4429,20 +4612,24 @@ export const en: Translations = {
     cancelledByUser: "Cancelled by user",
     enrollmentFailed: "Enrollment Failed",
     label: "Passkey",
-    syncPrompt: "Do you already have a Passkey account (e.g. synced via iCloud/Google)?\n\n- OK: Login to existing account\n- Cancel: Create new Passkey account",
+    syncPrompt:
+      "Do you already have a Passkey account (e.g. synced via iCloud/Google)?\n\n- OK: Login to existing account\n- Cancel: Create new Passkey account",
     notFoundOrCancelled: "No Passkey found or cancelled.",
     creating: "Creating Passkey...",
     createdToast: "Passkey created!",
     passkeyCreateSuccess: "Passkey configured successfully! Migrating vault...",
-    passkeyPrfError: "Your device does not support the PRF extension required to secure the vault.",
+    passkeyPrfError:
+      "Your device does not support the PRF extension required to secure the vault.",
     goPasswordlessTitle: "Go Passwordless (Account Abstraction)",
-    goPasswordlessDesc: "Secure your account with a Passkey (FaceID / TouchID). You will never need to type your password again, and your Web3 identity will be managed by a Smart Contract."
+    goPasswordlessDesc:
+      "Secure your account with a Passkey (FaceID / TouchID). You will never need to type your password again, and your Web3 identity will be managed by a Smart Contract.",
   },
   backupPassword: {
     title: "Backup Password",
     description: "Recover your vault if Touch ID / Face ID is lost",
     recommended: "Recommended",
-    warning: "Without a backup password, losing your authenticator (Touch ID / Face ID) will make your vault unrecoverable.",
+    warning:
+      "Without a backup password, losing your authenticator (Touch ID / Face ID) will make your vault unrecoverable.",
     set: "Set a backup password",
     change: "Change backup password",
     remove: "Remove backup password",
@@ -4451,7 +4638,9 @@ export const en: Translations = {
     recover: "Backup password",
     incorrect: "Backup password incorrect.",
     notConfigured: "No backup password configured.",
-    unlockHint: "Enter your backup password to recover the vault"
+    unlockHint: "Enter your backup password to recover the vault",
+    shamirRequired:
+      "A backup password is required before setting up Shamir recovery. Create one in the backup password section.",
   },
   reUnlock: {
     title: "Re-authenticate",
@@ -4460,16 +4649,16 @@ export const en: Translations = {
     usePassword: "Use password",
     later: "Later",
     unlock: "Unlock",
-    passwordPlaceholder: "Master password"
+    passwordPlaceholder: "Master password",
   },
   syncBanner: {
     unlockExpired: "Session expired. Please unlock again to sync.",
     expired: "IPFS Sync expired. Turn it back on to keep devices synced.",
     expiringSoon: "Sync expires in {time}",
-    renew: "Renew"
+    renew: "Renew",
   },
   securityBadge: {
-    title: "Security Badge"
+    title: "Security Badge",
   },
   dapps: {
     title: "dApps & Approvals",
@@ -4484,7 +4673,8 @@ export const en: Translations = {
     clearHistory: "Clear history",
     confirmClear: "Confirm",
     connectWallet: "Connect a wallet first",
-    connectWalletHint: "Link your wallet in Settings to scan on-chain approvals",
+    connectWalletHint:
+      "Link your wallet in Settings to scan on-chain approvals",
     scanning: "Scanning on-chain approvals…",
     scanningHint: "Checking Ethereum mainnet via Etherscan",
     retry: "Retry",
@@ -4495,7 +4685,7 @@ export const en: Translations = {
     allSafe: "All approvals are limited",
     totalApprovals: "active approval(s)",
     revokeAdvice: "Consider revoking unused ones",
-    revoke: "Revoke"
+    revoke: "Revoke",
   },
   secureDocuments: {
     title: "Secure Documents",
@@ -4530,7 +4720,8 @@ export const en: Translations = {
     chooseType: "Choose Document Type",
     chooseTypeDesc: "Select the type of document you want to scan and secure.",
     emptyState: "No secured documents yet",
-    emptyStateHint: "Add your ID card, passport or driving license in an ultra-secure local vault.",
+    emptyStateHint:
+      "Add your ID card, passport or driving license in an ultra-secure local vault.",
     fileTooLarge: "File must be under 5MB",
     saveError: "Error saving document",
     revealImage: "Reveal specific image",
@@ -4545,7 +4736,8 @@ export const en: Translations = {
     manualInfo: "Manual Info (Web OCR limited)",
     saveSecure: "Save Secure Document",
     premiumFeature: "Premium Feature",
-    premiumDesc: "Secure documents are encrypted and fragmented using XChaCha20-Poly1305. Upgrade to premium to store up to {MAX_SECURE_DOCUMENTS} documents.",
+    premiumDesc:
+      "Secure documents are encrypted and fragmented using XChaCha20-Poly1305. Upgrade to premium to store up to {MAX_SECURE_DOCUMENTS} documents.",
     maxSizeHint: "Maximum file size: 5MB",
     documentCount: "{count}/10 documents",
     downloading: "Downloading fragments…",
@@ -4561,15 +4753,17 @@ export const en: Translations = {
     nfcScanLoading: "NFC reading in progress...",
     nfcScanVerify: "Verify identity via NFC",
     ocrBirthDateReq: "Date of Birth (Required for NFC)",
-    ocrPhotoExtracted: "✓ Secure Photo Extracted",
+    ocrPhotoExtracted: "Secure Photo Extracted",
     encryptingNfcPhoto: "Encrypting NFC photo...",
     uploadNfcPhoto: "Uploading NFC photo ({current}/{total})...",
     nfcSuccessTitle: "Legal Identity (NFC)",
     nfcSuccessMsg: "The chip has been authenticated. Data saved.",
     nfcErrorTitle: "NFC Error",
-    nfcErrorMsgNoChip: "Reading could not be completed. Ensure your document has an NFC chip.",
-    nfcErrorMsgKeep: "Reading could not be completed. Ensure you hold the document still.",
-    decrypting: "Decrypting..."
+    nfcErrorMsgNoChip:
+      "Reading could not be completed. Ensure your document has an NFC chip.",
+    nfcErrorMsgKeep:
+      "Reading could not be completed. Ensure you hold the document still.",
+    decrypting: "Decrypting...",
   },
   cloud: {
     title: "Cloud",
@@ -4623,7 +4817,7 @@ export const en: Translations = {
     public: "Public",
     fileName: "Name",
     fileSize: "Size",
-    premiumRequired: "Premium required"
+    premiumRequired: "Premium required",
   },
   share: {
     title: "Secure Share",
@@ -4659,7 +4853,8 @@ export const en: Translations = {
     noteLabel: "Secure Note",
     credentialsLabel: "Credentials",
     zkBadge: "Encrypted locally \u00b7 PIN required \u00b7 Zero-Knowledge",
-    zkHint: "The server only sees an encrypted blob. Decryption happens in the recipient\u2019s browser only.",
+    zkHint:
+      "The server only sees an encrypted blob. Decryption happens in the recipient\u2019s browser only.",
     pinChannelHint: "Never send the link and PIN through the same channel",
     successTitle: "Share created successfully",
     successSub: "Encrypted locally \u00b7 Zero-Knowledge",
@@ -4670,10 +4865,12 @@ export const en: Translations = {
     paramError: "Parameter error",
     decryptContent: "Decrypt content",
     hasPinQuestion: "Do you have the PIN?",
-    hasPinBody: "To decrypt this share without the server seeing it, the PIN received from the sender is required.",
+    hasPinBody:
+      "To decrypt this share without the server seeing it, the PIN received from the sender is required.",
     decryptedSuccess: "Decrypted successfully",
     decryptedZkSub: "Client-side \u00b7 Zero-Knowledge",
-    decryptedZkHint: "This data was decrypted on your device only. It never transited in plaintext.",
+    decryptedZkHint:
+      "This data was decrypted on your device only. It never transited in plaintext.",
     autoDestructed: "The share has self-destructed.",
     unsupportedType: "This type is not yet supported for sharing.",
     viewCountLabel: "View {current} of {max}",
@@ -4686,14 +4883,15 @@ export const en: Translations = {
     typeFile: "File",
     generate: "Generate secure link",
     premiumOnly: "Premium feature",
-    premiumOnlyDesc: "Standalone secure sharing (link, note, file) is reserved for Premium members.",
+    premiumOnlyDesc:
+      "Standalone secure sharing (link, note, file) is reserved for Premium members.",
     linkRequired: "URL is required.",
     noteRequired: "Note is empty.",
     fileRequired: "Please select a file.",
     linkTitlePlaceholder: "Title (optional)",
     noteTitlePlaceholder: "Title (optional)",
     noteContentPlaceholder: "Note content…",
-    fileDropHint: "Drag or click to select — 50 MB max",
+    fileDropHint: "Drag or click to select : 50 MB max",
     createAnother: "New share",
     messageSender: "Message from sender",
     openLink: "Open link",
@@ -4706,26 +4904,32 @@ export const en: Translations = {
     receiveFileNotFound: "File not found.",
     receiveUnsupportedType: "File type not supported by this link.",
     receiveLoadError: "Loading error.",
-    receiveDownloadError: "Download error. The file might be unavailable on the IPFS network.",
+    receiveDownloadError:
+      "Download error. The file might be unavailable on the IPFS network.",
     receiveLoadingPublic: "Loading public share...",
     receiveDownloadingIpfs: "Downloading (IPFS)...",
     receiveZkFooter: "End-to-End Encrypted File \u00b7 Local decryption only",
-    fileTooLarge: "File too large"
+    fileTooLarge: "File too large",
   },
   pair: {
     title: "Device Sync",
     receive: "Receive",
     send: "Send",
     sendTitle: "Send to mobile",
-    sendScanInstructions: "Scan this QR from VaultKeepR on your phone to receive the vault",
+    sendScanInstructions:
+      "Scan this QR from VaultKeepR on your phone to receive the vault",
     sendSuccess: "Vault sent successfully!",
+    copyCode: "Copy code",
+    codeCopied: "Copied",
     receiveFromPhone: "Receive from phone",
     sendToDevice: "Send to device",
-    scanInstructions: "Scan this QR from VaultKeepR on your phone (Settings > Device Sync)",
+    scanInstructions:
+      "Scan this QR from VaultKeepR on your phone (Settings > Device Sync)",
     waitingForDevice: "Waiting for connection...",
     expiresIn: "Expires in {{time}}",
     confirmSend: "Send vault?",
-    confirmSendDesc: "Your encrypted vault will be securely sent to the other device.",
+    confirmSendDesc:
+      "Your encrypted vault will be securely sent to the other device.",
     sendVault: "Send vault",
     transferring: "Transferring...",
     success: "Vault synced successfully!",
@@ -4735,24 +4939,39 @@ export const en: Translations = {
     openQr: "QR Code",
     scanHint: "Scan a VaultKeepR QR code",
     receiveTitle: "Receive from Web",
-    receiveScanInstructions: "Scan this QR from VaultKeepR on your computer or extension",
+    receiveScanInstructions:
+      "Scan this QR from VaultKeepR on your computer or extension",
     sendInstructions: "Paste the pairing URI shown on the other device.",
     accepting: "Connecting...",
     waitingForVault: "Waiting for vault...",
     importing: "Importing vault...",
-    encrypting: "Encrypting and sending..."
+    encrypting: "Encrypting and sending...",
+    biometricEnabledNotice:
+      "Biometric unlock ({method}) enabled for this vault.",
+    biometricSetupNotice:
+      "Enable {method} in device settings to unlock this vault.",
+    biometricSettingsAction: "Open Settings",
+    biometricFaceId: "Face ID",
+    biometricTouchId: "Touch ID",
+    biometricFingerprint: "Fingerprint",
+    biometricFaceUnlock: "Face unlock",
+    biometricIris: "Iris",
+    biometricGeneric: "Biometric unlock",
   },
   security: {
     passwordHealth: "Password Health",
     passwordHealthDesc: "Audit the strength of your passwords",
     breachScanner: "Breach Scanner",
-    breachScannerDesc: "Check if your credentials have been compromised"
+    breachScannerDesc: "Check if your credentials have been compromised",
+    deviceCompromised: "Compromised device detected (jailbreak/root)",
   },
   legacy: {
     title: "Digital Legacy",
-    description: "Designate beneficiaries who can access your vault after a period of inactivity.",
+    description:
+      "Designate beneficiaries who can access your vault after a period of inactivity.",
     setup: "Set Up Legacy",
-    setupDescription: "Configure your digital legacy with beneficiaries and an inactivity delay.",
+    setupDescription:
+      "Configure your digital legacy with beneficiaries and an inactivity delay.",
     status: "Legacy Status",
     beneficiaries: "Beneficiaries",
     addBeneficiary: "Add Beneficiary",
@@ -4760,9 +4979,11 @@ export const en: Translations = {
     beneficiaryAddress: "Smart Account Address",
     beneficiaryLabel: "Label (optional)",
     delay: "Inactivity Delay",
-    delayDescription: "Time without heartbeat before legacy triggers (30 days to 2 years).",
+    delayDescription:
+      "Time without heartbeat before legacy triggers (30 days to 2 years).",
     gracePeriod: "Grace Period",
-    gracePeriodDescription: "Additional time after delay expires before beneficiaries can claim (3 to 30 days).",
+    gracePeriodDescription:
+      "Additional time after delay expires before beneficiaries can claim (3 to 30 days).",
     heartbeat: "Heartbeat",
     lastHeartbeat: "Last Heartbeat",
     sendHeartbeat: "Send Heartbeat Now",
@@ -4773,30 +4994,36 @@ export const en: Translations = {
     active: "Active",
     inactive: "Inactive",
     revoke: "Revoke Legacy",
-    revokeConfirm: "Are you sure you want to revoke your digital legacy? Beneficiaries will no longer be able to claim your vault.",
-    revokeDescription: "Permanently deactivate your digital legacy. No notification will be sent to beneficiaries.",
+    revokeConfirm:
+      "Are you sure you want to revoke your digital legacy? Beneficiaries will no longer be able to claim your vault.",
+    revokeDescription:
+      "Permanently deactivate your digital legacy. No notification will be sent to beneficiaries.",
     qrScan: "Scan QR Code",
     pasteAddress: "Paste Address",
     inviteLink: "Generate Invite Link",
     inviteLinkCopied: "Invite link copied to clipboard",
     incomingTitle: "Incoming Legacies",
-    incomingDescription: "Vaults you have been designated as a beneficiary for.",
+    incomingDescription:
+      "Vaults you have been designated as a beneficiary for.",
     claimButton: "Claim Legacy",
-    claimSuccess: "Legacy claimed successfully. You now have access to the vault.",
+    claimSuccess:
+      "Legacy claimed successfully. You now have access to the vault.",
     premiumRequired: "Premium Required",
-    premiumRequiredDescription: "Digital Legacy is available on Premium, Pro, and Ultimate plans.",
+    premiumRequiredDescription:
+      "Digital Legacy is available on Premium, Pro, and Ultimate plans.",
     days: "days",
     activate: "Activate Legacy",
-    activateConfirm: "Activate your digital legacy? Your vault will be accessible to beneficiaries after the configured inactivity period.",
+    activateConfirm:
+      "Activate your digital legacy? Your vault will be accessible to beneficiaries after the configured inactivity period.",
     errorTooManyBeneficiaries: "Maximum 5 beneficiaries allowed.",
     errorInvalidDelay: "Delay must be between 30 days and 2 years.",
     errorAlreadyActive: "A legacy is already active. Revoke it first.",
     errorNotClaimable: "This legacy is not claimable yet.",
     errorNotBeneficiary: "You are not a beneficiary of this legacy.",
     errorAlreadyClaimed: "This legacy has already been claimed.",
-    statusGreen: "All good — heartbeat is recent.",
-    statusYellow: "Warning — heartbeat is getting old.",
-    statusRed: "Critical — legacy will trigger soon.",
+    statusGreen: "All good : heartbeat is recent.",
+    statusYellow: "Warning : heartbeat is getting old.",
+    statusRed: "Critical : legacy will trigger soon.",
     contactEmail: "Email",
     contactTelegram: "Telegram username",
     contactAddress: "Smart Account address",
@@ -4804,28 +5031,30 @@ export const en: Translations = {
     statusPending: "Pending",
     statusConfirmed: "Confirmed",
     inviteSent: "Invitation sent",
-    inviteEmailSubject: "You've been designated as a digital legacy beneficiary",
-    telegramBotRequired: "The beneficiary must message @VaultKeepRBot on Telegram first",
+    inviteEmailSubject:
+      "You've been designated as a digital legacy beneficiary",
+    telegramBotRequired:
+      "The beneficiary must message @VaultKeepRBot on Telegram first",
     errorSmartAccountNotReady: "Your Smart Account is not ready yet.",
     errorActivation: "An error occurred during activation.",
     errorRevocation: "An error occurred during revocation.",
-    heartbeatCooldown: "A heartbeat was recently sent. Cooldown is active."
+    heartbeatCooldown: "A heartbeat was recently sent. Cooldown is active.",
   },
   contentScript: {
     card: {
       title: "Payment",
-      empty: "No card saved for this site"
+      empty: "No card saved for this site",
     },
     passkey: {
       title: "Choose a passkey",
       subtitle: "Sign in with a passkey for {0}",
       empty: "No passkey available for this site",
-      use: "Use"
+      use: "Use",
     },
     changePassword: {
       title: "Change password",
       current: "Use current",
-      generate: "Generate new"
+      generate: "Generate new",
     },
     generator: {
       title: "Password generator",
@@ -4844,18 +5073,18 @@ export const en: Translations = {
       strength: {
         weak: "Weak",
         medium: "Medium",
-        strong: "Strong"
+        strong: "Strong",
       },
-      noFocusedField: "Focus a field to fill the generated password"
+      noFocusedField: "Focus a field to fill the generated password",
     },
     identity: {
       title: "Choose an identity",
       analyzing: "Analyzing…",
-      empty: "No identities saved for this site"
+      empty: "No identities saved for this site",
     },
     locked: {
       title: "Vault locked",
-      body: "Unlock the extension to use your saved credentials."
+      body: "Unlock the extension to use your saved credentials.",
     },
     login: {
       title: "Sign in",
@@ -4868,11 +5097,11 @@ export const en: Translations = {
       aliasLocked: "Unlock the extension to create an alias",
       aliasError: "Could not create alias",
       aliasAddLicenseKey: "Add license key",
-      search: "Search…"
+      search: "Search…",
     },
     phishing: {
       title: "Suspicious site",
-      understood: "I understand"
+      understood: "I understand",
     },
     savePrompt: {
       newTitle: "Save password?",
@@ -4883,7 +5112,7 @@ export const en: Translations = {
       username: "Username",
       password: "Password",
       chooseEntry: "Update which entry?",
-      neverForSite: "Never for this site"
+      neverForSite: "Never for this site",
     },
     signup: {
       title: "Sign up",
@@ -4892,14 +5121,14 @@ export const en: Translations = {
       aliasPremium: "Email alias requires Premium",
       aliasLocked: "Unlock the extension to create an alias",
       aliasError: "Could not create alias",
-      aliasAddLicenseKey: "Add license key"
+      aliasAddLicenseKey: "Add license key",
     },
     toast: {
       generated: "Generated",
       saved: "Credentials saved",
       updated: "Credentials updated",
       filled: "Filled",
-      saveError: "Could not save — try again"
+      saveError: "Could not save : try again",
     },
     tos: {
       title: "Terms of Service analysis",
@@ -4920,24 +5149,26 @@ export const en: Translations = {
       unilateralSafe: "Terms appear stable",
       unilateralDanger: "Unilateral changes to terms are permitted",
       liabilitySafe: "No excessive liability limitation",
-      liabilityDanger: "Limited liability / no-warranty clause present"
+      liabilityDanger: "Limited liability / no-warranty clause present",
     },
     totp: {
       title: "Two-factor code",
       fill: "Fill",
       copy: "Copy",
       noCode: "No 2FA code saved for this site",
-      hintBody: "Open a 2FA setup page to add a code"
-    }
+      hintBody: "Open a 2FA setup page to add a code",
+    },
   },
 
   enterprise: {
     espacePersonal: "Personal",
     espaceOrg: "Organisation",
     leaveOrgMode: "Leave",
-    leaveOrgModeTitle: "Leave Organisation mode (Organisation keys are evicted from memory, personal vault stays unlocked)",
+    leaveOrgModeTitle:
+      "Leave Organisation mode (Organisation keys are evicted from memory, personal vault stays unlocked)",
     autoSaveOrg: "Auto-save to org",
-    autoSaveOrgTitle: "On whitelisted domains, passwords captured by autosave go to the Organisation space (executed at next unlock if needed)",
+    autoSaveOrgTitle:
+      "On whitelisted domains, passwords captured by autosave go to the Organisation space (executed at next unlock if needed)",
     sharedVaults: "Shared vaults",
     noVaults: "No organisation vault.",
     entries: "entries",
@@ -4946,27 +5177,32 @@ export const en: Translations = {
     loading: "Loading…",
     joinOrg: {
       title: "Join my organisation",
-      subtitle: "Enter your work email. If your domain is registered, the IT admin will receive your access request.",
+      subtitle:
+        "Enter your work email. If your domain is registered, the IT admin will receive your access request.",
       emailLabel: "Work email",
       submit: "Request to join",
       submitting: "Sending…",
       successTitle: "Request sent.",
       successBody: "Your request to join",
-      successBody2: "is pending approval. The IT admin must validate your access in the console, then you will receive an invitation.",
+      successBody2:
+        "is pending approval. The IT admin must validate your access in the console, then you will receive an invitation.",
       errorEmail: "Invalid email",
       errorSign: "Signature failed",
-      noIdentity: "You must first create your vault to derive your identity (AA). Your signature will prove who you are.",
+      noIdentity:
+        "You must first create your vault to derive your identity (AA). Your signature will prove who you are.",
       createVaultBtn: "Create my vault",
-      zkNote: "Your signature proves your identity without revealing your private key. The email is stored by domain only.",
+      zkNote:
+        "Your signature proves your identity without revealing your private key. The email is stored by domain only.",
       ssoDivider: "or verify instantly via",
       ssoGoogle: "Continue with Google",
       ssoMicrosoft: "Continue with Microsoft",
       ssoSaml: "Continue with SAML (enterprise IdP)",
-      ssoVerified: "Email verified via your company SSO provider"
+      ssoVerified: "Email verified via your company SSO provider",
     },
     team: {
-      title: "Team — Crypto tasks",
-      noTasks: "No pending task. The IT admin can manage members from the dashboard.",
+      title: "Team : Crypto tasks",
+      noTasks:
+        "No pending task. The IT admin can manage members from the dashboard.",
       execute: "Execute",
       executing: "Executing…",
       done: "Successfully executed",
@@ -4974,7 +5210,8 @@ export const en: Translations = {
       rekey: "Key rotation (revocation)",
       resign: "Re-sign manifest",
       consoleLink: "dashboard",
-      zkNote: "These tasks cryptographically harden admin actions (key rotation, envelope creation). Access is already cut server-side immediately after revocation."
-    }
-  }
+      zkNote:
+        "These tasks cryptographically harden admin actions (key rotation, envelope creation). Access is already cut server-side immediately after revocation.",
+    },
+  },
 };

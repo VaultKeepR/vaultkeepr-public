@@ -9,16 +9,7 @@ export type TOTPAlgorithm = "SHA-1" | "SHA-256" | "SHA-512";
 
 function base32Decode(input: string): Uint8Array {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
-  const upper = input.replace(/\s/g, "").toUpperCase();
-  // Strip the trailing "=" padding without the "=+$" regex: an unanchored
-  // "=+$" search backtracks super-linearly (SonarCloud S8786). Trimming the
-  // trailing run of "=" by index is what replace(/=+$/, "") removes, for
-  // every input, in linear time.
-  let end = upper.length;
-  while (end > 0 && upper.charAt(end - 1) === "=") {
-    end -= 1;
-  }
-  const clean = upper.slice(0, end);
+  const clean = input.replace(/\s/g, "").toUpperCase().replace(/=+$/, "");
   const bits: number[] = [];
   for (let i = 0; i < clean.length; i++) {
     const idx = alphabet.indexOf(clean[i]);
@@ -104,8 +95,8 @@ export function parseTOTPUri(uri: string): {
     if (rawAlgo === "SHA256" || rawAlgo === "SHA2256") algorithm = "SHA-256";else
     if (rawAlgo === "SHA512" || rawAlgo === "SHA2512") algorithm = "SHA-512";
 
-    const digits = Number.parseInt(url.searchParams.get("digits") ?? "6", 10);
-    const period = Number.parseInt(url.searchParams.get("period") ?? "30", 10);
+    const digits = parseInt(url.searchParams.get("digits") ?? "6", 10);
+    const period = parseInt(url.searchParams.get("period") ?? "30", 10);
     const issuer = url.searchParams.get("issuer") ?? undefined;
     const account = decodeURIComponent(url.pathname.replace(/^\/totp\//, "")).replace(/^[^:]*:/, "").trim() || undefined;
 

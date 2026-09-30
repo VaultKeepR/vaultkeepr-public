@@ -14,13 +14,14 @@
 
 
 
-import { logger, redactAddress } from "@vaultkeepr/logger";
+import { logger, redactAddress } from "@vault-keeper/logger";
 
 import type { Address, LocalAccount } from "viem";
 import { getOwnerFromPassword } from "./owner";
 import {
   createVaultSmartAccount,
   clearSmartAccountCache,
+  computeSmartAccountAddress,
   type VaultSmartAccount } from
 "./kernel";
 import { isSmartAccountConfigured } from "./config";
@@ -53,7 +54,9 @@ function _notify() {
   for (const fn of _listeners) {
     try {
       fn(_state);
-    } catch {}
+    } catch {
+      // listener callback failures must not break the shared-state notify loop
+    }
   }
 }
 
@@ -70,7 +73,7 @@ function _notify() {
 export async function initIdentityFromPassword(
 password: string,
 secretKey?: string)
-: Promise<{address: Address;smartAccountAddress: Address | null;}> {
+: Promise<{address: Address;smartAccountAddress: Address | null;aaAddress: Address | null;}> {
   const owner = await getOwnerFromPassword(password, secretKey);
 
   let sa: VaultSmartAccount | null = null;
@@ -82,6 +85,15 @@ secretKey?: string)
       });
     } catch (e) {
       logger.warn("[Identity] SA init failed (non-blocking):", (e as Error).message);
+    }
+  }
+
+  let aaAddress: Address | null = sa?.address ?? null;
+  if (!aaAddress && isSmartAccountConfigured()) {
+    try {
+      aaAddress = await computeSmartAccountAddress(owner);
+    } catch (e) {
+      logger.warn("[Identity] AA derivation failed (non-blocking):", (e as Error).message);
     }
   }
 
@@ -101,7 +113,8 @@ secretKey?: string)
 
   return {
     address: owner.address,
-    smartAccountAddress: sa?.address ?? null
+    smartAccountAddress: sa?.address ?? null,
+    aaAddress
   };
 }
 
@@ -112,13 +125,22 @@ secretKey?: string)
 export async function initIdentityFromSigner(
 signer: LocalAccount,
 mode: "passkey" | "biometric" = "passkey")
-: Promise<{address: Address;smartAccountAddress: Address | null;}> {
+: Promise<{address: Address;smartAccountAddress: Address | null;aaAddress: Address | null;}> {
   let sa: VaultSmartAccount | null = null;
   if (isSmartAccountConfigured()) {
     try {
       sa = await createVaultSmartAccount({ ownerAccount: signer, mode });
     } catch (e) {
       logger.warn("[Identity] SA init failed (non-blocking):", (e as Error).message);
+    }
+  }
+
+  let aaAddress: Address | null = sa?.address ?? null;
+  if (!aaAddress && isSmartAccountConfigured()) {
+    try {
+      aaAddress = await computeSmartAccountAddress(signer);
+    } catch (e) {
+      logger.warn("[Identity] AA derivation failed (non-blocking):", (e as Error).message);
     }
   }
 
@@ -137,7 +159,8 @@ mode: "passkey" | "biometric" = "passkey")
 
   return {
     address: signer.address,
-    smartAccountAddress: sa?.address ?? null
+    smartAccountAddress: sa?.address ?? null,
+    aaAddress
   };
 }
 

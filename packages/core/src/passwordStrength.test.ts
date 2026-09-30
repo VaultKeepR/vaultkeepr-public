@@ -68,4 +68,12 @@ describe("calculatePasswordStrength", () => {
     expect(result.feedback).toContain("passwordFeedback.veryWeak");
     expect(result.feedback).toHaveLength(1);
   });
+
+  it("scores an all-repeated password lower than a mixed one", () => {
+    const repeated = calculatePasswordStrength("aaaaaaaaaaaa");
+    const mixed = calculatePasswordStrength("Abcdef1!ghij");
+    expect(repeated.score).toBeLessThan(mixed.score);
+    expect(repeated.feedback).toContain("passwordFeedback.avoidRepeated");
+    expect(repeated.strength).toBe("weak");
+  });
 });

@@ -10,7 +10,7 @@ import { utf8ToBytes, bytesToHex, hexToBytes } from "@noble/hashes/utils.js";
 import { deriveKeyFromPasswordArgon2, generateSaltArgon2 } from "./kdf-argon2";
 import { secureCompare } from "./secure";
 
-import type { Vault, VaultEntry } from "./types";
+import type { Vault } from "./types";
 import { createEmptyVault, createEntry } from "./vault";
 import { isEncryptedExport, importEncryptedVault } from "./encrypted-export";
 import { getCardBrand, getLast4, CARD_BRAND_LABELS } from "./cards";
@@ -164,7 +164,7 @@ export function import1PasswordPif(content: string): Vault {
       let username = "";
       let password = "";
       let totpSecret: string | undefined;
-      const notes =
+      let notes =
       typeof sc?.notesPlain === "string" ? sc.notesPlain.trim() : "";
       const fields = Array.isArray(sc?.fields) ?
       sc.fields as Record<string, unknown>[] :
@@ -552,6 +552,33 @@ function detectCsvDelimiter(headerLine: string): "," | ";" | "\t" {
   return ",";
 }
 
+function parseDelimitedLine(
+line: string,
+delimiter: "," | ";" | "\t")
+: string[] {
+  const result: string[] = [];
+  let current = "";
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') {
+      inQuotes = !inQuotes;
+    } else if (!inQuotes && c === "\r") {
+      continue;
+    } else if (
+    !inQuotes && (
+    delimiter === "\t" ? c === "\t" : c === delimiter))
+    {
+      result.push(current.trim());
+      current = "";
+    } else {
+      current += c;
+    }
+  }
+  result.push(current.trim());
+  return result;
+}
+
 function headerMatchesUrl(n: string): boolean {
   if (
   n === "url" ||
@@ -742,12 +769,12 @@ rawNote: string | undefined)
   const customFields: {name: string;value: string;type: "text";}[] = [];
 
   for (const line of lines) {
-    const to = line.match(/^TOTP:\s+(\S[^\n\r\u2028\u2029]*|[\t\v\f \u00a0\u1680\u2000-\u200a\u202f\u205f\u3000\ufeff])$/);
+    const to = line.match(/^TOTP:\s+(.+)$/);
     if (to) {
       totpSecret = to[1].trim();
       continue;
     }
-    const fieldsMatch = line.match(/^Fields:\s+(\S[^\n\r\u2028\u2029]*|[\t\v\f \u00a0\u1680\u2000-\u200a\u202f\u205f\u3000\ufeff])$/);
+    const fieldsMatch = line.match(/^Fields:\s+(.+)$/);
     if (fieldsMatch) {
       const entries = fieldsMatch[1].split("|");
       for (const entry of entries) {
@@ -919,7 +946,7 @@ export function importProtonPassJson(json: string): Vault {
       const type =
       typeof rawType === "number" ?
       NUMERIC_TYPE_MAP[rawType] ?? String(rawType) :
-      String(rawType).toLowerCase().replaceAll(/_/g, "");
+      String(rawType).toLowerCase().replace(/_/g, "");
 
       if (type === "login" || type === "alias") {
         const dataAsContent = item?.data as ProtonPassItemContent | undefined;
@@ -1200,7 +1227,7 @@ vaultKeeperPassword?: string)
       const parsed = JSON.parse(trimmed);
       if (Array.isArray(parsed.entries)) {
         const vault = createEmptyVault();
-        vault.entries = parsed.entries.map((e: VaultEntry) =>
+        vault.entries = parsed.entries.map((e: any) =>
         createEntry({
           ...e,
           url: e.url ?? "",
@@ -1289,7 +1316,7 @@ content: string | Uint8Array)
       const parsed = JSON.parse(text);
       if (parsed && Array.isArray(parsed.entries)) {
         const vault = createEmptyVault();
-        vault.entries = parsed.entries.map((e: VaultEntry) =>
+        vault.entries = parsed.entries.map((e: any) =>
         createEntry({
           ...e,
           url: e.url ?? "",

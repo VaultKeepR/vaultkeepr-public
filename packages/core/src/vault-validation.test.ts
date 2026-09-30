@@ -3,7 +3,8 @@ import {
   parseVault,
   serializeVault,
   createEmptyVault,
-  createEntry } from
+  createEntry,
+  createExportPayload } from
 "./vault";
 import { exportEncryptedVault, isEncryptedExport, importEncryptedVault } from "./encrypted-export";
 

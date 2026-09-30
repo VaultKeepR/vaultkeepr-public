@@ -21,7 +21,7 @@
 import { publishCidOnChain, isCidRegistryConfigured } from "./cidRegistry";
 import type { VaultSmartAccount } from "./kernel";
 
-import { logger } from "@vaultkeepr/logger";
+import { logger } from "@vault-keeper/logger";
 
 
 
@@ -78,9 +78,7 @@ debounceMs: number = DEFAULT_DEBOUNCE_MS)
 
 
   _debounceTimer = setTimeout(() => {
-    void _executeSync().catch((err: unknown) => {
-      logger.error(`[OnChainSync] sync échoué : ${String(err)}`);
-    });
+    _executeSync();
   }, debounceMs);
 
   logger.debug(
@@ -181,8 +179,8 @@ async function _executeSync(): Promise<boolean> {
 
     logger.warn("[OnChainSync] Publication échouée (null txHash)");
     return false;
-  } catch (error) {
-    logger.error("[OnChainSync] Erreur publication:", error instanceof Error ? error.message : error);
+  } catch (error: any) {
+    logger.error("[OnChainSync] Erreur publication:", error.message);
     return false;
   } finally {
     _isPublishing = false;
