@@ -450,17 +450,17 @@ describe("merge — P1-4 base=post-merge preserves LWW correctness", () => {
       password: "old",
       modifiedAt: 1_000
     });
-    const v0 = makeVault({ entries: [baseEntry] });
+    makeVault({ entries: [baseEntry] });
 
 
-    const vA1 = makeVault({
+    makeVault({
       entries: [
       { ...baseEntry, password: "A1", modifiedAt: 10_000 }]
 
     });
 
 
-    const vB1 = makeVault({
+    makeVault({
       entries: [
       { ...baseEntry, password: "B1", modifiedAt: 10_500 }]
 

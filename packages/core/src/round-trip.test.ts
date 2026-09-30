@@ -11,7 +11,7 @@ import {
   importFromPgp,
   importVaultText } from
 "./index";
-import type { Vault, VaultEntry } from "./types";
+import type { Vault } from "./types";
 
 
 function sampleVault(): Vault {

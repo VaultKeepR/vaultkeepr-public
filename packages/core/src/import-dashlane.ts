@@ -12,7 +12,7 @@
 
 
 import { createEntry, createEmptyVault } from "./vault";
-import type { Vault, VaultEntry } from "./types";
+import type { Vault } from "./types";
 import { importCsv } from "./import";
 
 export function isDashlaneCsv(text: string): boolean {

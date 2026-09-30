@@ -2,16 +2,15 @@ import { describe, it, expect } from "vitest";
 import {
   importCsv,
   import1PasswordPif,
-  isOnePasswordPif,
   importBitwardenJson,
   importProtonPassJson } from
 "./import";
 import { exportBitwardenJson, exportProtonPassJson } from "./export";
-import { isLastPassExport, importLastPass } from "./import-lastpass";
-import { isDashlaneCsv, isDashlaneJson, importDashlaneCsv, importDashlaneJson } from "./import-dashlane";
-import { isRoboFormExport, importRoboForm } from "./import-roboform";
-import { isKeeperCsv, isKeeperJson, importKeeperCsv, importKeeperJson } from "./import-keeper";
-import { isEnpassCsv, isEnpassJson, importEnpassCsv, importEnpassJson } from "./import-enpass";
+import { isLastPassExport } from "./import-lastpass";
+import { isDashlaneCsv, isDashlaneJson, importDashlaneJson } from "./import-dashlane";
+import { isRoboFormExport } from "./import-roboform";
+import { isKeeperCsv, isKeeperJson, importKeeperJson } from "./import-keeper";
+import { isEnpassCsv, isEnpassJson, importEnpassJson } from "./import-enpass";
 import {
   mergeImportedEntries,
   normalizeUrl,
