@@ -50,7 +50,7 @@
 
 
 
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 
 
 
@@ -64,12 +64,11 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 
 vi.mock("@vaultkeepr/core", async (importOriginal) => {
   const mod = await importOriginal<typeof import("@vaultkeepr/core")>();
+  const { hmac } = await import("@noble/hashes/hmac.js");
+  const { sha256 } = await import("@noble/hashes/sha2.js");
   return {
     ...mod,
     deriveKeyFromPasswordArgon2: (password: string, salt: Uint8Array): Uint8Array => {
-
-      const { hmac } = require("@noble/hashes/hmac.js");
-      const { sha256 } = require("@noble/hashes/sha2.js");
       return hmac(sha256, new TextEncoder().encode(password), salt);
     }
   };
@@ -530,7 +529,7 @@ describe("Cross-Device Sync Certification", () => {
         const src = makeDevice("chrome", accountType);
         const dst = makeDevice("ios", accountType);
 
-        const e = src.addLogin({
+        src.addLogin({
           url: "https://login.com",
           username: "loginuser",
           password: "loginpwd",
@@ -555,7 +554,7 @@ describe("Cross-Device Sync Certification", () => {
         const src = makeDevice("chrome", accountType);
         const dst = makeDevice("ios", accountType);
 
-        const e = src.addCard({
+        src.addCard({
           title: "My Visa",
           cardholder: "John Doe",
           expiry: "12/28",
@@ -580,7 +579,7 @@ describe("Cross-Device Sync Certification", () => {
         const src = makeDevice("chrome", accountType);
         const dst = makeDevice("ios", accountType);
 
-        const e = src.addNote({
+        src.addNote({
           title: "My Secret Note",
           notes: "This is a secret note about sync",
           modifiedAt: 1000
@@ -878,7 +877,7 @@ describe("Cross-Device Sync Certification", () => {
           { ...e, password: "recreated", modifiedAt: Date.now() + 10_000 }]
 
         };
-        const cidB = await bob.push(ipfs);
+        await bob.push(ipfs);
 
         bob.lastKnownUpdatedAt = 0;
         await bob.pull(ipfs, cidA);
@@ -1148,7 +1147,7 @@ describe("Cross-Device Sync Certification", () => {
           notes: "note body",
           modifiedAt: 1200
         });
-        const doc = chrome.addDocument({
+        chrome.addDocument({
           type: "rib",
           label: "Bank Statement",
           modifiedAt: 1300
