@@ -50,7 +50,7 @@ export function scheduleLegacyHeartbeat(smartAccount: any): void {
 
 
   _debounceTimer = setTimeout(() => {
-    _executeHeartbeat();
+    void _executeHeartbeat();
   }, 5000);
 }
 

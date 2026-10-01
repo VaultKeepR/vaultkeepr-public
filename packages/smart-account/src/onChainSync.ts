@@ -78,7 +78,7 @@ debounceMs: number = DEFAULT_DEBOUNCE_MS)
 
 
   _debounceTimer = setTimeout(() => {
-    _executeSync();
+    void _executeSync();
   }, debounceMs);
 
   logger.debug(

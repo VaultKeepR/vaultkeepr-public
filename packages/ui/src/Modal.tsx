@@ -84,6 +84,7 @@ export function Modal({ open, onClose, title, children, width = "md" }: ModalPro
 
   return (
     <div
+      role="presentation"
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm ease-vk"
       onClick={(e) =>
         confirmBackdropCloses(onClose, (t) => t === "backdrop")(

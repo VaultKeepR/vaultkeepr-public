@@ -375,7 +375,7 @@ remote: string[] | undefined)
   for (const v of present) {
     if (!ordered.includes(v)) additions.push(v);
   }
-  additions.sort();
+  additions.sort((a, b) => a.localeCompare(b));
   for (const v of additions) ordered.push(v);
   return ordered;
 }
