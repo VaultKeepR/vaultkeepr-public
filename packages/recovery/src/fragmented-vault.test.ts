@@ -21,8 +21,8 @@ import {
   generateRecoveryId,
   DEFAULT_FRAGMENTED_CONFIG } from
 "./fragmented-vault";
-import { createEmptyVault, createEntry } from "@vault-keeper/core";
-import type { Vault } from "@vault-keeper/core";
+import { createEmptyVault, createEntry } from "@vaultkeepr/core";
+import type { Vault } from "@vaultkeepr/core";
 
 describe("Fragmented vault (Shamir secret sharing)", () => {
   describe("createFragmentedVault", () => {

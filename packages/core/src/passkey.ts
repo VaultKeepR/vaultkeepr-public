@@ -11,7 +11,7 @@ import { sha256 } from "@noble/hashes/sha2.js";
 import { randomBytes } from "@noble/ciphers/utils.js";
 import { bytesToHex, hexToBytes } from "@noble/hashes/utils.js";
 
-import { logger } from "@vault-keeper/logger";
+import { logger } from "@vaultkeepr/logger";
 
 
 export interface PasskeyPrfCredential {

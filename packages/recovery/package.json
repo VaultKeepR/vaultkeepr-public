@@ -1,6 +1,6 @@
 {
-  "name": "@vault-keeper/recovery",
-  "version": "0.1.0",
+  "name": "@vaultkeepr/recovery",
+  "version": "0.1.2",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
   "dependencies": {
     "@noble/ciphers": "^2.4.0",
     "@noble/hashes": "^2.4.0",
-    "@vault-keeper/core": "workspace:*",
+    "@vaultkeepr/core": "workspace:*",
     "shamir-secret-sharing": "^0.0.4",
     "viem": "^2.21.0"
   },
@@ -31,5 +31,14 @@
   "files": [
     "dist"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
+    "directory": "packages/recovery"
+  },
+  "homepage": "https://vaultkeepr.xyz",
+  "bugs": {
+    "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
+  }
 }

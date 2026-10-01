@@ -1,4 +1,4 @@
-import type { Vault } from "@vault-keeper/core";
+import type { Vault } from "@vaultkeepr/core";
 import type { CloudFile } from "./cloud-types";
 
 

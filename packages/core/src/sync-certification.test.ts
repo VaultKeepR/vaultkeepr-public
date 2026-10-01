@@ -62,8 +62,8 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 
 
 
-vi.mock("@vault-keeper/core", async (importOriginal) => {
-  const mod = await importOriginal<typeof import("@vault-keeper/core")>();
+vi.mock("@vaultkeepr/core", async (importOriginal) => {
+  const mod = await importOriginal<typeof import("@vaultkeepr/core")>();
   return {
     ...mod,
     deriveKeyFromPasswordArgon2: (password: string, salt: Uint8Array): Uint8Array => {
@@ -92,7 +92,7 @@ import {
   type SecureDocument,
   type CloudFile,
   type EncryptedVault } from
-"@vault-keeper/core";
+"@vaultkeepr/core";
 import { bytesToHex, hexToBytes } from "@noble/hashes/utils.js";
 
 

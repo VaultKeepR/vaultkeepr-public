@@ -14,7 +14,7 @@ import type { HeartbeatStatus } from "./types";
 import { HEARTBEAT_DEBOUNCE_MS } from "./types";
 import type { Address } from "viem";
 
-import { logger } from "@vault-keeper/logger";
+import { logger } from "@vaultkeepr/logger";
 
 
 let _debounceTimer: ReturnType<typeof setTimeout> | null = null;

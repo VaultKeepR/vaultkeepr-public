@@ -1,6 +1,6 @@
 import { sha1 } from "@noble/hashes/legacy.js";
 import { utf8ToBytes } from "@noble/hashes/utils.js";
-import { logger } from "@vault-keeper/logger";
+import { logger } from "@vaultkeepr/logger";
 
 
 

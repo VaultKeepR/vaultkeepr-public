@@ -27,7 +27,7 @@ import type {
   DocumentOcrData,
   CloudFile,
   CloudFileCategory } from
-"@vault-keeper/core";
+"@vaultkeepr/core";
 
 // P2-SEC (CodeQL js/prototype-polluting-assignment): sync payloads are
 // decrypted, attacker-influenced data. A crafted "__proto__", "constructor"
@@ -658,6 +658,7 @@ export function syncLegacyToCrdt(doc: VaultDoc, vault: Vault): VaultDoc {
 
     for (const secDoc of vault.documents || []) {
       presentDocIds.add(secDoc.id);
+      if (secDoc.id === "__proto__" || secDoc.id === "constructor" || secDoc.id === "prototype") continue;
       const existing = d.documents[secDoc.id];
       if (!existing) {
         d.documents[secDoc.id] = secureDocToCrdt(secDoc);
@@ -680,6 +681,7 @@ export function syncLegacyToCrdt(doc: VaultDoc, vault: Vault): VaultDoc {
 
     for (const cFile of vault.cloudFiles || []) {
       presentCloudIds.add(cFile.id);
+      if (cFile.id === "__proto__" || cFile.id === "constructor" || cFile.id === "prototype") continue;
       const existing = d.cloudFiles[cFile.id];
       if (!existing) {
         d.cloudFiles[cFile.id] = cloudFileToCrdt(cFile);

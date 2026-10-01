@@ -12,7 +12,7 @@
 
 import { describe, it, expect } from "vitest";
 import * as Automerge from "@automerge/automerge";
-import type { Vault, VaultEntry } from "@vault-keeper/core";
+import type { Vault, VaultEntry } from "@vaultkeepr/core";
 import {
   createEmptyDoc,
   addEntry,

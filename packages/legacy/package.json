@@ -1,6 +1,6 @@
 {
-  "name": "@vault-keeper/legacy",
-  "version": "0.1.0",
+  "name": "@vaultkeepr/legacy",
+  "version": "0.1.2",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -20,11 +20,11 @@
     "@noble/ciphers": "^2.4.0",
     "@noble/curves": "^2.4.0",
     "@noble/hashes": "^2.4.0",
-    "@vault-keeper/core": "workspace:*",
-    "@vault-keeper/logger": "workspace:*",
-    "@vault-keeper/premium": "workspace:*",
+    "@vaultkeepr/core": "workspace:*",
+    "@vaultkeepr/logger": "workspace:*",
+    "@vaultkeepr/premium": "workspace:*",
     "viem": "^2.21.0",
-    "@vault-keeper/ipfs": "workspace:*"
+    "@vaultkeepr/ipfs": "workspace:*"
   },
   "devDependencies": {
     "tsup": "^8.3.5",
@@ -35,6 +35,15 @@
     "dist"
   ],
   "peerDependencies": {
-    "@vault-keeper/ipfs": "workspace:*"
+    "@vaultkeepr/ipfs": "workspace:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
+    "directory": "packages/legacy"
+  },
+  "homepage": "https://vaultkeepr.xyz",
+  "bugs": {
+    "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
   }
 }

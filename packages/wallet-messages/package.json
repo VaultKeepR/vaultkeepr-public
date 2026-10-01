@@ -1,6 +1,6 @@
 {
-  "name": "@vault-keeper/wallet-messages",
-  "version": "0.1.0",
+  "name": "@vaultkeepr/wallet-messages",
+  "version": "0.1.2",
   "private": false,
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -26,5 +26,14 @@
   "files": [
     "dist"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
+    "directory": "packages/wallet-messages"
+  },
+  "homepage": "https://vaultkeepr.xyz",
+  "bugs": {
+    "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
+  }
 }

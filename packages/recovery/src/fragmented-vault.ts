@@ -21,7 +21,7 @@ import {
   type FragmentedConfig,
   FRAGMENTED_DEFAULT_THRESHOLD,
   FRAGMENTED_DEFAULT_TOTAL } from
-"@vault-keeper/core";
+"@vaultkeepr/core";
 
 const KEY_LENGTH = 32;
 const NONCE_LENGTH = 24;

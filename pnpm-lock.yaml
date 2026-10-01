@@ -77,10 +77,10 @@ importers:
       '@noble/hashes':
         specifier: ^2.4.0
         version: 2.4.0
-      '@vault-keeper/core':
+      '@vaultkeepr/core':
         specifier: workspace:*
         version: link:../core
-      '@vault-keeper/ipfs':
+      '@vaultkeepr/ipfs':
         specifier: workspace:*
         version: link:../ipfs
     devDependencies:
@@ -105,7 +105,7 @@ importers:
       '@noble/hashes':
         specifier: ^2.4.0
         version: 2.4.0
-      '@vault-keeper/logger':
+      '@vaultkeepr/logger':
         specifier: workspace:*
         version: link:../logger
       ethers:
@@ -118,6 +118,12 @@ importers:
         specifier: ^2.21.0
         version: 2.56.3(typescript@5.9.3)(zod@3.25.76)
     devDependencies:
+      '@vitest/coverage-v8':
+        specifier: ^4.1.11
+        version: 4.1.11(vitest@4.1.11)
+      fast-check:
+        specifier: ^4.9.0
+        version: 4.10.2
       tsup:
         specifier: ^8.3.5
         version: 8.5.1(postcss@8.5.28)(typescript@5.9.3)(yaml@2.9.0)
@@ -163,16 +169,16 @@ importers:
       '@noble/hashes':
         specifier: ^2.4.0
         version: 2.4.0
-      '@vault-keeper/core':
+      '@vaultkeepr/core':
         specifier: workspace:*
         version: link:../core
-      '@vault-keeper/ipfs':
+      '@vaultkeepr/ipfs':
         specifier: workspace:*
         version: link:../ipfs
-      '@vault-keeper/logger':
+      '@vaultkeepr/logger':
         specifier: workspace:*
         version: link:../logger
-      '@vault-keeper/premium':
+      '@vaultkeepr/premium':
         specifier: workspace:*
         version: link:../premium
       viem:
@@ -203,7 +209,7 @@ importers:
 
   packages/ocr-native:
     dependencies:
-      '@vault-keeper/logger':
+      '@vaultkeepr/logger':
         specifier: workspace:*
         version: link:../logger
       expo:
@@ -237,7 +243,7 @@ importers:
       '@noble/hashes':
         specifier: ^2.4.0
         version: 2.4.0
-      '@vault-keeper/core':
+      '@vaultkeepr/core':
         specifier: workspace:*
         version: link:../core
       shamir-secret-sharing:
@@ -278,7 +284,7 @@ importers:
 
   packages/smart-account:
     dependencies:
-      '@vault-keeper/logger':
+      '@vaultkeepr/logger':
         specifier: workspace:*
         version: link:../logger
       permissionless:
@@ -291,7 +297,7 @@ importers:
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.18
-      '@vault-keeper/core':
+      '@vaultkeepr/core':
         specifier: workspace:*
         version: link:../core
       react:
@@ -312,10 +318,13 @@ importers:
       '@automerge/automerge':
         specifier: ^3.2.6
         version: 3.4.1
-      '@vault-keeper/core':
+      '@vaultkeepr/core':
         specifier: workspace:*
         version: link:../core
     devDependencies:
+      fast-check:
+        specifier: ^4.9.0
+        version: 4.10.2
       tsup:
         specifier: ^8.3.5
         version: 8.5.1(postcss@8.5.28)(typescript@5.9.3)(yaml@2.9.0)
@@ -4694,8 +4703,7 @@ snapshots:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
-  '@bcoe/v8-coverage@1.0.2':
-    optional: true
+  '@bcoe/v8-coverage@1.0.2': {}
 
   '@cacheable/memory@2.2.0':
     dependencies:
@@ -5845,7 +5853,6 @@ snapshots:
       std-env: 4.2.0
       tinyrainbow: 3.1.1
       vitest: 4.1.11(@types/node@22.20.1)(@vitest/coverage-v8@4.1.11)(vite@7.3.6(@types/node@22.20.1)(lightningcss@1.33.0)(terser@5.51.2)(yaml@2.9.0))
-    optional: true
 
   '@vitest/expect@4.1.11':
     dependencies:
@@ -5992,7 +5999,6 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.31
       estree-walker: 3.0.3
       js-tokens: 10.0.0
-    optional: true
 
   asynckit@0.4.0: {}
 
@@ -7025,8 +7031,7 @@ snapshots:
 
   joycon@3.1.1: {}
 
-  js-tokens@10.0.0:
-    optional: true
+  js-tokens@10.0.0: {}
 
   js-tokens@4.0.0: {}
 
@@ -7177,7 +7182,6 @@ snapshots:
       '@babel/parser': 7.29.8
       '@babel/types': 7.29.8
       source-map-js: 1.2.1
-    optional: true
 
   mailparser@3.9.20:
     dependencies:

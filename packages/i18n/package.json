@@ -1,6 +1,6 @@
 {
-  "name": "@vault-keeper/i18n",
-  "version": "0.1.0",
+  "name": "@vaultkeepr/i18n",
+  "version": "0.1.2",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -26,5 +26,14 @@
     "dist"
   ],
   "license": "MIT",
-  "sideEffects": false
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VaultKeepR/vaultkeepr-public.git",
+    "directory": "packages/i18n"
+  },
+  "homepage": "https://vaultkeepr.xyz",
+  "bugs": {
+    "url": "https://github.com/VaultKeepR/vaultkeepr-public/issues"
+  }
 }

@@ -13,7 +13,7 @@ import {
   detectPayloadFormat,
   migrateLegacyPayload } from
 "../compat";
-import type { VaultEntry } from "@vault-keeper/core";
+import type { VaultEntry } from "@vaultkeepr/core";
 
 function makeEntry(id: string): VaultEntry {
   return {

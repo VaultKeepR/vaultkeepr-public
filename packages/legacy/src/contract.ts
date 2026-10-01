@@ -15,7 +15,7 @@ import {
 import { base } from "viem/chains";
 import type { LegacyConfig } from "./types";
 
-import { logger } from "@vault-keeper/logger";
+import { logger } from "@vaultkeepr/logger";
 
 
 export const LEGACY_ABI = [

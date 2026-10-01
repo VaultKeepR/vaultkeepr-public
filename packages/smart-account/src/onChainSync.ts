@@ -21,7 +21,7 @@
 import { publishCidOnChain, isCidRegistryConfigured } from "./cidRegistry";
 import type { VaultSmartAccount } from "./kernel";
 
-import { logger } from "@vault-keeper/logger";
+import { logger } from "@vaultkeepr/logger";
 
 
 
