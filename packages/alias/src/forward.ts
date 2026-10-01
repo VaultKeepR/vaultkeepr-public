@@ -3,42 +3,14 @@
 
 
 
-import { closeSync, constants, openSync, writeSync } from "fs";
 import { simpleParser } from "mailparser";
 import * as openpgp from "openpgp";
 import nodemailer from "nodemailer";
 import { lookupRecipient } from "./db.js";
 import { getDomain } from "./config.js";
-
-const DEBUG = process.env.VAULTKEEPER_FORWARD_DEBUG === "1";
-const LOG = "/tmp/vaultkeeper-forward.log"; // NOSONAR (S5443): mitigated in safeAppend via O_NOFOLLOW + 0600
-const ERR_LOG = "/tmp/vaultkeeper-forward-err.log"; // NOSONAR (S5443): mitigated in safeAppend via O_NOFOLLOW + 0600;
-
-// S5443/CWE-59: /tmp est inscriptible par tous. O_NOFOLLOW fait echouer
-// l'open (ELOOP) si le fichier est un symlink plante, l'ecriture est jetee.
-function safeAppend(path: string, data: string): void {
-  try {
-    const fd = openSync(
-      path,
-      constants.O_WRONLY | constants.O_CREAT | constants.O_APPEND | constants.O_NOFOLLOW,
-      0o600
-    );
-    try {
-      writeSync(fd, data);
-    } finally {
-      closeSync(fd);
-    }
-  } catch {}
-}
-
-function errLog(msg: string): void {
-  safeAppend(ERR_LOG, `[${new Date().toISOString()}] ${msg}\n`);
-}
-
-function log(msg: string): void {
-  if (!DEBUG) return;
-  safeAppend(LOG, `[${new Date().toISOString()}] ${msg}\n`);
-}
+// Log-write hardening (S5443/CWE-59) extracted to logsafe.ts so it is
+// unit-testable: forward.ts self-executes main() on import.
+import { errLog, log } from "./logsafe.js";
 
 async function main(): Promise<void> {
   errLog("main started");
@@ -179,6 +151,6 @@ main().catch((err) => {
 });
 
 process.on("uncaughtException", (err) => {
-  safeAppend(ERR_LOG, `[${new Date().toISOString()}] uncaughtException: ${err.message}\n${err.stack}\n\n`);
+  errLog(`uncaughtException: ${err.message}\n${err.stack}\n\n`);
   process.exit(1);
 });

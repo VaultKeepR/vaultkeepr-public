@@ -105,8 +105,9 @@ value: CrdtVaultEntry[K])
     const entry = d.entries[entryId];
     if (!entry || entry._deleted) return;
     const fieldName = field as string;
-    if (fieldName === "__proto__" || fieldName === "constructor" || fieldName === "prototype") return;
-    (entry as unknown as Record<string, unknown>)[fieldName] = value;
+    if (fieldName !== "__proto__" && fieldName !== "constructor" && fieldName !== "prototype") {
+      (entry as unknown as Record<string, unknown>)[fieldName] = value;
+    }
     entry.modifiedAt = Date.now();
   });
 }
@@ -215,14 +216,31 @@ export function mergeDocuments(local: VaultDoc, remote: VaultDoc): VaultDoc {
 
 
 
-    const remoteEntryIds = Object.keys(remote.entries || {});
-    const localEntryIds = Object.keys(local.entries || {});
-    const mergedEntryIds = new Set(Object.keys(merged.entries || {}));
-    const allRemotePresent = remoteEntryIds.every((id) => mergedEntryIds.has(id));
-    const allLocalPresent = localEntryIds.every((id) => mergedEntryIds.has(id));
+    // Presence must be checked across ALL collections: an unrelated remote
+    // holding only documents/folders (empty entries on both sides) used to
+    // fall into the per-field path and silently lose the remote content
+    // (found 2026-10-01 while covering these paths: the raw Automerge merge
+    // of unrelated docs keeps one side only, and postProcessPerFieldLww does
+    // not copy new objects). Fall back to the independent-docs path whenever
+    // anything is missing from the merge result.
+    const mergedIds = new Set([
+      ...Object.keys(merged.entries || {}),
+      ...Object.keys(merged.documents || {}),
+      ...Object.keys(merged.cloudFiles || {})
+    ]);
+    const remoteIds = [
+      ...Object.keys(remote.entries || {}),
+      ...Object.keys(remote.documents || {}),
+      ...Object.keys(remote.cloudFiles || {})
+    ];
+    const localIds = [
+      ...Object.keys(local.entries || {}),
+      ...Object.keys(local.documents || {}),
+      ...Object.keys(local.cloudFiles || {})
+    ];
+    const allPresent = remoteIds.every((id) => mergedIds.has(id)) && localIds.every((id) => mergedIds.has(id));
 
-    if (allRemotePresent && allLocalPresent ||
-    remoteEntryIds.length === 0 && localEntryIds.length === 0) {
+    if (allPresent) {
 
 
 
