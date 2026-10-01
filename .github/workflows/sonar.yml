@@ -50,7 +50,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
+          # Exclusions live in sonar-project.properties (single source of truth):
+          # -D args here would override the file and silently drop its entries.
           args: >
             -Dsonar.javascript.lcov.reportPaths=packages/core/coverage/lcov.info,packages/alias/coverage/lcov.info,packages/cloud/coverage/lcov.info,packages/smart-account/coverage/lcov.info,packages/logger/coverage/lcov.info,packages/sentry/coverage/lcov.info,packages/sync/coverage/lcov.info,packages/legacy/coverage/lcov.info
-            -Dsonar.cpd.exclusions=packages/*/src/generated/**,packages/*/src/**/__tests__/**,packages/*/src/**/__mocks__/**,packages/*/src/index.ts
-            -Dsonar.coverage.exclusions=packages/ui/**,packages/i18n/**,packages/wallet-messages/**,packages/premium/**,packages/ocr-native/**,packages/recovery/**,contracts/**,packages/*/src/**/__tests__/**
