@@ -27,6 +27,8 @@ jobs:
           node-version: "22"
           cache: pnpm
       - run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Fetch Jazzer native addon (dependency install scripts are blocked, so build it explicitly)
+        run: pnpm rebuild @jazzer.js/fuzzer
       - run: pnpm build
       - name: Fuzz ${{ matrix.target }} (2 min)
         run: pnpm exec jazzer fuzz/harness/${{ matrix.target }}.fuzz.js --sync -- -max_time=120
@@ -40,3 +42,21 @@ jobs:
             oom-*
             timeout-*
           if-no-files-found: ignore
+
+  properties:
+    name: Property tests (fast-check)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: pnpm/action-setup@7088e561eb65bb68695d245aa206f005ef30921d # v4.1.0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm build
+      - name: Property tests (fast-check)
+        run: node fuzz/properties/run.js
