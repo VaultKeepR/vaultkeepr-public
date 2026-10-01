@@ -33,6 +33,45 @@ describe("cleanEntryTitle", () => {
   });
 });
 
+describe("cleanEntryTitle scanner edges", () => {
+  it("ignores a 'passkey' glued to the previous word", () => {
+    expect(cleanEntryTitle("xpasskey Dec 8 2025", "https://other.tld")).toBe("xpasskey Dec 8 2025");
+  });
+
+  it("ignores passkey occurrences behind a newline", () => {
+    const t = "line1\nline2 passkey 2025-01-01";
+    expect(cleanEntryTitle(t, "https://other.tld")).toBe(t);
+  });
+
+  it("keeps the title when the tail has no separator after 'passkey'", () => {
+    expect(cleanEntryTitle("X passkey", "https://other.tld")).toBe("X passkey");
+  });
+
+  it("collapses a whitespace run before a dated tail", () => {
+    expect(cleanEntryTitle("X passkey   12/12", "https://other.tld")).toBe("X");
+  });
+
+  it("keeps the tail when it has no digits", () => {
+    expect(cleanEntryTitle("X passkey abc", "https://other.tld")).toBe("X passkey abc");
+  });
+
+  it("handles a leading passkey with nothing before it", () => {
+    expect(cleanEntryTitle("passkey 12/12", "https://other.tld")).toBe("passkey 12/12");
+  });
+
+  it("replaces a scheme+path title with the domain brand", () => {
+    expect(cleanEntryTitle("https://x.tld/path", "https://x.tld")).toBe("X");
+  });
+
+  it("stops host matching at a newline boundary", () => {
+    expect(cleanEntryTitle("a\nb/c", "https://other.tld")).toBe("a\nb/c");
+  });
+
+  it("uses the first structurally valid passkey match", () => {
+    expect(cleanEntryTitle("z passkey one 1111 passkey two", "https://other.tld")).toBe("z");
+  });
+});
+
 describe("getEntryDisplayName", () => {
   it("prefers the explicit primary url", () => {
     expect(

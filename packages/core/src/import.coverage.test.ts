@@ -83,3 +83,33 @@ describe("importCsv note markers (TOTP / Fields)", () => {
     ).toBe(true);
   });
 });
+
+describe("importCsv delimiter + quoting edges", () => {
+  it("handles semicolon-delimited exports", () => {
+    const semi = "name;url;username;password\nS;https://s.tld;u8;p8";
+    const v = importCsv(semi);
+    expect(v.entries.length).toBe(1);
+    expect(v.entries[0].password).toBe("p8");
+  });
+
+  it("handles tab-delimited exports", () => {
+    const tab = "name\turl\tusername\tpassword\nT\thttps://t.tld\tu9\tp9";
+    const v = importCsv(tab);
+    expect(v.entries.length).toBe(1);
+    expect(v.entries[0].password).toBe("p9");
+  });
+
+  it("handles CRLF line endings with quoted cells", () => {
+    const crlf = 'name,url,username,password\r\n"Q","https://q.tld","uq","pq"\r\n';
+    const v = importCsv(crlf);
+    expect(v.entries.length).toBe(1);
+    expect(v.entries[0].url).toBe("https://q.tld");
+    expect(v.entries[0].username).toBe("uq");
+    expect(v.entries[0].password).toBe("pq");
+  });
+
+  it("skips empty rows", () => {
+    const csv = "name,url,username,password\nS,https://r.tld,u,p\n\n";
+    expect(importCsv(csv).entries.length).toBe(1);
+  });
+});
