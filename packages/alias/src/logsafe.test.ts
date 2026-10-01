@@ -29,4 +29,10 @@ describe("safeAppend (S5443/CWE-59 hardening)", () => {
   it("swallows an unwritable path (never throws)", () => {
     expect(() => safeAppend("/proc/definitely/not/writable.log", "x\n")).not.toThrow();
   });
+
+  it("errLog/log smoke: helpers never throw", async () => {
+    const mod = await import("./logsafe");
+    expect(() => mod.errLog("smoke")).not.toThrow();
+    expect(() => mod.log("smoke")).not.toThrow();
+  });
 });

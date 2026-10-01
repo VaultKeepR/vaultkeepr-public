@@ -62,3 +62,24 @@ describe("importBitwardenJson username fallbacks", () => {
     expect(v.entries[0].username).toBe("account@y.tld");
   });
 });
+
+describe("importCsv note markers (TOTP / Fields)", () => {
+  it("extracts a TOTP secret from a note column", () => {
+    const csv = 'name,url,username,password,notes\n"S","https://e.tld","u5","p5","TOTP: JBSWY3DPEHPK3PXP"\n';
+    const v = importCsv(csv);
+    expect(v.entries.length).toBe(1);
+    expect(v.entries[0].totpSecret).toBe("JBSWY3DPEHPK3PXP");
+  });
+
+  it("extracts custom fields from a Fields: note line", () => {
+    const csv = 'name,url,username,password,notes\n"S","https://f.tld","u6","p6","Fields: PIN:1234 | Groupe:Perso"\n';
+    const v = importCsv(csv);
+    expect(v.entries.length).toBe(1);
+    const cf = v.entries[0].customFields || [];
+    expect(
+      cf.some(
+        (f: { name: string; value: string }) => f.name === "PIN" && f.value === "1234"
+      )
+    ).toBe(true);
+  });
+});

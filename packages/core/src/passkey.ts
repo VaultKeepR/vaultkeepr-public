@@ -252,7 +252,13 @@ function toBase64Url(bytes: Uint8Array): string {
   for (let i = 0; i < bytes.length; i++) {
     binary += String.fromCharCode(bytes[i]);
   }
-  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  const b64 = btoa(binary).replace(/\+/g, "-").replace(/\//g, "_");
+  // Strip the trailing "=" run by index: the unanchored "=+$" search
+  // backtracks super-linearly (SonarCloud S8786) — the sync mirror had
+  // reverted this hardening (restored 2026-10-01).
+  let end = b64.length;
+  while (end > 0 && b64.charAt(end - 1) === "=") end -= 1;
+  return b64.slice(0, end);
 }
 
 function fromBase64Url(str: string): Uint8Array {
