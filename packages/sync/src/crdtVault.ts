@@ -30,14 +30,11 @@ import type {
 "@vault-keeper/core";
 
 // P2-SEC (CodeQL js/prototype-polluting-assignment): sync payloads are
-// decrypted, attacker-influenced data. A crafted "__proto__",
-// "constructor" or "prototype" key must never reach an assignment or a
-// delete on Automerge documents.
-const UNSAFE_PROTO_KEYS = new Set(["__proto__", "constructor", "prototype"]);
-
-export function isUnsafeProtoKey(key: string): boolean {
-  return UNSAFE_PROTO_KEYS.has(key);
-}
+// decrypted, attacker-influenced data. A crafted "__proto__", "constructor"
+// or "prototype" key/field/id must never reach an assignment or delete on
+// Automerge documents. The checks are inlined as literal comparisons at each
+// site: the analyzer's taint barrier recognizes direct comparisons, not
+// helper-function calls.
 
 
 
@@ -107,8 +104,9 @@ value: CrdtVaultEntry[K])
   return Automerge.change(doc, `update-${entryId}-${String(field)}`, (d) => {
     const entry = d.entries[entryId];
     if (!entry || entry._deleted) return;
-    if (isUnsafeProtoKey(field as string)) return;
-    (entry as unknown as Record<string, unknown>)[field as string] = value;
+    const fieldName = field as string;
+    if (fieldName === "__proto__" || fieldName === "constructor" || fieldName === "prototype") return;
+    (entry as unknown as Record<string, unknown>)[fieldName] = value;
     entry.modifiedAt = Date.now();
   });
 }
@@ -322,7 +320,7 @@ remote: Record<string, unknown>)
   const newerIsLocal = localRep > remoteRep;
   const allKeys = new Set<string>([...Object.keys(local), ...Object.keys(remote)]);
   for (const key of allKeys) {
-    if (key === "id" || isUnsafeProtoKey(key)) continue;
+    if (key === "id" || key === "__proto__" || key === "constructor" || key === "prototype") continue;
     if (key === "_deleted" || key === "_deletedAt") continue;
 
     const lVal = local[key];
@@ -636,7 +634,7 @@ export function syncLegacyToCrdt(doc: VaultDoc, vault: Vault): VaultDoc {
 
     for (const entry of vault.entries) {
       presentEntryIds.add(entry.id);
-      if (isUnsafeProtoKey(entry.id)) continue;
+      if (entry.id === "__proto__" || entry.id === "constructor" || entry.id === "prototype") continue;
       const existing = d.entries[entry.id];
       if (!existing) {
         d.entries[entry.id] = vaultEntryToCrdt(entry);
@@ -644,12 +642,13 @@ export function syncLegacyToCrdt(doc: VaultDoc, vault: Vault): VaultDoc {
 
         if (!existing.modifiedAt || entry.modifiedAt && entry.modifiedAt >= existing.modifiedAt) {
           for (const key of Object.keys(entry) as Array<keyof VaultEntry>) {
-            if (key === "id" || isUnsafeProtoKey(key)) continue;
+            const keyName = key as string;
+            if (keyName === "id" || keyName === "__proto__" || keyName === "constructor" || keyName === "prototype") continue;
             const val = entry[key];
             if (val === undefined) {
-              delete (existing as unknown as Record<string, unknown>)[key];
+              delete (existing as unknown as Record<string, unknown>)[keyName];
             } else {
-              (existing as unknown as Record<string, unknown>)[key] = val;
+              (existing as unknown as Record<string, unknown>)[keyName] = val;
             }
           }
         }
@@ -665,12 +664,13 @@ export function syncLegacyToCrdt(doc: VaultDoc, vault: Vault): VaultDoc {
       } else {
         if (!existing.modifiedAt || secDoc.modifiedAt && secDoc.modifiedAt >= existing.modifiedAt) {
           for (const key of Object.keys(secDoc) as Array<keyof SecureDocument>) {
-            if (key === "id" || isUnsafeProtoKey(key)) continue;
+            const keyName = key as string;
+            if (keyName === "id" || keyName === "__proto__" || keyName === "constructor" || keyName === "prototype") continue;
             const val = secDoc[key];
             if (val === undefined) {
-              delete (existing as unknown as Record<string, unknown>)[key];
+              delete (existing as unknown as Record<string, unknown>)[keyName];
             } else {
-              (existing as unknown as Record<string, unknown>)[key] = val;
+              (existing as unknown as Record<string, unknown>)[keyName] = val;
             }
           }
         }
@@ -686,12 +686,13 @@ export function syncLegacyToCrdt(doc: VaultDoc, vault: Vault): VaultDoc {
       } else {
         if (!existing.modifiedAt || cFile.modifiedAt && cFile.modifiedAt >= existing.modifiedAt) {
           for (const key of Object.keys(cFile) as Array<keyof CloudFile>) {
-            if (key === "id" || isUnsafeProtoKey(key)) continue;
+            const keyName = key as string;
+            if (keyName === "id" || keyName === "__proto__" || keyName === "constructor" || keyName === "prototype") continue;
             const val = cFile[key];
             if (val === undefined) {
-              delete (existing as unknown as Record<string, unknown>)[key];
+              delete (existing as unknown as Record<string, unknown>)[keyName];
             } else {
-              (existing as unknown as Record<string, unknown>)[key] = val;
+              (existing as unknown as Record<string, unknown>)[keyName] = val;
             }
           }
         }
