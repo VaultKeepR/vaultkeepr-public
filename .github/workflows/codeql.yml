@@ -25,7 +25,7 @@ jobs:
           submodules: recursive
           persist-credentials: false
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@1190a975f95ce23525efb6a3fc21ea29567c1b52 # v3 (branch head 2026-10-01)
         with:
           languages: javascript-typescript
           queries: security-extended
@@ -36,6 +36,6 @@ jobs:
       - name: Build
         run: pnpm build
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@1190a975f95ce23525efb6a3fc21ea29567c1b52 # v3 (branch head 2026-10-01)
         with:
           category: "/language:typescript-javascript"
