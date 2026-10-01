@@ -45,7 +45,7 @@
     "@vaultkeepr/logger": "workspace:*",
     "ethers": "^6.13.0",
     "fflate": "^0.8.3",
-    "viem": "^2.21.0"
+    "viem": "^2.56.9"
   },
   "devDependencies": {
     "tsup": "^8.3.5",

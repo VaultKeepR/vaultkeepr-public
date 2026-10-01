@@ -15,10 +15,10 @@
   "devDependencies": {
     "@jazzer.js/core": "2",
     "@types/node": "^20",
-    "eslint": "^10.10.0",
-    "turbo": "^2.3.0",
+    "eslint": "^10.11.0",
+    "turbo": "^2.11.5",
     "typescript": "^5.6.3",
-    "typescript-eslint": "^8.70.0",
+    "typescript-eslint": "^8.70.1",
     "fast-check": "^4.10.2"
   },
   "packageManager": "pnpm@9.15.9",
