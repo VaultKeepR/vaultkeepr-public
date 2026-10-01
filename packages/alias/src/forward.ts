@@ -11,8 +11,8 @@ import { lookupRecipient } from "./db.js";
 import { getDomain } from "./config.js";
 
 const DEBUG = process.env.VAULTKEEPER_FORWARD_DEBUG === "1";
-const LOG = "/tmp/vaultkeeper-forward.log";
-const ERR_LOG = "/tmp/vaultkeeper-forward-err.log";
+const LOG = "/tmp/vaultkeeper-forward.log"; // NOSONAR (S5443): mitigated in safeAppend via O_NOFOLLOW + 0600
+const ERR_LOG = "/tmp/vaultkeeper-forward-err.log"; // NOSONAR (S5443): mitigated in safeAppend via O_NOFOLLOW + 0600;
 
 // S5443/CWE-59: /tmp est inscriptible par tous. O_NOFOLLOW fait echouer
 // l'open (ELOOP) si le fichier est un symlink plante, l'ecriture est jetee.
