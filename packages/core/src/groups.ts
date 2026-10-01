@@ -63,17 +63,41 @@ function brandFrom(url: string | undefined): { brand: string; host: string } | n
 // titles with the domain brand, falls back to the domain brand.
 export function cleanEntryTitle(rawTitle: string, url?: string): string {
   const raw = rawTitle.trim();
-  const passkeyMatch = raw.match(/^(.*?)\s+passkey\s+(.+)$/i);
-  let candidate =
-  passkeyMatch && passkeyMatch[1].trim() && /\d/.test(passkeyMatch[2])
-    ? passkeyMatch[1].trim()
-    : raw;
+  // ReDoS-safe linear scan (the former /^(.*?)\s+passkey\s+(.+)$/i backtracked
+  // quadratically on whitespace floods — CodeQL js/polynomial-redos). The
+  // first structurally valid match decides, mirroring the lazy-prefix match.
+  let candidate = raw;
+  {
+    const lower = raw.toLowerCase();
+    let pos = lower.indexOf("passkey");
+    while (pos > 0) {
+      let i = pos;
+      while (i > 0 && /\s/.test(raw.charAt(i - 1))) i--;
+      const prefix = raw.slice(0, i);
+      if (i < pos && !prefix.includes("\n")) {
+        let j = pos + 7;
+        while (j < raw.length && /\s/.test(raw.charAt(j))) j++;
+        const tail = raw.slice(j);
+        if (j > pos + 7 && tail.length > 0 && !tail.includes("\n")) {
+          if (prefix.trim() !== "" && /\d/.test(tail)) candidate = prefix.trim();
+          break;
+        }
+      }
+      pos = lower.indexOf("passkey", pos + 1);
+    }
+  }
   const brandInfo = brandFrom(url);
   if (brandInfo) {
     if (!candidate) return brandInfo.brand;
     if (/^[\d\s()+.-]+$/.test(candidate)) return brandInfo.brand;
     if (candidate.toLowerCase() === brandInfo.brand.toLowerCase()) return brandInfo.brand;
-    if (candidate.replace(/^https?:\/\//i, "").replace(/\/.*$/, "").toLowerCase() === brandInfo.host) {
+    // Linear replacement for the former .replace(/\/.*$/, "") (CodeQL):
+    // cut at the leftmost "/" whose suffix to end-of-string has no newline.
+    const schemeStripped = candidate.replace(/^https?:\/\//i, "");
+    const nl = schemeStripped.lastIndexOf("\n");
+    const slash = schemeStripped.indexOf("/", nl + 1);
+    const hostCandidate = slash === -1 ? schemeStripped : schemeStripped.slice(0, slash);
+    if (hostCandidate.toLowerCase() === brandInfo.host) {
       return brandInfo.brand;
     }
   }

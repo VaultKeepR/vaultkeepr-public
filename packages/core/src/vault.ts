@@ -419,10 +419,15 @@ export function normalizeUrl(raw: string): string {
 
   u = u.replace(/^www\./, "");
 
-  u = u.replace(/#.*$/, "");
-
-  u = u.replace(/\/+$/, "");
-  return u;
+  // Linear equivalents of the former /#.*$/ + /\/+$/ cleanup (CodeQL
+  // js/polynomial-redos): cut at the leftmost "#" whose suffix to
+  // end-of-string has no newline, then drop the trailing "/" run.
+  const nl = u.lastIndexOf("\n");
+  const hash = u.indexOf("#", nl + 1);
+  if (hash !== -1) u = u.slice(0, hash);
+  let end = u.length;
+  while (end > 0 && u.charAt(end - 1) === "/") end--;
+  return u.slice(0, end);
 }
 
 

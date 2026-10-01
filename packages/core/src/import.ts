@@ -769,14 +769,22 @@ rawNote: string | undefined)
   const customFields: {name: string;value: string;type: "text";}[] = [];
 
   for (const line of lines) {
-    const to = line.match(/^TOTP:\s+(.+)$/);
-    if (to) {
-      totpSecret = to[1].trim();
-      continue;
+    // Linear scans (the former /^TOTP:\s+(.+)$/ and /^Fields:\s+(.+)$/
+    // backtracked quadratically on whitespace floods — CodeQL
+    // js/polynomial-redos).
+    if (line.startsWith("TOTP:")) {
+      let j = 5;
+      while (j < line.length && /\s/.test(line.charAt(j))) j++;
+      if (j > 5 && j < line.length) {
+        totpSecret = line.slice(j).trim();
+        continue;
+      }
     }
-    const fieldsMatch = line.match(/^Fields:\s+(.+)$/);
-    if (fieldsMatch) {
-      const entries = fieldsMatch[1].split("|");
+    if (line.startsWith("Fields:")) {
+      let j = 7;
+      while (j < line.length && /\s/.test(line.charAt(j))) j++;
+      if (j > 7 && j < line.length) {
+        const entries = line.slice(j).split("|");
       for (const entry of entries) {
         const colonIdx = entry.indexOf(":");
         if (colonIdx > 0) {
@@ -788,6 +796,7 @@ rawNote: string | undefined)
         }
       }
     }
+  }
   }
 
   return { totpSecret, customFields };

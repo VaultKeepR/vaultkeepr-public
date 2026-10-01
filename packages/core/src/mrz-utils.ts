@@ -33,7 +33,11 @@ export function calculateMrzChecksum(str: string): number {
 
 
 export function cleanMrzField(str: string): string {
-  return str.replace(/<+$/g, "").replace(/</g, " ").trim();
+  // Linear trim of the trailing "<" run (regex /<+$/g was quadratic on
+  // "<" floods — CodeQL js/polynomial-redos).
+  let end = str.length;
+  while (end > 0 && str.charAt(end - 1) === "<") end--;
+  return str.slice(0, end).replace(/</g, " ").trim();
 }
 
 

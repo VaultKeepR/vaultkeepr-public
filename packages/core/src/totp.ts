@@ -9,7 +9,11 @@ export type TOTPAlgorithm = "SHA-1" | "SHA-256" | "SHA-512";
 
 function base32Decode(input: string): Uint8Array {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
-  const clean = input.replace(/\s/g, "").toUpperCase().replace(/=+$/, "");
+  const upper = input.replace(/\s/g, "").toUpperCase();
+  // Linear trim of base32 "=" padding (regex /=+$/ was quadratic; CodeQL).
+  let end = upper.length;
+  while (end > 0 && upper.charAt(end - 1) === "=") end--;
+  const clean = upper.slice(0, end);
   const bits: number[] = [];
   for (let i = 0; i < clean.length; i++) {
     const idx = alphabet.indexOf(clean[i]);
