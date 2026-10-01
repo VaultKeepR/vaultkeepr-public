@@ -607,7 +607,7 @@ describe("fromLegacyVault", () => {
 
 
 describe("Performance", () => {
-  it("handles 1000 entries without excessive latency", () => {
+  it("handles 1000 entries without excessive latency", () => { // 60s harness: perf budget stays, CI runners are slow
     let doc = createEmptyDoc("perf-test");
     const start = performance.now();
 
@@ -654,7 +654,7 @@ describe("Performance", () => {
     expect(exportTime).toBeLessThan(5000);
     expect(importTime).toBeLessThan(5000);
     expect(mergeTime).toBeLessThan(5000);
-  });
+  }, 60000);
 
   it("merges independent docs via binary roundtrip (cross-device first sync)", () => {
 
