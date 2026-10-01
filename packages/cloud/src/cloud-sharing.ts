@@ -118,7 +118,7 @@ ownerWallet?: string)
     fragments: file.fragments,
     nonce: file.nonce,
     encryptionKeyHex: masterKeyHex,
-    ownerWallet: ownerWallet && ownerWallet.trim() !== "" ? ownerWallet.toLowerCase() : undefined,
+    ownerWallet: ownerWallet && ownerWallet.trim() !== "" ? ownerWallet.trim().toLowerCase() : undefined,
     message: options.message,
     senderLabel: options.senderLabel,
     createdAt: Date.now()
