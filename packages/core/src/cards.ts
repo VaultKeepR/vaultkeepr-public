@@ -15,10 +15,10 @@ export function getCardBrand(number: string): CardBrand {
   if (d.startsWith("4")) return "visa";
   if (d.startsWith("34") || d.startsWith("37")) return "amex";
   if (d.startsWith("51") || d.startsWith("52") || d.startsWith("53") || d.startsWith("54") || d.startsWith("55")) return "mastercard";
-  const n = Number.parseInt(d.slice(0, 4), 10);
+  const n = parseInt(d.slice(0, 4), 10);
   if (n >= 2221 && n <= 2720) return "mastercard";
   if (d.startsWith("6011") || d.startsWith("65")) return "discover";
-  const n3 = Number.parseInt(d.slice(0, 3), 10);
+  const n3 = parseInt(d.slice(0, 3), 10);
   if (n3 >= 644 && n3 <= 649) return "discover";
   return null;
 }

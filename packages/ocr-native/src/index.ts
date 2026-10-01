@@ -31,7 +31,7 @@ export interface OcrResult {
 
 import { NativeModules } from 'react-native';
 
-import { logger } from "@vaultkeepr/logger";
+import { logger } from "@vault-keeper/logger";
 const NativeOcr = NativeModules.OcrNative;
 
 

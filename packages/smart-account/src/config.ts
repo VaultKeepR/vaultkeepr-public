@@ -21,9 +21,9 @@ export function getPimlicoApiKey(): string {
 
 
   let key = "";
-  try {key = process.env.PIMLICO_API_KEY || "";} catch {}
+  try {key = process.env.PIMLICO_API_KEY || "";} catch {/* env absent on this runtime */}
   if (key) return key;
-  try {key = process.env.NEXT_PUBLIC_PIMLICO_API_KEY || "";} catch {}
+  try {key = process.env.NEXT_PUBLIC_PIMLICO_API_KEY || "";} catch {/* env absent on this runtime */}
   return key;
 }
 
@@ -40,12 +40,12 @@ export function getPimlicoApiKey(): string {
 
 export function getPimlicoUrl(): string {
   let proxyUrl = "";
-  try {proxyUrl = process.env.PIMLICO_PROXY_URL || "";} catch {}
+  try {proxyUrl = process.env.PIMLICO_PROXY_URL || "";} catch {/* env absent on this runtime */}
   if (!proxyUrl) {
-    try {proxyUrl = process.env.NEXT_PUBLIC_PIMLICO_PROXY_URL || "";} catch {}
+    try {proxyUrl = process.env.NEXT_PUBLIC_PIMLICO_PROXY_URL || "";} catch {/* env absent on this runtime */}
   }
   if (!proxyUrl) {
-    try {proxyUrl = process.env.EXPO_PUBLIC_PIMLICO_PROXY_URL || "";} catch {}
+    try {proxyUrl = process.env.EXPO_PUBLIC_PIMLICO_PROXY_URL || "";} catch {/* env absent on this runtime */}
   }
   if (proxyUrl) {
     return proxyUrl;
@@ -62,9 +62,9 @@ export function getPimlicoUrl(): string {
 
 export function isSmartAccountConfigured(): boolean {
   let proxyUrl = "";
-  try {proxyUrl = process.env.PIMLICO_PROXY_URL || "";} catch {}
-  if (!proxyUrl) {try {proxyUrl = process.env.NEXT_PUBLIC_PIMLICO_PROXY_URL || "";} catch {}}
-  if (!proxyUrl) {try {proxyUrl = process.env.EXPO_PUBLIC_PIMLICO_PROXY_URL || "";} catch {}}
+  try {proxyUrl = process.env.PIMLICO_PROXY_URL || "";} catch {/* env absent on this runtime */}
+  if (!proxyUrl) {try {proxyUrl = process.env.NEXT_PUBLIC_PIMLICO_PROXY_URL || "";} catch {/* env absent on this runtime */}}
+  if (!proxyUrl) {try {proxyUrl = process.env.EXPO_PUBLIC_PIMLICO_PROXY_URL || "";} catch {/* env absent on this runtime */}}
   return !!proxyUrl;
 }
 

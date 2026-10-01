@@ -126,7 +126,7 @@ customFields: CustomField[] | undefined)
 function csvEscape(v: string): string {
   const s = v ?? "";
   if (/[",\r\n]/.test(s)) {
-    return '"' + s.replaceAll(/"/g, '""') + '"';
+    return '"' + s.replace(/"/g, '""') + '"';
   }
   return s;
 }
@@ -198,6 +198,7 @@ opts: {variant?: "chrome" | "bitwarden";} = {})
       }
 
       if (e.folder === "cartes") {
+        const m = parseCardMeta(e.notes);
         rows.push(
           [
           csvEscape("cartes"),

@@ -55,7 +55,7 @@ export function calculatePasswordStrength(password: string): PasswordStrengthRes
   }
 
 
-  if (!/(.)\\1{2,}/.test(password)) {
+  if (!/(.)\1{2,}/.test(password)) {
     score += 10;
   } else {
     feedback.push("passwordFeedback.avoidRepeated");

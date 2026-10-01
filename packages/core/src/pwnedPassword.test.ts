@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
-import { getPwnedPasswordCount } from "./pwnedPassword";
+import { getPwnedPasswordCount, getPwnedCountForHash } from "./pwnedPassword";
 
 describe("getPwnedPasswordCount", () => {
   const originalFetch = globalThis.fetch;
@@ -42,5 +42,39 @@ describe("getPwnedPasswordCount", () => {
   it("throws on non-ok response", async () => {
     const mockFetch = vi.fn().mockResolvedValue({ ok: false, status: 503 });
     await expect(getPwnedPasswordCount("a", { fetchFn: mockFetch as typeof fetch })).rejects.toThrow("503");
+  });
+});
+
+describe("getPwnedCountForHash", () => {
+  const originalFetch = globalThis.fetch;
+
+  afterEach(() => {
+    globalThis.fetch = originalFetch;
+    vi.restoreAllMocks();
+  });
+
+  it("queries the range for a pre-computed hash", async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      text: async () => "1E4C9B93F3F0682250B6CF8331B7EE68FD8:2\n"
+    });
+    const n = await getPwnedCountForHash("5BAA61E4C9B93F3F0682250B6CF8331B7EE68FD8", { fetchFn: mockFetch as typeof fetch });
+    expect(n).toBe(2);
+    expect(mockFetch).toHaveBeenCalledWith("https://api.pwnedpasswords.com/range/5BAA6", expect.anything());
+  });
+
+  it("normalizes lowercase input", async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      text: async () => "1E4C9B93F3F0682250B6CF8331B7EE68FD8:2\n"
+    });
+    const n = await getPwnedCountForHash("5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", { fetchFn: mockFetch as typeof fetch });
+    expect(n).toBe(2);
+  });
+
+  it("rejects malformed hashes", async () => {
+    const mockFetch = vi.fn();
+    await expect(getPwnedCountForHash("abc123", { fetchFn: mockFetch as typeof fetch })).rejects.toThrow("Invalid SHA-1 length");
+    expect(mockFetch).not.toHaveBeenCalled();
   });
 });

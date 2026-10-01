@@ -11,7 +11,7 @@ import { sha256 } from "@noble/hashes/sha2.js";
 import { randomBytes } from "@noble/ciphers/utils.js";
 import { bytesToHex, hexToBytes } from "@noble/hashes/utils.js";
 
-import { logger } from "@vaultkeepr/logger";
+import { logger } from "@vault-keeper/logger";
 
 
 export interface PasskeyPrfCredential {
@@ -250,27 +250,18 @@ prfSaltHex: string)
 function toBase64Url(bytes: Uint8Array): string {
   let binary = "";
   for (let i = 0; i < bytes.length; i++) {
-    binary += String.fromCodePoint(bytes[i]);
+    binary += String.fromCharCode(bytes[i]);
   }
-  const b64 = btoa(binary).replaceAll(/\+/g, "-").replaceAll(/\//g, "_");
-  // Strip the trailing "=" padding without the "=+$" regex: an unanchored
-  // "=+$" search backtracks super-linearly (SonarCloud S8786). Trimming the
-  // trailing run of "=" by index is what replace(/=+$/, "") removes, for
-  // every input, in linear time.
-  let end = b64.length;
-  while (end > 0 && b64.charAt(end - 1) === "=") {
-    end -= 1;
-  }
-  return b64.slice(0, end);
+  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
 function fromBase64Url(str: string): Uint8Array {
-  const base64 = str.replaceAll(/-/g, "+").replaceAll(/_/g, "/");
+  const base64 = str.replace(/-/g, "+").replace(/_/g, "/");
   const padded = base64 + "=".repeat((4 - base64.length % 4) % 4);
   const binary = atob(padded);
   const bytes = new Uint8Array(binary.length);
   for (let i = 0; i < binary.length; i++) {
-    bytes[i] = binary.codePointAt(i)!;
+    bytes[i] = binary.charCodeAt(i);
   }
   return bytes;
 }

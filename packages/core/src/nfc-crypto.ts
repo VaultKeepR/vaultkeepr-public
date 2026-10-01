@@ -37,25 +37,16 @@ const HKDF_INFO = utf8ToBytes("vaultkeepr-nfc-v2");
 
 function toBase64url(bytes: Uint8Array): string {
   let bin = "";
-  for (let i = 0; i < bytes.length; i++) bin += String.fromCodePoint(bytes[i]);
-  const b64 = btoa(bin).replaceAll(/\+/g, "-").replaceAll(/\//g, "_");
-  // Strip the trailing "=" padding without the "=+$" regex: an unanchored
-  // "=+$" search backtracks super-linearly (SonarCloud S8786). Trimming the
-  // trailing run of "=" by index is what replace(/=+$/, "") removes, for
-  // every input, in linear time.
-  let end = b64.length;
-  while (end > 0 && b64.charAt(end - 1) === "=") {
-    end -= 1;
-  }
-  return b64.slice(0, end);
+  for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
 function fromBase64url(str: string): Uint8Array {
-  const b64 = str.replaceAll(/-/g, "+").replaceAll(/_/g, "/");
+  const b64 = str.replace(/-/g, "+").replace(/_/g, "/");
   const padded = b64 + "=".repeat((4 - b64.length % 4) % 4);
   const bin = atob(padded);
   const bytes = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; i++) bytes[i] = bin.codePointAt(i)!;
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
   return bytes;
 }
 
@@ -108,7 +99,7 @@ pin: string)
 
     const hexBytes = new Uint8Array(masterPassword.length / 2);
     for (let i = 0; i < masterPassword.length; i += 2) {
-      hexBytes[i / 2] = Number.parseInt(masterPassword.slice(i, i + 2), 16);
+      hexBytes[i / 2] = parseInt(masterPassword.slice(i, i + 2), 16);
     }
     plainBytes = new Uint8Array(1 + hexBytes.length);
     plainBytes[0] = 0x68;

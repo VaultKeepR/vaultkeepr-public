@@ -1,4 +1,4 @@
-import type { CloudFile, CloudFileCategory } from "@vaultkeepr/core";
+import type { CloudFile, CloudFileCategory } from "@vault-keeper/core";
 
 export type { CloudFile, CloudFileCategory };
 

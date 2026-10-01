@@ -8,9 +8,9 @@
 
 
 
-import type { Vault } from "@vaultkeepr/core";
+import type { Vault } from "@vault-keeper/core";
 import type { VaultDoc } from "./schema";
-import { fromLegacyVault, isAutomergeBinary } from "./crdtVault";
+import { fromLegacyVault, importBinary, isAutomergeBinary } from "./crdtVault";
 
 
 
@@ -34,7 +34,7 @@ export function detectPayloadFormat(plaintext: string | Uint8Array): PayloadForm
       const bytes = base64ToUint8Array(plaintext);
       if (isAutomergeBinary(bytes)) return "crdt";
     } catch {
-
+      // not base64 CRDT data: fall through to the JSON format check below
     }
     return "json";
   }
@@ -86,11 +86,11 @@ deviceId: string)
 
 function base64ToUint8Array(base64: string): Uint8Array {
 
-  const normalized = base64.replaceAll(/-/g, "+").replaceAll(/_/g, "/");
+  const normalized = base64.replace(/-/g, "+").replace(/_/g, "/");
   const binary = atob(normalized);
   const bytes = new Uint8Array(binary.length);
   for (let i = 0; i < binary.length; i++) {
-    bytes[i] = binary.codePointAt(i)!;
+    bytes[i] = binary.charCodeAt(i);
   }
   return bytes;
 }

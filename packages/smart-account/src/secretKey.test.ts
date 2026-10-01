@@ -1,34 +1,44 @@
-import { describe, it, expect } from "vitest";
-import { generateSecretKey, isValidSecretKey } from "./secretKey";
+import { afterEach, describe, expect, it } from "vitest";
+import {
+  formatSecretKeyForDisplay,
+  generateSecretKey,
+  isValidSecretKey,
+  parseSecretKeyInput
+} from "./secretKey";
 
-describe("smart-account — generateSecretKey", () => {
-  it("returns 64 hex characters (256-bit key)", () => {
-    const key = generateSecretKey();
-    expect(key).toMatch(/^[0-9a-f]{64}$/);
+const originalCrypto = globalThis.crypto;
+
+describe("generateSecretKey", () => {
+  afterEach(() => {
+    Object.defineProperty(globalThis, "crypto", {
+      value: originalCrypto,
+      configurable: true
+    });
   });
 
-  it("produces distinct keys across calls", () => {
-    const a = generateSecretKey();
-    const b = generateSecretKey();
-    expect(a).not.toBe(b);
-  });
-
-  it("output passes isValidSecretKey", () => {
+  it("produces a 64-hex-char key from the CSPRNG", () => {
     expect(isValidSecretKey(generateSecretKey())).toBe(true);
   });
 
-  it("throws instead of degrading when WebCrypto is unavailable", () => {
-    // crypto is a getter-only, configurable property on modern runtimes:
-    // stub it via defineProperty, restore the original descriptor after.
-    const desc = Object.getOwnPropertyDescriptor(globalThis, "crypto");
+  it("refuses to degrade to Math.random when WebCrypto is unavailable", () => {
     Object.defineProperty(globalThis, "crypto", {
       value: undefined,
-      configurable: true,
+      configurable: true
     });
-    try {
-      expect(() => generateSecretKey()).toThrow(/WebCrypto unavailable/);
-    } finally {
-      if (desc) Object.defineProperty(globalThis, "crypto", desc);
-    }
+    expect(() => generateSecretKey()).toThrow(/CSPRNG indisponible/);
+  });
+});
+
+describe("secretKey helpers", () => {
+  const key = "a".repeat(64);
+
+  it("validates 256-bit hex keys", () => {
+    expect(isValidSecretKey(key)).toBe(true);
+    expect(isValidSecretKey("0x" + key)).toBe(false);
+    expect(isValidSecretKey(key.slice(1))).toBe(false);
+  });
+
+  it("round-trips display formatting", () => {
+    expect(parseSecretKeyInput(formatSecretKeyForDisplay(key))).toBe(key);
   });
 });

@@ -22,8 +22,7 @@ import {
   addEntry } from
 "./index";
 import { createKeyEnvelope, decryptKeyEnvelope } from "./envelope";
-import { bytesToHex } from "@noble/hashes/utils.js";
-import { secp256k1 } from "@noble/curves/secp256k1.js";
+import { bytesToHex, hexToBytes } from "@noble/hashes/utils.js";
 import { randomBytes } from "@noble/ciphers/utils.js";
 
 
@@ -308,6 +307,9 @@ describe("Tampering resistance", () => {
 
 describe("ECIES envelope round-trip", () => {
   it("should encrypt and decrypt a master key via ECIES envelope", () => {
+    const { secp256k1 } = require("@noble/curves/secp256k1.js");
+
+
     const recipientPriv = secp256k1.utils.randomSecretKey();
     const recipientPub = secp256k1.getPublicKey(recipientPriv, false);
     const recipientPubHex = bytesToHex(recipientPub);
@@ -331,6 +333,8 @@ describe("ECIES envelope round-trip", () => {
   });
 
   it("should fail decryption with wrong recipient key", () => {
+    const { secp256k1 } = require("@noble/curves/secp256k1.js");
+
     const recipientPriv = secp256k1.utils.randomSecretKey();
     const recipientPub = secp256k1.getPublicKey(recipientPriv, false);
     const recipientPubHex = bytesToHex(recipientPub);

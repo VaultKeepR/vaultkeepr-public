@@ -21,7 +21,7 @@
 
 
 
-import type { Vault, VaultEntry, SecureDocument, CloudFile, PrfCredentialRecord, FolderNode } from "./types";
+import type { Vault, VaultEntry, SecureDocument, CloudFile, PrfCredentialRecord, FolderNode, LegacyContact } from "./types";
 
 
 
@@ -316,6 +316,70 @@ remote: PrfCredentialRecord[])
   return Array.from(byId.values());
 }
 
+function legacyContactKey(c: LegacyContact): string {
+  return JSON.stringify([c.label, c.email, c.telegram, c.address, c.publicKey]);
+}
+
+function mergeLegacyContacts(
+base: LegacyContact[] | undefined,
+local: LegacyContact[] | undefined,
+remote: LegacyContact[] | undefined)
+: LegacyContact[] | undefined {
+  const byKey = new Map<string, LegacyContact>();
+  for (const c of [...(local ?? []), ...(remote ?? [])]) {
+    const key = legacyContactKey(c);
+    const existing = byKey.get(key);
+    if (!existing) {
+      byKey.set(key, c);
+      continue;
+    }
+    if (c.addedAt !== existing.addedAt) {
+      byKey.set(key, c.addedAt > existing.addedAt ? c : existing);
+    } else {
+      byKey.set(key, deterministicPick(existing, c));
+    }
+  }
+  if (byKey.size === 0) return undefined;
+  const ordered: LegacyContact[] = [];
+  const placed = new Set<string>();
+  for (const c of base ?? []) {
+    const key = legacyContactKey(c);
+    const kept = byKey.get(key);
+    if (kept && !placed.has(key)) {
+      placed.add(key);
+      ordered.push(kept);
+    }
+  }
+  const additions = Array.from(byKey.entries()).filter(([key]) => !placed.has(key));
+  additions.sort((a, b) => {
+    if (a[1].addedAt !== b[1].addedAt) return a[1].addedAt < b[1].addedAt ? -1 : 1;
+    return JSON.stringify(a[1]) <= JSON.stringify(b[1]) ? -1 : 1;
+  });
+  for (const [, c] of additions) ordered.push(c);
+  return ordered;
+}
+
+function mergeMonitoredEmails(
+base: string[] | undefined,
+local: string[] | undefined,
+remote: string[] | undefined)
+: string[] | undefined {
+  const present = new Set<string>();
+  for (const v of [...(local ?? []), ...(remote ?? [])]) present.add(v);
+  if (present.size === 0) return undefined;
+  const ordered: string[] = [];
+  for (const v of base ?? []) {
+    if (present.has(v) && !ordered.includes(v)) ordered.push(v);
+  }
+  const additions: string[] = [];
+  for (const v of present) {
+    if (!ordered.includes(v)) additions.push(v);
+  }
+  additions.sort();
+  for (const v of additions) ordered.push(v);
+  return ordered;
+}
+
 export function threeWayMerge(
 base: Vault | null | undefined,
 local: Vault,
@@ -400,6 +464,17 @@ remote: Vault)
     0
   );
 
+  const mergedLegacyContacts = mergeLegacyContacts(
+    base ? base.legacyContacts : undefined,
+    local.legacyContacts,
+    remote.legacyContacts
+  );
+  const mergedMonitoredEmails = mergeMonitoredEmails(
+    base ? base.monitoredEmails : undefined,
+    local.monitoredEmails,
+    remote.monitoredEmails
+  );
+
   const out: Vault = {
     version: Math.max(local.version, remote.version),
     createdAt: local.createdAt,
@@ -423,6 +498,17 @@ remote: Vault)
   }
   if (Object.keys(mergedEntryTombstones).length > 0) {
     out.entryTombstones = mergedEntryTombstones;
+  }
+  if (mergedLegacyContacts) {
+    out.legacyContacts = mergedLegacyContacts;
+  }
+  if (mergedMonitoredEmails) {
+    out.monitoredEmails = mergedMonitoredEmails;
+  }
+  if (local.secretKey !== undefined || remote.secretKey !== undefined) {
+    out.secretKey = local.secretKey !== undefined && remote.secretKey !== undefined ?
+    deterministicPick(local.secretKey, remote.secretKey) :
+    local.secretKey ?? remote.secretKey;
   }
   return out;
 }

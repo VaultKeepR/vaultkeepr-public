@@ -11,7 +11,7 @@ import {
   deleteCloudFolder,
   deleteVaultEntry } from
 "./merge.js";
-import type { Vault, VaultEntry, SecureDocument, CloudFile } from "./types.js";
+import type { Vault, VaultEntry, SecureDocument, CloudFile, LegacyContact } from "./types.js";
 
 
 
@@ -450,17 +450,17 @@ describe("merge — P1-4 base=post-merge preserves LWW correctness", () => {
       password: "old",
       modifiedAt: 1_000
     });
-    makeVault({ entries: [baseEntry] });
+    const v0 = makeVault({ entries: [baseEntry] });
 
 
-    makeVault({
+    const vA1 = makeVault({
       entries: [
       { ...baseEntry, password: "A1", modifiedAt: 10_000 }]
 
     });
 
 
-    makeVault({
+    const vB1 = makeVault({
       entries: [
       { ...baseEntry, password: "B1", modifiedAt: 10_500 }]
 
@@ -534,5 +534,159 @@ describe("merge — P1-4 base=post-merge preserves LWW correctness", () => {
     const fromB = threeWayMerge(base, remoteB, localA);
 
     expect(fromA.entries[0].password).toBe(fromB.entries[0].password);
+  });
+});
+
+function makeContact(over: Partial<LegacyContact> = {}): LegacyContact {
+  return {
+    label: "Alex",
+    email: "alex@example.com",
+    status: "pending",
+    addedAt: "2026-05-01T00:00:00Z",
+    ...over
+  };
+}
+
+describe("merge — optional list fields preserved (legacyContacts, monitoredEmails)", () => {
+  it("legacyContacts: ours-only change is preserved", () => {
+    const base = makeVault();
+    const local = makeVault({ legacyContacts: [makeContact({ label: "Local only" })] });
+    const remote = makeVault();
+    const merged = threeWayMerge(base, local, remote);
+    expect(merged.legacyContacts).toHaveLength(1);
+    expect(merged.legacyContacts![0].label).toBe("Local only");
+  });
+
+  it("legacyContacts: theirs-only change is preserved", () => {
+    const base = makeVault();
+    const local = makeVault();
+    const remote = makeVault({ legacyContacts: [makeContact({ label: "Remote only" })] });
+    const merged = threeWayMerge(base, local, remote);
+    expect(merged.legacyContacts).toHaveLength(1);
+    expect(merged.legacyContacts![0].label).toBe("Remote only");
+  });
+
+  it("legacyContacts: both-changed unions deduped, newest write wins per contact", () => {
+    const base = makeVault();
+    const sharedOld = makeContact({ label: "Shared", email: "shared@x.io", addedAt: "2026-05-02T00:00:00Z", status: "pending" });
+    const sharedNew = makeContact({ label: "Shared", email: "shared@x.io", addedAt: "2026-05-03T00:00:00Z", status: "confirmed" });
+    const local = makeVault({
+      legacyContacts: [sharedNew, makeContact({ label: "A", addedAt: "2026-05-01T00:00:00Z" })]
+    });
+    const remote = makeVault({
+      legacyContacts: [sharedOld, makeContact({ label: "B", addedAt: "2026-05-04T00:00:00Z" })]
+    });
+    const merged = threeWayMerge(base, local, remote);
+    const fromA = threeWayMerge(base, local, remote);
+    const fromB = threeWayMerge(base, remote, local);
+    expect(fromB.legacyContacts).toEqual(merged.legacyContacts);
+    expect(merged.legacyContacts).toHaveLength(3);
+    const labels = merged.legacyContacts!.map((c) => c.label).sort();
+    expect(labels).toEqual(["A", "B", "Shared"]);
+    const shared = merged.legacyContacts!.find((c) => c.label === "Shared")!;
+    expect(shared.status).toBe("confirmed");
+  });
+
+  it("legacyContacts: neither side changed keeps the list", () => {
+    const contacts = [makeContact({ label: "Base" })];
+    const base = makeVault({ legacyContacts: contacts });
+    const local = makeVault({ legacyContacts: contacts });
+    const remote = makeVault({ legacyContacts: contacts });
+    const merged = threeWayMerge(base, local, remote);
+    expect(merged.legacyContacts).toEqual(contacts);
+  });
+
+  it("legacyContacts: both sides migrate all contacts → field dropped", () => {
+    const base = makeVault({ legacyContacts: [makeContact()] });
+    const local = makeVault({ legacyContacts: [] });
+    const remote = makeVault({ legacyContacts: [] });
+    const merged = threeWayMerge(base, local, remote);
+    expect("legacyContacts" in merged).toBe(false);
+  });
+
+  it("monitoredEmails: ours-only change is preserved", () => {
+    const base = makeVault();
+    const local = makeVault({ monitoredEmails: ["dev@acme.com"] });
+    const remote = makeVault();
+    const merged = threeWayMerge(base, local, remote);
+    expect(merged.monitoredEmails).toEqual(["dev@acme.com"]);
+  });
+
+  it("monitoredEmails: theirs-only change is preserved", () => {
+    const base = makeVault();
+    const local = makeVault();
+    const remote = makeVault({ monitoredEmails: ["dev@acme.com"] });
+    const merged = threeWayMerge(base, local, remote);
+    expect(merged.monitoredEmails).toEqual(["dev@acme.com"]);
+  });
+
+  it("monitoredEmails: both-changed unions deduped deterministically", () => {
+    const base = makeVault();
+    const local = makeVault({ monitoredEmails: ["zoe@acme.com", "sam@acme.com"] });
+    const remote = makeVault({ monitoredEmails: ["sam@acme.com", "amy@acme.com"] });
+    const merged = threeWayMerge(base, local, remote);
+    const fromA = threeWayMerge(base, local, remote);
+    const fromB = threeWayMerge(base, remote, local);
+    expect(fromB.monitoredEmails).toEqual(fromA.monitoredEmails);
+    expect(merged.monitoredEmails).toEqual(["amy@acme.com", "sam@acme.com", "zoe@acme.com"]);
+  });
+
+  it("monitoredEmails: neither side changed keeps the list", () => {
+    const emails = ["dev@acme.com", "ops@acme.com"];
+    const base = makeVault({ monitoredEmails: emails });
+    const local = makeVault({ monitoredEmails: emails });
+    const remote = makeVault({ monitoredEmails: emails });
+    const merged = threeWayMerge(base, local, remote);
+    expect(merged.monitoredEmails).toEqual(emails);
+  });
+
+  it("monitoredEmails: removed on both sides → field dropped", () => {
+    const base = makeVault({ monitoredEmails: ["old@acme.com"] });
+    const local = makeVault({ monitoredEmails: [] });
+    const remote = makeVault({ monitoredEmails: [] });
+    const merged = threeWayMerge(base, local, remote);
+    expect("monitoredEmails" in merged).toBe(false);
+  });
+
+  it("secretKey: ours-only change is preserved", () => {
+    const base = makeVault();
+    const local = makeVault({ secretKey: "aa".repeat(32) });
+    const remote = makeVault();
+    const merged = threeWayMerge(base, local, remote);
+    expect(merged.secretKey).toBe("aa".repeat(32));
+  });
+
+  it("secretKey: theirs-only change is preserved", () => {
+    const base = makeVault();
+    const local = makeVault();
+    const remote = makeVault({ secretKey: "bb".repeat(32) });
+    const merged = threeWayMerge(base, local, remote);
+    expect(merged.secretKey).toBe("bb".repeat(32));
+  });
+
+  it("secretKey: identical on both sides survives the merge", () => {
+    const sk = "cc".repeat(32);
+    const base = makeVault({ secretKey: sk });
+    const local = makeVault({ secretKey: sk });
+    const remote = makeVault({ secretKey: sk });
+    const merged = threeWayMerge(base, local, remote);
+    expect(merged.secretKey).toBe(sk);
+  });
+
+  it("secretKey: conflicting values resolve deterministically regardless of side order", () => {
+    const base = makeVault();
+    const local = makeVault({ secretKey: "dd".repeat(32) });
+    const remote = makeVault({ secretKey: "ee".repeat(32) });
+    const fromA = threeWayMerge(base, local, remote);
+    const fromB = threeWayMerge(base, remote, local);
+    expect(fromA.secretKey).toBe(fromB.secretKey);
+  });
+
+  it("secretKey: absent on both sides is not added", () => {
+    const base = makeVault({ secretKey: "ff".repeat(32) });
+    const local = makeVault();
+    const remote = makeVault();
+    const merged = threeWayMerge(base, local, remote);
+    expect("secretKey" in merged).toBe(false);
   });
 });

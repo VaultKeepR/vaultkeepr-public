@@ -22,6 +22,17 @@ export type { VaultSmartAccount, CreateSmartAccountParams } from "./kernel";
 
 export { computeSmartAccountAddress } from "./kernel";
 
+export {
+  deriveIdentity,
+  verifyAAAuth } from
+"./deriveIdentity";
+export type {
+  VaultIdentity,
+  VaultIdentityMode,
+  VerifyAAAuthParams,
+  VerifyAAAuthResult } from
+"./deriveIdentity";
+
 export { getOwnerFromPassword } from "./owner";
 
 export {

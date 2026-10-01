@@ -14,7 +14,7 @@ import {
 import { TARGET_CHAIN, isSmartAccountConfigured } from "./config";
 import type { VaultSmartAccount } from "./kernel";
 
-import { logger } from "@vaultkeepr/logger";
+import { logger } from "@vault-keeper/logger";
 
 
 
@@ -78,11 +78,11 @@ const;
 
 function getCidRegistryAddress(): Address {
   let addr = "";
-  try {addr = process.env.CID_REGISTRY_ADDRESS || "";} catch {}
+  try {addr = process.env.CID_REGISTRY_ADDRESS || "";} catch {/* env absent on this runtime */}
   if (addr) return addr as Address;
-  try {addr = process.env.NEXT_PUBLIC_CID_REGISTRY_ADDRESS || "";} catch {}
+  try {addr = process.env.NEXT_PUBLIC_CID_REGISTRY_ADDRESS || "";} catch {/* env absent on this runtime */}
   if (addr) return addr as Address;
-  try {addr = process.env.EXPO_PUBLIC_CID_REGISTRY_ADDRESS || "";} catch {}
+  try {addr = process.env.EXPO_PUBLIC_CID_REGISTRY_ADDRESS || "";} catch {/* env absent on this runtime */}
   if (addr) return addr as Address;
 
   return "0x0000000000000000000000000000000000000000" as Address;
@@ -154,8 +154,8 @@ cid: string)
       `[CidRegistry] CID publié on-chain — tx: ${receipt.receipt.transactionHash} | CID: ${cid.slice(0, 20)}...`
     );
     return receipt.receipt.transactionHash;
-  } catch (error) {
-    logger.error("[CidRegistry] Erreur:", error instanceof Error ? error.message : error);
+  } catch (error: any) {
+    logger.error("[CidRegistry] Erreur:", error.message);
     return null;
   }
 }
@@ -188,8 +188,8 @@ smartAccountAddress: Address)
     });
 
     return cid && cid.length > 0 ? cid : null;
-  } catch (error) {
-    logger.error("[CidRegistry] Erreur lecture:", error instanceof Error ? error.message : error);
+  } catch (error: any) {
+    logger.error("[CidRegistry] Erreur lecture:", error.message);
     return null;
   }
 }

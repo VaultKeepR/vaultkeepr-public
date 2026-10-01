@@ -6,7 +6,7 @@
 
 
 import { type LocalAccount } from "viem";
-import { getHiddenWalletFromPassword, getHiddenWalletLegacy } from "@vaultkeepr/core";
+import { getHiddenWalletFromPassword, getHiddenWalletFromSecretKey, getHiddenWalletLegacy } from "@vault-keeper/core";
 
 
 
@@ -16,7 +16,10 @@ import { getHiddenWalletFromPassword, getHiddenWalletLegacy } from "@vaultkeepr/
 
 
 export async function getOwnerFromPassword(password: string, secretKey?: string): Promise<LocalAccount> {
-  return getHiddenWalletFromPassword(password, secretKey);
+  if (secretKey) {
+    return getHiddenWalletFromSecretKey(secretKey);
+  }
+  return getHiddenWalletFromPassword(password);
 }
 
 

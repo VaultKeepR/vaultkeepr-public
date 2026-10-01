@@ -12,7 +12,7 @@
 
 import { describe, it, expect } from "vitest";
 import * as Automerge from "@automerge/automerge";
-import type { Vault, VaultEntry } from "@vaultkeepr/core";
+import type { Vault, VaultEntry } from "@vault-keeper/core";
 import {
   createEmptyDoc,
   addEntry,
@@ -343,14 +343,14 @@ describe("mergeDocuments", () => {
 
 
       const [docA, docB] = makeUnrelatedPair();
-      const deviceA = addEntry(docA, makeEntry({
+      let deviceA = addEntry(docA, makeEntry({
         id: "e1",
         username: "user-from-A",
         password: "pass-A",
         notes: "notes-A",
         modifiedAt: 10_000
       }));
-      const deviceB = addEntry(docB, makeEntry({
+      let deviceB = addEntry(docB, makeEntry({
         id: "e1",
         username: "user-from-B",
         password: "pass-B",
@@ -369,12 +369,12 @@ describe("mergeDocuments", () => {
 
     it("picks local's value when local is newer", () => {
       const [docA, docB] = makeUnrelatedPair();
-      const deviceA = addEntry(docA, makeEntry({
+      let deviceA = addEntry(docA, makeEntry({
         id: "e1",
         username: "newer-from-A",
         modifiedAt: 30_000
       }));
-      const deviceB = addEntry(docB, makeEntry({
+      let deviceB = addEntry(docB, makeEntry({
         id: "e1",
         username: "older-from-B",
         modifiedAt: 20_000
@@ -416,7 +416,7 @@ describe("mergeDocuments", () => {
 
     it("applies the fix to documents (SecureDocument REPLACE case)", () => {
       const [docA, docB] = makeUnrelatedPair();
-      const deviceA = addDocument(docA, {
+      let deviceA = addDocument(docA, {
         id: "doc1",
         type: "id_card",
         label: "A-label",
@@ -428,7 +428,7 @@ describe("mergeDocuments", () => {
         addedAt: "2026-01-01T00:00:00Z",
         modifiedAt: 10_000
       });
-      const deviceB = addDocument(docB, {
+      let deviceB = addDocument(docB, {
         id: "doc1",
         type: "id_card",
         label: "B-label",
@@ -451,8 +451,8 @@ describe("mergeDocuments", () => {
 
     it("does not change the id field even if values differ", () => {
       const [docA, docB] = makeUnrelatedPair();
-      const deviceA = addEntry(docA, makeEntry({ id: "e1", modifiedAt: 10_000 }));
-      const deviceB = addEntry(docB, makeEntry({ id: "e1", modifiedAt: 20_000 }));
+      let deviceA = addEntry(docA, makeEntry({ id: "e1", modifiedAt: 10_000 }));
+      let deviceB = addEntry(docB, makeEntry({ id: "e1", modifiedAt: 20_000 }));
 
       const merged = mergeDocuments(deviceA, deviceB);
       expect(merged.entries["e1"].id).toBe("e1");
@@ -460,12 +460,12 @@ describe("mergeDocuments", () => {
 
     it("handles 3-way merge correctly with mixed timestamps", () => {
       const [docA, docB] = makeUnrelatedPair();
-      const deviceA = addEntry(docA, makeEntry({
+      let deviceA = addEntry(docA, makeEntry({
         id: "e1",
         username: "A",
         modifiedAt: 10_000
       }));
-      const deviceB = addEntry(docB, makeEntry({
+      let deviceB = addEntry(docB, makeEntry({
         id: "e1",
         username: "B",
         modifiedAt: 20_000
@@ -607,7 +607,7 @@ describe("fromLegacyVault", () => {
 
 
 describe("Performance", () => {
-  it("handles 1000 entries without excessive latency", () => {
+  it("handles 1000 entries without excessive latency", () => { // 60s harness: perf budget stays, CI runners are slow
     let doc = createEmptyDoc("perf-test");
     const start = performance.now();
 
@@ -654,7 +654,7 @@ describe("Performance", () => {
     expect(exportTime).toBeLessThan(5000);
     expect(importTime).toBeLessThan(5000);
     expect(mergeTime).toBeLessThan(5000);
-  }, 60000); // shared CI runners: the addEntry loop alone can take ~6s
+  }, 60000);
 
   it("merges independent docs via binary roundtrip (cross-device first sync)", () => {
 

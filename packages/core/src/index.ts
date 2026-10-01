@@ -19,7 +19,7 @@ export * from "./export";
 export * from "./address";
 export * from "./totp";
 export * from "./cards";
-export { getPwnedPasswordCount } from "./pwnedPassword";
+export { getPwnedPasswordCount, getPwnedCountForHash } from "./pwnedPassword";
 export type { PwnedPasswordFetchOptions } from "./pwnedPassword";
 export { generatePassword, uniformRandom, generatePassphrase } from "./generatePassword";
 export type { GeneratePasswordOptions, GeneratePassphraseOptions } from "./generatePassword";

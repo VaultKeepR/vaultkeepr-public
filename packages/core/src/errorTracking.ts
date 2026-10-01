@@ -109,7 +109,7 @@ export function formatErrorReport(): string {
   map(
     (e, i) =>
     `[${i + 1}] ${e.ts} | ${e.runtime} | ${e.component}\n    ${e.message}${
-    e.stack ? "\n    " + e.stack.replaceAll(/\n/g, "\n    ") : ""}`
+    e.stack ? "\n    " + e.stack.replace(/\n/g, "\n    ") : ""}`
 
   ).
   join("\n\n");

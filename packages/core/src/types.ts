@@ -282,6 +282,9 @@ export interface Vault {
 
 
   monitoredEmails?: string[];
+
+
+  secretKey?: string;
 }
 
 

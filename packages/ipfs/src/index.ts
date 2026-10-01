@@ -4,7 +4,7 @@
 
 
 
-const IPFS_GATEWAYS_DEFAULT = ["https://ipfs.io/ipfs", "https://dweb.link/ipfs"];
+const IPFS_GATEWAYS_DEFAULT = ["https://ipfs.vaultkeepr.xyz/ipfs", "https://gateway.pinata.cloud/ipfs"];
 const FETCH_TIMEOUT_MS = 30_000;
 
 const IPFS_GATEWAY_TIMEOUT_MS = 15_000;

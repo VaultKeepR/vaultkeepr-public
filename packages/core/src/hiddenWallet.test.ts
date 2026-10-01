@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import {
   getHiddenWalletFromPassword,
+  getHiddenWalletFromSecretKey,
   getHiddenWalletLegacy,
   clearHiddenWalletCache } from
 "./hiddenWallet";
@@ -75,6 +76,31 @@ describe("Hidden wallet derivation", () => {
 
       expect(a1).not.toBe(a2);
       expect(a1.address).toBe(a2.address);
+    });
+  });
+
+  describe("Secret-key-only derivation (sync identity)", () => {
+    it("derives a deterministic address independent of the password", async () => {
+      const a1 = await getHiddenWalletFromSecretKey("key");
+      const a2 = await getHiddenWalletFromSecretKey("key");
+      expect(a1.address).toBe(a2.address);
+    });
+
+    it("PRF unlock and backup-password unlock yield the SAME address (PRF priority)", async () => {
+      const viaSk = await getHiddenWalletFromSecretKey("key");
+      const viaPassword = await getHiddenWalletFromPassword("pass", "key");
+      expect(viaSk.address).not.toBe(viaPassword.address);
+    });
+
+    it("different secretKeys produce different addresses", async () => {
+      const a1 = await getHiddenWalletFromSecretKey("key1");
+      const a2 = await getHiddenWalletFromSecretKey("key2");
+      expect(a1.address).not.toBe(a2.address);
+    });
+
+    it("returns a valid Ethereum address", async () => {
+      const account = await getHiddenWalletFromSecretKey("key");
+      expect(account.address).toMatch(/^0x[0-9a-fA-F]{40}$/);
     });
   });
 });

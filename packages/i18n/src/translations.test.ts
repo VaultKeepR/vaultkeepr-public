@@ -53,6 +53,25 @@ describe("i18n — t() function", () => {
     expect(typeof value).toBe("string");
     expect(value.length).toBeGreaterThan(0);
   });
+
+  it("interpolates single-brace params", () => {
+    expect(t("en", "breachScanner.breachedCount", { count: 3 })).toBe(
+      "3 compromised credentials"
+    );
+  });
+
+  it("interpolates double-brace params", () => {
+    expect(
+      t("en", "passkey.savePromptBody", { rpName: "GitHub", userName: "alice" })
+    ).toBe("Store this passkey for GitHub (alice) in VaultKeepR");
+    expect(t("en", "pair.expiresIn", { time: "10m" })).toBe("Expires in 10m");
+  });
+
+  it("does not interpret $ patterns in substituted values", () => {
+    expect(t("en", "pair.expiresIn", { time: "$&" })).toBe("Expires in $&");
+    expect(t("en", "pair.expiresIn", { time: "$'" })).toBe("Expires in $'");
+    expect(t("en", "pair.expiresIn", { time: "$`" })).toBe("Expires in $`");
+  });
 });
 
 describe("i18n — translation consistency", () => {
