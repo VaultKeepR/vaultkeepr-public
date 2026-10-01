@@ -47,9 +47,14 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/v')
     needs: pack-validate
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+    # contents: write  -> attach the provenance bundle to the GitHub Release
+    # id-token: write  -> Sigstore signing for npm provenance + the attestation
+    # attestations: write -> persist the SLSA build provenance record
     permissions:
-      contents: read
+      contents: write
+      id-token: write
+      attestations: write
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - uses: pnpm/action-setup@7088e561eb65bb68695d245aa206f005ef30921d # v4.1.0
@@ -72,7 +77,7 @@ jobs:
             if npm view "$name@$VERSION" version >/dev/null 2>&1; then
               echo "$name@$VERSION already on npmjs.org — skipping"
             else
-              (cd "packages/$pkg" && pnpm publish --no-git-checks --access public)
+              (cd "packages/$pkg" && pnpm publish --no-git-checks --access public --provenance)
             fi
           done
         env:
@@ -81,3 +86,53 @@ jobs:
       # (GITHUB_TOKEN scope does not resolve for the @vaultkeepr scope mapping),
       # every tagged run failed ENEEDAUTH on this step, and nothing consumes
       # npm.pkg.github.com for this scope. npmjs.org is the single source.
+      #
+      # Build provenance for the artifacts this workflow actually built: the
+      # tarballs published above. Consent/scope note — the app artifacts (APK,
+      # IPA, extension zips) are built on the maintainer's machine and are NOT
+      # covered by this attestation; they stay covered by the minisign signature
+      # (see SECURITY.md § Release Integrity).
+      - name: Pack published tarballs (attestation subjects)
+        run: |
+          set -e
+          mkdir -p "$RUNNER_TEMP/tarballs"
+          for pkg in $PUBLISH_PACKAGES; do
+            (cd "packages/$pkg" && pnpm pack --pack-destination "$RUNNER_TEMP/tarballs")
+          done
+          ls -l "$RUNNER_TEMP/tarballs"
+      - name: Generate SLSA build provenance for the SDK tarballs
+        id: attest
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
+        with:
+          subject-path: "${{ runner.temp }}/tarballs/*.tgz"
+      - name: Attach provenance bundle to the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          ASSET="vaultkeepr-sdk-${TAG}.intoto.jsonl"
+          BUNDLE="${RUNNER_TEMP}/${ASSET}"
+          cp "${{ steps.attest.outputs.bundle-path }}" "$BUNDLE"
+          # The GitHub Release itself is created from the maintainer machine by
+          # scripts/release.sh, so it may not exist yet when this job starts
+          # (tag push and release creation race): wait for it.
+          for attempt in $(seq 1 20); do
+            if gh release view "$TAG" >/dev/null 2>&1; then
+              gh release upload "$TAG" "$BUNDLE" --clobber
+              echo "attached ${ASSET} to release ${TAG}"
+              exit 0
+            fi
+            echo "release ${TAG} not published yet (attempt ${attempt}/20)"
+            sleep 30
+          done
+          echo "::error::release ${TAG} was never published; the bundle is kept as the 'slsa-provenance' workflow artifact — attach it with: gh release upload ${TAG} ${ASSET} --clobber"
+          exit 1
+      - name: Keep the provenance bundle as a workflow artifact
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: slsa-provenance
+          path: ${{ runner.temp }}/vaultkeepr-sdk-*.intoto.jsonl
+          if-no-files-found: warn
+
