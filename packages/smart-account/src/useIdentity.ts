@@ -88,9 +88,10 @@ export function useIdentity(): UseIdentityReturn {
     clearIdentity();
   }, []);
 
-  const cleanupOnLock = useCallback(async () => {
+  const cleanupOnLock = useCallback(() => {
     clearSmartAccountCache();
     clearIdentity();
+    return Promise.resolve();
   }, []);
 
   return {
