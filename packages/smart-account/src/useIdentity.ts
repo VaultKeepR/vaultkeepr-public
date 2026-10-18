@@ -20,14 +20,8 @@ import {
   getIdentitySnapshot,
   signMessageWithIdentity,
   clearIdentity,
-  getIdentitySmartAccount,
   type IdentityState } from
 "./identity";
-import {
-  scheduleCidOnChainSync,
-  flushCidOnChainSync,
-  resetOnChainSync } from
-"./onChainSync";
 import { clearSmartAccountCache } from "./kernel";
 
 
@@ -61,7 +55,6 @@ export interface UseIdentityReturn {
 
 
 
-  notifyOnChainSync: (cid: string) => void;
 
 
 
@@ -69,7 +62,6 @@ export interface UseIdentityReturn {
 
 
 
-  flushOnChainSync: () => Promise<void>;
 }
 
 
@@ -96,24 +88,10 @@ export function useIdentity(): UseIdentityReturn {
     clearIdentity();
   }, []);
 
-  const notifyOnChainSync = useCallback(
-    (cid: string) => {
-      const sa = getIdentitySmartAccount();
-      if (!sa) return;
-      scheduleCidOnChainSync(sa, cid);
-    },
-    []
-  );
-
-  const cleanupOnLock = useCallback(async () => {
-    await flushCidOnChainSync().catch(() => {});
+  const cleanupOnLock = useCallback(() => {
     clearSmartAccountCache();
-    resetOnChainSync();
     clearIdentity();
-  }, []);
-
-  const flushOnChainSync = useCallback(async () => {
-    await flushCidOnChainSync().catch(() => {});
+    return Promise.resolve();
   }, []);
 
   return {
@@ -123,8 +101,6 @@ export function useIdentity(): UseIdentityReturn {
     smartAccountAddress: state.smartAccount?.address ?? null,
     signMessage,
     disconnect,
-    notifyOnChainSync,
-    cleanupOnLock,
-    flushOnChainSync
+    cleanupOnLock
   };
 }
