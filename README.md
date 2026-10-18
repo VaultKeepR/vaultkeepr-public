@@ -58,7 +58,7 @@ npm install @vaultkeepr/core
 
 | Contract | Description |
 |---|---|
-| [`VaultKeeperCidRegistry`](./contracts/src/VaultKeeperCidRegistry.sol) | On-chain registry of vault location pointers |
+| [`VaultKeeperCidRegistry`](./contracts/src/VaultKeeperCidRegistry.sol) | On-chain CID registry (deployed; the SDK no longer writes to it) |
 | [`VaultKeeperFragments`](./contracts/src/VaultKeeperFragments.sol) | On-chain storage for recovery fragments |
 | [`VaultKeeperLegacy`](./contracts/src/VaultKeeperLegacy.sol) | Time-locked inheritance to named beneficiaries |
 

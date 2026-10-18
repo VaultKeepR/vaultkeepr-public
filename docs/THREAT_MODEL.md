@@ -11,7 +11,7 @@ Scope: the open-source SDK packages and Solidity contracts in this repository, a
 | Vault encryption key | Derived client-side; session copies held in memory only (`SessionKeyStore`) | Device memory |
 | Encrypted vault snapshots | Ciphertext on IPFS / S3-compatible storage | Content-addressed (CID) |
 | Recovery fragments | Shamir secret splitting (configurable threshold), encrypted fragments | IPFS + on-chain pointers |
-| Vault location pointers (CIDs) | Public by design — they reference ciphertext, not plaintext | `VaultKeeperCidRegistry` on Base L2 |
+| Vault location pointers (CIDs) | Not published on-chain; stored on the sync server, indexed by a hash of the account address. They reference ciphertext, not plaintext | Sync server |
 | Digital legacy instructions | Time-locked on-chain storage, encrypted beneficiary payloads | `VaultKeeperLegacy` on Base L2 |
 | Session / delegation signatures | EIP-4361 schemas, ECIES (secp256k1) envelopes | `wallet-messages`, `smart-account` |
 

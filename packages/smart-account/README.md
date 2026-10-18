@@ -31,7 +31,7 @@ if (isIdentityConnected()) {
 
 Alternative: `initIdentityFromSigner(signer)` when a wallet is already connected; `clearIdentity()` wipes in-memory state.
 
-Modules: `identity.ts` (identity lifecycle), `kernel.ts` (Kernel account), `owner.ts` + `secretKey.ts` (signer derivation), `onChainSync.ts` (vault pointer writes), `cidRegistry.ts` (`VaultKeeperCidRegistry` bindings).
+Modules: `identity.ts` (identity lifecycle), `kernel.ts` (Kernel account), `owner.ts` + `secretKey.ts` (signer derivation).
 
 ## Security notes
 

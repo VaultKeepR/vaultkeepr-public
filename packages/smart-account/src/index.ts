@@ -36,24 +36,11 @@ export type {
 export { getOwnerFromPassword } from "./owner";
 
 export {
-  publishCidOnChain,
-  readCidOnChain,
-  isCidRegistryConfigured,
-  CID_REGISTRY_ABI } from
-"./cidRegistry";
-
-export {
   isSmartAccountConfigured,
   getTargetChain,
   getPimlicoApiKey } from
 "./config";
 
-export {
-  scheduleCidOnChainSync,
-  flushCidOnChainSync,
-  getOnChainSyncStatus,
-  resetOnChainSync } from
-"./onChainSync";
 
 
 

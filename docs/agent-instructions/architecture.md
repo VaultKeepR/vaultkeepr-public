@@ -14,7 +14,7 @@ pnpm + Turborepo monorepo (`vaultkeepr-core`). 15 MIT SDK packages under `packag
 | `@vaultkeepr/cloud` | Zero-knowledge S3-compatible encrypted storage (`cloud-crypto`, `cloud-manager`, `cloud-sharing`, `cloud-validation`) | core, ipfs |
 | `@vaultkeepr/recovery` | Shamir secret-sharing fragments + on-chain reads (`fragmented-vault`, `contract-fragment`) | core |
 | `@vaultkeepr/legacy` | Digital inheritance: heartbeat, beneficiary, contract bindings | core, ipfs, logger, premium |
-| `@vaultkeepr/smart-account` | ERC-4337 Kernel account + Pimlico paymaster (`identity`, `kernel`, `owner`, `onChainSync`, `cidRegistry`) | core, logger |
+| `@vaultkeepr/smart-account` | ERC-4337 Kernel account + Pimlico paymaster (`identity`, `kernel`, `owner`) | core, logger |
 | `@vaultkeepr/alias` | Email alias forwarding (Postfix/Dovecot); server-side binaries + `pg` migrations | — (standalone) |
 | `@vaultkeepr/logger` | Structured logging with automatic CID/key/address redaction | — |
 | `@vaultkeepr/premium` | License key validation, tier limits | — |
@@ -28,7 +28,7 @@ pnpm + Turborepo monorepo (`vaultkeepr-core`). 15 MIT SDK packages under `packag
 
 | Contract (`contracts/src/`) | Role | SDK counterpart |
 |---|---|---|
-| `VaultKeeperCidRegistry.sol` | On-chain vault location pointers | `smart-account/cidRegistry.ts` |
+| `VaultKeeperCidRegistry.sol` | On-chain CID registry; no SDK client writes to it | none |
 | `VaultKeeperFragments.sol` | On-chain recovery fragments | `recovery/contract-fragment.ts` |
 | `VaultKeeperLegacy.sol` | Time-locked inheritance to beneficiaries | `legacy/contract.ts` |
 
