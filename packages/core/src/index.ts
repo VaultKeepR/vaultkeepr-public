@@ -50,3 +50,8 @@ export { BIP39_WORDLIST, suggestBip39Words } from "./bip39";
 export { EFF_WORDLIST } from "./wordlist";
 export { estimatePasswordEntropy } from "./passwordEntropy";
 export * from "./slm-engine";
+export * from "./account-state";
+
+export * from "./recovery-code";
+export * from "./key-join";
+export * from "./import-key-policy";

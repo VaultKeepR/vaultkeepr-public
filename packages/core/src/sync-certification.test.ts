@@ -170,6 +170,7 @@ class SimDevice {
     const encrypted = encryptVault(plaintext, key, { wipeKeyAfterUse: false });
     const payload: V4Payload = {
       ...encrypted,
+      commitment: encrypted.commitment as string,
       salt: bytesToHex(salt),
       version: PAYLOAD_VERSION_CURRENT,
       updatedAt: Date.now()
@@ -221,7 +222,7 @@ class SimDevice {
       version: 2
     };
     const plaintext = decryptVault(encrypted, key, { wipeKeyAfterUse: false });
-    const remoteVault = parseVault(plaintext);
+    const remoteVault = parseVault(plaintext as string);
 
 
 

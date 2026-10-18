@@ -15,6 +15,7 @@ import {
   generateMasterKey,
   parseVault,
   serializeVault,
+  secureWipe,
   type Vault,
   type EncryptedVault,
   type EncryptedFragmentPayload,
@@ -25,6 +26,8 @@ import {
 
 const KEY_LENGTH = 32;
 const NONCE_LENGTH = 24;
+const FRAGMENT_PAYLOAD_VERSION = 5;
+const AUTH_TAG_LENGTH = 16;
 const HKDF_INFO = utf8ToBytes("vaultkeepr-v5-fragmented-recovery");
 
 
@@ -66,9 +69,20 @@ export function decryptFragment(
 encrypted: EncryptedFragmentPayload,
 recoveryId: string)
 : Uint8Array {
+  if ((encrypted as {version?: unknown;}).version !== FRAGMENT_PAYLOAD_VERSION) {
+    throw new Error(
+      `Unsupported fragment payload version: ${(encrypted as {version?: unknown;}).version}`
+    );
+  }
   const key = derivePartEncryptionKey(recoveryId);
   const nonce = hexToBytes(encrypted.nonce);
+  if (nonce.length !== NONCE_LENGTH) {
+    throw new Error("Invalid fragment payload: nonce must be 24 bytes");
+  }
   const ciphertext = hexToBytes(encrypted.ciphertext);
+  if (ciphertext.length < AUTH_TAG_LENGTH) {
+    throw new Error("Invalid fragment payload: ciphertext shorter than the auth tag");
+  }
   const chacha = xchacha20poly1305(key, nonce);
   return chacha.decrypt(ciphertext);
 }
@@ -153,7 +167,7 @@ threshold: number)
     }
     return parseVault(plaintext as string);
   } finally {
-    masterKey.fill(0);
+    secureWipe(masterKey);
   }
 }
 

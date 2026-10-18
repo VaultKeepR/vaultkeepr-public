@@ -48,22 +48,27 @@ describe("syncBeneficiariesToIpfs (fetch mocked, no network)", () => {
     }
   }
 
-  it("stores the CID with delegation auth fields", async () => {
-    const { cid, calls } = await runSync({
-      delegationSignature: "sig1",
-      sessionId: "s1",
-      expiryTimestamp: 42
-    });
+  it("asks for a proof per request: the upload and the store each get their own", async () => {
+    const { vi } = await import("vitest");
+    const proofFor = vi.fn(async (action: string) => ({ signature: `sig-${action}`, message: `msg-${action}` }));
+    const { cid, calls } = await runSync({ proofFor });
     expect(cid).toBe("bafy-test-cid");
-    const body = JSON.parse(String((calls[1] as [{ body: string }])[1].body));
-    expect(body).toMatchObject({ delegationSignature: "sig1", sessionId: "s1", expiryTimestamp: 42 });
+    expect(proofFor.mock.calls.map((c) => c[0])).toEqual(["upload", "legacy-beneficiaries"]);
+    const uploadBody = JSON.parse(String((calls[0] as [string, { body: string }])[1].body));
+    const storeBody = JSON.parse(String((calls[1] as [string, { body: string }])[1].body));
+    expect(uploadBody).toMatchObject({ signature: "sig-upload", message: "msg-upload" });
+    expect(storeBody).toMatchObject({
+      walletAddress: "0xowner",
+      signature: "sig-legacy-beneficiaries",
+      message: "msg-legacy-beneficiaries"
+    });
   });
 
-  it("falls back to signature/message auth fields", async () => {
-    const { cid, calls } = await runSync({ signature: "sig2", message: "msg" });
-    expect(cid).toBe("bafy-test-cid");
-    const body = JSON.parse(String((calls[1] as [{ body: string }])[1].body));
-    expect(body).toMatchObject({ signature: "sig2", message: "msg" });
+  it("returns null when no proof is given for the store", async () => {
+    const { vi } = await import("vitest");
+    const proofFor = vi.fn(async (action: string) => (action === "upload" ? { signature: "sig2", message: "msg" } : null));
+    const { cid } = await runSync({ proofFor });
+    expect(cid).toBeNull();
   });
 
   it("refuses to upload without auth options (returns null)", async () => {
@@ -84,8 +89,7 @@ describe("syncBeneficiariesToIpfs (fetch mocked, no network)", () => {
     try {
       const { syncBeneficiariesToIpfs } = await import("./beneficiaryMeta");
       const cid = await syncBeneficiariesToIpfs("0xOwner", "pw", entries, {
-        signature: "sig3",
-        message: "msg"
+        proofFor: async () => ({ signature: "sig3", message: "msg" })
       } as never);
       expect(cid).toBeNull();
     } finally {
