@@ -552,33 +552,6 @@ function detectCsvDelimiter(headerLine: string): "," | ";" | "\t" {
   return ",";
 }
 
-function parseDelimitedLine(
-line: string,
-delimiter: "," | ";" | "\t")
-: string[] {
-  const result: string[] = [];
-  let current = "";
-  let inQuotes = false;
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
-    if (c === '"') {
-      inQuotes = !inQuotes;
-    } else if (!inQuotes && c === "\r") {
-      continue;
-    } else if (
-    !inQuotes && (
-    delimiter === "\t" ? c === "\t" : c === delimiter))
-    {
-      result.push(current.trim());
-      current = "";
-    } else {
-      current += c;
-    }
-  }
-  result.push(current.trim());
-  return result;
-}
-
 function headerMatchesUrl(n: string): boolean {
   if (
   n === "url" ||

@@ -11,6 +11,11 @@
       "types": "./src/index.ts",
       "import": "./src/index.ts",
       "require": "./src/index.ts"
+    },
+    "./kernel": {
+      "types": "./src/kernel.ts",
+      "import": "./src/kernel.ts",
+      "require": "./src/kernel.ts"
     }
   },
   "scripts": {

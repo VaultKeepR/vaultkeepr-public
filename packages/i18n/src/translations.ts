@@ -108,6 +108,8 @@ export interface Translations {
     sessionDuration: string;
     persistSession: string;
     persistSessionDesc: string;
+    panicMode: string;
+    panicModeDesc: string;
     premium: string;
     sessionDurationClose: string;
     sessionDuration1h: string;
@@ -353,6 +355,7 @@ export interface Translations {
     alreadyHaveVault: string;
     enterPassword: string;
     passwordsMismatch: string;
+    tooManyAttempts: string;
     minPasswordLength: string;
     biometricUnlock: string;
     biometricPromptTitle: string;
@@ -412,6 +415,33 @@ export interface Translations {
     skipWarningTitle: string;
     skipWarningBody: string;
     skipConfirm: string;
+  };
+  keyImport: {
+    refusedKeyless: string;
+    refusedOtherAccount: string;
+  };
+  keyJoin: {
+    createTitle: string;
+    createIntro: string;
+    createButton: string;
+    joinTitle: string;
+    joinIntro: string;
+    joinButton: string;
+    invalid: string;
+    notFound: string;
+    joined: string;
+  };
+  keyPassage: {
+    title: string;
+    intro: string;
+    unchanged: string;
+    otherDevices: string;
+    create: string;
+    later: string;
+    laterHint: string;
+    done: string;
+    readOnly: string;
+    failed: string;
   };
   locked: {
     title: string;
@@ -1807,6 +1837,12 @@ export interface Translations {
     landingDemoBtn: string;
     landingDemoDesc: string;
     createVaultIntro: string;
+    noVaultYet: string;
+    noVaultYetDesc: string;
+    next: string;
+    methodsDivider: string;
+    hideAdvanced: string;
+    advancedOptions: string;
   };
   saveBanner: {
     loginFormDetected: string;
@@ -2325,6 +2361,11 @@ export interface Translations {
     card: {
       title: string;
       empty: string;
+      copyCvv: string;
+      fillIncomplete: string;
+      stripeCheck: string;
+      copyNumber: string;
+      copyExpiry: string;
     };
     passkey: {
       title: string;
@@ -2599,6 +2640,9 @@ export const en: Translations = {
     persistSession: "Keep session across background restarts",
     persistSessionDesc:
       "Mirror your master password to Extension session storage so identity / account abstraction keep working when the background restarts. Disable for stricter in-memory-only security.",
+    panicMode: "Panic mode",
+    panicModeDesc:
+      "One switch, maximum hardening: fast clipboard wipe, blurred entry list, generated-password history purged. Turning it off locks the vault first.",
     premium: "Premium",
     sessionDurationClose: "Until tab close",
     sessionDuration1h: "1 hour",
@@ -2734,7 +2778,7 @@ export const en: Translations = {
     clipboardAutoClearHint: "Clears clipboard 30s after copy",
     breachAlerts: "Breach alerts",
     breachAlertsHint: "Checks once a day, even when the app is closed, whether your passwords appear in known breaches. You get notified when new compromises are detected.",
-    connectedDevices: "Connected devices ({count}/5)",
+    connectedDevices: "Connected devices ({count}/{max})",
     deviceLastSeen: "Last seen on",
     revokeDevice: "Revoke",
     revokeDeviceTitle: "Revoke device",
@@ -2879,6 +2923,7 @@ export const en: Translations = {
     alreadyHaveVault: "I already have a vault on IPFS",
     enterPassword: "Enter your master password.",
     passwordsMismatch: "Passwords do not match.",
+    tooManyAttempts: "Too many failed attempts. Try again in {seconds} seconds.",
     minPasswordLength: "Minimum 8 characters.",
     biometricUnlock: "Unlock with biometric",
     biometricPromptTitle: "Unlock VaultKeepR",
@@ -2948,6 +2993,33 @@ export const en: Translations = {
     skipWarningBody:
       "Without a passkey, the only way to unlock this device is your master password. If you forget it, your vault cannot be recovered.",
     skipConfirm: "I understand, skip",
+  },
+  keyImport: {
+    refusedKeyless: "This file does not contain this account's key. Import an export that includes it. Nothing was changed.",
+    refusedOtherAccount: "This file belongs to another account. Nothing was changed.",
+  },
+  keyJoin: {
+    createTitle: "Add a device",
+    createIntro: "Enter this code on the new device. It expires in 10 minutes and works only once.",
+    createButton: "Generate code",
+    joinTitle: "Join your account",
+    joinIntro: "Enter the 20-character code shown on a device that is already signed in.",
+    joinButton: "Join",
+    invalid: "This code is not valid. Check the 20 characters.",
+    notFound: "Code not found or expired. Generate a new code on a signed-in device.",
+    joined: "Device added. Your entries will sync.",
+  },
+  keyPassage: {
+    title: "Create your account's secret key",
+    intro: "A secret key lets your devices sync the same vault. Your account does not have one yet: this step creates it, once.",
+    unchanged: "Your entries and your password stay the same. Nothing is deleted.",
+    otherDevices: "Your other devices will stop receiving changes to your vault and will not be able to save changes, until they are synced with this key.",
+    create: "Create key",
+    later: "Later",
+    laterHint: "Until the key is created, nothing changes.",
+    done: "Key created. Sync your other devices so they receive changes and can save again.",
+    readOnly: "Read-only. This device does not have this account's secret key. Sync it from a device that already has this key.",
+    failed: "Could not create the key right now. Nothing was changed. Try again later.",
   },
   locked: {
     title: "Vault locked",
@@ -4187,12 +4259,12 @@ export const en: Translations = {
     heroSecondaryCta: "or see how it works",
     heroGitHubStars: "stars on GitHub",
     trustSignalNoEmail: "No email required",
-    trustSignalOpenSource: "Open source",
+    trustSignalOpenSource: "Open-source SDK",
     trustSignalAuditable: "100% auditable",
     trustSignalFreeForever: "Free forever",
     miniPricingTitle: "Free for everyone. Premium for convenience.",
     miniPricingSubtitle:
-      "Every security feature is free, forever. Premium adds encrypted cloud backup, TOTP authenticator, and Shamir recovery.",
+      "Encryption and core security are free, forever. Premium adds encrypted cloud backup, TOTP authenticator, and Shamir recovery.",
     miniPricingFreeTitle: "Free",
     miniPricingFreePrice: "$0",
     miniPricingFreePeriod: "forever",
@@ -4245,7 +4317,7 @@ export const en: Translations = {
       "Also included: email aliases, encrypted cloud storage, secure documents, TOS analysis.",
     featuresCompareLink: "Password manager comparisons",
     featuresPremiumLink: "Premium tools",
-    heroPill1: "Open source",
+    heroPill1: "Open-source SDK",
     heroPill2: "No email required",
     heroPill3: "Every claim verifiable below",
     appshotCaption: "Actual app, not a mockup",
@@ -4255,19 +4327,19 @@ export const en: Translations = {
     receiptsIntro:
       'No "bank-grade security" and no badges we designed ourselves. Each claim links to the thing itself.',
     receipt1Num: "813 tests",
-    receipt1Text: "Green in CI on every pull request. Coverage gate at 80%.",
+    receipt1Text: "CI runs on every pull request. Coverage gate at 80% on new code.",
     receipt1Check: "verify: CI runs",
     receipt2Num: "A / A / A",
     receipt2Text:
       "Security, reliability, maintainability: all three A. SonarCloud scans every push, dashboard is public.",
     receipt2Check: "verify: dashboard",
-    receipt3Num: "8/10",
+    receipt3Num: "7.6/10",
     receipt3Text:
-      "OpenSSF Scorecard: pinned workflows, least-privilege tokens, signed releases.",
+      "OpenSSF Scorecard, scan of Oct 7, 2026: pinned workflows, least-privilege tokens, signed releases.",
     receipt3Check: "verify: scorecard",
     receipt4Num: "minisign",
     receipt4Text:
-      "Every release is signed. Key 26508045ED8C563D. Security policy and disclosure in the open repo.",
+      "Every release with binaries is signed. Key 26508045ED8C563D. Security policy and disclosure in the open repo.",
     receipt4Check: "verify: releases",
     founderKicker: "Why local-first",
     founderQuote:
@@ -4367,7 +4439,7 @@ export const en: Translations = {
     backToMarketing: "Website & presentation",
   },
   premiumPage: {
-    title: "Four plans. Every security feature stays free.",
+    title: "Four plans. Core security stays free.",
     subtitle:
       "Paid tiers add storage, recovery and convenience. Free stays free, forever.",
     featureCol: "Feature",
@@ -4489,6 +4561,12 @@ export const en: Translations = {
     landingDemoDesc:
       "Fake data, premium included. Great for videos and screenshots.",
     createVaultIntro: "Pick a method, you can always change later.",
+    noVaultYet: "No vault yet",
+    noVaultYetDesc: "Create your first vault to get started.",
+    next: "Next",
+    methodsDivider: "or",
+    hideAdvanced: "Hide advanced options",
+    advancedOptions: "Advanced options",
   },
   saveBanner: {
     loginFormDetected: "Login form detected",
@@ -5044,6 +5122,11 @@ export const en: Translations = {
     card: {
       title: "Payment",
       empty: "No card saved for this site",
+      copyCvv: "Copy CVV",
+      fillIncomplete: "Incomplete fill: check the fields.",
+      stripeCheck: "This form is handled by Stripe: check the fields before you submit.",
+      copyNumber: "Copy card number",
+      copyExpiry: "Copy expiry date",
     },
     passkey: {
       title: "Choose a passkey",

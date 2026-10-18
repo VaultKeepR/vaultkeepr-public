@@ -82,3 +82,7 @@ export {
   formatSecretKeyForDisplay,
   parseSecretKeyInput } from
 "./secretKey";
+
+export * from "./keyPassage";
+export * from "./passageClient";
+export * from "./keyedMigration";

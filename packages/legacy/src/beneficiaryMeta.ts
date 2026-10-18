@@ -96,13 +96,9 @@ function apiBase(): string {
 
 
 export interface BeneSyncAuthOptions {
-
-  delegationSignature?: string;
-  sessionId?: string;
-  expiryTimestamp?: number;
-
-  signature?: string;
-  message?: string;
+  // The owner proof for one request, signed now with the account key. The upload and the store are two requests with
+  // two actions, so each asks its own proof. Null when the key is not readable: nothing is sent then.
+  proofFor?: (action: "upload" | "legacy-beneficiaries") => Promise<{ signature: string; message: string } | null>;
 }
 
 
@@ -131,17 +127,10 @@ authOptions?: BeneSyncAuthOptions)
       walletAddress: ownerAddress.toLowerCase()
     };
 
-    if (authOptions?.delegationSignature && authOptions?.sessionId && authOptions?.expiryTimestamp) {
-      uploadBody.delegationSignature = authOptions.delegationSignature;
-      uploadBody.sessionId = authOptions.sessionId;
-      uploadBody.expiryTimestamp = authOptions.expiryTimestamp;
-    } else if (authOptions?.signature && authOptions?.message) {
-      uploadBody.signature = authOptions.signature;
-      uploadBody.message = authOptions.message;
-    } else {
-
-      return null;
-    }
+    const upProof = authOptions?.proofFor ? await authOptions.proofFor("upload") : null;
+    if (!upProof) return null;
+    uploadBody.signature = upProof.signature;
+    uploadBody.message = upProof.message;
 
     const uploadRes = await fetch(`${apiBase()}/api/ipfs/upload`, {
       method: "POST",
@@ -154,15 +143,11 @@ authOptions?: BeneSyncAuthOptions)
     if (!cid) return null;
 
 
-    const storeBody: Record<string, unknown> = { owner: ownerAddress.toLowerCase(), cid };
-    if (authOptions?.delegationSignature && authOptions?.sessionId && authOptions?.expiryTimestamp) {
-      storeBody.delegationSignature = authOptions.delegationSignature;
-      storeBody.sessionId = authOptions.sessionId;
-      storeBody.expiryTimestamp = authOptions.expiryTimestamp;
-    } else if (authOptions?.signature && authOptions?.message) {
-      storeBody.signature = authOptions.signature;
-      storeBody.message = authOptions.message;
-    }
+    const storeBody: Record<string, unknown> = { owner: ownerAddress.toLowerCase(), walletAddress: ownerAddress.toLowerCase(), cid };
+    const storeProof = authOptions?.proofFor ? await authOptions.proofFor("legacy-beneficiaries") : null;
+    if (!storeProof) return null;
+    storeBody.signature = storeProof.signature;
+    storeBody.message = storeProof.message;
 
     const storeRes = await fetch(`${apiBase()}/api/legacy/beneficiaries-cid`, {
       method: "POST",

@@ -12,7 +12,7 @@
 
 import { describe, it, expect } from "vitest";
 import * as Automerge from "@automerge/automerge";
-import type { Vault, VaultEntry } from "@vaultkeepr/core";
+import type { Vault, VaultEntry, SecureDocument } from "@vaultkeepr/core";
 import {
   createEmptyDoc,
   addEntry,
@@ -30,6 +30,7 @@ import {
   fromLegacyVault,
   isAutomergeBinary } from
 "../crdtVault";
+import type { VaultDoc } from "../schema";
 
 
 
@@ -418,7 +419,7 @@ describe("mergeDocuments", () => {
       const [docA, docB] = makeUnrelatedPair();
       let deviceA = addDocument(docA, {
         id: "doc1",
-        type: "id_card",
+        type: "id_card" as SecureDocument["type"],
         label: "A-label",
         blurredThumbnail: "A-thumb",
         fragments: ["bafy1"],
@@ -430,7 +431,7 @@ describe("mergeDocuments", () => {
       });
       let deviceB = addDocument(docB, {
         id: "doc1",
-        type: "id_card",
+        type: "id_card" as SecureDocument["type"],
         label: "B-label",
         blurredThumbnail: "B-thumb",
         fragments: ["bafy1"],

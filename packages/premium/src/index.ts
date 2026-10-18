@@ -64,6 +64,16 @@ export function getMaxFileSizeForTier(tier: PremiumTier): number {
 }
 
 
+/** Appareils max par palier. Ultimate est limité aussi. */
+export const DEVICE_LIMIT_BY_TIER = { premium: 3, cloud_pro: 5, ultimate: 10 } as const;
+
+/** Limite d'appareils d'une licence. Accepte « pro » (nom des écrans mobiles) et « cloud_pro » (nom serveur). */
+export function getDeviceLimitForTier(tier: string | null | undefined): number {
+  if (tier === "ultimate") return DEVICE_LIMIT_BY_TIER.ultimate;
+  if (tier === "cloud_pro" || tier === "pro") return DEVICE_LIMIT_BY_TIER.cloud_pro;
+  return DEVICE_LIMIT_BY_TIER.premium;
+}
+
 export function getMaxSecureDocumentsForTier(tier: PremiumTier): number {
   switch (tier) {
     case "free":return 1;
@@ -244,13 +254,40 @@ deviceId: string)
 
 
 
+/**
+ * Proof that the caller controls the identity: the autosave delegation the apps already hold, or a
+ * wallet-signed message. The server only returns the licence key of a wallet-bound licence to a proven caller.
+ */
+export type IdentityProof =
+  | { delegationSignature: string; sessionId: string; expiryTimestamp: number }
+  | { signature: string; message: string };
+
+/** Identity proof from a stored autosave delegation (undefined when missing or expired). */
+export function identityProofFromDelegation(
+  d: { signature?: string; sessionId?: string; expiryTimestamp?: number } | null | undefined
+): IdentityProof | undefined {
+  if (!d?.signature || !d.sessionId || !d.expiryTimestamp) return undefined;
+  if (Date.now() >= d.expiryTimestamp * 1000) return undefined;
+  return { delegationSignature: d.signature, sessionId: d.sessionId, expiryTimestamp: d.expiryTimestamp };
+}
+
 export async function getPremiumStatus(
 apiBaseUrl: string,
-userId: string)
+userId: string,
+proof?: IdentityProof)
 : Promise<{premiumUntil: string | null;tier: PremiumTier;isCloudPro: boolean;licenseKey?: string;devices?: DeviceInfo[];}> {
   const normalized = normalizeUserId(userId);
   if (!normalized) return { premiumUntil: null, tier: "free", isCloudPro: false };
-  const url = `${apiBaseUrl.replace(/\/$/, "")}/api/premium?userId=${encodeURIComponent(normalized)}`;
+  const params = new URLSearchParams({ userId: normalized });
+  if (proof && "delegationSignature" in proof) {
+    params.set("delegationSignature", proof.delegationSignature);
+    params.set("sessionId", proof.sessionId);
+    params.set("expiryTimestamp", String(proof.expiryTimestamp));
+  } else if (proof) {
+    params.set("signature", proof.signature);
+    params.set("message", proof.message);
+  }
+  const url = `${apiBaseUrl.replace(/\/$/, "")}/api/premium?${params.toString()}`;
   const res = await fetch(url, { method: "GET", headers: defaultHeaders });
   if (!res.ok) return { premiumUntil: null, tier: "free", isCloudPro: false };
   const data = (await res.json()) as {premiumUntil?: string | null;tier?: string;licenseKey?: string;devices?: DeviceInfo[];};
@@ -291,3 +328,5 @@ apiKey?: string)
 function normalizeUserId(userId: string): string {
   return userId.trim().toLowerCase();
 }
+
+export * from "./licenceChoice";

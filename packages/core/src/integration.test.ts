@@ -74,7 +74,7 @@ describe("Argon2id round-trip (v2 flow)", () => {
 
 
     const decrypted = decryptVault(encrypted, keyForDecrypt);
-    const recovered = parseVault(decrypted);
+    const recovered = parseVault(decrypted as string);
 
     expect(recovered.entries.length).toBe(vault.entries.length);
     expect(recovered.entries[0].url).toBe("https://example.com");
@@ -152,7 +152,7 @@ describe("Full v3 flow (password + wallet signature)", () => {
 
 
     const decrypted = decryptVault(encrypted, keyForDecrypt);
-    const recovered = parseVault(decrypted);
+    const recovered = parseVault(decrypted as string);
 
     expect(recovered.entries.length).toBe(vault.entries.length);
     expect(recovered.entries[0].password).toBe("correct-horse-battery-staple");

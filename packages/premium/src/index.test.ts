@@ -215,7 +215,7 @@ describe("activateLicense", () => {
       ok: false,
       status: 502,
       json: async () => {throw new Error("Bad JSON");}
-    } as Response);
+    } as unknown as Response);
 
     const result = await activateLicense(API, "VK-BAD", "dev-1", "extension");
 

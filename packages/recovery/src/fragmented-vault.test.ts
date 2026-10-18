@@ -197,6 +197,67 @@ describe("Fragmented vault (Shamir secret sharing)", () => {
     });
   });
 
+  describe("Adversarial recovery scenarios", () => {
+    it("a single corrupted byte in one share makes recovery fail cleanly", async () => {
+      const vault = {
+        ...createEmptyVault(),
+        entries: [createEntry({ url: "", username: "u", password: "p" })]
+      };
+      const { encryptedVault, fragments } = await createFragmentedVault(vault, "id");
+
+      const corrupted = fragments.slice(0, 3).map((f) => new Uint8Array(f));
+      corrupted[1][5] ^= 0xff;
+
+      await expect(
+        combineFragmentsAndDecrypt(corrupted, encryptedVault, 3)
+      ).rejects.toThrow();
+    });
+
+    it("mixing shares from two different vaults fails", async () => {
+      const vaultA = { ...createEmptyVault(), entries: [] };
+      const vaultB = { ...createEmptyVault(), entries: [] };
+      const { encryptedVault: envA, fragments: fragsA } = await createFragmentedVault(vaultA, "vault-a");
+      const { fragments: fragsB } = await createFragmentedVault(vaultB, "vault-b");
+
+      await expect(
+        combineFragmentsAndDecrypt([fragsA[0], fragsA[1], fragsB[2]], envA, 3)
+      ).rejects.toThrow();
+    });
+
+    it("duplicating one share cannot stand in for a missing one", async () => {
+      const vault = { ...createEmptyVault(), entries: [] };
+      const { encryptedVault, fragments } = await createFragmentedVault(vault, "id");
+
+      await expect(
+        combineFragmentsAndDecrypt([fragments[0], fragments[0], fragments[1]], encryptedVault, 3)
+      ).rejects.toThrow();
+    });
+
+    it("decryptFragment rejects an unsupported payload version", () => {
+      const encrypted = encryptFragment(new Uint8Array([1, 2, 3]), 0, "rid");
+      const tampered = { ...encrypted, version: 4 as unknown as 5 };
+
+      expect(() => decryptFragment(tampered, "rid")).toThrow("Unsupported fragment payload version");
+    });
+
+    it("decryptFragment rejects a tampered ciphertext (auth tag)", () => {
+      const encrypted = encryptFragment(new Uint8Array([1, 2, 3]), 0, "rid");
+      const last = encrypted.ciphertext.slice(-2);
+      const flipped =
+        encrypted.ciphertext.slice(0, -2) + (last === "00" ? "01" : "00");
+      const tampered = { ...encrypted, ciphertext: flipped };
+
+      expect(() => decryptFragment(tampered, "rid")).toThrow();
+    });
+
+    it("decryptFragment rejects a truncated nonce", () => {
+      const encrypted = encryptFragment(new Uint8Array([1, 2, 3]), 0, "rid");
+      const tampered = { ...encrypted, nonce: encrypted.nonce.slice(0, 10) };
+
+      expect(() => decryptFragment(tampered, "rid")).toThrow();
+    });
+  });
+
   describe("End-to-end: fragmented recovery roundtrip", () => {
     it("full cycle: create → encrypt fragments → decrypt fragments → combine → verify", async () => {
       const originalVault = {

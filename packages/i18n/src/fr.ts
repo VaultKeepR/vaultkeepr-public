@@ -111,6 +111,9 @@ export const fr: Translations = {
     persistSession: "Garder la session après le redémarrage de l'arrière-plan",
     persistSessionDesc:
       "Répliquer votre mot de passe maître dans le stockage de session de l'extension afin que l'identité / l'abstraction de compte restent fonctionnelles après un redémarrage de l'arrière-plan. Désactivez pour une sécurité stricte en mémoire uniquement.",
+    panicMode: "Mode panique",
+    panicModeDesc:
+      "Un seul réglage, durcissement maximal : purge rapide du presse-papiers, liste d'entrées floutée, historique des mots de passe générés purgé. La désactivation verrouille d'abord le coffre.",
     premium: "Premium",
     sessionDurationClose: "Jusqu'à fermeture de l'onglet",
     sessionDuration1h: "1 heure",
@@ -249,7 +252,7 @@ export const fr: Translations = {
     clipboardAutoClearHint: "Efface le presse-papiers 30s après copie",
     breachAlerts: "Alertes de compromission",
     breachAlertsHint: "Vérifie une fois par jour, même app fermée, si vos mots de passe apparaissent dans des fuites connues. Vous êtes notifié si de nouveaux compromis sont détectés.",
-    connectedDevices: "Appareils connectés ({count}/5)",
+    connectedDevices: "Appareils connectés ({count}/{max})",
     deviceLastSeen: "Vu le",
     revokeDevice: "Révoquer",
     revokeDeviceTitle: "Révoquer l’appareil",
@@ -397,6 +400,7 @@ export const fr: Translations = {
     alreadyHaveVault: "J'ai déjà un coffre sur IPFS",
     enterPassword: "Saisissez votre mot de passe maître.",
     passwordsMismatch: "Les mots de passe ne correspondent pas.",
+    tooManyAttempts: "Trop de tentatives. Réessayez dans {seconds} secondes.",
     minPasswordLength: "Minimum 8 caractères.",
     biometricUnlock: "Déverrouiller avec biométrie",
     biometricPromptTitle: "Déverrouiller VaultKeepR",
@@ -470,6 +474,33 @@ export const fr: Translations = {
     skipWarningBody:
       "Sans passkey, le seul moyen de déverrouiller cet appareil est votre mot de passe maître. Si vous l'oubliez, votre coffre ne pourra pas être récupéré.",
     skipConfirm: "Je comprends, ignorer",
+  },
+  keyImport: {
+    refusedKeyless: "Ce fichier ne contient pas la clé de ce compte. Importez un export qui la contient. Rien n'a été modifié.",
+    refusedOtherAccount: "Ce fichier appartient à un autre compte. Rien n'a été modifié.",
+  },
+  keyJoin: {
+    createTitle: "Ajouter un appareil",
+    createIntro: "Saisissez ce code sur le nouvel appareil. Il expire dans 10 minutes et ne sert qu'une fois.",
+    createButton: "Générer le code",
+    joinTitle: "Rejoindre votre compte",
+    joinIntro: "Saisissez le code de 20 caractères affiché sur un appareil déjà connecté.",
+    joinButton: "Rejoindre",
+    invalid: "Ce code n'est pas valide. Vérifiez les 20 caractères.",
+    notFound: "Code introuvable ou expiré. Générez un nouveau code sur un appareil connecté.",
+    joined: "Appareil ajouté. Vos entrées vont se synchroniser.",
+  },
+  keyPassage: {
+    title: "Créer la clé secrète de votre compte",
+    intro: "Une clé secrète permet à vos appareils de synchroniser le même coffre. Votre compte n'en a pas encore : cette étape la crée, une seule fois.",
+    unchanged: "Vos entrées et votre mot de passe ne changent pas. Rien n'est supprimé.",
+    otherDevices: "Vos autres appareils ne recevront plus les modifications de votre coffre et ne pourront plus en enregistrer, tant qu'ils ne sont pas synchronisés avec cette clé.",
+    create: "Créer la clé",
+    later: "Plus tard",
+    laterHint: "Tant que la clé n'est pas créée, rien ne change.",
+    done: "Clé créée. Synchronisez vos autres appareils pour qu'ils reçoivent les modifications et puissent à nouveau enregistrer.",
+    readOnly: "Lecture seule. Cet appareil n'a pas la clé secrète de ce compte. Synchronisez-le depuis un appareil qui a déjà cette clé.",
+    failed: "Impossible de créer la clé pour le moment. Rien n'a été modifié. Réessayez plus tard.",
   },
   locked: {
     title: "Vault verrouillé",
@@ -1737,12 +1768,12 @@ export const fr: Translations = {
     heroSecondaryCta: "ou voir comment ça marche",
     heroGitHubStars: "étoiles sur GitHub",
     trustSignalNoEmail: "Aucun email requis",
-    trustSignalOpenSource: "Open source",
+    trustSignalOpenSource: "SDK open source",
     trustSignalAuditable: "100% auditable",
     trustSignalFreeForever: "Gratuit pour toujours",
     miniPricingTitle: "Gratuit pour tous. Premium pour la commodité.",
     miniPricingSubtitle:
-      "Toutes les fonctionnalités de sécurité sont gratuites, pour toujours. Premium ajoute la sauvegarde cloud chiffrée, l'authentificateur TOTP et la récupération Shamir.",
+      "Le chiffrement et la sécurité de base sont gratuits, pour toujours. Premium ajoute la sauvegarde cloud chiffrée, l'authentificateur TOTP et la récupération Shamir.",
     miniPricingFreeTitle: "Gratuit",
     miniPricingFreePrice: "0 €",
     miniPricingFreePeriod: "pour toujours",
@@ -1797,7 +1828,7 @@ export const fr: Translations = {
       "Aussi inclus : alias e-mail, cloud chiffré, documents sécurisés, analyse TOS.",
     featuresCompareLink: "Comparatifs des gestionnaires",
     featuresPremiumLink: "Outils Premium",
-    heroPill1: "Open source",
+    heroPill1: "SDK open source",
     heroPill2: "Sans e-mail",
     heroPill3: "Chaque affirmation vérifiable plus bas",
     appshotCaption: "Vraie application, pas une maquette",
@@ -1808,19 +1839,19 @@ export const fr: Translations = {
       "Pas de « sécurité de niveau banque », pas de badges auto-attribués. Chaque affirmation renvoie vers la chose elle-même.",
     receipt1Num: "813 tests",
     receipt1Text:
-      "Verts en CI à chaque pull request. Couverture minimale : 80 %.",
+      "La CI tourne à chaque pull request. Couverture minimale de 80 % sur le nouveau code.",
     receipt1Check: "vérifier : CI",
     receipt2Num: "A / A / A",
     receipt2Text:
       "Sécurité, fiabilité, maintenabilité : trois fois A. SonarCloud scanne chaque push, tableau de bord public.",
     receipt2Check: "vérifier : dashboard",
-    receipt3Num: "8/10",
+    receipt3Num: "7,6/10",
     receipt3Text:
-      "OpenSSF Scorecard : workflows épinglés, permissions minimales, releases signées.",
+      "OpenSSF Scorecard (scan du 7 oct. 2026) : workflows épinglés, permissions minimales, releases signées.",
     receipt3Check: "vérifier : scorecard",
     receipt4Num: "minisign",
     receipt4Text:
-      "Chaque release est signée. Clé 26508045ED8C563D. Politique de sécurité et divulgation dans le repo public.",
+      "Chaque release avec binaires est signée. Clé 26508045ED8C563D. Politique de sécurité et divulgation dans le repo public.",
     receipt4Check: "vérifier : releases",
     founderKicker: "Pourquoi local-first",
     founderQuote:
@@ -1922,7 +1953,7 @@ export const fr: Translations = {
     backToMarketing: "Site & présentation",
   },
   premiumPage: {
-    title: "Quatre offres. Toutes les fonctions de sécurité restent gratuites.",
+    title: "Quatre offres. Le chiffrement et la sécurité de base restent gratuits.",
     subtitle:
       "Les offres payantes ajoutent stockage, récupération et confort. Gratuit le reste, pour toujours.",
     featureCol: "Fonctionnalité",
@@ -2046,6 +2077,12 @@ export const fr: Translations = {
       "Données fictives, premium inclus. Idéal pour vidéos et captures.",
     createVaultIntro:
       "Choisissez une méthode : vous pourrez toujours changer plus tard.",
+    noVaultYet: "Pas encore de coffre",
+    noVaultYetDesc: "Créez votre premier coffre pour commencer.",
+    next: "Suivant",
+    methodsDivider: "ou",
+    hideAdvanced: "Masquer les options avancées",
+    advancedOptions: "Options avancées",
   },
   saveBanner: {
     loginFormDetected: "Formulaire de connexion détecté",
@@ -2612,6 +2649,11 @@ export const fr: Translations = {
     card: {
       title: "Paiement",
       empty: "Aucune carte enregistrée pour ce site",
+      copyCvv: "Copier le CVV",
+      fillIncomplete: "Remplissage incomplet : vérifiez les champs.",
+      stripeCheck: "Ce formulaire est géré par Stripe : vérifiez les champs avant de valider.",
+      copyNumber: "Copier le numéro",
+      copyExpiry: "Copier l'expiration",
     },
     passkey: {
       title: "Choisir une clé d'accès",

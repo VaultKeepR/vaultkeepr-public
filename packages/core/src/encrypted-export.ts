@@ -77,7 +77,11 @@ export interface EncryptedImportResult {
   secretKey?: string;
 }
 
-export async function importEncryptedVault(encryptedJson: string, password: string, argon2Opts?: Argon2Options): Promise<EncryptedImportResult> {
+export async function importEncryptedVault(
+encryptedJson: string,
+password: string,
+argon2Opts?: Argon2Options,
+precomputed?: {key: Uint8Array;salt?: Uint8Array;}): Promise<EncryptedImportResult> {
   const payload = JSON.parse(encryptedJson.trim()) as EncryptedExportPayload;
   if (payload?.format !== ENCRYPTED_EXPORT_FORMAT || !payload.salt || !payload.nonce || !payload.ciphertext) {
     throw new Error("Format d'export chiffré invalide.");
@@ -89,7 +93,7 @@ export async function importEncryptedVault(encryptedJson: string, password: stri
   const effectiveOpts: Argon2Options = payload.kdf ?
   { t: payload.kdf.t, m: payload.kdf.m, p: payload.kdf.p, dkLen: payload.kdf.dkLen } :
   argon2Opts ?? {};
-  const key = await deriveKeyFromPasswordArgon2(password, salt, effectiveOpts);
+  const key = precomputed?.key ?? await deriveKeyFromPasswordArgon2(password, precomputed?.salt ?? salt, effectiveOpts);
   const plaintext = decryptVault(
     {
       ciphertext: payload.ciphertext,
