@@ -18,6 +18,7 @@ import { secp256k1 } from "@noble/curves/secp256k1.js";
 import { xchacha20poly1305 } from "@noble/ciphers/chacha.js";
 import { randomBytes } from "@noble/ciphers/utils.js";
 import { hkdf } from "@noble/hashes/hkdf.js";
+import { hmac } from "@noble/hashes/hmac.js";
 import { sha256 } from "@noble/hashes/sha2.js";
 import { bytesToHex, hexToBytes, utf8ToBytes } from "@noble/hashes/utils.js";
 
@@ -101,8 +102,18 @@ export function generateSharePin(): string {
 
 
 
-export function computeApiPinHash(pin: string): string {
-  return bytesToHex(sha256(utf8ToBytes(pin)));
+const PIN_PROOF_INFO = utf8ToBytes("vaultkeepr-share-pin-proof-v1");
+
+/**
+ * PIN proof stored by the server as `pinHash`. It is keyed by the share's URL key,
+ * which the server never receives, so the server cannot test a 6-digit PIN offline
+ * against what it stores. (An unkeyed SHA-256 of the PIN was invertible in ~10^6 steps.)
+ * Pass the key exactly as the recipient reads it in the URL fragment: `privateKeyHex`
+ * at creation time.
+ */
+export function computeApiPinHash(pin: string, keyHex: string): string {
+  const proofKey = hmac(sha256, hexToBytes(keyHex), PIN_PROOF_INFO);
+  return bytesToHex(hmac(sha256, proofKey, utf8ToBytes(pin)));
 }
 
 
@@ -156,8 +167,6 @@ pin?: string)
 : ShareCreationResult {
   const sharePin = pin ?? generateSharePin();
   const shareId = generateShareId();
-  const apiPinHash = computeApiPinHash(sharePin);
-
 
   const fullPayload: SharePayload = {
     ...payload,
@@ -177,6 +186,8 @@ pin?: string)
   const ephemeralPrivate = secp256k1.utils.randomSecretKey();
 
   const ephemeralPublic = secp256k1.getPublicKey(ephemeralPrivate, false);
+
+  const apiPinHash = computeApiPinHash(sharePin, bytesToHex(ephemeralPrivate));
 
 
   const shareKey = deriveShareKeyV2(ephemeralPrivate, sharePin);

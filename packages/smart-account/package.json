@@ -1,6 +1,6 @@
 {
   "name": "@vaultkeepr/smart-account",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "ERC-4337 Smart Account (Kernel) with Pimlico Paymaster — universal module for Web, Extension, iOS, and Android",
   "license": "MIT",
   "main": "./src/index.ts",

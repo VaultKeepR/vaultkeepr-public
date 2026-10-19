@@ -17,6 +17,12 @@ All packages are versioned together (see the README "Versioning" section).
 
 ### Changed
 
+- `smart-account`: the on-chain CID publish path is removed (`publishCidOnChain`
+  and the on-chain sync). CIDs are stored only on the sync server. **Breaking.**
+- `core`: `computeApiPinHash(pin, keyHex)` takes the share URL key and keys the
+  API PIN proof with it (HMAC-SHA256). **Breaking** for callers of the previous
+  one-argument function. Shares created before this release cannot be opened
+  after it. `core` and `smart-account` move to 0.2.0 for these breaking changes.
 - `legacy`: `syncBeneficiariesToIpfs` takes a `proofFor(action)` callback that
   returns the owner proof for each request (`upload`, then
   `legacy-beneficiaries`). The `delegationSignature`, `sessionId`,
@@ -28,6 +34,9 @@ All packages are versioned together (see the README "Versioning" section).
 
 ### Security
 
+- `core`: the API PIN proof sent to the server was an unkeyed SHA-256 of the PIN,
+  which a server holding it could invert offline in about a million steps. It is
+  now keyed by the share URL key, which the server never receives.
 - `recovery`: fragment payloads are validated before decryption (version,
   nonce and ciphertext length), the recovered master key is wiped with
   `secureWipe`, and adversarial tests cover corrupted, duplicated and
