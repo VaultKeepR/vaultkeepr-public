@@ -1,3 +1,5 @@
+import { sha256 } from "@noble/hashes/sha2.js";
+import { bytesToHex, utf8ToBytes } from "@noble/hashes/utils.js";
 import { describe, it, expect } from "vitest";
 import {
   createSecureShare,
@@ -132,14 +134,36 @@ describe("Zero-knowledge secure sharing", () => {
     });
   });
 
-  describe("API PIN hash", () => {
-    it("produces SHA-256 hex of PIN", () => {
-      const hash = computeApiPinHash("123456");
-      expect(hash.length).toBe(64);
+  describe("API PIN hash (keyed by the URL key)", () => {
+    const keyA = "11".repeat(32);
+    const keyB = "22".repeat(32);
+
+    it("is 64 hex chars and deterministic for the same key and PIN", () => {
+      const hash = computeApiPinHash("123456", keyA);
+      expect(hash).toMatch(/^[0-9a-f]{64}$/);
+      expect(computeApiPinHash("123456", keyA)).toBe(hash);
     });
 
-    it("deterministic: same PIN = same hash", () => {
-      expect(computeApiPinHash("123456")).toBe(computeApiPinHash("123456"));
+    it("is not the unsalted SHA-256 of the PIN, which the server could invert alone", () => {
+      const unsalted = bytesToHex(sha256(utf8ToBytes("123456")));
+      expect(computeApiPinHash("123456", keyA)).not.toBe(unsalted);
+    });
+
+    it("depends on the URL key, which the server never receives", () => {
+      expect(computeApiPinHash("123456", keyA)).not.toBe(computeApiPinHash("123456", keyB));
+    });
+
+    it("depends on the PIN", () => {
+      expect(computeApiPinHash("123456", keyA)).not.toBe(computeApiPinHash("654321", keyA));
+    });
+
+    it("createSecureShare stores the proof the recipient recomputes from the URL key", () => {
+      const result = createSecureShare(
+        { type: "note", noteTitle: "t", noteContent: "c" },
+        "246810"
+      );
+      expect(result.apiPinHash).toBe(computeApiPinHash("246810", result.privateKeyHex));
+      expect(result.apiPinHash).not.toBe(bytesToHex(sha256(utf8ToBytes("246810"))));
     });
   });
 
