@@ -123,30 +123,10 @@ consent.
 
 ## Release Integrity (Signed Releases)
 
-Release artifacts (Android APK, iOS IPA, browser extensions) are built on the
-maintainer's machine and **signed with [minisign](https://github.com/jedisct1/minisign)**
-(Ed25519). The signing public key is committed in this repository
-([`minisign.pub`](minisign.pub)) — its integrity is anchored by the git history.
-
-### Verify a release artifact
-
-```bash
-# 1. Download the artifact and the repository's public key
-gh release download v0.2.0 -R VaultKeepR/vaultkeepr-public
-curl -LO https://raw.githubusercontent.com/VaultKeepR/vaultkeepr-public/main/minisign.pub
-
-# 2. Verify the signature (minisign: brew install minisign / apt install minisign)
-minisign -Vm vaultkeepr-android-v0.2.0.apk -p minisign.pub
-# → "Signature and comment signature verified"
-
-# 3. Cross-check the SHA-256 against the signed checksums.txt
-shasum -a 256 -c checksums.txt
-```
-
-Every release also ships `checksums.txt` (SHA-256 of all artifacts) with its own
-minisign signature, so the checksum list itself is authenticated. If signature
-verification fails, **do not install the artifact** and please
-[open a security advisory](#reporting-vulnerabilities).
+The GitHub Releases of this repository carry **SDK artifacts only**. The
+`@vaultkeepr/*` packages are built and published by GitHub Actions from this
+repository. The client apps (web, browser extension, iOS and Android) are out of
+scope for this repository and are not attached to its releases.
 
 ### Verify the SDK build provenance
 
@@ -161,11 +141,8 @@ the same provenance on the package page:
 ```bash
 # Download the tarball and check it was built by this repository's release workflow
 npm pack @vaultkeepr/core
-gh attestation verify vaultkeepr-core-0.1.3.tgz --repo VaultKeepR/vaultkeepr-public
+gh attestation verify vaultkeepr-core-<version>.tgz --repo VaultKeepR/vaultkeepr-public
 ```
 
-**Scope, stated plainly:** this attestation covers only the **npm SDK tarballs
-built by the release workflow**. The application artifacts (Android APK, iOS
-IPA, browser extension zips) are built on the maintainer's machine: they are
-covered by the minisign signature and the signed `checksums.txt` above, and no
-CI build provenance is claimed for them.
+**Scope, stated plainly:** this attestation covers the npm SDK tarballs built by
+the release workflow. No other artifact is published from this repository.
