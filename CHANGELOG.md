@@ -17,6 +17,7 @@ All packages are versioned together (see the README "Versioning" section).
 
 ### Changed
 
+- Release assets: GitHub Releases carry SDK artifacts only. Client app binaries (APK, IPA, browser extension zips) are no longer attached to this repository.
 - `smart-account`: the on-chain CID publish path is removed (`publishCidOnChain`
   and the on-chain sync). CIDs are stored only on the sync server. **Breaking.**
 - `core`: `computeApiPinHash(pin, keyHex)` takes the share URL key and keys the

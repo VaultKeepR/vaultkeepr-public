@@ -1,25 +1,19 @@
 #!/usr/bin/env bash
 # VaultKeepR — publish a signed release from locally built artifacts.
 #
-# The apps are closed-source and built on a developer machine, so provenance
-# is established by signature, not by CI build attestation: every artifact is
-# signed with minisign (Ed25519) and a signed checksums.txt covers the set.
-# The public key is committed at the repository root (minisign.pub).
+# Scope: this repository publishes SDK artifacts only (npm tarballs, built by the
+# release workflow with SLSA provenance). Client apps are not published from this
+# repository, so this script is for extra signed artifacts only. Every artifact is
+# signed with minisign (Ed25519) and a signed checksums.txt covers the set. The
+# public key is committed at the repository root (minisign.pub).
 #
 # One-time setup (developer Mac):
 #   brew install minisign gh
 #   minisign -G -p minisign.pub -s ~/.minisign/vaultkeepr-release.key
 #   # -> send minisign.pub to be committed into this repository
 #
-# Per release:
-#   ./scripts/release.sh 0.2.0 \
-#       vaultkeepr-android-v0.2.0.apk \
-#       vaultkeepr-ios-v0.2.0.ipa \
-#       vaultkeepr-firefox-v0.2.0.zip \
-#       vaultkeepr-chrome-v0.2.0.zip
-#
-# Recommended artifact naming: <product>-<platform>-v<version>.<ext>
-# so verification instructions stay copy-pasteable in SECURITY.md.
+# Per release (example with an SDK tarball):
+#   ./scripts/release.sh <version> vaultkeepr-core-<version>.tgz
 set -euo pipefail
 
 VERSION="${1:?usage: release.sh <version> <artifact>... (version without leading v)}"

@@ -88,10 +88,8 @@ jobs:
       # npm.pkg.github.com for this scope. npmjs.org is the single source.
       #
       # Build provenance for the artifacts this workflow actually built: the
-      # tarballs published above. Consent/scope note — the app artifacts (APK,
-      # IPA, extension zips) are built on the maintainer's machine and are NOT
-      # covered by this attestation; they stay covered by the minisign signature
-      # (see SECURITY.md § Release Integrity).
+      # tarballs published above. Client apps are not published from this
+      # repository (see SECURITY.md § Release Integrity).
       - name: Pack published tarballs (attestation subjects)
         run: |
           set -e
