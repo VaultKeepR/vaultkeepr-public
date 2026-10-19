@@ -17,6 +17,7 @@ All packages are versioned together (see the README "Versioning" section).
 
 ### Changed
 
+- Versions: `core`, `smart-account`, `legacy` and `premium` move to 0.2.0; `recovery` moves to 0.1.3. Other packages keep their version.
 - Release assets: GitHub Releases carry SDK artifacts only. Client app binaries (APK, IPA, browser extension zips) are no longer attached to this repository.
 - `smart-account`: the on-chain CID publish path is removed (`publishCidOnChain`
   and the on-chain sync). CIDs are stored only on the sync server. **Breaking.**
