@@ -1470,7 +1470,6 @@ export interface Translations {
     navTerms: string;
     navPrivacy: string;
     chromeExtension: string;
-    firefoxAddon: string;
     appStore: string;
     navPremium: string;
     navDownload: string;
@@ -4130,7 +4129,6 @@ export const en: Translations = {
     navTerms: "Terms",
     navPrivacy: "Privacy",
     chromeExtension: "Chrome Extension",
-    firefoxAddon: "Firefox Add-on",
     appStore: "App Store",
     navPremium: "Premium",
     navDownload: "Download",
@@ -4271,7 +4269,7 @@ export const en: Translations = {
     miniPricingFreeCta: "Try free",
     miniPricingFreeFeat1: "Unlimited passwords & cards",
     miniPricingFreeFeat2: "XChaCha20 + Argon2id encryption",
-    miniPricingFreeFeat3: "Chrome, Firefox, iOS, Android",
+    miniPricingFreeFeat3: "Chrome, iOS, Android",
     miniPricingFreeFeat4: "IPFS decentralized sync",
     miniPricingFreeFeat5: "No email, no account",
     miniPricingPremiumTitle: "Premium",
