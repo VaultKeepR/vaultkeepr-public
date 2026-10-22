@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "typescript": "^5.6.3",
-    "vitest": "^4.1.11",
+    "vitest": "^4.1.12",
     "tsup": "^8.3.0"
   },
   "license": "MIT"
