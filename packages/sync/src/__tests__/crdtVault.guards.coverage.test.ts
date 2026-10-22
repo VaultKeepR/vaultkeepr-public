@@ -1,7 +1,17 @@
 // Coverage-round: both outcomes of the prototype-pollution guards in
 // crdtVault (CodeQL js/prototype-polluting-assignment hardening).
 import { describe, it, expect } from "vitest";
-import { createEmptyDoc, addEntry, updateEntryField, syncLegacyToCrdt } from "../crdtVault";
+import {
+  createEmptyDoc,
+  addEntry,
+  updateEntry,
+  updateEntryField,
+  deleteEntry,
+  addDocument,
+  updateDocument,
+  deleteDocument,
+  syncLegacyToCrdt
+} from "../crdtVault";
 import type { VaultEntry } from "@vaultkeepr/core";
 
 function makeEntry(id: string): VaultEntry {
@@ -86,6 +96,26 @@ describe("crdtVault prototype-pollution guards", () => {
 
     const out = syncLegacyToCrdt(doc, vault);
     expect(Object.keys(out.documents).sort()).toEqual(["d-ctor", "d-plain", "d-proto", "d-prototype"]);
+  });
+
+  it("refuses dangerous ids on the direct entry and document operations", () => {
+    let doc = addEntry(createEmptyDoc("dev-a"), makeEntry("e1"));
+    const evilEntry = makeEntry("__proto__");
+
+    doc = addEntry(doc, evilEntry);
+    doc = updateEntry(doc, evilEntry);
+    doc = updateEntryField(doc, "__proto__", "username", "pwn");
+    doc = deleteEntry(doc, "__proto__");
+    doc = addDocument(doc, makeSecureDoc("__proto__") as never);
+    doc = updateDocument(doc, makeSecureDoc("__proto__") as never);
+    doc = deleteDocument(doc, "__proto__");
+
+    const probe = {} as Record<string, unknown>;
+    expect(probe.username).toBeUndefined();
+    expect(probe._deleted).toBeUndefined();
+    expect(Object.keys(doc.entries)).toEqual(["e1"]);
+    expect(doc.entries.e1.username).toBe("u");
+    expect(Object.keys(doc.documents ?? {})).toEqual([]);
   });
 
   it("skips a dangerous cloud-file id before conversion", () => {
