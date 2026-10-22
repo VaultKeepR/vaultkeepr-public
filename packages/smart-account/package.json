@@ -36,7 +36,7 @@
   "devDependencies": {
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
-    "vitest": "^4.1.11",
+    "vitest": "^4.1.12",
     "@vaultkeepr/core": "workspace:*",
     "react": "^19.0.0",
     "@types/react": "^19.0.0"
