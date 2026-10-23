@@ -68,6 +68,7 @@ export function createEmptyDoc(deviceId: string): VaultDoc {
 
 export function addEntry(doc: VaultDoc, entry: VaultEntry): VaultDoc {
   return Automerge.change(doc, `add-entry-${entry.id}`, (d) => {
+    if (entry.id === "__proto__" || entry.id === "constructor" || entry.id === "prototype") return;
     d.entries[entry.id] = vaultEntryToCrdt(entry);
   });
 }
@@ -77,6 +78,7 @@ export function addEntry(doc: VaultDoc, entry: VaultEntry): VaultDoc {
 
 export function updateEntry(doc: VaultDoc, entry: VaultEntry): VaultDoc {
   return Automerge.change(doc, `update-entry-${entry.id}`, (d) => {
+    if (entry.id === "__proto__" || entry.id === "constructor" || entry.id === "prototype") return;
     const existing = d.entries[entry.id];
     if (!existing || existing._deleted) return;
 
@@ -102,6 +104,7 @@ field: K,
 value: CrdtVaultEntry[K])
 : VaultDoc {
   return Automerge.change(doc, `update-${entryId}-${String(field)}`, (d) => {
+    if (entryId === "__proto__" || entryId === "constructor" || entryId === "prototype") return;
     const entry = d.entries[entryId];
     if (!entry || entry._deleted) return;
     const fieldName = field as string;
@@ -119,6 +122,7 @@ value: CrdtVaultEntry[K])
 
 export function deleteEntry(doc: VaultDoc, entryId: string): VaultDoc {
   return Automerge.change(doc, `delete-${entryId}`, (d) => {
+    if (entryId === "__proto__" || entryId === "constructor" || entryId === "prototype") return;
     const entry = d.entries[entryId];
     if (!entry) return;
     entry._deleted = true;
@@ -135,6 +139,7 @@ export function deleteEntry(doc: VaultDoc, entryId: string): VaultDoc {
 
 export function addDocument(doc: VaultDoc, secDoc: SecureDocument): VaultDoc {
   return Automerge.change(doc, `add-doc-${secDoc.id}`, (d) => {
+    if (secDoc.id === "__proto__" || secDoc.id === "constructor" || secDoc.id === "prototype") return;
     d.documents[secDoc.id] = secureDocToCrdt(secDoc);
   });
 }
@@ -144,6 +149,7 @@ export function addDocument(doc: VaultDoc, secDoc: SecureDocument): VaultDoc {
 
 export function updateDocument(doc: VaultDoc, secDoc: SecureDocument): VaultDoc {
   return Automerge.change(doc, `update-doc-${secDoc.id}`, (d) => {
+    if (secDoc.id === "__proto__" || secDoc.id === "constructor" || secDoc.id === "prototype") return;
     const existing = d.documents[secDoc.id];
     if (!existing || existing._deleted) return;
     const updated = secureDocToCrdt(secDoc);
@@ -158,6 +164,7 @@ export function updateDocument(doc: VaultDoc, secDoc: SecureDocument): VaultDoc 
 
 export function deleteDocument(doc: VaultDoc, docId: string): VaultDoc {
   return Automerge.change(doc, `delete-doc-${docId}`, (d) => {
+    if (docId === "__proto__" || docId === "constructor" || docId === "prototype") return;
     const document = d.documents[docId];
     if (!document) return;
     document._deleted = true;
