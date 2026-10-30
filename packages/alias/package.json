@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "mailparser": "^3.9.38",
-    "nodemailer": "^10.1.0",
+    "nodemailer": "^10.1.4",
     "openpgp": "^6.3.0",
     "pg": "^8.13.0"
   },
