@@ -217,4 +217,111 @@ contract VaultKeeperFragmentsTest is Test {
         assertEq(fragments.getFragment(hash2), PAYLOAD_2);
         assertEq(fragments.getFragmentOwner(hash2), user2);
     }
+
+
+
+    bytes32 constant EIP712_DOMAIN_TYPEHASH = keccak256(
+        "EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)"
+    );
+
+    function _metaDigest(bytes32 lookupIdHash, bytes memory encryptedPayload, address owner)
+        internal
+        view
+        returns (bytes32)
+    {
+        bytes32 structHash = keccak256(
+            abi.encode(
+                keccak256("StoreFragmentMeta(bytes32 lookupIdHash,bytes encryptedPayload,address owner)"),
+                lookupIdHash,
+                keccak256(encryptedPayload),
+                owner
+            )
+        );
+        bytes32 domainSeparator = keccak256(
+            abi.encode(
+                EIP712_DOMAIN_TYPEHASH,
+                keccak256(bytes("VaultKeeperFragments")),
+                keccak256(bytes("1")),
+                block.chainid,
+                address(fragments)
+            )
+        );
+        return keccak256(abi.encodePacked(hex"1901", domainSeparator, structHash));
+    }
+
+    function test_storeFragmentMeta_storesWithValidSignature() public {
+        uint256 ownerKey = 0xA11CE;
+        address owner = vm.addr(ownerKey);
+        bytes32 digest = _metaDigest(LOOKUP_HASH, PAYLOAD_1, owner);
+        (uint8 v, bytes32 r, bytes32 s) = vm.sign(ownerKey, digest);
+
+        vm.expectEmit(true, true, false, false);
+        emit FragmentStored(LOOKUP_HASH, owner);
+        fragments.storeFragmentMeta(LOOKUP_HASH, PAYLOAD_1, owner, abi.encodePacked(r, s, v));
+
+        assertEq(fragments.getFragment(LOOKUP_HASH), PAYLOAD_1);
+        assertTrue(fragments.hasFragment(LOOKUP_HASH));
+        assertEq(fragments.getFragmentOwner(LOOKUP_HASH), owner);
+    }
+
+    function test_storeFragmentMeta_ownerCanUpdateViaSignature() public {
+        uint256 ownerKey = 0xA11CE;
+        address owner = vm.addr(ownerKey);
+        bytes32 digest1 = _metaDigest(LOOKUP_HASH, PAYLOAD_1, owner);
+        (uint8 v1, bytes32 r1, bytes32 s1) = vm.sign(ownerKey, digest1);
+        fragments.storeFragmentMeta(LOOKUP_HASH, PAYLOAD_1, owner, abi.encodePacked(r1, s1, v1));
+
+        bytes32 digest2 = _metaDigest(LOOKUP_HASH, PAYLOAD_2, owner);
+        (uint8 v2, bytes32 r2, bytes32 s2) = vm.sign(ownerKey, digest2);
+        vm.expectEmit(true, true, false, false);
+        emit FragmentUpdated(LOOKUP_HASH, owner);
+        fragments.storeFragmentMeta(LOOKUP_HASH, PAYLOAD_2, owner, abi.encodePacked(r2, s2, v2));
+
+        assertEq(fragments.getFragment(LOOKUP_HASH), PAYLOAD_2);
+        assertEq(fragments.getFragmentOwner(LOOKUP_HASH), owner);
+    }
+
+    function test_storeFragmentMeta_rejectsWrongSigner() public {
+        uint256 ownerKey = 0xA11CE;
+        address owner = vm.addr(ownerKey);
+        uint256 impostorKey = 0xB0B;
+
+        bytes32 digest = _metaDigest(LOOKUP_HASH, PAYLOAD_1, owner);
+        (uint8 v, bytes32 r, bytes32 s) = vm.sign(impostorKey, digest);
+
+        vm.expectRevert(VaultKeeperFragments.InvalidSignature.selector);
+        fragments.storeFragmentMeta(LOOKUP_HASH, PAYLOAD_1, owner, abi.encodePacked(r, s, v));
+    }
+
+    function test_storeFragmentMeta_rejectsTamperedPayload() public {
+        uint256 ownerKey = 0xA11CE;
+        address owner = vm.addr(ownerKey);
+
+        bytes32 digest = _metaDigest(LOOKUP_HASH, PAYLOAD_1, owner);
+        (uint8 v, bytes32 r, bytes32 s) = vm.sign(ownerKey, digest);
+
+        vm.expectRevert(VaultKeeperFragments.InvalidSignature.selector);
+        fragments.storeFragmentMeta(LOOKUP_HASH, PAYLOAD_2, owner, abi.encodePacked(r, s, v));
+    }
+
+    // Known accepted griefing (reported 2026-11): a permissionless storeFragment
+    // can front-run a pending storeFragmentMeta and claim the slot. No on-chain
+    // fix exists — the first writer is self-chosen on both paths — so the product
+    // mitigates client-side via waitForFragmentOwnership (packages/recovery):
+    // read back getFragmentOwner after the store tx and re-run setup with a fresh
+    // recoveryId on mismatch. This test documents the behavior for triage.
+    function test_storeFragment_frontRunClaimsSlot_knownGriefing() public {
+        uint256 ownerKey = 0xA11CE;
+        address owner = vm.addr(ownerKey);
+        bytes32 digest = _metaDigest(LOOKUP_HASH, PAYLOAD_1, owner);
+        (uint8 v, bytes32 r, bytes32 s) = vm.sign(ownerKey, digest);
+
+        vm.prank(user2);
+        fragments.storeFragment(LOOKUP_HASH, PAYLOAD_2);
+
+        vm.expectRevert(VaultKeeperFragments.NotFragmentOwner.selector);
+        fragments.storeFragmentMeta(LOOKUP_HASH, PAYLOAD_1, owner, abi.encodePacked(r, s, v));
+
+        assertEq(fragments.getFragmentOwner(LOOKUP_HASH), user2);
+    }
 }
